@@ -5,7 +5,7 @@
 import math
 import readline
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 # example pour tester
 def loadSeq(fname):
@@ -48,9 +48,12 @@ def loadA(fname):
     return np.array(A)
 
 # exemple:
-A = np.array([[1,2,2,3,1,3],[1,0,2,2,1,3],[1,2,0,2,1,3],[3,2,2,3,1,3]])
-seq = [1,2,2,1,3,3]
-alph = range(4) # [-,A,B,C]
+A = np.array([[0,1,1,2,0,2],
+              [0,3,1,1,0,2],
+              [0,1,3,1,0,2],
+              [2,1,1,2,0,2]])
+seq = [0,1,1,0,0,2]
+alph = range(4) # [A,B,C,-]
 
 # Premiere fonction
 def count(A, l):
@@ -70,7 +73,8 @@ print 'exemple w:\n', W
 # Deuxieme fonction
 def S(A, alph):
     q = len(A)
-    return np.log2(q) + sum(w(A, alph) * np.log2(w(A, alph)))
+    W = w(A, alph)
+    return np.log2(q) + sum(W * np.log2(W))
 
 print 'exemple S:\n', S(A, alph)
 
@@ -79,9 +83,22 @@ def argmax(A, alph):
 
 print "argmax: \n",argmax(A,alph)
 
-def trace(values, pos):
-    pass
+def traceS(valeurs, tname=None):
+    fig = plt.figure()
+    plt.xlabel("Position")
+    plt.ylabel("Entropy")
+    plt.plot(valeurs)
+    plt.show()
 
+traceS(S(A,alph))
+    
+def traceL(valeurs, tname):
+    fig = plt.figure()
+    plt.xlabel("Position")
+    plt.ylabel("Log-Vraisemblance")
+    plt.plot(valeurs)
+    
+    
 # Troisieme fonction
 def P0(W,B):
     return np.prod([ W[B[i],i] for i in range(len(B))])
@@ -110,13 +127,13 @@ alph = ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V",
 print "alphabet: \n", alph
 print "length q: \n", len(alph)
 
-seq = loadSeq("test_seq.txt")
+seq = loadSeq("TD1/test_seq.txt")
 print "sequence: \n", seq
 alphDict = alph2dict(alph)
 alph = key2value(alphDict, alph)
 seq  = key2value(alphDict, seq)
 
-A = loadA("Dtrain.txt")
+A = loadA("TD1/Dtrain.txt")
 (lign,col) = np.shape(A)
 A = key2value(alphDict, A.reshape(lign*col))
 A = A.reshape(lign,col)
@@ -126,3 +143,4 @@ print "W0('-'): \n",W[-1,0]
 print "S0: \n",S(A, seq[0:len(W[0])])
 L = l(W,seq)
 print "L:\n", L
+
