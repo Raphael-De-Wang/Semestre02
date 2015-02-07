@@ -21,14 +21,16 @@ def loadSeq(fname):
 
 def alph2dict(alph):
     alphDict = {}
+    valDict  = {}
     for i, l in enumerate(alph):
         alphDict[l] = i
-    return alphDict
+        valDict["%d"%i] = l
+    return alphDict,valDict
 
 def key2value(alphDict, keys):
     return np.array([ alphDict.get(k) for k in keys])
 
-def loadA(fname):
+def loadD(fname):
     fd = open(fname)
     A = []
     seq = ""
@@ -61,6 +63,8 @@ def count(A, l):
 
 def n(A, alph):
     return np.array([[count(A[:,i],l) for i in range(len(A[0]))] for l in alph])
+    
+print 'exemple n:\n', n(A, alph)
 
 def w(A, alph):
     M = len(alph)
@@ -78,27 +82,18 @@ def S(A, alph):
 
 print 'exemple S:\n', S(A, alph)
 
-def argmax(A, alph):
-    return np.argmax(w(A, alph),axis=0)
+def argmax(L):
+    return np.argmax(L,axis=0)
 
-print "argmax: \n",argmax(A,alph)
+print "argmax: \n",argmax(A)
 
-def traceS(valeurs, tname=None):
+def traceS(valeurs, tname):
     fig = plt.figure()
     plt.xlabel("Position")
     plt.ylabel("Entropy")
     plt.plot(valeurs)
-    plt.show()
+    plt.savefig(tname)
 
-traceS(S(A,alph))
-    
-def traceL(valeurs, tname):
-    fig = plt.figure()
-    plt.xlabel("Position")
-    plt.ylabel("Log-Vraisemblance")
-    plt.plot(valeurs)
-    
-    
 # Troisieme fonction
 def P0(W,B):
     return np.prod([ W[B[i],i] for i in range(len(B))])
@@ -122,25 +117,57 @@ def l(W,B):
 print "l: \n", l(W,seq)
 print "==== test end ====\n"
 
+def traceL(valeurs, tname):
+    fig = plt.figure()
+    plt.xlabel("Position")
+    plt.ylabel("Log-Vraisemblance")
+    plt.plot(valeurs)
+    plt.savefig(tname)
+
 # Appliquer a testseq.txt
 alph = ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y","-"]
-print "alphabet: \n", alph
-print "length q: \n", len(alph)
 
 seq = loadSeq("TD1/test_seq.txt")
-print "sequence: \n", seq
-alphDict = alph2dict(alph)
+alphDict,valDict = alph2dict(alph)
 alph = key2value(alphDict, alph)
 seq  = key2value(alphDict, seq)
 
-A = loadA("TD1/Dtrain.txt")
-(lign,col) = np.shape(A)
-A = key2value(alphDict, A.reshape(lign*col))
+D = loadD("TD1/Dtrain.txt")
+(lign,col) = np.shape(D)
+print "D shape:", lign, col
+A = key2value(alphDict, D.reshape(lign*col))
 A = A.reshape(lign,col)
 
+N = n(A, alph)
+print "N \n", N
+print "N Shape:\n", np.shape(N)
+np.savetxt("N.txt", N)
+
 W = w(A, alph)
-print "W0('-'): \n",W[-1,0]
-print "S0: \n",S(A, seq[0:len(W[0])])
+print "W: \n",W
+print "W Shape: \n",np.shape(W)
+np.savetxt("W.txt", W)
+
+entropy = S(A, seq[0:len(W[0])])
+print "S0: \n",entropy
+print "S0 Length: \n",np.shape(entropy)
+np.savetxt("S0.txt",entropy)
+
+modele_nul = f0(W,alph)
+print "f0:\n",modele_nul
+print "f0 Length:\n",np.shape(modele_nul)
+np.savetxt("f0.txt",modele_nul)
+
 L = l(W,seq)
 print "L:\n", L
+print "L Length:\n", np.shape(L)
+np.savetxt("L.txt",L)
+
+pMax = argmax(L)
+print "pMax: \n", pMax
+print "pMax sequence: \n", key2value(valDict,np.array([ "%d"%i for i in seq[pMax:pMax+col]]))
+print "Max Log Vraisemblance: ", l(W,seq[pMax:pMax+col])
+
+traceS(entropy,"traceS")
+traceL(L, "traceL")
 

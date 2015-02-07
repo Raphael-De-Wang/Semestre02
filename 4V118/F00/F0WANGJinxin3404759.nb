@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     42276,       1099]
-NotebookOptionsPosition[     37738,        953]
-NotebookOutlinePosition[     38334,        974]
-CellTagsIndexPosition[     38291,        971]
+NotebookDataLength[     42414,       1103]
+NotebookOptionsPosition[     37876,        957]
+NotebookOutlinePosition[     38472,        978]
+CellTagsIndexPosition[     38429,        975]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -841,8 +841,12 @@ d\[EAcute]gag\[EAcute]e lors de la d\[EAcute]molition totale de l\
    3.632245583034636*^9}],
 
 Cell[BoxData[
- RowBox[{"Eg", "="}]], "Input",
- CellChangeTimes->{{3.632245926594372*^9, 3.6322459340090637`*^9}}],
+ RowBox[{"Eg", "=", 
+  RowBox[{
+   SuperscriptBox["\[Sum]", "\[Placeholder]"], 
+   RowBox[{"M", "*", "g"}]}]}]], "Input",
+ CellChangeTimes->{{3.632245926594372*^9, 3.6322459340090637`*^9}, {
+  3.63224603299334*^9, 3.632246073743268*^9}}],
 
 Cell["\<\
 On fera l\[CloseCurlyQuote]approximation que le toit de \
@@ -1077,27 +1081,27 @@ Cell[CellGroupData[{
 Cell[32872, 821, 378, 5, 56, "Subsection"],
 Cell[33253, 828, 172, 4, 40, "Text"],
 Cell[33428, 834, 284, 6, 40, "Text"],
-Cell[33715, 842, 113, 2, 38, "Input"],
-Cell[33831, 846, 347, 6, 67, "Text"],
-Cell[34181, 854, 252, 5, 40, "Text"],
-Cell[34436, 861, 228, 4, 40, "Text"],
-Cell[34667, 867, 257, 5, 40, "Text"],
-Cell[34927, 874, 242, 5, 40, "Text"],
-Cell[35172, 881, 324, 6, 40, "Text"],
-Cell[35499, 889, 282, 8, 42, "Text"]
+Cell[33715, 842, 251, 6, 48, "Input"],
+Cell[33969, 850, 347, 6, 67, "Text"],
+Cell[34319, 858, 252, 5, 40, "Text"],
+Cell[34574, 865, 228, 4, 40, "Text"],
+Cell[34805, 871, 257, 5, 40, "Text"],
+Cell[35065, 878, 242, 5, 40, "Text"],
+Cell[35310, 885, 324, 6, 40, "Text"],
+Cell[35637, 893, 282, 8, 42, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[35818, 902, 219, 3, 56, "Subsection"],
-Cell[36040, 907, 119, 1, 40, "Text"],
-Cell[36162, 910, 71, 1, 40, "Text"],
-Cell[36236, 913, 417, 7, 67, "Text"],
-Cell[36656, 922, 71, 1, 40, "Text"],
-Cell[36730, 925, 431, 7, 67, "Text"],
-Cell[37164, 934, 78, 1, 40, "Text"],
-Cell[37245, 937, 87, 1, 40, "Text"],
-Cell[37335, 940, 180, 2, 50, "Text"],
-Cell[37518, 944, 58, 1, 50, "Text"],
-Cell[37579, 947, 119, 1, 50, "Text"]
+Cell[35956, 906, 219, 3, 56, "Subsection"],
+Cell[36178, 911, 119, 1, 40, "Text"],
+Cell[36300, 914, 71, 1, 40, "Text"],
+Cell[36374, 917, 417, 7, 67, "Text"],
+Cell[36794, 926, 71, 1, 40, "Text"],
+Cell[36868, 929, 431, 7, 67, "Text"],
+Cell[37302, 938, 78, 1, 40, "Text"],
+Cell[37383, 941, 87, 1, 40, "Text"],
+Cell[37473, 944, 180, 2, 50, "Text"],
+Cell[37656, 948, 58, 1, 50, "Text"],
+Cell[37717, 951, 119, 1, 50, "Text"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
