@@ -1,0 +1,7 @@
+v'=I+v*(1-v)*(v-a) -w
+w'=eps*(v-gamma*w)
+par I=0,a=.1,eps=.1,gamma=.25
+@ xp=V,yp=w,xlo=-.25,xhi=1.25,ylo=-.5,yhi=1,total=100
+@ maxstor=10000
+init v=0.5,w=0.5
+done

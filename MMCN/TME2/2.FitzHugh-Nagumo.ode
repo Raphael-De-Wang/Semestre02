@@ -1,0 +1,20 @@
+# systeme de FitzHugh-Nagumo
+
+# les equations
+v'=v-v^3/3-w+I
+w'=eps*(v+a-b*w)
+
+# initialisation des parametres
+par eps=0.08, I=1.5, a=0.7, b=0.8
+
+# conditions initiales
+init v=0.2, w=0.2
+
+# schema numerique utilise
+@ method=rk4
+# pas de temps, temps total d'integration
+@ dt=0.01, total=200
+# eviter les problemes avec les valeurs maximales pour v et w, et les problemes de stockage
+@ bounds=90000000
+@ maxstor=90000000
+done

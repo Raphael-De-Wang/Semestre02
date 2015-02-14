@@ -1,0 +1,20 @@
+# systeme de Centres Et Liearisation
+
+# les equations
+x'=-y+mu*x*(x^2+y^2)
+y'=x+mu*y*(x^2+y^2)
+
+# initialisation des parametres
+par mu=0
+
+# conditions initiales
+init x=1, y=1
+
+# schema numerique utilise
+@ method=rk4
+# pas de temps, temps total d'integration
+@ dt=0.01, total=200
+# eviter les problemes avec les valeurs maximales pour v et w, et les problemes de stockage
+@ bounds=90000000
+@ maxstor=90000000
+done

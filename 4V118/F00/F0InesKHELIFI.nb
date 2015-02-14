@@ -1,0 +1,1985 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     72189,       1976]
+NotebookOptionsPosition[     65690,       1758]
+NotebookOutlinePosition[     66295,       1779]
+CellTagsIndexPosition[     66252,       1776]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ Cell[BoxData[GridBox[{
+    {
+     StyleBox[
+      RowBox[{
+      "Universit\[EAcute]", " ", "Pierre", " ", "et", " ", "Marie", " ", 
+       "Curie"}],
+      FontFamily->"Times",
+      FontSize->14,
+      FontWeight->"Bold"], 
+     StyleBox[
+      "\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\
+\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]\[NonBreakingSpace]",
+      
+      FontFamily->"Times",
+      FontSize->14,
+      FontWeight->"Bold"], 
+     StyleBox[
+      RowBox[{"UE", " ", "Transversale", " ", "1", "XM01"}],
+      FontFamily->"Times",
+      FontSize->14,
+      FontWeight->"Bold"]}
+   }]]],
+ "Mathematica \t\t\t\t\tElabor\[EAcute] par :  Ines KHELIFI"
+}], "Subsubtitle",
+ CellChangeTimes->{{3.391778469596622*^9, 3.391778482437413*^9}, {
+   3.392280326251412*^9, 3.392280329339653*^9}, {3.3931493080526237`*^9, 
+   3.3931493271962976`*^9}, {3.393160254867467*^9, 3.393160264166019*^9}, {
+   3.393227059134004*^9, 3.393227101721583*^9}, {3.393393785855995*^9, 
+   3.393393791629023*^9}, {3.394465294149419*^9, 3.394465326851873*^9}, 
+   3.394465508284803*^9, {3.395637963769068*^9, 3.395637965903864*^9}, 
+   3.398397587033951*^9, 3.3986141148026*^9, {3.398621046230187*^9, 
+   3.3986210754587584`*^9}, {3.398691283096447*^9, 3.398691288095434*^9}, 
+   3.592221079597178*^9, {3.592221118545196*^9, 3.5922212207906103`*^9}, {
+   3.592221252761036*^9, 3.592221257185204*^9}, {3.5981794241754932`*^9, 
+   3.5981794366346292`*^9}, {3.598179631543501*^9, 3.5981796485054417`*^9}, {
+   3.5992069481719227`*^9, 3.599206951980462*^9}, {3.616845067617374*^9, 
+   3.6168450676175013`*^9}, {3.6319715606692953`*^9, 
+   3.6319715760401745`*^9}, {3.632671571399535*^9, 3.6326715758467894`*^9}},
+ TextAlignment->Left,
+ TextJustification->1.],
+
+Cell["\<\
+__________________________________________________________________________\
+\>", "Subsubtitle",
+ CellChangeTimes->{{3.391778469596622*^9, 3.391778482437413*^9}, {
+   3.392280326251412*^9, 3.392280329339653*^9}, {3.3931493080526237`*^9, 
+   3.3931493271962976`*^9}, {3.393160254867467*^9, 3.393160264166019*^9}, {
+   3.393227059134004*^9, 3.393227101721583*^9}, {3.393393785855995*^9, 
+   3.393393791629023*^9}, {3.394465294149419*^9, 3.394465326851873*^9}, 
+   3.394465508284803*^9, {3.395637963769068*^9, 3.395637965903864*^9}, 
+   3.398397587033951*^9, 3.3986141148026*^9, {3.398621046230187*^9, 
+   3.3986210754587584`*^9}, {3.398691283096447*^9, 3.398691288095434*^9}, 
+   3.592221079597178*^9, {3.592221118545196*^9, 3.5922212207906103`*^9}, {
+   3.592221252761036*^9, 3.592221336248496*^9}, {3.5922213690588284`*^9, 
+   3.592221433290639*^9}, {3.5922214728396587`*^9, 3.5922214893180523`*^9}, {
+   3.592224822451502*^9, 3.592224823322698*^9}, 3.592225085699099*^9, 
+   3.598191452061871*^9, {3.598288651042397*^9, 3.5982886516352663`*^9}, {
+   3.598288695699231*^9, 3.598288711159151*^9}, 3.598288788080286*^9, 
+   3.598711471070766*^9},
+ TextAlignment->Center,
+ TextJustification->0.],
+
+Cell[TextData[{
+ StyleBox["F 0 : Mol\[EAcute]cules et \[EAcute]nergie", "Subtitle"],
+ "\n__________________________________________________________________________"
+}], "Subsubtitle",
+ CellChangeTimes->{{3.391778469596622*^9, 3.391778482437413*^9}, {
+   3.392280326251412*^9, 3.392280329339653*^9}, {3.3931493080526237`*^9, 
+   3.3931493271962976`*^9}, {3.393160254867467*^9, 3.393160264166019*^9}, {
+   3.393227059134004*^9, 3.393227101721583*^9}, {3.393393785855995*^9, 
+   3.393393791629023*^9}, {3.394465294149419*^9, 3.394465326851873*^9}, 
+   3.394465508284803*^9, {3.395637963769068*^9, 3.395637965903864*^9}, 
+   3.398397587033951*^9, 3.3986141148026*^9, {3.398621046230187*^9, 
+   3.3986210754587584`*^9}, {3.398691283096447*^9, 3.398691288095434*^9}, 
+   3.592221079597178*^9, {3.592221118545196*^9, 3.5922212207906103`*^9}, {
+   3.592221252761036*^9, 3.592221336248496*^9}, {3.5922213690588284`*^9, 
+   3.5922213999585257`*^9}, {3.59222144550114*^9, 3.592221486686606*^9}, {
+   3.5922245836779423`*^9, 3.592224590720902*^9}, {3.592224825751791*^9, 
+   3.59222483911482*^9}, 3.592225088039978*^9, {3.5922278779838743`*^9, 
+   3.592227888949101*^9}, {3.592227927154607*^9, 3.592227961679068*^9}, 
+   3.592974110525981*^9, {3.598179936079877*^9, 3.598179948990809*^9}, {
+   3.5981816623834963`*^9, 3.598181669190373*^9}, 3.598182929880309*^9, 
+   3.598191447635243*^9, {3.598288647053463*^9, 3.598288648689932*^9}, {
+   3.5982886915919847`*^9, 3.598288717427762*^9}, 3.5982887804574203`*^9, 
+   3.5987114741422567`*^9, 3.599485342521658*^9, 3.6152852197497168`*^9, 
+   3.618368705049673*^9, 3.619520796608673*^9, {3.6319650957415223`*^9, 
+   3.63196512017692*^9}},
+ TextAlignment->Center,
+ TextJustification->0.]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+4V118 Acides Nucl\[EAcute]ques :  de la mol\[EAcute]cule unique \[AGrave] la \
+cellule
+\
+\>", "Subtitle",
+ CellChangeTimes->{{3.395638025614813*^9, 3.395638092816231*^9}, {
+   3.3956381230538282`*^9, 3.395638155628819*^9}, {3.398250321849264*^9, 
+   3.398250341239509*^9}, {3.398250651047665*^9, 3.398250652611635*^9}, 
+   3.398397587034444*^9, 3.398397667035816*^9, {3.3983979131548147`*^9, 
+   3.398397916018228*^9}, 3.3983980947354097`*^9, 3.3983982433045073`*^9, 
+   3.398399347780487*^9, 3.398583267178884*^9, {3.398583298327962*^9, 
+   3.398583303289241*^9}, {3.398583339007435*^9, 3.398583385326274*^9}, {
+   3.398583433774679*^9, 3.398583434412992*^9}, {3.398614076787819*^9, 
+   3.398614078492876*^9}, {3.398614131797221*^9, 3.3986141384505796`*^9}, {
+   3.398624060615407*^9, 3.3986240867316103`*^9}, 3.461991570988912*^9, {
+   3.461996196202943*^9, 3.461996204288962*^9}, {3.598160314437337*^9, 
+   3.598160319900402*^9}, {3.598163724948724*^9, 3.5981637262505617`*^9}, 
+   3.598195475551035*^9, {3.60027960869413*^9, 3.6002796094203463`*^9}, 
+   3.6152876505084543`*^9, 3.61529460157038*^9, {3.631965171841875*^9, 
+   3.6319652005205154`*^9}, 3.6326702481508493`*^9},
+ TextAlignment->Center,
+ TextJustification->0.],
+
+Cell[CellGroupData[{
+
+Cell["Ordres de grandeurs", "Section",
+ CellChangeTimes->{{3.587474295714384*^9, 3.587474313775589*^9}, {
+   3.587812198905151*^9, 3.5878122337543783`*^9}, {3.5878123814809723`*^9, 
+   3.5878123840751753`*^9}, {3.598164275302969*^9, 3.5981643031735067`*^9}, 
+   3.598164341520172*^9, {3.598164884178932*^9, 3.598164887104292*^9}, {
+   3.598180942451242*^9, 3.598180948257153*^9}, {3.6152947896319532`*^9, 
+   3.615294801132431*^9}, 3.615297722140437*^9, {3.618368780510503*^9, 
+   3.618368782812027*^9}, {3.631965679344903*^9, 3.6319656929276795`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+ 1. L\[CloseCurlyQuote]ADN de la mol\[EAcute]cule \[AGrave] l\
+\[CloseCurlyQuote]organisme : unit\[EAcute] taille, volume, masse, information\
+\>", "Subsection",
+ CellChangeTimes->{{3.615295278490271*^9, 3.6152953283936367`*^9}, {
+   3.6152953768627253`*^9, 3.6152954278041067`*^9}, 3.615297898624962*^9, {
+   3.615299524406397*^9, 3.615299558444701*^9}, {3.615299711273144*^9, 
+   3.615299719993979*^9}, 3.6183689300975637`*^9, {3.6183746056656322`*^9, 
+   3.6183746077881613`*^9}, {3.6319657237684436`*^9, 3.6319657813527374`*^9}, 
+   3.6319667959297676`*^9, {3.631966838033176*^9, 3.6319668387772183`*^9}}],
+
+Cell[TextData[{
+ "Chaque cellule humaine renferme environ 2*(3 ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", "9"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ") paires de bases d\[CloseCurlyQuote]ADN.\nLe rayon d\[CloseCurlyQuote]une \
+cellule humaine est typiquement 10 \[Mu]m (environ, nota bene : il est un peu \
+agrandi ici). Le rayon de\nl\[CloseCurlyQuote]ADN est approximativement de 10 \
+",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["A", "\[Degree]"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " et l\[CloseCurlyQuote]\[EAcute]paisseur d\[CloseCurlyQuote]une paire de \
+base est 3.34  ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["A", "\[Degree]"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "\nQuelle est la longueur totale de l\[CloseCurlyQuote]ADN ? la longueur \
+moyenne d\[CloseCurlyQuote]ADN d\[CloseCurlyQuote]un chromosome ?"
+}], "Text",
+ CellChangeTimes->{3.632666220218465*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LongueurTot", " ", "=", " ", 
+  RowBox[{"3.34", " ", 
+   OverscriptBox["A", "\[Degree]"], " ", "*", " ", "2", "*", "3", " ", 
+   SuperscriptBox["10", "9"]}]}]], "Input",
+ CellChangeTimes->{{3.632666229825014*^9, 3.6326662460719438`*^9}, {
+  3.6326666392094297`*^9, 3.63266672278521*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2.004`*^10", " ", 
+  OverscriptBox["A", "\[Degree]"]}]], "Output",
+ CellChangeTimes->{{3.6326666857790937`*^9, 3.632666726421418*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LongueurMoy", "=", " ", 
+  FractionBox["LongueurTot", "46"]}]], "Input",
+ CellChangeTimes->{{3.632666748336672*^9, 3.6326667542240086`*^9}, {
+  3.632667032892947*^9, 3.6326670692430267`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"4.3565217391304344`*^8", " ", 
+  OverscriptBox["A", "\[Degree]"]}]], "Output",
+ CellChangeTimes->{3.6326670713551474`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Quel est le volume moyen d\[CloseCurlyQuote]une cellule humaine en ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["m", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " et en ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[Mu]m", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " ? le volume moyen occup\[EAcute] par l\[CloseCurlyQuote]ADN ?"
+}], "Text",
+ CellChangeTimes->{3.632667093572418*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"VolumeMoy", " ", "=", 
+  RowBox[{
+   RowBox[{
+    FractionBox["4", "3"], "*", "\[Pi]", "*", 
+    SuperscriptBox["r", 
+     RowBox[{"3", " "}]]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{"r", "\[Rule]", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]], "m"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "VolumeMoy", "]"}]}], "Input",
+ CellChangeTimes->{{3.632667109993357*^9, 3.6326671190478754`*^9}, {
+  3.6326671880988245`*^9, 3.6326673558994226`*^9}, {3.6326673967637596`*^9, 
+  3.632667434302907*^9}, {3.6326675347136497`*^9, 3.632667601747484*^9}, {
+  3.6326677044403577`*^9, 3.6326677407024317`*^9}, {3.632667786425047*^9, 
+  3.6326678151206884`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["m", "3"], " ", "\[Pi]"}], "750000000000000"]], "Output",
+ CellChangeTimes->{{3.6326672530825415`*^9, 3.632667270730551*^9}, 
+   3.6326673231015463`*^9, 3.6326673565014567`*^9, 3.6326674354649734`*^9, 
+   3.6326676030825605`*^9, {3.6326677135168767`*^9, 3.632667741774493*^9}, 
+   3.63266781619875*^9}],
+
+Cell[BoxData[
+ RowBox[{"4.1887902047863906`*^-15", " ", 
+  SuperscriptBox["m", "3"]}]], "Output",
+ CellChangeTimes->{{3.6326672530825415`*^9, 3.632667270730551*^9}, 
+   3.6326673231015463`*^9, 3.6326673565014567`*^9, 3.6326674354649734`*^9, 
+   3.6326676030825605`*^9, {3.6326677135168767`*^9, 3.632667741774493*^9}, 
+   3.63266781620375*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"VolumeMoy1", " ", "=", 
+  RowBox[{
+   RowBox[{
+    FractionBox["4", "3"], "*", "\[Pi]", "*", 
+    SuperscriptBox["r", 
+     RowBox[{"3", " "}]]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{"r", "\[Rule]", 
+     RowBox[{"10", " ", "\[Mu]m"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "VolumeMoy1", "]"}]}], "Input",
+ CellChangeTimes->{{3.632667847925565*^9, 3.6326678671676655`*^9}, {
+  3.632668740167598*^9, 3.6326687425867367`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"4000", " ", "\[Pi]", " ", 
+   SuperscriptBox["\[Mu]m", "3"]}], "3"]], "Output",
+ CellChangeTimes->{3.632667868348733*^9, 3.632668744313835*^9, 
+  3.6326687905444794`*^9}],
+
+Cell[BoxData[
+ RowBox[{"4188.790204786391`", " ", 
+  SuperscriptBox["\[Mu]m", "3"]}]], "Output",
+ CellChangeTimes->{3.632667868348733*^9, 3.632668744313835*^9, 
+  3.6326687905774813`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"VolumeADN", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"\[Pi]", "*", "LongueurTot", "*", 
+    SuperscriptBox["r", "2"]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"r", "\[Rule]", 
+      RowBox[{"10", " ", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]], "m"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"1", " ", 
+       OverscriptBox["A", "\[Degree]"]}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]], "m"}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326680016793585`*^9, 3.63266810974654*^9}, {
+  3.6326681415573597`*^9, 3.632668224310093*^9}}],
+
+Cell[BoxData[
+ RowBox[{"6.295751677793946`*^-18", " ", 
+  SuperscriptBox["m", "3"]}]], "Output",
+ CellChangeTimes->{{3.632668082205965*^9, 3.6326681172599697`*^9}, 
+   3.6326681708600354`*^9, {3.632668202183827*^9, 3.6326682257331743`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Quel est le nombre moyen de cellules humaines (en supposant un poids de 70 kg \
+par individu, et que tout l\[CloseCurlyQuote]organisme est compos\[EAcute] de \
+cellules) ?\
+\>", "Text",
+ CellChangeTimes->{3.6326683024115596`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"volumeIndividu", " ", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"poids", " ", "/.", 
+     RowBox[{"{", 
+      RowBox[{"poids", "\[Rule]", " ", 
+       RowBox[{"70", " ", "kg"}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "kg"}], "\[Rule]", " ", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"-", "3"}]], " ", 
+       SuperscriptBox["m", "3"]}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"NombreMoyenCell", " ", "=", " ", 
+  FractionBox["volumeIndividu", 
+   RowBox[{
+    RowBox[{
+     FractionBox["4", "3"], "*", "\[Pi]", "*", 
+     SuperscriptBox["r", 
+      RowBox[{"3", " "}]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{"r", "\[Rule]", 
+      RowBox[{"10", " ", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "6"}]], "m"}]}], "}"}]}]], " "}]}], "Input",
+ CellChangeTimes->{{3.632668506871254*^9, 3.6326686239999533`*^9}, {
+  3.6326686654893265`*^9, 3.6326687229206114`*^9}, {3.632668758522648*^9, 
+  3.6326687690572505`*^9}, {3.6326688282446356`*^9, 3.6326689147295823`*^9}, {
+  3.6326690589528313`*^9, 3.632669060013892*^9}}],
+
+Cell[BoxData[
+ RowBox[{"0.07`", " ", 
+  SuperscriptBox["m", "3"]}]], "Output",
+ CellChangeTimes->{{3.632668584288682*^9, 3.632668624847002*^9}, 
+   3.6326687705253344`*^9, 3.632668810819639*^9, {3.632668841572398*^9, 
+   3.6326688559042177`*^9}, {3.6326688912912416`*^9, 3.6326689152126102`*^9}, 
+   3.632669060791937*^9}],
+
+Cell[BoxData["1.6711269024649014`*^13"], "Output",
+ CellChangeTimes->{{3.632668584288682*^9, 3.632668624847002*^9}, 
+   3.6326687705253344`*^9, 3.632668810819639*^9, {3.632668841572398*^9, 
+   3.6326688559042177`*^9}, {3.6326688912912416`*^9, 3.6326689152126102`*^9}, 
+   3.632669060797937*^9}]
+}, Open  ]],
+
+Cell["\<\
+Quelle est (en UA) la longueur totale (th\[EAcute]orique) de l\
+\[CloseCurlyQuote]ADN d\[CloseCurlyQuote]un individu pour \
+l\[CloseCurlyQuote]ensemble de toutes les cellules de
+l\[CloseCurlyQuote]organisme ?\
+\>", "Text",
+ CellChangeTimes->{3.6326689343477044`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LongueurTotADNIndividu", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"3.34", " ", 
+      OverscriptBox["A", "\[Degree]"], " ", "*", " ", "2", "*", "3", " ", 
+      SuperscriptBox["10", "9"], " ", "*", " ", "NombreMoyenCell"}], " ", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", 
+        OverscriptBox["A", "\[Degree]"]}], "\[Rule]", 
+       RowBox[{
+        SuperscriptBox["10", 
+         RowBox[{"-", "10", " "}]], "m"}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "m"}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"-", "3"}]], "km"}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "km"}], "\[Rule]", 
+     RowBox[{"150", " ", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]], "UA"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632669003576664*^9, 3.6326690434879465`*^9}, {
+  3.632669101139244*^9, 3.6326691058995166`*^9}, {3.632669137818342*^9, 
+  3.6326692013579764`*^9}, {3.6326692363789797`*^9, 3.6326692665567055`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"5.023407468809494`*^6", " ", "UA"}]], "Output",
+ CellChangeTimes->{{3.6326690452290463`*^9, 3.6326690637921085`*^9}, 
+   3.632669159513583*^9, 3.632669192098447*^9, 3.632669268191799*^9}]
+}, Open  ]],
+
+Cell["\<\
+1 UA = 1 unit\[EAcute] astronomique correspond \[AGrave] la distance moyenne \
+terre-soleil, soit 150 millons de km.
+Quelle est la masse correspondante de tout cet ADN par personne ? (la masse \
+molaire moyenne d\[CloseCurlyQuote]une paire de
+bases est 660 g (ou Dalton), v\[EAcute]rifier pour A.T ou C.G).\
+\>", "Text",
+ CellChangeTimes->{3.6326690822291627`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"masseADN", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"660", " ", "g", "*", " ", "2", "*", "3", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"9", " "}]], "*", " ", "NombreMoyenCell"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "g"}], "\[Rule]", 
+     RowBox[{
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]], "Tonne"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326693541857176`*^9, 3.6326694640960045`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"6.617662533761009`*^19", " ", "Tonne"}]], "Output",
+ CellChangeTimes->{{3.632669418652405*^9, 3.6326694648550477`*^9}}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Le texte (sans les images) des 24 volumes de \
+l\[CloseCurlyQuote]Encyclopaedia Universalis p\[EGrave]se 46 kg et renferme \
+environ 500\nmillions de caract\[EGrave]es (il tient sur un seul CD). Combien \
+de volumes faudrait-il pour imprimer l\[CloseCurlyQuote]information de\n6 ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", "9"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " paires de bases parfaitement appari\[EAcute]es et sans tenir compte des \
+modifications \[EAcute]pig\[EAcute]netiques ?"
+}], "Text",
+ CellChangeTimes->{3.632669594340454*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"poids1Volume", " ", "=", " ", 
+  RowBox[{"N", "[", 
+   RowBox[{"46", 
+    RowBox[{"kg", " ", "/", " ", "24"}]}], " ", 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"NombreVolumes", " ", "=", " ", 
+  FractionBox[
+   RowBox[{"masseADN", "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "Tonne"}], "\[Rule]", " ", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"3", "  "}]], "kg"}]}], "}"}]}], 
+   "poids1Volume"]}], "\[IndentingNewLine]", 
+ RowBox[{"NombreEncyclopedies", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"Round", "[", 
+    FractionBox["NombreVolumes", "24"], "]"}], " ", 
+   "Encyclopedies"}]}]}], "Input",
+ CellChangeTimes->{{3.632669903169118*^9, 3.6326700120453453`*^9}, {
+  3.6326700888217363`*^9, 3.632670149168188*^9}, {3.6326701814490347`*^9, 
+  3.632670199942092*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1.9166666666666667`", " ", "kg"}]], "Output",
+ CellChangeTimes->{{3.632669929340615*^9, 3.632669942473366*^9}, 
+   3.6326700133594203`*^9, {3.632670111036007*^9, 3.6326701499412327`*^9}, 
+   3.6326701829521203`*^9, 3.6326702161480193`*^9}],
+
+Cell[BoxData["3.4526934958753094`*^22"], "Output",
+ CellChangeTimes->{{3.632669929340615*^9, 3.632669942473366*^9}, 
+   3.6326700133594203`*^9, {3.632670111036007*^9, 3.6326701499412327`*^9}, 
+   3.6326701829521203`*^9, 3.6326702161570196`*^9}],
+
+Cell[BoxData[
+ RowBox[{"1438622289948045475840", " ", "Encyclopedies"}]], "Output",
+ CellChangeTimes->{{3.632669929340615*^9, 3.632669942473366*^9}, 
+   3.6326700133594203`*^9, {3.632670111036007*^9, 3.6326701499412327`*^9}, 
+   3.6326701829521203`*^9, 3.6326702161690207`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[" 2. Distance entre mol\[EAcute]cules dans l\[CloseCurlyQuote]eau", \
+"Subsection",
+ CellChangeTimes->{{3.631966802004115*^9, 3.63196684421653*^9}, 
+   3.632669617950804*^9}],
+
+Cell[TextData[{
+ "Nous cherchons ici \[AGrave] estimer simplement \
+l\[CloseCurlyQuote]\[EAcute]paisseur de la couche \
+d\[CloseCurlyQuote]hydratation autour de chaque mol\[EAcute]cule d\
+\[CloseCurlyQuote]abord\ndans  le cas  d\[CloseCurlyQuote]une solution sucr\
+\[EAcute]e 1M, puis  en fonction de la  molarit\[EAcute] qui est prise \
+arbitrairement faible. On\nsupposera pour simplifier que les masses \
+volumiques de l\[CloseCurlyQuote]eau et des mati\[EGrave]res non aqueuses \
+sont identiques (1\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"g", "/", 
+    SuperscriptBox["cm", "3"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ").\nOn r\[EAcute]alise solution molaire de glucose (1 M).\na./  Quelles  \
+sont  les  masses  mol\[EAcute]culaires  de  l\[CloseCurlyQuote]eau  et  du  \
+glucose  ?  Que  remarquez-vous  ?  (en  utilisant  les\nhypoth\[EGrave]ses \
+simplificatrices)"
+}], "Text",
+ CellChangeTimes->{{3.632670296493615*^9, 3.632670362574394*^9}, {
+  3.6326704561987495`*^9, 3.632670460309984*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MasseMolEau", " ", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"2", "*", "M", 
+     RowBox[{"(", "H", ")"}]}], " ", "+", " ", 
+    RowBox[{"M", 
+     RowBox[{"(", "o", ")"}]}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "H", ")"}]}], "\[Rule]", 
+      RowBox[{"1", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "o", ")"}]}], "\[Rule]", 
+      RowBox[{"16", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}]}], "}"}], " "}]}]], "Input",
+ CellChangeTimes->{{3.632670943762636*^9, 3.6326711457471895`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"18", " ", "g"}], "mol"]], "Output",
+ CellChangeTimes->{{3.6326710384400516`*^9, 3.632671067801731*^9}, {
+   3.6326711015916634`*^9, 3.6326711138103623`*^9}, 3.6326711464052267`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MasseMolGlucose", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"6", "*", "M", 
+     RowBox[{"(", "C", ")"}]}], "+", 
+    RowBox[{"12", "*", "M", 
+     RowBox[{"(", "H", ")"}]}], "+", 
+    RowBox[{"6", "*", "M", 
+     RowBox[{"(", "o", ")"}]}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "C", ")"}]}], "\[Rule]", 
+      RowBox[{"12", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "H", ")"}]}], "\[Rule]", 
+      RowBox[{"1", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "o", ")"}]}], "\[Rule]", 
+      RowBox[{"16", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632671207442718*^9, 3.6326715137242365`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"180", " ", "g"}], "mol"]], "Output",
+ CellChangeTimes->{{3.6326713287326555`*^9, 3.632671387395011*^9}, {
+  3.6326714348267236`*^9, 3.6326715145412827`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+On remarque que la masse du glucose = 10* la masse de l\[CloseCurlyQuote]eau
+
+b./ Combien y-a-t-il de moles d\[CloseCurlyQuote]eau par litre d\
+\[CloseCurlyQuote]eau pure ?
+Combien y-a-t-il de mol\[EAcute]cules d\[CloseCurlyQuote]eau pour chaque mol\
+\[EAcute]cule de glucose ? (en utilisant les hypoth\[EGrave]ses \
+simplificatrices).
+\
+\>", "Text",
+ CellChangeTimes->{{3.6326715406737776`*^9, 3.63267155295148*^9}, {
+  3.632671596871992*^9, 3.6326716100637465`*^9}, {3.632671681891855*^9, 
+  3.6326717076003256`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ConcentrationEau", " ", "=", 
+  RowBox[{"N", "[", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["\[Rho]", "M"], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Rho]", "\[Rule]", 
+        RowBox[{"1", " ", "g", " ", 
+         SuperscriptBox["cm", 
+          RowBox[{"-", "3"}]]}]}], ",", " ", 
+       RowBox[{"M", "\[Rule]", 
+        RowBox[{"18", " ", "g", " ", 
+         SuperscriptBox["mol", 
+          RowBox[{"-", "1"}]]}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"1", 
+       SuperscriptBox["cm", 
+        RowBox[{"-", "3"}]]}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"3", " "}]], 
+       SuperscriptBox["L", 
+        RowBox[{"-", "1"}]]}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6326716162000976`*^9, 3.6326716221124353`*^9}, {
+  3.6326718084820957`*^9, 3.6326719300430484`*^9}, {3.6326719847411766`*^9, 
+  3.6326720413974175`*^9}, {3.632672093349389*^9, 3.632672127601348*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"55.55555555555556`", " ", "mol"}], "L"]], "Output",
+ CellChangeTimes->{{3.632672026171547*^9, 3.632672042346472*^9}, {
+  3.632672074556314*^9, 3.6326721286024055`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ConcentrationGlucose", " ", "=", " ", 
+  RowBox[{"N", "[", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["\[Rho]", "M"], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Rho]", "\[Rule]", 
+        RowBox[{"1", " ", "g", " ", 
+         SuperscriptBox["cm", 
+          RowBox[{"-", "3"}]]}]}], ",", " ", 
+       RowBox[{"M", "\[Rule]", 
+        RowBox[{"180", " ", "g", " ", 
+         SuperscriptBox["mol", 
+          RowBox[{"-", "1"}]]}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"1", 
+       SuperscriptBox["cm", 
+        RowBox[{"-", "3"}]]}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"3", " "}]], 
+       SuperscriptBox["L", 
+        RowBox[{"-", "1"}]]}]}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"NbMolEau", " ", "=", " ", 
+  FractionBox["ConcentrationEau", "ConcentrationGlucose"], " "}]}], "Input",
+ CellChangeTimes->{{3.632672265632243*^9, 3.6326722853433704`*^9}, {
+  3.6326723288628597`*^9, 3.6326724730541067`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"5.555555555555555`", " ", "mol"}], "L"]], "Output",
+ CellChangeTimes->{
+  3.6326722888235693`*^9, {3.632672380904836*^9, 3.6326724746902003`*^9}}],
+
+Cell[BoxData["10.`"], "Output",
+ CellChangeTimes->{
+  3.6326722888235693`*^9, {3.632672380904836*^9, 3.632672474695201*^9}}]
+}, Open  ]],
+
+Cell["\<\
+c./ En supposant que la mol\[EAcute]cule de glucose est sph\[EAcute]rique, et \
+qu\[CloseCurlyQuote]il n\[CloseCurlyQuote]y a pas \
+d\[CloseCurlyQuote]interstices entre les mol\[EAcute]cules,
+calculer le rapport des volumes occup\[EAcute] par le glucose hydrat\[EAcute] \
+et par le glucose seul. En d\[EAcute]duire le rapport des
+deux rayons du glucose hydrat\[EAcute] et non hydrat\[EAcute]
+calculer le rayon du glucose avec l\[CloseCurlyQuote]\[EAcute]paisseur que \
+repr\[EAcute]sentent ce nombre de mol\[EAcute]cules d\[CloseCurlyQuote]eau, \
+et sans ? Conclure.\
+\>", "Text",
+ CellChangeTimes->{{3.632672531887472*^9, 3.6326725962331524`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["VolumeGlucoseHydrate", "VolumeGlucoseSeul"], " ", "=", " ", 
+  FractionBox[
+   RowBox[{"(", 
+    RowBox[{
+     FractionBox["4", "3"], "*", "\[Pi]", "*", 
+     SuperscriptBox[
+      SubscriptBox["r", "1"], "3"]}], ")"}], 
+   RowBox[{
+    FractionBox["4", "3"], "*", "\[Pi]", "*", 
+    SuperscriptBox[
+     SubscriptBox["r", "2"], "3"]}]]}]], "Input",
+ CellChangeTimes->{{3.63267273430505*^9, 3.632672738945315*^9}, {
+  3.6326728817774844`*^9, 3.632673082708977*^9}, {3.632673868069897*^9, 
+  3.6326738711730747`*^9}, {3.632676307269411*^9, 3.6326764222469873`*^9}, {
+  3.6326765592288227`*^9, 3.632676684054962*^9}, {3.632682242802904*^9, 
+  3.632682253016489*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Set", "::", "write"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Tag \[NoBreak]\\!\\(Times\\)\[NoBreak] in \[NoBreak]\\!\\(\
+\\(999.9999999999998`\\\\ \\(\\((0.0010000000000000002`\\\\ \
+m\\^3)\\)\\)\\)\\/m\\^3\\)\[NoBreak] is Protected. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/write\\\", ButtonNote -> \
+\\\"Set::write\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.63267673768603*^9, 3.6326822216826963`*^9, 
+  3.6326822536685257`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  SubsuperscriptBox["r", "1", "3"], 
+  SubsuperscriptBox["r", "2", "3"]]], "Output",
+ CellChangeTimes->{
+  3.6326729158694344`*^9, {3.632673043528736*^9, 3.632673053350298*^9}, 
+   3.632673871803111*^9, {3.632676395326448*^9, 3.6326764234080544`*^9}, 
+   3.6326767376930304`*^9, 3.632682221692697*^9, 3.632682253685527*^9}]
+}, Open  ]],
+
+Cell["\<\
+On dissout maintenant une millimole (1  mM ou beaucoup moins) de glucose dans \
+un litre d\[CloseCurlyQuote]eau. On peut
+donc consid\[EAcute]rer que le nombre de mol\[EAcute]cules \
+d\[CloseCurlyQuote]eau par litre est toujours proche de celui de l\
+\[CloseCurlyQuote]eau pure.
+d./ Combien y-a-t-il de mol\[EAcute]cules d\[CloseCurlyQuote]eau pour chaque \
+mol\[EAcute]cule de glucose, dans une solution mM, \[Mu]M, nM ?\
+\>", "Text",
+ CellChangeTimes->{{3.632676922608607*^9, 3.632676950841222*^9}, {
+  3.6326770152259045`*^9, 3.6326770210402365`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ConcenGlucose", " ", "=", 
+  RowBox[{"N", "[", " ", 
+   RowBox[{
+    FractionBox["n", "V"], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"n", "\[Rule]", 
+       RowBox[{"1", " ", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "3", " "}]], "mol"}]}], ",", " ", 
+      RowBox[{"V", "\[Rule]", 
+       RowBox[{"1", "L"}]}]}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"molEauParGlucose", " ", "=", " ", 
+  FractionBox["ConcentrationEau", "ConcenGlucose"]}]}], "Input",
+ CellChangeTimes->{{3.6326770265935545`*^9, 3.6326771558539476`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"0.001`", " ", "mol"}], "L"]], "Output",
+ CellChangeTimes->{{3.63267709155227*^9, 3.6326771045850153`*^9}, {
+  3.632677146923437*^9, 3.632677156583989*^9}}],
+
+Cell[BoxData["55555.555555555555`"], "Output",
+ CellChangeTimes->{{3.63267709155227*^9, 3.6326771045850153`*^9}, {
+  3.632677146923437*^9, 3.63267715658799*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"molEauParGlucose1", " ", "=", " ", 
+  FractionBox["ConcentrationEau", 
+   RowBox[{"N", "[", " ", 
+    RowBox[{
+     FractionBox["n", "V"], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"n", "\[Rule]", 
+        RowBox[{"1", " ", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "6", " "}]], "mol"}]}], ",", " ", 
+       RowBox[{"V", "\[Rule]", 
+        RowBox[{"1", "L"}]}]}], "}"}]}], "]"}]]}]], "Input",
+ CellChangeTimes->{{3.632677237839637*^9, 3.632677298702118*^9}}],
+
+Cell[BoxData["5.555555555555556`*^7"], "Output",
+ CellChangeTimes->{3.6326772993041525`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"molEauParGlucose2", " ", "=", " ", 
+  FractionBox["ConcentrationEau", 
+   RowBox[{"N", "[", " ", 
+    RowBox[{
+     FractionBox["n", "V"], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"n", "\[Rule]", 
+        RowBox[{"1", " ", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "9", " "}]], "mol"}]}], ",", " ", 
+       RowBox[{"V", "\[Rule]", 
+        RowBox[{"1", "L"}]}]}], "}"}]}], "]"}]]}]], "Input",
+ CellChangeTimes->{{3.632677316484135*^9, 3.632677323229521*^9}}],
+
+Cell[BoxData["5.555555555555555`*^10"], "Output",
+ CellChangeTimes->{3.632677324141573*^9}]
+}, Open  ]],
+
+Cell["\<\
+e./ Pour une solution ~mM, de combien augmente ce rapport des deux rayons du \
+glucose hydrat\[EAcute] et non hydrat\[EAcute]?
+Idem pour une solution ~mM ?
+\
+\>", "Text",
+ CellChangeTimes->{{3.6326773619137335`*^9, 3.632677372454336*^9}}],
+
+Cell[BoxData[""], "Input"],
+
+Cell["\<\
+f./ Les m\[EAcute]dicaments sont souvent de petites mol\[EAcute]cules dont le \
+poids mol\[EAcute]culaire est autour de 1000 Daltons, qui
+sont actives  \[AGrave] des  concentrations  de l\[CloseCurlyQuote]ordre ~0.1 \
+mM. Quelle l\[CloseCurlyQuote]ordre de grandeur de la quantit\[EAcute] qu\
+\[CloseCurlyQuote]il faudrait
+administrer \[AGrave] un individu de 70 kg ? Expliquer comment cette \
+(apparemment) faible quantit\[EAcute] peut avoir une action
+?\
+\>", "Text",
+ CellChangeTimes->{{3.6326775323844843`*^9, 3.6326775766790175`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Quantite", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"poids", " ", "*", " ", "ConcentrationActive"}], " ", "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"poids", "\[Rule]", " ", 
+       RowBox[{"70", "kg"}]}], ",", " ", 
+      RowBox[{"ConcentrationActive", "\[Rule]", 
+       RowBox[{"0.1", " ", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "3"}]], " ", "mol", " ", 
+        SuperscriptBox["L", 
+         RowBox[{"-", "1"}]]}]}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "kg"}], "\[Rule]", 
+     RowBox[{"1", "L"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632677750385953*^9, 3.6326778654965367`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"0.007`", " ", "mol"}]], "Output",
+ CellChangeTimes->{3.6326778665996*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Echelle de force", "Subsection",
+ CellChangeTimes->{{3.631970148362516*^9, 3.631970183176507*^9}, {
+  3.6326779295912027`*^9, 3.6326779300942316`*^9}}],
+
+Cell["\<\
+Calculer la force de gravitation associ\[EAcute]e \[AGrave] une mole d\
+\[CloseCurlyQuote]eau ?, \[AGrave] une mol\[EAcute]cule \
+d\[CloseCurlyQuote]eau ?
+\t1 moles eau =N molecules d\[CloseCurlyQuote]eau\
+\>", "Text",
+ CellChangeTimes->{{3.63267794911432*^9, 3.6326779702395277`*^9}, {
+   3.632678138167133*^9, 3.632678151007867*^9}, 3.632678362839983*^9, {
+   3.6326785193589354`*^9, 3.6326785216480665`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Fmole", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"G", "*", " ", 
+     FractionBox[
+      RowBox[{"(", 
+       RowBox[{"m1", "*", "m2"}], ")"}], 
+      SuperscriptBox["d", "2"]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"G", "\[Rule]", 
+       RowBox[{"6.67", " ", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "11", " "}]], "N", " ", 
+        SuperscriptBox["m", "2"], " ", 
+        SuperscriptBox["kg", 
+         RowBox[{"-", "2"}]]}]}], ",", 
+      RowBox[{"m1", "\[Rule]", 
+       RowBox[{"16", " ", "g"}]}], " ", ",", " ", 
+      RowBox[{"m2", "\[Rule]", 
+       RowBox[{"2", " ", "g"}]}], ",", " ", 
+      RowBox[{"d", "\[Rule]", 
+       RowBox[{"0.9584", " ", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10", " "}]], " ", "m"}]}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "g"}], "\[Rule]", " ", 
+     RowBox[{
+      SuperscriptBox["10", 
+       RowBox[{"-", "3"}]], "kg"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326781258194265`*^9, 3.6326781354869795`*^9}, {
+  3.6326783668082104`*^9, 3.6326783963809013`*^9}, {3.6326804560687094`*^9, 
+  3.6326804638201523`*^9}, {3.6326806000489445`*^9, 3.632680634283902*^9}, {
+  3.632680678686442*^9, 3.6326807879516916`*^9}, {3.6326808258718605`*^9, 
+  3.6326808266579056`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"232371.14723760524`", " ", "N"}]], "Output",
+ CellChangeTimes->{3.6326807532357063`*^9, 3.632680788887745*^9, 
+  3.6326808292220526`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Fmolecule", " ", "=", 
+  FractionBox[
+   RowBox[{"(", "  ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"G", "*", " ", 
+       FractionBox[
+        RowBox[{"(", 
+         RowBox[{"m1", "*", "m2"}], ")"}], 
+        SuperscriptBox["d", "2"]]}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"G", "\[Rule]", 
+         RowBox[{"6.67", " ", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "11", " "}]], "N", " ", 
+          SuperscriptBox["m", "2"], " ", 
+          SuperscriptBox["kg", 
+           RowBox[{"-", "2"}]]}]}], ",", 
+        RowBox[{"m1", "\[Rule]", 
+         RowBox[{"16", " ", "g"}]}], " ", ",", " ", 
+        RowBox[{"m2", "\[Rule]", 
+         RowBox[{"2", " ", "g"}]}], ",", " ", 
+        RowBox[{"d", "\[Rule]", 
+         RowBox[{"0.9584", " ", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "10", " "}]], " ", "m"}]}]}], "}"}]}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "g"}], "\[Rule]", " ", 
+       RowBox[{
+        SuperscriptBox["10", 
+         RowBox[{"-", "3"}]], "kg"}]}], "}"}]}], ")"}], 
+   RowBox[{"6", " ", 
+    SuperscriptBox["10", "23"]}]]}]], "Input",
+ CellChangeTimes->{{3.6326808455539865`*^9, 3.6326808871513653`*^9}, {
+  3.632680950111967*^9, 3.63268095628832*^9}}],
+
+Cell[BoxData[
+ RowBox[{"3.8728524539600874`*^-19", " ", "N"}]], "Output",
+ CellChangeTimes->{3.6326809596725135`*^9}]
+}, Open  ]],
+
+Cell["Exprimer cette derni\[EGrave]re valeur en pN.", "Text",
+ CellChangeTimes->{{3.6326810811394615`*^9, 3.6326810899909678`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Fmolecule", "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"1", "N"}], "\[Rule]", 
+    RowBox[{
+     SuperscriptBox["10", "12"], "pN"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.632681003709032*^9, 3.6326810453404136`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"3.8728524539600874`*^-7", " ", "pN"}]], "Output",
+ CellChangeTimes->{{3.6326810394860787`*^9, 3.6326810458974457`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Calculer le nombre de mol\[EAcute]cules d\[CloseCurlyQuote]eau correspondant \
+\[AGrave] une force de gravitation de 1 pN ?\
+\>", "Text",
+ CellChangeTimes->{{3.632681136264614*^9, 3.632681147543259*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"nombreMoleculesEau", " ", "=", " ", 
+  RowBox[{
+   FractionBox["F1", 
+    RowBox[{"Fmolecule", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "N"}], "\[Rule]", 
+       RowBox[{
+        SuperscriptBox["10", "12"], "pN"}]}], "}"}]}]], "/.", 
+   RowBox[{"{", 
+    RowBox[{"F1", "\[Rule]", 
+     RowBox[{"1", "pN"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.63268116154706*^9, 3.632681266494063*^9}, {
+   3.632681344441521*^9, 3.632681409482241*^9}, {3.632681450210571*^9, 
+   3.6326814856135955`*^9}, {3.6326815391776595`*^9, 
+   3.6326815841462317`*^9}, {3.6326816378023005`*^9, 3.6326816708031883`*^9}, 
+   3.632681815499464*^9, {3.632681846696248*^9, 3.632681917563302*^9}}],
+
+Cell[BoxData["2.5820761619190406`*^6"], "Output",
+ CellChangeTimes->{
+  3.632681486053621*^9, {3.632681570990479*^9, 3.6326815849962797`*^9}, 
+   3.6326816718362474`*^9, 3.632681739106095*^9, {3.632681894029956*^9, 
+   3.63268191892838*^9}}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Calculer le volume occup\[EAcute] par ces mol\[EAcute]cules d\
+\[CloseCurlyQuote]eau en ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[Mu]m", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.6326819540813904`*^9, 3.6326819878783236`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"vol", " ", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       FractionBox["Force", "g"], "/.", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Force", "\[Rule]", 
+          RowBox[{
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]], "kg", " ", "metre", " ", 
+           SuperscriptBox["s", 
+            RowBox[{"-", "2"}]]}]}], ",", " ", 
+         RowBox[{"g", "\[Rule]", 
+          RowBox[{"10", " ", "metre", " ", 
+           SuperscriptBox["s", 
+            RowBox[{"-", "2"}]]}]}]}], "}"}]}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1", "kg"}], "\[Rule]", 
+        RowBox[{"1", "L"}]}], "}"}]}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "L"}], "\[Rule]", 
+       RowBox[{
+        SuperscriptBox["10", 
+         RowBox[{"-", "3"}]], 
+        SuperscriptBox["metre", "3"]}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", 
+       SuperscriptBox["metre", "3"]}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", "6"], 
+       SuperscriptBox["\[Mu]m", "3"]}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.632682341839569*^9, 3.632682665927106*^9}, {
+  3.6326827366431503`*^9, 3.6326827651777825`*^9}, {3.63268281723576*^9, 
+  3.632682845439373*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1.`*^-10", " ", 
+  SuperscriptBox["\[Mu]m", "3"]}]], "Output",
+ CellChangeTimes->{
+  3.632682756652295*^9, {3.632682839725046*^9, 3.6326828462814217`*^9}}]
+}, Open  ]],
+
+Cell[TextData[{
+ "En d\[EAcute]duire les dimensions d\[CloseCurlyQuote]un objet de densit\
+\[EAcute] 1 pesant 10 pN.\n\t",
+ Cell[BoxData[
+  RowBox[{"masse", " ", "=", " ", 
+   RowBox[{"\[Rho]V", " ", "=", " ", 
+    FractionBox["Force1", "g"]}]}]],
+  CellChangeTimes->{{3.6326830279628134`*^9, 3.632683065594966*^9}}]
+}], "Text",
+ CellChangeTimes->{{3.632682873894001*^9, 3.6326828838155684`*^9}, {
+  3.6326831199910765`*^9, 3.6326831215721674`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"V", " ", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{
+     FractionBox["Force1", 
+      RowBox[{"g", "*", "\[Rho]"}]], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Force1", "\[Rule]", 
+        RowBox[{"10", " ", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "12"}]], "kg", " ", "metre", " ", 
+         SuperscriptBox["s", 
+          RowBox[{"-", "2"}]]}]}], ",", " ", 
+       RowBox[{"g", "\[Rule]", 
+        RowBox[{"10", " ", "metre", " ", 
+         SuperscriptBox["s", 
+          RowBox[{"-", "2"}]]}]}], ",", " ", 
+       RowBox[{"\[Rho]", "\[Rule]", "1"}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "kg"}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", 
+        RowBox[{"-", "3"}]], 
+       SuperscriptBox["metre", "3"]}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6326830279628134`*^9, 3.632683065594966*^9}, {
+  3.6326831292516065`*^9, 3.6326832074930816`*^9}, {3.6326833204935446`*^9, 
+  3.632683382385085*^9}, {3.6326836289671884`*^9, 3.6326836424039574`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1.`*^-15", " ", 
+  SuperscriptBox["metre", "3"]}]], "Output",
+ CellChangeTimes->{{3.632683346259019*^9, 3.6326833833621407`*^9}, 
+   3.632683650399414*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RadicalBox["V", "3"], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"1", "metre"}], "\[Rule]", 
+    RowBox[{
+     SuperscriptBox["10", "6"], "\[Mu]m"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.632683508895321*^9, 3.632683533252714*^9}, {
+  3.632683565789575*^9, 3.632683601619624*^9}, {3.632683668542452*^9, 
+  3.632683710796869*^9}}],
+
+Cell[BoxData[
+ RowBox[{"10.000000000000005`", " ", 
+  SuperscriptBox[
+   RowBox[{"(", 
+    SuperscriptBox["\[Mu]m", "3"], ")"}], 
+   RowBox[{"1", "/", "3"}]]}]], "Output",
+ CellChangeTimes->{3.6326835159397235`*^9, 3.632683577276232*^9, 
+  3.6326836112841773`*^9, 3.632683711657918*^9}]
+}, Open  ]],
+
+Cell["Cube de dimension 10\[Mu]m *10\[Mu]m *10\[Mu]m ", "Text",
+ CellChangeTimes->{{3.6326837337601824`*^9, 3.632683752519255*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["II. R\[EAcute]visions : \[EAcute]nergie ", "Section",
+ CellChangeTimes->{{3.395638025614813*^9, 3.395638092816231*^9}, {
+   3.3956381230538282`*^9, 3.395638155628819*^9}, {3.398250321849264*^9, 
+   3.398250341239509*^9}, {3.398250651047665*^9, 3.398250652611635*^9}, 
+   3.398397587034444*^9, 3.398397667035816*^9, {3.3983979131548147`*^9, 
+   3.398397916018228*^9}, 3.3983980947354097`*^9, 3.3983982433045073`*^9, 
+   3.398399347780487*^9, 3.398583267178884*^9, {3.398583298327962*^9, 
+   3.398583303289241*^9}, {3.398583339007435*^9, 3.398583385326274*^9}, {
+   3.398583433774679*^9, 3.398583434412992*^9}, {3.398614076787819*^9, 
+   3.398614078492876*^9}, {3.398614131797221*^9, 3.3986141384505796`*^9}, {
+   3.398624060615407*^9, 3.3986240867316103`*^9}, 3.461991570988912*^9, {
+   3.461993117785182*^9, 3.4619932593623447`*^9}, {3.4619933659153767`*^9, 
+   3.4619936076484756`*^9}, {3.461993704544729*^9, 3.461993746844056*^9}, {
+   3.4619938336901007`*^9, 3.461994024197116*^9}, {3.461994069498248*^9, 
+   3.4619940697134237`*^9}, {3.461994534602598*^9, 3.461994540099244*^9}, {
+   3.46199458957458*^9, 3.461994710450939*^9}, 3.461994782868634*^9, {
+   3.598160380067968*^9, 3.598160446562874*^9}, 3.5981607951637506`*^9, {
+   3.598160906281426*^9, 3.598160933290296*^9}, {3.598161049188519*^9, 
+   3.598161072277172*^9}, {3.598161372889126*^9, 3.59816154787602*^9}, {
+   3.59816208874573*^9, 3.598162159989868*^9}, {3.5981621952152987`*^9, 
+   3.598162290136141*^9}, {3.598162647431567*^9, 3.598162649734755*^9}, {
+   3.601531001386075*^9, 3.601531006641006*^9}, {3.601545692344871*^9, 
+   3.601545695423438*^9}, 3.6152863399262257`*^9, {3.6152865547809887`*^9, 
+   3.6152865588318853`*^9}, {3.6152945588165493`*^9, 3.615294562103836*^9}, 
+   3.618237124044321*^9, {3.6182434611976557`*^9, 3.618243475854966*^9}, 
+   3.618245516285796*^9, {3.618294030709593*^9, 3.6182940476602383`*^9}, {
+   3.618307813015625*^9, 3.618307814959606*^9}, {3.618310955744223*^9, 
+   3.618310980794573*^9}, {3.6184003479555187`*^9, 3.618400358305923*^9}, {
+   3.618400492369337*^9, 3.618400508141143*^9}, {3.6319706163482833`*^9, 
+   3.631970628760993*^9}},
+ TextAlignment->Left,
+ TextJustification->1.],
+
+Cell[CellGroupData[{
+
+Cell["1. Equivalence des formes d\[CloseCurlyQuote]\[EAcute]nergie", \
+"Subsection",
+ CellChangeTimes->{{3.6183154791394043`*^9, 3.618315488616444*^9}, 
+   3.618368880690898*^9, {3.6188193157440157`*^9, 3.6188193332212753`*^9}, {
+   3.618904678736939*^9, 3.618904688398448*^9}, {3.6319706561635604`*^9, 
+   3.6319706847291946`*^9}, {3.631970780080648*^9, 3.631970786249001*^9}}],
+
+Cell["\<\
+Un immeuble de 60 m de hauteur totale comporte 19 \[EAcute]tages qui p\
+\[EGrave]sent chacun 400 tonnes.
+1./ Quelle est l\[CloseCurlyQuote]\[EAcute]nergie gravitationnelle \
+d\[EAcute]gag\[EAcute]e lors de la d\[EAcute]molition totale de l\
+\[CloseCurlyQuote]immeuble ?\
+\>", "Text",
+ CellChangeTimes->{{3.632683827447541*^9, 3.6326838537440453`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ep", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{
+      UnderoverscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}], "20"], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"i", "-", "0.5"}], ")"}], "*", "masse", " ", "*", "g", "*", 
+       " ", "z"}]}], " ", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"masse", "\[Rule]", 
+        RowBox[{"400", " ", 
+         SuperscriptBox["10", "3"], "kg"}]}], ",", " ", 
+       RowBox[{"g", "\[Rule]", 
+        RowBox[{"10", " ", "metre", " ", 
+         SuperscriptBox["s", 
+          RowBox[{"-", "2"}]]}]}], ",", " ", 
+       RowBox[{"z", "\[Rule]", 
+        RowBox[{
+         FractionBox["60", "19"], " ", "metre"}]}]}], "}"}]}], "]"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "kg", " ", 
+      SuperscriptBox["metre", "2"], 
+      SuperscriptBox["s", 
+       RowBox[{"-", "2"}]]}], "\[Rule]", " ", 
+     RowBox[{"1", "J"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326840243938055`*^9, 3.6326841959096155`*^9}, {
+  3.6326843782330437`*^9, 3.6326844353313103`*^9}, {3.6326845686859374`*^9, 
+  3.63268476228001*^9}, {3.632685959832506*^9, 3.632685969452057*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2.5263157894736843`*^9", " ", "J"}]], "Output",
+ CellChangeTimes->{{3.6326846110143585`*^9, 3.6326847026576*^9}, {
+   3.6326847575087376`*^9, 3.632684763603086*^9}, 3.632685754961788*^9, 
+   3.6326859706211233`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "On fera l\[CloseCurlyQuote]approximation que le toit de \
+l\[CloseCurlyQuote]immeuble p\[EGrave]se autant qu\[CloseCurlyQuote]un \
+\[EAcute]tage et que tous les d\[EAcute]bris sont au niveau du\nsol \[AGrave] \
+la fin de l\[CloseCurlyQuote]op\[EAcute]ration.\n2./ A quelle \
+temp\[EAcute]rature, cette \[EAcute]nergie permet \
+d\[CloseCurlyQuote]\[EAcute]lever 10 tonnes d\[CloseCurlyQuote]eau \
+initialement 0\[Degree]C.\n\t",
+ Cell[BoxData[
+  RowBox[{"Ep", " ", "=", " ", 
+   RowBox[{"\[CapitalDelta]H", " ", "=", " ", 
+    RowBox[{"masse", "*", 
+     SubscriptBox["C", "p"], "*", "\[CapitalDelta]T"}]}]}]]]
+}], "Text",
+ CellChangeTimes->{{3.63268480807963*^9, 3.6326848833149333`*^9}, 
+   3.632684991611127*^9, {3.6326850922978864`*^9, 3.632685094003984*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[CapitalDelta]T", " ", "=", 
+  RowBox[{
+   RowBox[{
+    FractionBox["Ep", 
+     RowBox[{"masse", "*", "Cp"}]], " ", "/.", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"masse", "\[Rule]", 
+       RowBox[{"10", " ", 
+        SuperscriptBox["10", "3"], "kg"}]}], ",", " ", 
+      RowBox[{"Cp", "\[Rule]", 
+       RowBox[{"1", "Kcal", " ", 
+        SuperscriptBox["kg", 
+         RowBox[{"-", "1"}]]}]}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "J"}], "\[Rule]", 
+     RowBox[{
+      FractionBox["1", "4184"], "kcal"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326850046018705`*^9, 3.6326852618395834`*^9}, {
+  3.6326852957125206`*^9, 3.6326853769051647`*^9}, {3.6326860175958104`*^9, 
+  3.6326860712178774`*^9}, {3.6326861144253483`*^9, 3.632686140292828*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"60.38039649793701`", " ", "kcal"}], "Kcal"]], "Output",
+ CellChangeTimes->{{3.6326852417474346`*^9, 3.632685263433675*^9}, 
+   3.632685300998823*^9, {3.632685332552628*^9, 3.632685383249528*^9}, 
+   3.6326859812317305`*^9, {3.632686044378342*^9, 3.6326860730739837`*^9}, 
+   3.6326861494473515`*^9}]
+}, Open  ]],
+
+Cell["\<\
+3./ Quelle masse de glucose serait n\[EAcute]cessaire pour produire par \
+combustion une \[EAcute]l\[EAcute]vation de temp\[EAcute]rature \
+\[EAcute]quivalente ?\
+\>", "Text",
+ CellChangeTimes->{{3.632686190095677*^9, 3.6326862162871747`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"masseMolaireGlucose", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"6", "*", "M", 
+     RowBox[{"(", "C", ")"}]}], "+", 
+    RowBox[{"12", "*", "M", 
+     RowBox[{"(", "H", ")"}]}], "+", 
+    RowBox[{"6", "*", "M", 
+     RowBox[{"(", "o", ")"}]}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "C", ")"}]}], "\[Rule]", 
+      RowBox[{"12", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "H", ")"}]}], "\[Rule]", 
+      RowBox[{"1", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", 
+       RowBox[{"(", "o", ")"}]}], "\[Rule]", 
+      RowBox[{"16", " ", "g", " ", 
+       SuperscriptBox["mol", 
+        RowBox[{"-", "1"}]]}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326862783937273`*^9, 3.632686339655231*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"180", " ", "g"}], "mol"]], "Output",
+ CellChangeTimes->{3.632686341596342*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"nombreMolesGlucose", " ", "=", " ", 
+  RowBox[{
+   FractionBox["Ep", "\[CapitalDelta]G"], "/.", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalDelta]G", "\[Rule]", 
+     RowBox[{"2500", " ", 
+      SuperscriptBox["10", "3"], "J", " ", 
+      SuperscriptBox["mol", 
+       RowBox[{"-", "1"}]]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632686355266124*^9, 3.6326863776524043`*^9}, {
+  3.632686421085889*^9, 3.63268649034585*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1010.5263157894736`", " ", "mol"}]], "Output",
+ CellChangeTimes->{{3.6326864697586727`*^9, 3.6326864966012077`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"masseGlucose", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"n", "*", "M"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"n", "\[Rule]", 
+       FractionBox["Ep", "\[CapitalDelta]G"]}], "/.", 
+      RowBox[{"{", 
+       RowBox[{"\[CapitalDelta]G", "\[Rule]", 
+        RowBox[{"2500", " ", 
+         SuperscriptBox["10", "3"], "J", " ", 
+         SuperscriptBox["mol", 
+          RowBox[{"-", "1"}]]}]}], "}"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"M", "\[Rule]", 
+       RowBox[{
+        RowBox[{"6", "*", "M", 
+         RowBox[{"(", "C", ")"}]}], "+", 
+        RowBox[{"12", "*", "M", 
+         RowBox[{"(", "H", ")"}]}], "+", 
+        RowBox[{"6", "*", "M", 
+         RowBox[{"(", "o", ")"}]}]}]}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"M", 
+          RowBox[{"(", "C", ")"}]}], "\[Rule]", 
+         RowBox[{"12", " ", "g", " ", 
+          SuperscriptBox["mol", 
+           RowBox[{"-", "1"}]]}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"M", 
+          RowBox[{"(", "H", ")"}]}], "\[Rule]", 
+         RowBox[{"1", " ", "g", " ", 
+          SuperscriptBox["mol", 
+           RowBox[{"-", "1"}]]}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"M", 
+          RowBox[{"(", "o", ")"}]}], "\[Rule]", 
+         RowBox[{"16", " ", "g", " ", 
+          SuperscriptBox["mol", 
+           RowBox[{"-", "1"}]]}]}]}], "}"}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632686516514347*^9, 3.6326865624049716`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"181894.73684210525`", " ", "g"}]], "Output",
+ CellChangeTimes->{3.6326865658111663`*^9}]
+}, Open  ]],
+
+Cell["\<\
+4./ Calculer la quantit\[EAcute] d\[CloseCurlyQuote]eau que la combustion d\
+\[CloseCurlyQuote]un gramme de glucose permet \
+d\[CloseCurlyQuote]\[EAcute]lever de 1\[Degree]C.\
+\>", "Text",
+ CellChangeTimes->{{3.6326866019072313`*^9, 3.632686618105158*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"QuantiteEau", " ", "=", 
+  RowBox[{
+   RowBox[{"N", "[", " ", 
+    FractionBox["\[CapitalDelta]G", "MasseMolGlucose"], "]"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalDelta]G", "\[Rule]", 
+     RowBox[{"2500", "KJ", " ", 
+      SuperscriptBox["mol", 
+       RowBox[{"-", "1"}]]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.6326867056741657`*^9, 3.632686761029332*^9}, {
+  3.6326867919270997`*^9, 3.6326868016136537`*^9}, {3.6326868460711966`*^9, 
+  3.6326868583408985`*^9}, {3.632687003241186*^9, 3.632687045324593*^9}, {
+  3.632687800438783*^9, 3.632687801189826*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"13.88888888888889`", " ", "KJ"}], "g"]], "Output",
+ CellChangeTimes->{3.6326868025787086`*^9, 3.6326868530525956`*^9, 
+  3.6326870043192472`*^9, 3.6326870462906485`*^9, 3.632687861904299*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["QuantiteEau", "nbcal"], "/.", 
+   RowBox[{"{", 
+    RowBox[{"nbcal", "\[Rule]", 
+     RowBox[{"4", " ", "J"}]}], "}"}]}], "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"1", "J"}], "\[Rule]", 
+    RowBox[{
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]], "KJ"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.632686867169403*^9, 3.6326869814839416`*^9}, {
+  3.6326870682119017`*^9, 3.6326872233097734`*^9}, {3.6326872575497313`*^9, 
+  3.6326872823891525`*^9}}],
+
+Cell[BoxData[
+ FractionBox["3472.222222222222`", "g"]], "Output",
+ CellChangeTimes->{{3.632687154748852*^9, 3.6326871706047583`*^9}, 
+   3.632687224229826*^9, {3.6326872592248273`*^9, 3.632687264201112*^9}, 
+   3.6326872991221094`*^9, 3.632687865541507*^9}]
+}, Open  ]],
+
+Cell["\tUn gramme de glucose permet d\[CloseCurlyQuote]\[EAcute]lever de 1\
+\[Degree]C 3472g d\[CloseCurlyQuote]eau", "Text",
+ CellChangeTimes->{{3.632687384134972*^9, 3.632687415838785*^9}}],
+
+Cell["\<\
+5./ Calculer la masse que permettrait d\[CloseCurlyQuote]\[EAcute]lever l\
+\[CloseCurlyQuote]\[EAcute]nergie sous forme m\[EAcute]canique de 10 m ou de \
+100 m.\
+\>", "Text",
+ CellChangeTimes->{{3.632687432564742*^9, 3.6326874496007166`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"masseEm", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     FractionBox["Em", 
+      RowBox[{"g", "*", "z"}]], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Em", "\[Rule]", 
+        RowBox[{"QuantiteEau", " ", "*", " ", "1", " ", "g"}]}], ",", " ", 
+       RowBox[{"g", "\[Rule]", 
+        RowBox[{"10", " ", "metre", " ", 
+         SuperscriptBox["s", 
+          RowBox[{"-", "2"}]]}]}], ",", " ", 
+       RowBox[{"z", "\[Rule]", 
+        RowBox[{"10", "metre"}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "KJ"}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", "3"], "J"}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "J"}], "\[Rule]", " ", 
+     RowBox[{"1", "kg", " ", 
+      SuperscriptBox["metre", "2"], 
+      SuperscriptBox["s", 
+       RowBox[{"-", "2"}]]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632687513320361*^9, 3.632687709719594*^9}, 
+   3.6326877495878744`*^9, {3.6326878783122373`*^9, 3.632687879023278*^9}}],
+
+Cell[BoxData[
+ RowBox[{"138.88888888888889`", " ", "kg"}]], "Output",
+ CellChangeTimes->{
+  3.632687636625414*^9, {3.6326876945307255`*^9, 3.6326877105726433`*^9}, {
+   3.632687838537962*^9, 3.632687880056337*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"masseEm100", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     FractionBox["Em", 
+      RowBox[{"g", "*", "z"}]], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Em", "\[Rule]", 
+        RowBox[{"QuantiteEau", " ", "*", " ", "1", " ", "g"}]}], ",", " ", 
+       RowBox[{"g", "\[Rule]", 
+        RowBox[{"10", " ", "metre", " ", 
+         SuperscriptBox["s", 
+          RowBox[{"-", "2"}]]}]}], ",", " ", 
+       RowBox[{"z", "\[Rule]", 
+        RowBox[{"100", "metre"}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "KJ"}], "\[Rule]", 
+      RowBox[{
+       SuperscriptBox["10", "3"], "J"}]}], "}"}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "J"}], "\[Rule]", " ", 
+     RowBox[{"1", "kg", " ", 
+      SuperscriptBox["metre", "2"], 
+      SuperscriptBox["s", 
+       RowBox[{"-", "2"}]]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.632687900283494*^9, 3.6326879073428974`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"13.88888888888889`", " ", "kg"}]], "Output",
+ CellChangeTimes->{3.632687908015936*^9}]
+}, Open  ]],
+
+Cell["\<\
+6./ En quoi sont \[EAcute]quivalentes les \[EAcute]nergies trait\[EAcute]es \
+aux questions 4./ et 5./
+\tEnergie m\[EAcute]canique = Energie potentielle +Energie cin\[EAcute]tique\
+\>", "Text",
+ CellChangeTimes->{{3.6326880668960238`*^9, 3.632688124983346*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. L\[CloseCurlyQuote]\[EAcute]nergie et ces diff\[EAcute]rentes \
+acceptations ", "Subsection",
+ CellChangeTimes->{{3.631971253288714*^9, 3.6319712905368443`*^9}, {
+  3.631971365257118*^9, 3.631971367313236*^9}}],
+
+Cell["\<\
+D\[EAcute]finition de l\[CloseCurlyQuote]\[EAcute]nergie en :
+\t1. Physique: Energie m\[EAcute]canique qui est emmagasin\[EAcute]e sous \
+forme d\[CloseCurlyQuote]\[EAcute]nergie cin\[EAcute]tique et potentielle (s\
+\[CloseCurlyQuote]exprime en joules). Pour un point mat\[EAcute]riel l\
+\[CloseCurlyQuote]\[EAcute]nergie cin\[EAcute]tique est \[EAcute]gale au \
+travail des forces appliqu\[EAcute]es n\[EAcute]cessaires pour faire passer \
+le corps du repos \[AGrave] son mouvement. L\[CloseCurlyQuote]\[EAcute]nergie \
+potentielle est \[EAcute]chang\[EAcute]e par un corps \
+lorsqu\[CloseCurlyQuote]il se d\[EAcute]place en \[EAcute]tant soumis \
+\[AGrave] une force conservative. 
+
+\t2. Biologie: L\[CloseCurlyQuote]\[EAcute]nergie en biologie est \
+essentiellement r\[EAcute]ferenc\[EAcute]e au methabolisme du glucose. Le \
+glucose et d\[CloseCurlyQuote]autres glucides font partie \
+d\[CloseCurlyQuote]une grande vari\[EAcute]t\[EAcute] de voies \
+m\[EAcute]taboliques pr\[EAcute]sentes chez toutes les esp\[EGrave]ces : les \
+plantes synth\[EAcute]tisent par photosynth\[EGrave]se des glucides (amidon) \
+\[AGrave] partir des gaz atmosph\[EAcute]riques, elles peuvent alors \
+\[EHat]tre consomm\[EAcute]es par d\[CloseCurlyQuote]autres organismes et \
+\[EHat]tre employ\[EAcute]es comme carburant pour la respiration cellulaire. \
+L\[CloseCurlyQuote]oxydation d\[CloseCurlyQuote]un gramme de glucide rapporte \
+approximativement 4 kcal d\[CloseCurlyQuote]\[EAcute]nergie. Cette forme d'\
+\[EAcute]nergie est pr\[EAcute]sente sous forme d\[CloseCurlyQuote]ATP, mol\
+\[EAcute]cule qui fournit par hydrolyse l\[CloseCurlyQuote]\[EAcute]nergie n\
+\[EAcute]cessaire aux r\[EAcute]actions chimiques du m\[EAcute]tabolisme. C\
+\[CloseCurlyQuote]est le pr\[EAcute]curseur d\[CloseCurlyQuote]un certain \
+nombre de cofacteurs enzymatiques essentiels, comme le NAD+ ou la coenzyme A, \
+et c\[CloseCurlyQuote]est une coenzyme de transfert de groupements phosphate \
+associ\[EAcute]e de mani\[EGrave]re non covalente aux enzymes de la classe \
+des kinases. 
+\t
+\t3. Chimie / Biochimie: L\[CloseCurlyQuote]\[EAcute]nergie en chimie est r\
+\[EAcute]ferenc\[EAcute] \[AGrave] l\[CloseCurlyQuote]entropie (Lorsque deux \
+corps initialement \[AGrave] temp\[EAcute]ratures diff\[EAcute]rentes sont \
+mis en contact thermique l\[CloseCurlyQuote]un avec l\[CloseCurlyQuote]autre, \
+dans une enceinte isol\[EAcute]e, le transfert thermique spontan\[EAcute] se \
+fait toujours du corps \[OpenCurlyDoubleQuote]chaud\[CloseCurlyDoubleQuote] \
+(celui de plus haute temp\[EAcute]rature) vers le corps \
+\[OpenCurlyDoubleQuote]froid\[CloseCurlyDoubleQuote] (celui de plus basse \
+temp\[EAcute]rature), et jamais l\[CloseCurlyQuote]inverse) l\
+\[CloseCurlyQuote]unit\[EAcute] de l\[CloseCurlyQuote]entropie est le \
+Joules/Kelvin. Diff\[EAcute]rentes unit\[EAcute]s mesurent \
+l\[CloseCurlyQuote]\[EAcute]nergie en chimie telles que le Joules qui permet \
+de quantifier l\[CloseCurlyQuote]\[EAcute]nergie, le travail et la quantit\
+\[EAcute] de chaleur. Le joule \[EAcute]tant une tr\[EGrave]s petite quantit\
+\[EAcute] d\[CloseCurlyQuote]\[EAcute]nergie par rapport \[AGrave] celles \
+mises en jeu dans certains domaines, on utilise plut\[OHat]t les kilojoules \
+(kJ) ou les calories en nutrition et dans les tableaux de valeur nutritive, \
+et le kilowatt-heure pour mesurer l\[CloseCurlyQuote]\[EAcute]nergie \
+\[EAcute]lectrique ou thermique.
+\t
+\t4. Dans l\[CloseCurlyQuote]acceptation courante: mesure de la capacit\
+\[EAcute] d\[CloseCurlyQuote]un syst\[EGrave]me \[AGrave] modifier un \
+\[EAcute]tat, \[AGrave] produire un travail entra\[IHat]nant un mouvement, un \
+rayonnement \[EAcute]lectromagn\[EAcute]tique ou de la chaleur.  Il s\
+\[CloseCurlyQuote]agit d\[CloseCurlyQuote]une grandeur physique qui se \
+conserve lors de toute transformation d\[CloseCurlyQuote]un syst\[EGrave]me \
+physique ferm\[EAcute]. Il existe diff\[EAcute]rentes sources d\
+\[CloseCurlyQuote]\[EAcute]nergies :  les \[EAcute]nergies fossiles, l\
+\[CloseCurlyQuote]\[EAcute]nergie nucl\[EAcute]aire, l\[CloseCurlyQuote]\
+\[EAcute]nergie de masse, l\[CloseCurlyQuote]\[EAcute]nergie solaire, l\
+\[CloseCurlyQuote]\[EAcute]nergie \[EAcute]lectrique, l\[CloseCurlyQuote]\
+\[EAcute]nergie chimique, l\[CloseCurlyQuote]\[EAcute]nergie thermique, l\
+\[CloseCurlyQuote]\[EAcute]nergie d\[CloseCurlyQuote]origine biomassique \
+(biomasse s\[EGrave]che, biomasse humide et biocarburants) ; Par exemple, les \
+r\[EAcute]actions chimiques dans les muscles d\[CloseCurlyQuote]un cycliste \
+lui permettent de provoquer le d\[EAcute]placement du v\[EAcute]lo. L\
+\[CloseCurlyQuote]intensit\[EAcute] de ce d\[EAcute]placement (c\
+\[CloseCurlyQuote]est-\[AGrave]-dire la vitesse) d\[EAcute]pend de l\
+\[CloseCurlyQuote]intensit\[EAcute] des r\[EAcute]actions chimiques des \
+muscles du cycliste, qui peuvent \[EHat]tre quantifi\[EAcute]es (la quantit\
+\[EAcute] de sucre \[LeftGuillemet] br\[UHat]l\[EAcute]e \[RightGuillemet] \
+par la respiration, le m\[EAcute]tabolisme du muscle).
+
+Reconciliation de ces d\[EAcute]finitions et points de vue : L\
+\[CloseCurlyQuote]energie quelque soit ses forme est la capacit\[EAcute] d\
+\[CloseCurlyQuote]un corps ou d\[CloseCurlyQuote]un syst\[EGrave]me \[AGrave] \
+produire du travail m\[EAcute]canique ou son \[EAcute]quivalent.\
+\>", "Text",
+ CellChangeTimes->{{3.631971302727542*^9, 3.631971429440789*^9}, {
+   3.632688164880628*^9, 3.6326881666947317`*^9}, {3.632688263664278*^9, 
+   3.632688383588137*^9}, {3.632688438289266*^9, 3.632688477134488*^9}, {
+   3.632688518902877*^9, 3.632688547024485*^9}, {3.632688591909053*^9, 
+   3.632688665312251*^9}, {3.6326887037964525`*^9, 3.6326887125949554`*^9}, {
+   3.632688751629188*^9, 3.632688783961037*^9}, {3.632688899240631*^9, 
+   3.632688911144312*^9}, {3.6326889713207536`*^9, 3.6326890242737827`*^9}, {
+   3.6326890654611382`*^9, 3.6326890998211036`*^9}, {3.6326891391403522`*^9, 
+   3.6326891452957044`*^9}, {3.632689182020805*^9, 3.632689226004321*^9}, {
+   3.6326892862097645`*^9, 3.6326892989704943`*^9}, 3.6326893729097233`*^9, {
+   3.6326895333058977`*^9, 3.6326895713310723`*^9}, {3.6326896338916507`*^9, 
+   3.6326896519386826`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1350, 686},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (December 4, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 2403, 48, 41, "Subsubtitle"],
+Cell[2985, 72, 1201, 19, 41, "Subsubtitle"],
+Cell[4189, 93, 1720, 26, 85, "Subsubtitle"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5946, 124, 1237, 21, 113, "Subtitle"],
+Cell[CellGroupData[{
+Cell[7208, 149, 552, 7, 86, "Section"],
+Cell[CellGroupData[{
+Cell[7785, 160, 619, 9, 59, "Subsection"],
+Cell[8407, 171, 938, 23, 126, "Text"],
+Cell[CellGroupData[{
+Cell[9370, 198, 311, 6, 47, "Input"],
+Cell[9684, 206, 158, 3, 46, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9879, 214, 215, 4, 54, "Input"],
+Cell[10097, 220, 146, 3, 46, "Output"]
+}, Open  ]],
+Cell[10258, 226, 440, 13, 38, "Text"],
+Cell[CellGroupData[{
+Cell[10723, 243, 722, 17, 80, "Input"],
+Cell[11448, 262, 359, 7, 58, "Output"],
+Cell[11810, 271, 342, 6, 38, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12189, 282, 467, 12, 80, "Input"],
+Cell[12659, 296, 209, 5, 58, "Output"],
+Cell[12871, 303, 187, 4, 38, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13095, 312, 629, 18, 53, "Input"],
+Cell[13727, 332, 240, 4, 38, "Output"]
+}, Open  ]],
+Cell[13982, 339, 239, 5, 38, "Text"],
+Cell[CellGroupData[{
+Cell[14246, 348, 1121, 31, 95, "Input"],
+Cell[15370, 381, 322, 6, 38, "Output"],
+Cell[15695, 389, 294, 4, 38, "Output"]
+}, Open  ]],
+Cell[16004, 396, 276, 6, 63, "Text"],
+Cell[CellGroupData[{
+Cell[16305, 406, 1070, 29, 53, "Input"],
+Cell[17378, 437, 211, 3, 38, "Output"]
+}, Open  ]],
+Cell[17604, 443, 374, 7, 88, "Text"],
+Cell[CellGroupData[{
+Cell[18003, 454, 451, 12, 41, "Input"],
+Cell[18457, 468, 143, 2, 38, "Output"]
+}, Open  ]],
+Cell[18615, 473, 586, 12, 88, "Text"],
+Cell[CellGroupData[{
+Cell[19226, 489, 828, 23, 132, "Input"],
+Cell[20057, 514, 263, 4, 36, "Output"],
+Cell[20323, 520, 244, 3, 38, "Output"],
+Cell[20570, 525, 277, 4, 36, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20896, 535, 179, 3, 59, "Subsection"],
+Cell[21078, 540, 1022, 20, 191, "Text"],
+Cell[CellGroupData[{
+Cell[22125, 564, 695, 22, 41, "Input"],
+Cell[22823, 588, 220, 4, 54, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23080, 597, 961, 30, 41, "Input"],
+Cell[24044, 629, 196, 4, 54, "Output"]
+}, Open  ]],
+Cell[24255, 636, 529, 12, 137, "Text"],
+Cell[CellGroupData[{
+Cell[24809, 652, 998, 28, 51, "Input"],
+Cell[25810, 682, 207, 4, 54, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26054, 691, 1036, 29, 93, "Input"],
+Cell[27093, 722, 185, 4, 54, "Output"],
+Cell[27281, 728, 124, 2, 36, "Output"]
+}, Open  ]],
+Cell[27420, 733, 658, 11, 113, "Text"],
+Cell[CellGroupData[{
+Cell[28103, 748, 703, 17, 77, "Input"],
+Cell[28809, 767, 597, 12, 59, "Message"],
+Cell[29409, 781, 351, 7, 65, "Output"]
+}, Open  ]],
+Cell[29775, 791, 563, 10, 88, "Text"],
+Cell[CellGroupData[{
+Cell[30363, 805, 583, 15, 93, "Input"],
+Cell[30949, 822, 194, 4, 54, "Output"],
+Cell[31146, 828, 161, 2, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31344, 835, 510, 14, 68, "Input"],
+Cell[31857, 851, 92, 1, 38, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31986, 857, 510, 14, 68, "Input"],
+Cell[32499, 873, 91, 1, 38, "Output"]
+}, Open  ]],
+Cell[32605, 877, 248, 6, 88, "Text"],
+Cell[32856, 885, 26, 0, 36, "Input"],
+Cell[32885, 887, 549, 10, 113, "Text"],
+Cell[CellGroupData[{
+Cell[33459, 901, 680, 19, 41, "Input"],
+Cell[34142, 922, 97, 2, 36, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34288, 930, 160, 2, 59, "Subsection"],
+Cell[34451, 934, 421, 8, 63, "Text"],
+Cell[CellGroupData[{
+Cell[34897, 946, 1320, 36, 56, "Input"],
+Cell[36220, 984, 161, 3, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36418, 992, 1272, 37, 67, "Input"],
+Cell[37693, 1031, 117, 2, 38, "Output"]
+}, Open  ]],
+Cell[37825, 1036, 131, 1, 38, "Text"],
+Cell[CellGroupData[{
+Cell[37981, 1041, 249, 7, 41, "Input"],
+Cell[38233, 1050, 143, 2, 38, "Output"]
+}, Open  ]],
+Cell[38391, 1055, 213, 4, 38, "Text"],
+Cell[CellGroupData[{
+Cell[38629, 1063, 716, 17, 62, "Input"],
+Cell[39348, 1082, 241, 4, 38, "Output"]
+}, Open  ]],
+Cell[39604, 1089, 302, 8, 38, "Text"],
+Cell[CellGroupData[{
+Cell[39931, 1101, 1310, 40, 56, "Input"],
+Cell[41244, 1143, 179, 4, 38, "Output"]
+}, Open  ]],
+Cell[41438, 1150, 449, 10, 70, "Text"],
+Cell[CellGroupData[{
+Cell[41912, 1164, 1067, 29, 57, "Input"],
+Cell[42982, 1195, 179, 4, 38, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43198, 1204, 364, 10, 46, "Input"],
+Cell[43565, 1216, 286, 7, 41, "Output"]
+}, Open  ]],
+Cell[43866, 1226, 131, 1, 38, "Text"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44046, 1233, 2196, 31, 86, "Section"],
+Cell[CellGroupData[{
+Cell[46267, 1268, 378, 5, 59, "Subsection"],
+Cell[46648, 1275, 361, 7, 63, "Text"],
+Cell[CellGroupData[{
+Cell[47034, 1286, 1196, 33, 69, "Input"],
+Cell[48233, 1321, 239, 4, 38, "Output"]
+}, Open  ]],
+Cell[48487, 1328, 780, 15, 114, "Text"],
+Cell[CellGroupData[{
+Cell[49292, 1347, 820, 22, 57, "Input"],
+Cell[50115, 1371, 338, 6, 54, "Output"]
+}, Open  ]],
+Cell[50468, 1380, 253, 5, 38, "Text"],
+Cell[CellGroupData[{
+Cell[50746, 1389, 965, 30, 41, "Input"],
+Cell[51714, 1421, 117, 3, 54, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51868, 1429, 450, 11, 53, "Input"],
+Cell[52321, 1442, 140, 2, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52498, 1449, 1500, 44, 111, "Input"],
+Cell[54001, 1495, 112, 2, 36, "Output"]
+}, Open  ]],
+Cell[54128, 1500, 266, 5, 38, "Text"],
+Cell[CellGroupData[{
+Cell[54419, 1509, 601, 13, 53, "Input"],
+Cell[55023, 1524, 230, 4, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55290, 1533, 513, 15, 54, "Input"],
+Cell[55806, 1550, 257, 4, 57, "Output"]
+}, Open  ]],
+Cell[56078, 1557, 191, 2, 38, "Text"],
+Cell[56272, 1561, 252, 5, 38, "Text"],
+Cell[CellGroupData[{
+Cell[56549, 1570, 1032, 30, 56, "Input"],
+Cell[57584, 1602, 214, 4, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57835, 1611, 962, 29, 56, "Input"],
+Cell[58800, 1642, 110, 2, 36, "Output"]
+}, Open  ]],
+Cell[58925, 1647, 271, 5, 63, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59233, 1657, 219, 3, 59, "Subsection"],
+Cell[59455, 1662, 6195, 91, 756, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

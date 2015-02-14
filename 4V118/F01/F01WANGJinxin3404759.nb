@@ -1,0 +1,1082 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35397,       1073]
+NotebookOptionsPosition[     32776,        983]
+NotebookOutlinePosition[     33139,        999]
+CellTagsIndexPosition[     33096,        996]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+F 1 : Force, \[CapitalEAcute]nergie potentielle, et distribution \
+\[EAcute]lectronique\
+\>", "Title",
+ CellChangeTimes->{3.632388403677367*^9}],
+
+Cell[CellGroupData[{
+
+Cell["4V118 Acides Nucl\[EAcute]iques : de la mol\[EAcute]cule unique \
+\[AGrave] la cellule", "Chapter",
+ CellChangeTimes->{3.6323884277081957`*^9}],
+
+Cell[CellGroupData[{
+
+Cell["R\[EAcute]visions & Ordres de Grandeurs : \[EAcute]lectrostatique", \
+"Section",
+ CellChangeTimes->{3.632388446428183*^9}],
+
+Cell[CellGroupData[{
+
+Cell["0. Description des forces intermol\[EAcute]culaires", "Subsection",
+ CellChangeTimes->{{3.632388463724072*^9, 3.6323884784145393`*^9}}],
+
+Cell[TextData[{
+ "1\[Degree] / Citer la force physique la plus importante \[AGrave] laquelle \
+sont soumis les atomes et les mol\[EAcute]cules, et donner le nom de la loi \
+classique qui la d\[EAcute]crit.\n\tForce \[EAcute]lectrostatique : ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      FractionBox["1", 
+       RowBox[{"4", "\[Pi]", " ", 
+        SubscriptBox["\[Epsilon]", "0"]}]], ")"}], 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], 
+      SuperscriptBox["r", "2"]], " ", "avec", " ", 
+     SubscriptBox["k", "e"]}], "=", 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"4", "\[Pi]", " ", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "=", 
+     RowBox[{"9", "*", 
+      SuperscriptBox["10", "9"]}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "netown * ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["m", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " / ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["coulomb", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " ou ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["F", "\[RightVector]"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " = ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"(", 
+    FractionBox["1", 
+     RowBox[{"4", "\[Pi]", " ", 
+      SubscriptBox["\[Epsilon]", "0"]}]], ")"}], 
+   FractionBox[
+    RowBox[{
+     SubscriptBox["q", "1"], 
+     SubscriptBox["q", "2"]}], 
+    SuperscriptBox["r", "3"]], 
+   OverscriptBox["r", "\[RightVector]"]}]]],
+ ", c\[CloseCurlyQuote]est d\[EAcute]crit par la loi de Coulomb"
+}], "Text",
+ CellChangeTimes->{{3.632388491899435*^9, 3.632388500247118*^9}, {
+   3.632392449572198*^9, 3.632392481561719*^9}, 3.632397933938547*^9, {
+   3.632398646447742*^9, 3.632398862646768*^9}, {3.632398962177004*^9, 
+   3.632399141748909*^9}, {3.632399278034992*^9, 3.632399300566979*^9}, {
+   3.632399360341679*^9, 3.632399401213193*^9}}],
+
+Cell["\<\
+2\[Degree] / Citer les interactions qui d\[EAcute]rivent de cette force \
+physique.
+Distinguer celles qui requi\[EGrave]rent un traitement de m\[EAcute]canique \
+quantique et donner leur nom.\
+\>", "Text",
+ CellChangeTimes->{3.632397905219945*^9}],
+
+Cell["\<\
+\t1. Ion - Ion
+\t2. Ion - Dip\[OHat]le Permmanent
+\t3. Ion - Dip\[OHat]le Induit
+\t4. Dip\[OHat]le Permmanent - Dip\[OHat]le Permmanent (Force de Keesom)
+\t5. Dip\[OHat]le Permmanent - Dip\[OHat]le Induit (Force de Debye)
+\t6. Dip\[OHat]le Induit - Dip\[OHat]le Induit (Force de Londre)
+\tLes interactions de Van des Waals (4,5,6) requi\[EGrave]rent un traitement \
+de m\[EAcute]canique quantique \
+\>", "Text",
+ CellChangeTimes->{{3.632400616262636*^9, 3.6324007174830723`*^9}, {
+  3.632400777606786*^9, 3.6324008474768677`*^9}, {3.632400896143717*^9, 
+  3.6324009456570168`*^9}}],
+
+Cell["\<\
+3\[Degree] / La liaison hydrog\[EGrave]ne r\[EAcute]sulte pour simplifier de \
+l\[CloseCurlyQuote]effet d\[CloseCurlyQuote]un ensemble de toutes les forces \
+pr\[EAcute]c\[EAcute]demment cit\[EAcute]es.
+D\[EAcute]criver la liaison hydrog\[EGrave]ne (longueur entre atomes mis en \
+jeu et \[EAcute]nergie).\
+\>", "Text",
+ CellChangeTimes->{3.6323979174634953`*^9}],
+
+Cell[TextData[{
+ "\tSeuls les atomes de petite taille et donneur de doublets pourront \
+contracter des liaisons hydrog\[EGrave]ne, il faut \
+s\[CloseCurlyQuote]approcher suffisamment pr\[EGrave]s. Lorsqu\
+\[CloseCurlyQuote]une liaison hydrog\[EGrave]ne \
+s\[CloseCurlyQuote]\[EAcute]tablit, les deux h\[EAcute]t\[EAcute]roatomes se \
+trouvent \[AGrave] une distance d\[CloseCurlyQuote]environ 200 pm. (Par \
+exemple: H2O ... H\[Minus]O\[Minus]H ; \[Minus]C=O ... H\[Minus]O\[Minus]H)\n\
+\tL\[CloseCurlyQuote]\[EAcute]nergie de ces liaisons est entre 10 et 40 ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"kJ", ".", 
+    SuperscriptBox["mol", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{
+  3.632401180505845*^9, {3.63240151831959*^9, 3.6324016095825157`*^9}, {
+   3.632401881908136*^9, 3.632401910264855*^9}}],
+
+Cell["4\[Degree] / Qu\[CloseCurlyQuote]est-ce que \
+l\[CloseCurlyQuote]interaction hydrophobe ?", "Text",
+ CellChangeTimes->{3.632397927623921*^9}],
+
+Cell["\<\
+\tHydrophobic interactions describe the relations between water and \
+hydrophobes (low water-soluble molecules). Hydrophobes are nonpolar molecules \
+and usually have a long chain of carbons that do not interact with water \
+molecules. The mixing of fat and water is a good example of this particular \
+interaction. The common misconception is that water and fat doesn\
+\[CloseCurlyQuote]t mix because the Van der Waals forces that are acting upon \
+both water and fat molecules are too weak. However, this is not the case. The \
+behavior of a fat droplet in water has more to do with the enthalpy and \
+entropy of the reaction than its intermolecular forces.\
+\>", "Text",
+ CellChangeTimes->{{3.6324024386038322`*^9, 3.632402439744528*^9}, {
+  3.632402514332778*^9, 3.632402518815928*^9}, {3.632402700298972*^9, 
+  3.632402721946816*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+1. \[CapitalEAcute]chelle de force et d\[CloseCurlyQuote]\[EAcute]nergie \
+\[EAcute]lectrostatique mol\[EAcute]culaire (microscopique)\
+\>", "Subsection",
+ CellChangeTimes->{3.63240275305289*^9}],
+
+Cell["On supposera que 2 ions Na +et F- sont s\[EAcute]par\[EAcute]s par 2.4 \
+\[CapitalARing].", "Text",
+ CellChangeTimes->{{3.632402792669529*^9, 3.632402796221738*^9}}],
+
+Cell[TextData[{
+ "Calculer la force \[EAcute]lectrostatique d\[CloseCurlyQuote]attraction, et \
+l\[CloseCurlyQuote]\[EAcute]nergie d\[CloseCurlyQuote]interaction \
+\[EAcute]lectrostatique.\nCalculer aussi ces forces et ces \[EAcute]nergies \
+pour une mole de paires d\[CloseCurlyQuote]ions. On donne : e = 1.602*10-19C, \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[Epsilon]", "0"], "=", 
+    FractionBox["1", 
+     RowBox[{"36", 
+      SuperscriptBox["\[Pi]10", "9"]}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["C", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "/(N.m2)\n1./ dans le vide (ou dans un cristal) (",
+ Cell[BoxData[
+  FormBox["\[Epsilon]", TraditionalForm]]],
+ " = 1)"
+}], "Text",
+ CellChangeTimes->{{3.632402780558757*^9, 3.632402787111012*^9}, {
+   3.632405042372593*^9, 3.6324050579770727`*^9}, {3.6324076777653437`*^9, 
+   3.6324076848823357`*^9}, 3.6324077242882442`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   SubscriptBox["F", "vide"], "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], 
+      SuperscriptBox["r", "2"]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["E", "vide"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"\[Epsilon]", "*", "4", "*", "\[Pi]", "*", 
+        SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+      FractionBox[
+       RowBox[{
+        SubscriptBox["q", "1"], 
+        SubscriptBox["q", "2"]}], "r"]}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Epsilon]", "\[Rule]", "1"}], ",", 
+       RowBox[{
+        SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+        RowBox[{
+         FractionBox["1", 
+          RowBox[{"36", "*", "\[Pi]", "*", 
+           SuperscriptBox["10", "9"]}]], "*", 
+         FractionBox[
+          SuperscriptBox["C", "2"], 
+          RowBox[{"N", "*", 
+           SuperscriptBox["m", "2"]}]]}]}], ",", 
+       RowBox[{"r", "\[Rule]", 
+        RowBox[{"2.4", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]], "m"}]}], ",", 
+       RowBox[{
+        SubscriptBox["q", "1"], "\[Rule]", 
+        RowBox[{"1.602", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "19"}]], "C"}]}], ",", 
+       RowBox[{
+        SubscriptBox["q", "2"], "\[Rule]", 
+        RowBox[{"1.602", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"m", " ", "N"}], "\[Rule]", "J"}], "}"}]}]}], 
+  TraditionalForm]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQB2IQLZT+OMBZ4LXjOb4l8SBaYUtwCYheED2/HET/O3Kk
+BUT/r3jdCqJF2m/1gGid5OZ+EO204NhUEH1g3dYlIDomXGEViE6ZIrYWRHtd
+OrcVRMsoOp4A0XLTdp8B0VO85t4D0VkXZz8C0WvSa5+AaF2HaV9BdMvT999A
+tCCflLQLkP70O1MZRE/9f1oPRCt1h9mD6Ba3snwQ3Zip2AiiSx7unwWi6zS0
+5oHoPT7Ci0F0xZ+EJSBa5tfmKFcgvct/Vh2IPjhbphNER7n+7gLRXDc+9YNo
+jTduE0D02kU+s0H06b0HwfSSx9cXgOhzFhwLQXSB+J0lIHqL8NqVIPqfv+pR
+EC3cvwBMZ7TcvQGiI7MF7oFoAAfKqA0=
+  "]],
+
+Cell[BoxData[
+ RowBox[{"4.01000625`*^-9", " ", "N"}]], "Output",
+ CellChangeTimes->{3.632410545021921*^9}],
+
+Cell[BoxData[
+ RowBox[{"9.624015`*^-19", " ", "J"}]], "Output",
+ CellChangeTimes->{3.6324105450227423`*^9}]
+}, Open  ]],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   SubscriptBox["F", "molvide"], "=", 
+   RowBox[{
+    RowBox[{
+     OverscriptBox[
+      UnderscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}]], "m"], 
+     RowBox[{
+      OverscriptBox[
+       UnderscriptBox["\[Sum]", 
+        RowBox[{"i", "=", "j"}]], "m"], 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"4", "*", "\[Pi]", "*", 
+         SubscriptBox["\[Epsilon]", "0"]}]], 
+       FractionBox[
+        RowBox[{
+         SubscriptBox["q", "i"], "*", 
+         SubscriptBox["q", "j"]}], 
+        SuperscriptBox["r", "2"]]}]}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "i"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "j"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm]], "Input"]], "Text",
+ CellChangeTimes->{
+  3.632410359479082*^9, {3.632410557198855*^9, 3.6324105589294643`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   SubscriptBox["F", "molvide"], "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", 
+       SuperscriptBox["mol", "2"]}], "2"], 
+     FractionBox["1", 
+      RowBox[{"4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], 
+      SuperscriptBox["r", "2"]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["E", "molvde"], " ", "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", 
+       SuperscriptBox["mol", "2"]}], "2"], 
+     FractionBox["1", 
+      RowBox[{"4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], "r"]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.632410399348921*^9, 3.6324104726820107`*^9}, {
+  3.632410868075267*^9, 3.6324109111474943`*^9}, {3.632413250283489*^9, 
+  3.6324133042714663`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2.005003125`*^-9", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{{3.632410889372231*^9, 3.632410913509817*^9}, 
+   3.6324133095224133`*^9}],
+
+Cell[BoxData[
+ RowBox[{"4.8120075`*^-19", " ", "m", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{{3.632410889372231*^9, 3.632410913509817*^9}, 
+   3.632413309523511*^9}]
+}, Open  ]],
+
+Cell["2./ dans l\[CloseCurlyQuote]eau (\[Epsilon] = 78)", "Text",
+ CellChangeTimes->{3.6324050617605677`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   SubscriptBox["F", "eau"], "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], 
+      SuperscriptBox["r", "2"]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["E", "vide"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"\[Epsilon]", "*", "4", "*", "\[Pi]", "*", 
+        SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+      FractionBox[
+       RowBox[{
+        SubscriptBox["q", "1"], 
+        SubscriptBox["q", "2"]}], "r"]}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Epsilon]", "\[Rule]", "78"}], ",", 
+       RowBox[{
+        SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+        RowBox[{
+         FractionBox["1", 
+          RowBox[{"36", "*", "\[Pi]", "*", 
+           SuperscriptBox["10", "9"]}]], "*", 
+         FractionBox[
+          SuperscriptBox["C", "2"], 
+          RowBox[{"N", "*", 
+           SuperscriptBox["m", "2"]}]]}]}], ",", 
+       RowBox[{"r", "\[Rule]", 
+        RowBox[{"2.4", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]], "m"}]}], ",", 
+       RowBox[{
+        SubscriptBox["q", "1"], "\[Rule]", 
+        RowBox[{"1.602", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "19"}]], "C"}]}], ",", 
+       RowBox[{
+        SubscriptBox["q", "2"], "\[Rule]", 
+        RowBox[{"1.602", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"m", " ", "N"}], "\[Rule]", " ", "J"}], "}"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["F", "molvide"], "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", 
+       SuperscriptBox["mol", "2"]}], "2"], 
+     FractionBox["1", 
+      RowBox[{"4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], 
+      SuperscriptBox["r", "2"]]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["E", "molvde"], " ", "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", 
+       SuperscriptBox["mol", "2"]}], "2"], 
+     FractionBox["1", 
+      RowBox[{"\[Epsilon]", "*", "4", "*", "\[Pi]", "*", 
+       SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["q", "1"], 
+       SubscriptBox["q", "2"]}], "r"]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[Epsilon]", "\[Rule]", "78"}], ",", 
+      RowBox[{
+       SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"36", "*", "\[Pi]", "*", 
+          SuperscriptBox["10", "9"]}]], "*", 
+        FractionBox[
+         SuperscriptBox["C", "2"], 
+         RowBox[{"N", "*", 
+          SuperscriptBox["m", "2"]}]]}]}], ",", 
+      RowBox[{"r", "\[Rule]", 
+       RowBox[{"2.4", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "10"}]], "m"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "1"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}], ",", 
+      RowBox[{
+       SubscriptBox["q", "2"], "\[Rule]", 
+       RowBox[{"1.602", "*", 
+        SuperscriptBox["10", 
+         RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], 
+  TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.632406480526188*^9, 3.632406492949333*^9}, {
+  3.632407053839601*^9, 3.632407060180213*^9}, {3.632407512707506*^9, 
+  3.632407513032366*^9}, {3.6324075657087927`*^9, 3.6324075838916388`*^9}, {
+  3.6324079088976927`*^9, 3.632407921471829*^9}, {3.632413364058449*^9, 
+  3.632413398981389*^9}}],
+
+Cell[BoxData[
+ RowBox[{"4.01000625`*^-9", " ", "N"}]], "Output",
+ CellChangeTimes->{3.6324065033816423`*^9, 3.6324070626601753`*^9, 
+  3.632407606557016*^9, 3.632407923271966*^9, 3.632413400637006*^9}],
+
+Cell[BoxData[
+ RowBox[{"1.2338480769230769`*^-20", " ", "J"}]], "Output",
+ CellChangeTimes->{3.6324065033816423`*^9, 3.6324070626601753`*^9, 
+  3.632407606557016*^9, 3.632407923271966*^9, 3.632413400638198*^9}],
+
+Cell[BoxData[
+ RowBox[{"2.005003125`*^-9", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{3.6324065033816423`*^9, 3.6324070626601753`*^9, 
+  3.632407606557016*^9, 3.632407923271966*^9, 3.632413400638949*^9}],
+
+Cell[BoxData[
+ RowBox[{"6.1692403846153844`*^-21", " ", "m", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{3.6324065033816423`*^9, 3.6324070626601753`*^9, 
+  3.632407606557016*^9, 3.632407923271966*^9, 3.632413400639695*^9}]
+}, Open  ]],
+
+Cell["\<\
+Qu\[CloseCurlyQuote]en concluez-vous ?
+\tLe millieu dans lequel les deux ions localisent ne rapport pas la force \
+entre eux. Mais il concerne de l\[CloseCurlyQuote]\[EAcute]nergie. Ils ont \
+plus d\[CloseCurlyQuote]\[EAcute]nergie dans cristal que dans l\
+\[CloseCurlyQuote]eau.  \
+\>", "Text",
+ CellChangeTimes->{
+  3.632407733126705*^9, {3.632413411405348*^9, 3.632413458555201*^9}, {
+   3.6324134921392803`*^9, 3.632413559335442*^9}, {3.6324156148414*^9, 
+   3.632415714675168*^9}, {3.632415745074814*^9, 3.632415805047526*^9}, {
+   3.632417434048209*^9, 3.6324174376748466`*^9}, {3.63241747495795*^9, 
+   3.632417506065454*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. \[CapitalEAcute]chelle de force \[EAcute]lectrostatique \
+(macroscopique)", "Subsection",
+ CellChangeTimes->{{3.632407964554636*^9, 3.632407972227756*^9}}],
+
+Cell["\<\
+Calculer la force \[EAcute]lectrostatique entre 2 moles \
+d\[CloseCurlyQuote]ions + et - (On suppose que chaque mole \
+d\[CloseCurlyQuote]ions est concentr\[EAcute]e en
+un point). On supposera qu\[CloseCurlyQuote]ils sont s\[EAcute]par\[EAcute]s \
+par une distance de 1m, 1 km, 1000 km\
+\>", "Text",
+ CellChangeTimes->{
+  3.632407996513033*^9, {3.632408133412376*^9, 3.632408134373612*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"F", "=", " ", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"1", 
+      SuperscriptBox["mol", "2"]}], "2"], 
+    FractionBox["1", 
+     RowBox[{"4", "*", "\[Pi]", "*", 
+      SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["q", "1"], 
+      SubscriptBox["q", "2"]}], 
+     SuperscriptBox["r", "2"]]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"36", "*", "\[Pi]", "*", 
+         SuperscriptBox["10", "9"]}]], "*", 
+       FractionBox[
+        SuperscriptBox["C", "2"], 
+        RowBox[{"N", "*", 
+         SuperscriptBox["m", "2"]}]]}]}], ",", 
+     RowBox[{"r", "\[Rule]", 
+      RowBox[{"1", "m"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "1"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "2"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"F", "=", " ", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"1", 
+      SuperscriptBox["mol", "2"]}], "2"], 
+    FractionBox["1", 
+     RowBox[{"4", "*", "\[Pi]", "*", 
+      SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["q", "1"], 
+      SubscriptBox["q", "2"]}], 
+     SuperscriptBox["r", "2"]]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"36", "*", "\[Pi]", "*", 
+         SuperscriptBox["10", "9"]}]], "*", 
+       FractionBox[
+        SuperscriptBox["C", "2"], 
+        RowBox[{"N", "*", 
+         SuperscriptBox["m", "2"]}]]}]}], ",", 
+     RowBox[{"r", "\[Rule]", 
+      RowBox[{"1000", "m"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "1"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "2"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"F", "=", " ", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"1", 
+      SuperscriptBox["mol", "2"]}], "2"], 
+    FractionBox["1", 
+     RowBox[{"4", "*", "\[Pi]", "*", 
+      SubscriptBox["\[Epsilon]", "0"]}]], "*", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["q", "1"], 
+      SubscriptBox["q", "2"]}], 
+     SuperscriptBox["r", "2"]]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Epsilon]", "0"], "\[Rule]", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"36", "*", "\[Pi]", "*", 
+         SuperscriptBox["10", "9"]}]], "*", 
+       FractionBox[
+        SuperscriptBox["C", "2"], 
+        RowBox[{"N", "*", 
+         SuperscriptBox["m", "2"]}]]}]}], ",", 
+     RowBox[{"r", "\[Rule]", 
+      RowBox[{"1000000", "m"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "1"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}], ",", 
+     RowBox[{
+      SubscriptBox["q", "2"], "\[Rule]", 
+      RowBox[{"1.602", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "19"}]], "C"}]}]}], "}"}]}]}]}], "Input",
+ CellChangeTimes->{{3.6324159806543713`*^9, 3.6324160361508636`*^9}, {
+  3.632416069204318*^9, 3.632416071223175*^9}, {3.632416228978916*^9, 
+  3.632416234735264*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1.1548818`*^-28", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{3.632416040020281*^9}],
+
+Cell[BoxData[
+ RowBox[{"1.1548818`*^-34", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{3.6324160400211067`*^9}],
+
+Cell[BoxData[
+ RowBox[{"1.1548818`*^-40", " ", 
+  SuperscriptBox["mol", "2"], " ", "N"}]], "Output",
+ CellChangeTimes->{3.632416040022016*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[CapitalEAcute]lectrostatique et van der Waals", "Section",
+ CellChangeTimes->{{3.63241625160937*^9, 3.632416264510324*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["1. \[CapitalEAcute]nergie d\[CloseCurlyQuote]une liaison \
+hydrog\[EGrave]ne (Charge-Charge)", "Subsection",
+ CellChangeTimes->{3.632416279900362*^9}],
+
+Cell["\<\
+Calculer l\[CloseCurlyQuote]\[EAcute]nergie d\[CloseCurlyQuote]interaction \
+\[EAcute]lectrostatique d\[CloseCurlyQuote]une liaison hydrog\[EGrave]ne :\
+\>", "Text",
+ CellChangeTimes->{3.6324163167155867`*^9}],
+
+Cell["a/ dans le vide avec \[Epsilon] = 1", "Text",
+ CellChangeTimes->{
+  3.6324163325146523`*^9, {3.632416523080907*^9, 3.632416543624242*^9}}],
+
+Cell["b/ dans l\[CloseCurlyQuote]eau avec \[Epsilon] = 78", "Text",
+ CellChangeTimes->{{3.6324163507155333`*^9, 3.6324163519358997`*^9}, {
+  3.6324165391474857`*^9, 3.632416545211471*^9}}],
+
+Cell[TextData[{
+ "c/ en prenant la valeur recommand\[EAcute]e \[Epsilon] = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"4", "*", 
+    SubscriptBox["r", "ij"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.63241637560771*^9, 3.632416396241494*^9}, {
+  3.6324166296646013`*^9, 3.632416630977841*^9}}],
+
+Cell[TextData[{
+ "Dans le cas c/,  \[Epsilon] est un coefficient sans dimension qui est \
+calcul\[EAcute] \[AGrave] partir de la valeur num\[EAcute]rique de ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "ij"], TraditionalForm]]],
+ " en \[CapitalARing]. Ainsi quand ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "ij"], TraditionalForm]]],
+ " varie de 1 \[AGrave] 20 \[CapitalARing], \[Epsilon] cro\[IHat]t lin\
+\[EAcute]airement de 4 \[AGrave] 80. 4 est la valeur de la constante di\
+\[EAcute]lectrique \[AGrave] l\[CloseCurlyQuote]int\[EAcute]rieur des prot\
+\[EAcute]ines et des acides nucl\[EAcute]iques, et 80 celle dans l\
+\[CloseCurlyQuote]eau.\nOn donne les charges partielles, en unit\[EAcute]s de \
+charge \[EAcute]lectronique, port\[EAcute]es par les atomes suivants :\n\tN \
+(-0.9123) ---H (0.4167) . . . . . .O(-0.5881)==C(0.5677)\nCes charges sont \
+extraites de la base de donn\[EAcute]es AMBER (champs de force 1994) utilis\
+\[EAcute]e en mod\[EAcute]lisation mol\[EAcute]culaire pour les atomes amino \
+de l\[CloseCurlyQuote]ad\[EAcute]nine et le carbonyl de la thymine qui \
+\[EAcute]tablissent normalement une liaison hydrog\[EGrave]ne dans l\
+\[CloseCurlyQuote]ADN en double h\[EAcute]lice.\nLes longueurs de liaisons \
+atomiques sont : N-H, 1.01\[CapitalARing] et O=C, 1.229 \[CapitalARing] , et \
+celle de la liaison hydrog\[EGrave]ne est : H . . . O, 1.8 \[CapitalARing]."
+}], "Text",
+ CellChangeTimes->{{3.6324164414046993`*^9, 3.632416497039584*^9}, {
+  3.632416940707589*^9, 3.632416945147394*^9}, {3.632416978708274*^9, 
+  3.6324169904481907`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Calcul des charges port\[EAcute]es par l\[CloseCurlyQuote]eau \[AGrave] \
+partir de son moment dipolaire\
+\>", "Subsection",
+ CellChangeTimes->{{3.63241830787134*^9, 3.6324183156707983`*^9}}],
+
+Cell[TextData[{
+ "L\[CloseCurlyQuote]eau a un moment dipolaire de m = 1.834 Debye. Calculer \
+les charges port\[EAcute]es par l\[CloseCurlyQuote]hydrog\[EGrave]ne et l\
+\[CloseCurlyQuote]oxyg\[EGrave]ne. On\nfera \
+l\[CloseCurlyQuote]hypoth\[EGrave]se d\[CloseCurlyQuote]un mod\[EGrave]le \
+\[AGrave] trois charges ponctuelles (TIP3P). La longueur de la liaison O-H \
+est 0.957 \[CapitalARing] et\nl\[CloseCurlyQuote]angle entre les liaisons est \
+104\[Degree]5.\nOn rappelle que : 1 Debye est le moment dipolaire de deux \
+charges \[EAcute]gales et oppos\[EAcute]e de 1u.e.s. = 1 unit\[EAcute] \
+\[EAcute]lectrostatique,\ns\[EAcute]par\[EAcute]es par une distance de 1 \
+\[CapitalARing]. Pratiquement la conversion du syt\[EGrave]me cgs en MKSA \
+indique que 1 Debye",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[EqualTilde]", 
+    FractionBox[
+     SuperscriptBox["10", 
+      RowBox[{"-", "29"}]], "3"]}], TraditionalForm]]],
+ " Coulomb*m"
+}], "Text",
+ CellChangeTimes->{{3.632418345270282*^9, 3.632418419674706*^9}, {
+  3.632749955058779*^9, 3.632749956177075*^9}, {3.632750027794907*^9, 
+  3.632750030099454*^9}, {3.632750139357637*^9, 3.6327501393577538`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Calculs de moments dipolaires", "Subsection",
+ CellChangeTimes->{3.632750184928652*^9}],
+
+Cell["\<\
+Le monobromobenz\[EGrave]ne a un moment dipolaire de 1.50 D. Calculer le \
+moment dipolaire de :\
+\>", "Text",
+ CellChangeTimes->{3.632750198610331*^9}],
+
+Cell["1./ ortho-dibromobenz\[EGrave]ne,", "Text",
+ CellChangeTimes->{3.632750207575005*^9}],
+
+Cell["2./ meta-dibromobenz\[EGrave]ne", "Text",
+ CellChangeTimes->{3.632750214024029*^9}],
+
+Cell["3./ para-dibromobenz\[EGrave]ne", "Text",
+ CellChangeTimes->{3.632750225391527*^9}],
+
+Cell["\<\
+Quelle approximation a \[EAcute]t\[EAcute] faite ? De quel r\[EAcute]sultat \
+peut-on \[EHat]tre s\[UHat]r ?\
+\>", "Text",
+ CellChangeTimes->{3.632750235069735*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1366, 744},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Linux x86 (64-bit) (December 4, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 154, 4, 93, "Title"],
+Cell[CellGroupData[{
+Cell[759, 30, 149, 2, 66, "Chapter"],
+Cell[CellGroupData[{
+Cell[933, 36, 128, 2, 65, "Section"],
+Cell[CellGroupData[{
+Cell[1086, 42, 141, 1, 45, "Subsection"],
+Cell[1230, 45, 1955, 59, 75, "Text"],
+Cell[3188, 106, 257, 6, 55, "Text"],
+Cell[3448, 114, 591, 12, 165, "Text"],
+Cell[4042, 128, 373, 7, 55, "Text"],
+Cell[4418, 137, 871, 18, 77, "Text"],
+Cell[5292, 157, 147, 2, 33, "Text"],
+Cell[5442, 161, 849, 13, 99, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6328, 179, 205, 4, 45, "Subsection"],
+Cell[6536, 185, 171, 2, 33, "Text"],
+Cell[6710, 189, 980, 25, 90, "Text"],
+Cell[CellGroupData[{
+Cell[7715, 218, 3057, 93, 137, "Input"],
+Cell[10775, 313, 106, 2, 34, "Output"],
+Cell[10884, 317, 107, 2, 34, "Output"]
+}, Open  ]],
+Cell[11006, 322, 1568, 50, 56, "Text"],
+Cell[CellGroupData[{
+Cell[12599, 376, 2748, 88, 137, "Input"],
+Cell[15350, 466, 195, 4, 34, "Output"],
+Cell[15548, 472, 202, 4, 34, "Output"]
+}, Open  ]],
+Cell[15765, 479, 109, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[15899, 484, 5583, 175, 269, "Input"],
+Cell[21485, 661, 201, 3, 34, "Output"],
+Cell[21689, 666, 210, 3, 34, "Output"],
+Cell[21902, 671, 238, 4, 34, "Output"],
+Cell[22143, 677, 256, 4, 34, "Output"]
+}, Open  ]],
+Cell[22414, 684, 643, 12, 55, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23094, 701, 164, 2, 45, "Subsection"],
+Cell[23261, 705, 400, 8, 55, "Text"],
+Cell[CellGroupData[{
+Cell[23686, 717, 3586, 117, 174, "Input"],
+Cell[27275, 836, 142, 3, 34, "Output"],
+Cell[27420, 841, 144, 3, 34, "Output"],
+Cell[27567, 846, 142, 3, 34, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27770, 856, 131, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[27926, 861, 156, 2, 45, "Subsection"],
+Cell[28085, 865, 219, 4, 33, "Text"],
+Cell[28307, 871, 144, 2, 33, "Text"],
+Cell[28454, 875, 188, 2, 33, "Text"],
+Cell[28645, 879, 336, 9, 35, "Text"],
+Cell[28984, 890, 1581, 27, 167, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30602, 922, 204, 4, 45, "Subsection"],
+Cell[30809, 928, 1162, 22, 137, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32008, 955, 96, 1, 45, "Subsection"],
+Cell[32107, 958, 162, 4, 33, "Text"],
+Cell[32272, 964, 91, 1, 33, "Text"],
+Cell[32366, 967, 89, 1, 33, "Text"],
+Cell[32458, 970, 89, 1, 33, "Text"],
+Cell[32550, 973, 174, 4, 33, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
