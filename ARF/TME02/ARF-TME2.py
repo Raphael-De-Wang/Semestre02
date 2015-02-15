@@ -45,18 +45,18 @@ data,y = gen_arti()
     
 #affichage en 2D des donnees
 def plot_data(x,labels):
-    fig = plt.figure()
     plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
     plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
-    plt.show()
+
     
-plot_data(data,y)
+# plot_data(data,y)
 
 #Frontiere de decision
-def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
-                                # et trace la frontiere
+def plot_frontiere(x,y,f,pltname=None,step=20): # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
+                                 # et trace la frontiere
     mmax=x.max(0)
     mmin=x.min(0)
+    fig = plt.figure()
     x1grid,x2grid=np.meshgrid(np.linspace(mmin[0],mmax[0],step),np.linspace(mmin[1],mmax[1],step))
     grid=np.hstack((x1grid.reshape(x1grid.size,1),x2grid.reshape(x2grid.size,1)))
     # calcul de la prediction pour chaque point de la grille
@@ -64,7 +64,13 @@ def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace d
     res=res.reshape(x1grid.shape)
     # tracer des frontieres
     plt.contourf(x1grid,x2grid,res,colors=('gray','blue'),levels=[-1,0,1])
-
+    plot_data(x,y)
+    if pltname == None:
+        plt.show()
+    else:
+        fig.savefig(pltname)
+        fig.clear()
+        
 class Classifier(object):
     """ Classe generique d'un classifieur
         Dispose de 3 méthodes :
@@ -72,7 +78,6 @@ class Classifier(object):
             predict pour predire
             score pour evaluer la precision
     """
-
     def fit(self,x,y):
         raise NotImplementedError("fit non implemente")
     def predict(self,x):
@@ -89,18 +94,68 @@ class Knn(Classifier):
         self.trY = trY
         
     def predict(self,X):
-        
-            
+        D = np.array([ np.linalg.norm(X - x) for x in self.trX ])
+        sortInd = D.argsort()[1:self.k+1]
+        if self.trY[sortInd].sum() > 0:
+            return 1
+        else:
+            return 0
 
 class Parzen(Classifier):
-    def __init__(self, noyau):
-        self.noyau = noyau
+    def __init__(self, K, h):
+        self.K = K # Kernel function
+        self.h = h # taille de fenetre sur 2
         
-    def fit(self,X,Y):
-        self.X = X
-        self.Y = Y
+    def fit(self,trX,trY):
+        self.trX = trX
+        self.trY = trY
         
     def predict(self,X):
-        for x in X:
-            pass
+        D = np.array([ self.K(X,x,self.h) for x in self.trX ])
+        if self.trY[D==1].sum() > 0:
+            return 1
+        else:
+            return -1
+        
+def hypercube(x0,x,h):
+    return np.prod(np.absolute(x0 - x) < h)
+
+def sphere(x0,x,h):
+    return np.linalg.norm(x0 - x) < h
+
+def gauss(x0,x,h):
+    u = np.linalg.norm(x0 - x)
+    return np.sqrt(np.pi*2) * np.exp(-(u**2)/2) < h
+
+def laplace(x0,x,h):
+    u = np.linalg.norm(x0 - x)
+    return np.exp(-np.absolute(u))/2 < h
+
+def epanechikov(x0,x,h):
+    u = np.linalg.norm(x0 - x)
+    return 3*max((0,1-u**2))/4 < h
+
+def uniform(x0,x,h):
+    u = np.linalg.norm(x0 - x)
+    a = -1
+    b = 1
+    if u > b:
+        khi = 1
+    elif u < a:
+        khi = 0
+    else:
+        khi = (u - a)/(b-a)
+    return khi/2 < h
+
+for k in [2**i for i in range(6)] :
+    knn = Knn(k)
+    knn.fit(data,y)
+    plot_frontiere(data,y,knn.predict,"knn(k=%d)"%k)
+
+for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
+    for h in (0.7,0.5,0.3,0.1,0.05):
+        parzen = Parzen(K,h)
+        parzen.fit(data,y)
+        plot_frontiere(data,y,parzen.predict,"parzen(K=%s,h=%2f).jpeg"%(K.__name__,h))
+
 
