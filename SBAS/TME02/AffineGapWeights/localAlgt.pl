@@ -27,11 +27,13 @@ my $UBR5 = "MTSIHFVVHPLPGTEDQLNDRLREVSEKLNKYNLNSHPPLNVLEQATIKQCVVGPNHAAFLLEDGRVC
 my ($seq1, $seq2) = ("ACHA", "CCAD");
 # my ($seq1, $seq2) = ($UBR5,$RL20);
 # Set amino acids substitution matrix
-# my $matrix = \@Constants::matchMismatch;
-my $matrix = \@Constants::blosum45;
+my $matrix = \@Constants::matchMismatch;
+# my $matrix = \@Constants::blosum45;
 
 # Set the gap extension value
-my $e = 2;
+# my $e = 2;
+my $wg= 5;
+my $ws= 1;
 
 print ("\n# My sequences:\n# SEQ1 --> ".$seq1."\n# SEQ2 --> ".$seq2."\n"); 
 
@@ -64,9 +66,9 @@ sub localAlignLinear {
     my ($n, $m) = (length($x), length($y));
     
     # The dynamic programming matrix; also correctly initializes borders
-    my @F; 
+    my @V; 
     for (my $j=0; $j<=$m; $j++) {
-        $F[$j] = [(0) x ($n+1)];
+        $V[$j] = [(0) x ($n+1)];
     }
     
     # The traceback matrix; also correctly initializes borders
@@ -77,13 +79,41 @@ sub localAlignLinear {
         }
     }
     
+    # S ------i-------
+    # T -------------j 
+    my @E;
+    for (my $j=0; $j<=$m; $j++) {
+        $E[$j] = [(0) x ($n+1)];
+    }
+
+    # S --------------i 
+    # T ------j--------
+    my @F;
+    for (my $j=0; $j<=$m; $j++) {
+        $F[$j] = [(0) x ($n+1)];
+    }
+    
+    # S ------i 
+    # T ------j 
+    my @G;
+    for (my $j=0; $j<=$m; $j++) {
+        $G[$j] = [(0) x ($n+1)];
+    }
+
     # Do the iteration
 #######################################
 
     my ($maxScore,$tN,$tNW,$tW) = (0,0,0,0);
     for (my $i=1; $i<=$n; $i++) {
 	for (my $j=1;$j<=$m; $j++) {
-	    ($maxScore,$tN,$tNW,$tW) = &bestScore($matrix,$e,\@F,$x,$y,$i,$j);
+	    ($maxScore,$tN,$tNW,$tW) = &bestScore($matrix,$wg,$ws,\@V,\@E,\@F,\@G,$x,$y,$i,$j);
+	    $V[$j][$i] = $maxScore;
+	    
+	    print 'V[j][i]; ',$V[$j][$i],"\n";
+	    print 'E[j][i]; ',$E[$j][$i],"\n";
+	    print 'F[j][i]; ',$F[$j][$i],"\n";
+	    print 'G[j][i]; ',$G[$j][$i],"\n";
+	    
 	    $F[$j][$i] = ( $maxScore > 0 ? $maxScore : 0 ) ;
 	    $B[$FROMN][$j][$i]  = ( $tN  == $false ? 0 : 1 ) ;
 	    $B[$FROMNW][$j][$i] = ( $tNW == $false ? 0 : 1 ) ;
@@ -109,7 +139,7 @@ sub localAlignLinear {
                 }
             }
     }  
-    return (\@F, \@B, &traceback2($x, $y, \@B, $imax, $jmax));  
+    return (\@V, \@B, &traceback2($x, $y, \@B, $imax, $jmax));  
 }
 
 # ----------------------------------------------------------------------
