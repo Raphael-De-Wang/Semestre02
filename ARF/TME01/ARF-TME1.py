@@ -160,7 +160,6 @@ class Node(Classifier):
             return np.array([self.label]*x.shape[0])
         return np.array([self.left.predict(x[i,:])[0] if res<0 else self.right.predict(x[i,:])[0] for i,res in enumerate(self.split.predict(x))])
 
-
     def fit(self,x,y):
         counts=Counter(y)
         self.split=Split.find_best_split(x,y)
@@ -229,7 +228,7 @@ class DecisionTree(Classifier):
 
     def predict(self,x):
         # A COMPLETER
-        pass
+        return self.root.predict(self,x)
     
     def __str__(self):
         s=""
@@ -586,16 +585,3 @@ data20,data20Y,data20JScore=join_simple(users[uidx,:],movies,ratings[:,uidx])
 
 # <codecell>
 
-from collections import Counter
-
-class Knn(Classifier):
-    def __init__(self, k):
-        self.k = k
-        
-    def fit(self,X,Y):
-        self.X = X
-        self.Y = Y
-        
-    def predict(self,X):
-        for x in X:
-    
