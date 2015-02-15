@@ -16,11 +16,8 @@ use CGI qw/:standard/;  # to use param()
 # ----------------------------------------------------------------------
 # Set global variables
 
-my $true = 1;
-my $false= 0;
-
 # $seq1, $seq2: The sequences to align (default sequences given)
-# my ($seq1, $seq2) = ("HEAGAWGHEE", "PAWHEAE");
+#my ($seq1, $seq2) = ("HEAGAWGHEE", "PAWHEAE");
 my ($seq1, $seq2) = ("ACHA", "CCAD");
 
 # Set amino acids substitution matrix
@@ -47,7 +44,6 @@ my ($FROMN, $FROMNW, $FROMW) = @DIR;
 # Color codes for the traceback
 my ($RED, $BLUE, $GREEN) = (1, 2, 3);
 
-
 # ----------------------------------------------------------------------
 # The Needleman-Wunsch global alignment algorithm
 # Input: The sequences $x and $y to align, the amino acids sub matrix
@@ -60,13 +56,13 @@ sub globalAlignLinear {
     my ($n, $m) = (length($x), length($y));
     
     # The dynamic programming matrix
-    my @F;
+    my @F; 
     for (my $j=0; $j<=$m; $j++) {
         $F[$j] = [(0) x ($n+1)];
     }
     
     # The traceback matrix
-    my @B;
+    my @B; 
     foreach my $dir (@DIR) {
         for (my $j=0; $j<=$m; $j++) {
             $B[$dir][$j] = [(0) x ($n+1)];
@@ -78,26 +74,15 @@ sub globalAlignLinear {
         $F[0][$i] = -$e * $i;
         $B[$FROMW][0][$i] = $RED;
     }
-    
     for (my $j=1; $j<=$m; $j++) {
         $F[$j][0] = -$e * $j;
         $B[$FROMN][$j][0] = $RED;
     }
-
+    
     # Do the iteration
 #######################################
-    my ($maxScore,$tN,$tNW,$tW) = (0,0,0,0);
-    for (my $i=1; $i<=$n; $i++) {
-	for (my $j=1;$j<=$m; $j++) {
-	    ($maxScore,$tN,$tNW,$tW) = &bestScore($matrix,$e,\@F,$x,$y,$i,$j);
-	    $F[$j][$i] = $maxScore;
-	    $B[$FROMN][$j][$i]  = ( $tN  == $false ? 0 : 1 ) ;
-	    $B[$FROMNW][$j][$i] = ( $tNW == $false ? 0 : 1 ) ;
-	    $B[$FROMW][$j][$i]  = ( $tW  == $false ? 0 : 1 ) ;
-	}
-    }
 
-    print "\nLe score de l'alignment: ",$maxScore,"\n\n";
+
 #######################################
     &markReachable2(\@B, $n, $m);
     return (\@F, \@B, &traceback2($x, $y, \@B, $n, $m));  
