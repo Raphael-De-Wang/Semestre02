@@ -47,7 +47,6 @@ data,y = gen_arti()
 def plot_data(x,labels):
     plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
     plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
-
     
 # plot_data(data,y)
 
@@ -150,12 +149,14 @@ def uniform(x0,x,h):
 for k in [2**i for i in range(6)] :
     knn = Knn(k)
     knn.fit(data,y)
-    plot_frontiere(data,y,knn.predict,"knn(k=%d)"%k)
+    # plot_frontiere(data,y,knn.predict,"knn(k=%d)"%k)
+    plot_frontiere(data,y,knn.predict)
 
 for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
     for h in (0.7,0.5,0.3,0.1,0.05):
         parzen = Parzen(K,h)
         parzen.fit(data,y)
-        plot_frontiere(data,y,parzen.predict,"parzen(K=%s,h=%2f).jpeg"%(K.__name__,h))
+        # plot_frontiere(data,y,parzen.predict,"parzen(K=%s,h=%2f).jpeg"%(K.__name__,h))
+        plot_frontiere(data,y,parzen.predict)
 
 
