@@ -41,8 +41,6 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
     y=y[idx]
     return data,y
 
-data,y = gen_arti()
-    
 #affichage en 2D des donnees
 def plot_data(x,labels):
     plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
@@ -98,7 +96,7 @@ class Knn(Classifier):
         if self.trY[sortInd].sum() > 0:
             return 1
         else:
-            return 0
+            return -1
 
 class Parzen(Classifier):
     def __init__(self, K, h):
@@ -146,17 +144,21 @@ def uniform(x0,x,h):
         khi = (u - a)/(b-a)
     return khi/2 < h
 
+trainX,trainY = gen_arti(data_type=0)
+testX ,testY  = gen_arti(data_type=0)
+    
 for k in [2**i for i in range(6)] :
     knn = Knn(k)
-    knn.fit(data,y)
+    knn.fit(trainX,trainY)
     # plot_frontiere(data,y,knn.predict,"knn(k=%d)"%k)
-    plot_frontiere(data,y,knn.predict)
+    print "function: Knn[%d]\t Score: %f\n"%(k,knn.score(testX,testY))
+    plot_frontiere(testX,testY,knn.predict)
 
 for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
     for h in (0.7,0.5,0.3,0.1,0.05):
         parzen = Parzen(K,h)
-        parzen.fit(data,y)
+        parzen.fit(trainX,trainY)
         # plot_frontiere(data,y,parzen.predict,"parzen(K=%s,h=%2f).jpeg"%(K.__name__,h))
-        plot_frontiere(data,y,parzen.predict)
-
+        print "function: %s[%2f]\t Score: %f\n"%(K.__name__,h,parzen.score(testX,testY))
+        plot_frontiere(testX,testY,parzen.predict)
 
