@@ -75,12 +75,18 @@ class Classifier(object):
             predict pour predire
             score pour evaluer la precision
     """
-    def fit(self,x,y):
+    def fit(self,X,Y):
         raise NotImplementedError("fit non implemente")
-    def predict(self,x):
+    def predict(self,X):
         raise NotImplementedError("predict non implemente")
-    def score(self,x,y):
-        return (self.predict(x) == y).mean()
+    def score(self,X,Y):
+        if len(np.shape(Y)) == 0:
+            return (self.predict(x) == y).mean()
+            
+        if len(X) <> len(Y):
+            raise ValueError("Taille de Test Set est unmatched.")
+            
+        return np.array([self.predict(X[i]) == Y[i] for i in range(len(X))]).mean()
     
 class Knn(Classifier):
     def __init__(self, k):
@@ -91,6 +97,7 @@ class Knn(Classifier):
         self.trY = trY
         
     def predict(self,X):
+        # return np.array([ 1 if self.trY[np.array([ np.linalg.norm(X - x) for x in self.trX ]).argsort()[1:self.k+1]].sum() > 0 else -1 for X in tstX ])
         D = np.array([ np.linalg.norm(X - x) for x in self.trX ])
         sortInd = D.argsort()[1:self.k+1]
         if self.trY[sortInd].sum() > 0:
