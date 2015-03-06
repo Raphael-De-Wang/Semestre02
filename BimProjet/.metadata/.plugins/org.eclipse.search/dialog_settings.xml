@@ -4,10 +4,10 @@
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 	</section>
 	<section name="DialogBounds_SearchDialog">
-		<item value="595" key="DIALOG_WIDTH"/>
-		<item value="76" key="DIALOG_Y_ORIGIN"/>
-		<item value="515" key="DIALOG_HEIGHT"/>
-		<item value="413" key="DIALOG_X_ORIGIN"/>
+		<item value="615" key="DIALOG_WIDTH"/>
+		<item value="192" key="DIALOG_Y_ORIGIN"/>
+		<item value="757" key="DIALOG_X_ORIGIN"/>
+		<item value="535" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">

@@ -1,0 +1,1 @@
+source/AT_arc_metatrans.filtered.fasta -s -f out.dat -t product -id locus_tag -i 15 -k 3 -g

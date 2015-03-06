@@ -7,6 +7,7 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="utils.CAIJava"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="source/AT_arc_metatrans.filtered.fasta -s -f out.dat -t product -id locus_tag -i 15 -k 3 -g &gt; output/out.veo"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${workspace_loc:CAIJava}/source/AT_arc_metatrans.filtered.fasta.cleanup -s -f out.dat -t product -id locus_tag -i 15 -k 3 -g"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="CAIJava"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:CAIJava/output}"/>
 </launchConfiguration>

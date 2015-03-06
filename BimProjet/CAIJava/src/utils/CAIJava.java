@@ -385,6 +385,7 @@ public class CAIJava {
 								CAIValues.addElement(CAIV);
 
 								String geneName = getGeneName(Ft);
+								out.printf("-----------------------> %s\n",geneName);
 								String geneID = getGeneID(Ft);
 
 								if (Ft.getAnnotation().containsProperty("gene")) {
@@ -1546,6 +1547,9 @@ public class CAIJava {
 			gName = Ft.getAnnotation().getProperty("standard_name").toString();
 		else if (Ft.getAnnotation().containsProperty(idFeature))
 			gName = Ft.getAnnotation().getProperty(idFeature).toString();
+		else if (((Sequence)Ft).getName().length() > 0){
+			gName = ((Sequence)Ft).getName();
+		}
 		gName = gName.replace(' ', '_');
 		return gName;
 	}

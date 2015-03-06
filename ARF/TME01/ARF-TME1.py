@@ -241,6 +241,7 @@ class DecisionTree(Classifier):
             else:
                 s+= "\t"*curnode.depth + "class : %s\n" %(curnode.label,)
         return s
+        
     def __repr__(self):
         return self.__str__()
 
@@ -325,7 +326,6 @@ def plot_data(x,labels):
     plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
     plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
 
-
 #Frontiere de decision
 def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
                                 # et trace la frontiere
@@ -338,7 +338,6 @@ def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace d
     res=res.reshape(x1grid.shape)
     # tracer des frontieres
     plt.contourf(x1grid,x2grid,res,colors=('gray','blue'),levels=[-1,0,1])
-
 
 # <markdowncell>
 
@@ -357,6 +356,9 @@ def load_usps(filename):
     tmp = np.array(data)
     return tmp[:,1:],tmp[:,0].astype(int)
 
+a,b = load_usps("2014_tme3_usps_train.txt")
+print a[0],b[0]
+exit()
 # <markdowncell>
 
 # ## Classification sur la base movielens 
