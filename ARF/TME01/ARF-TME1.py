@@ -56,7 +56,6 @@ def entropy(y):
 # Classes
 ###############################
 
-
 class Classifier(object):
     """ Classe generique d'un classifieur
         Dispose de 3 méthodes :

@@ -24,7 +24,7 @@ def cleanUpFasta(fname,fastaDict,step2List,Step2FormatSepFunc,seuil=1e-3):
         writer.write_header()
         for line in step2List:
             try:
-                score,gName,gId,ARC,RF,reverse,begin,end,desc = Step2FormatSepFunc(line)
+                score,gName,domain,gId,ARC,RF,reverse,begin,end,desc = Step2FormatSepFunc(line)
                 if score > seuil:
                     # print "[%s] score [%f] > seuil [%f].\n"%(gName,score,seuil)
                     continue
@@ -38,7 +38,7 @@ def cleanUpFasta(fname,fastaDict,step2List,Step2FormatSepFunc,seuil=1e-3):
                 continue
         writer.write_footer()
     
-def readgCAIs(fname=WORKPATH+"output/cais.lst"):
+def readgCAIsKeyGName(fname=WORKPATH+"output/cais.lst"):
     fb = open(fname)
     CAI_dict = dict()
     for line in fb:
@@ -51,6 +51,22 @@ def readgCAIs(fname=WORKPATH+"output/cais.lst"):
                 CAI_dict[gName].append(float(gCAI))
             else:
                 CAI_dict[gName] = [float(gCAI)]
+        except:
+            if gCAI == "CAI":
+                continue
+            raise
+    fb.close()
+    return CAI_dict
+
+def readgCAIs(fname=WORKPATH+"output/cais.lst"):
+    fb = open(fname)
+    CAI_dict = dict()
+    for line in fb:
+        line_array = line.strip().split("\t")
+        gName      = line_array[0]
+        gCAI       = line_array[1]
+        try:
+            CAI_dict[gName] = float(gCAI)
         except:
             if gCAI == "CAI":
                 continue
@@ -142,13 +158,13 @@ def plotHist(scores,figName=None):
     
 def saveIDgCAInivExpr(fname,data):
     fb = open(fname,'w')
-    fb.write("ID\tgCAIs\tNivExpr\n")
+    # fb.write("ID\tgCAIs\tNivExpr\n")
     for line in data:
         fb.write("%s\t%s\t%s\n"%(line[0],str(line[1]),str(line[2])))
 
 def saveIDgCAInivExprMarked(fname,data):
     fb = open(fname,'w')
-    fb.write("ID\tgCAIs\tNivExpr\tMarked\n")
+    # fb.write("ID\tgCAIs\tNivExpr\tMarked\n")
     for line in data:
         fb.write("%s\t%s\t%s\t%s\n"%(line[0],str(line[1]),str(line[2]),str(line[3])))
 
@@ -158,9 +174,9 @@ def mergegCAIsNivExprByGname(sortList, mergeDict):
 def mergeStep2ByGname(sortList,step2M):
     return np.array([ np.append(line,binSearch(step2M,step2GnameComp,line[0])>=0) for line in sortList])
 
-def nivExprDomain(step2List, colNum):
+def nivExprDomain(step2MList, colNum):
     nivExprDict = dict()
-    for record in step2List:
+    for record in step2MList:
         domain = record[colNum]
         ne = nivExprDict.get(domain) 
         if ne is None:
@@ -168,3 +184,49 @@ def nivExprDomain(step2List, colNum):
         else:
             nivExprDict[domain] = ne + 1
     return nivExprDict
+
+#### Format ####
+def toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain):
+    return "%s_%s_%d_%d_%s"%(gName,RF,begin,end,domain)
+
+def gNameRFBeginEndDomainToStrArray(ID):
+    (gName,RF,begin,end,domain) = ID.split("_")
+    return (gName,RF,int(begin),int(end),domain)
+    
+def Step2FormatSepBestDomain(line):
+    score = float(line[0])
+    gId   = line[4]
+    gName,ARC,RF = gId.split("__")
+    domain = line[5]
+    RF = RF.split("_")[-1]
+    reverse,begin,end = indiceBeginEnd(RF,int(line[2]),int(line[3]))
+    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
+    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
+
+def Step2FormatSepArchs(line):
+    score = float(line[0])
+    gId   = line[3]
+    domain= line[4]
+    gName,ARC,RF = gId.split("__")
+    RF = RF.split("_")[-1]
+    reverse,begin,end = indiceBeginEnd(RF,int(line[1]),int(line[2]))
+    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
+    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
+
+#### trier la donnee ####
+def trierFastaByDomain(tgtDomain,fastaDict,step2List,writeFileName,formatFunc):
+    fb     = open(writeFileName,'w')
+    writer = FastaWriter(fb)
+    writer.write_header()
+    for record in step2List:
+        score,gName,domain,gID,ARC,RF,reverse,begin,end,desc = formatFunc(record)
+        if domain == tgtDomain:
+            if fastaDict.get(gID) <> None:
+                writer.write_record(fastaDict.get(gID))
+            '''
+            else:
+                print "[%s] n'existe pas dans le fiche"%(gID)
+            '''
+    writer.write_footer()
+    fb.close()
+
