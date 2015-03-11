@@ -107,10 +107,11 @@ def hinge_grad(data,y,w): # return (n,d)
 # 
 # + Coder une classe Perceptron qui hérite de Classifier, OptimFunc, et GradientDescent.  Tester la sur des données artificielles.
 class Perceptron(Classifier,OptimFunc,GradientDescent):
-    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6,dim=2):
-        self.dim = dim
+    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6): # ,dim=2):
+        # self.dim = dim
         GradientDescent.__init__(self,self,eps,max_iter,delta)
     def fit(self,data,y):
+        self.dim  = len(data[0])
         self.data = data
         self.y    = y
         self.optimize()
@@ -126,14 +127,13 @@ def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
 def phiGaussien(data):
-    return np.array([ np.exp(np.linalg.norm(record - data,axis=1)**2) for record in data])
-
-data,y = gen_arti()
-print phiGaussien(data)
-'''
+    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2) for record in data])
 
 trainX,trainY = gen_arti()
 testX ,testY  = gen_arti()
+
+'''
+
 trainX6D = projection(trainX)
 testX6D = projection(testX)
 perc   = Perceptron(dim=6)
@@ -144,3 +144,13 @@ plot_frontiere(None, lambda x: perc.predict(np.array([projection(x)])))
 plot_data(testX,testY)
 plt.show()
 '''
+
+trainXGau = phiGaussien(trainX)
+testXGau  = phiGaussien(testX)
+perc      = Perceptron()
+perc.fit(trainXGau,trainY)
+print perc.score(testXGau,testY)
+print perc.predict(testXGau)
+plot_frontiere(None, lambda x: perc.predict(phiGaussien(x)))
+plot_data(testX,testY)
+plt.show()

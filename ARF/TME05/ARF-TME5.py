@@ -134,7 +134,13 @@ testX6D = projection(testX)
 perc   = Perceptron(dim=6)
 perc.fit(trainX6D,trainY)
 # print perc.predict(testX)
+
+'''
 print perc.score(testX6D,testY)
 plot_frontiere(None, lambda x: perc.predict(np.array([projection(x)])))
 plot_data(testX,testY)
 plt.show()
+'''
+
+
+
