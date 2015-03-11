@@ -126,31 +126,22 @@ class Perceptron(Classifier,OptimFunc,GradientDescent):
 def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
-def phiGaussien(x,data):
-    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2) for record in x ])
+def phiGaussien(x,data,var):
+    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2)/var for record in x ])
 
-trainX,trainY = gen_arti(data_type=1)
-testX ,testY  = gen_arti(nbex=100,data_type=1)
+class SVM(Classifier,OptimFunc,GradientDescent):
+    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6):
+        GradientDescent.__init__(self,self,eps,max_iter,delta)
+    def fit(self,data,y):
+        self.dim  = len(data[0])
+        self.data = data
+        self.y    = y
+        self.optimize()
+    def f(self,w):
+        return hinge_f(self.data,self.y,w).sum()
+    def grad_f(self,w):
+        return hinge_grad(self.data,self.y,w).sum(0)
+    def predict(self,testX):
+        X = to_array(testX)
+        return np.sign(X.dot(self.x))
 
-'''
-
-trainX6D = projection(trainX)
-testX6D = projection(testX)
-perc   = Perceptron(dim=6)
-perc.fit(trainX6D,trainY)
-# print perc.predict(testX)
-print perc.score(testX6D,testY)
-plot_frontiere(None, lambda x: perc.predict(np.array([projection(x)])))
-plot_data(testX,testY)
-plt.show()
-'''
-
-trainXGau = phiGaussien(trainX,trainX)
-testXGau  = phiGaussien(testX,trainX)
-perc      = Perceptron()
-perc.fit(trainXGau,trainY)
-print "score: ",perc.score(testXGau,testY)
-# print "np.shape(perc.predict(testXGau)): ",np.shape(perc.predict(testXGau))
-plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX)])))
-plot_data(testX,testY)
-plt.show()

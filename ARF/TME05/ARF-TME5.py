@@ -126,8 +126,8 @@ class Perceptron(Classifier,OptimFunc,GradientDescent):
 def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
-def phiGaussien(x,data):
-    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2) for record in x ])
+def phiGaussien(x,data,var):
+    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2/var) for record in x ])
 
 trainX,trainY = gen_arti(data_type=1)
 testX ,testY  = gen_arti(nbex=100,data_type=1)
@@ -144,13 +144,13 @@ plot_frontiere(None, lambda x: perc.predict(np.array([projection(x)])))
 plot_data(testX,testY)
 plt.show()
 '''
-
-trainXGau = phiGaussien(trainX,trainX)
-testXGau  = phiGaussien(testX,trainX)
+var = 0.5
+trainXGau = phiGaussien(trainX,trainX,var)
+testXGau  = phiGaussien(testX,trainX,var)
 perc      = Perceptron()
 perc.fit(trainXGau,trainY)
 print "score: ",perc.score(testXGau,testY)
 # print "np.shape(perc.predict(testXGau)): ",np.shape(perc.predict(testXGau))
-plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX)])))
+plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])))
 plot_data(testX,testY)
 plt.show()
