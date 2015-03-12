@@ -38,6 +38,9 @@ for i in range(1,N):
         T_nt[i] = T_amp
     
     # ajouter le modèle des récepteurs AMPA
+    tau_p = 1./(alpha_ampa*T_nt[i]+beta_ampa)
+    p_inf = alpha_ampa*T_nt[i]/(alpha_ampa*T_nt[i]+beta_ampa)
+    p_ampa[i] = p_ampa[i-1] + (p_inf-p_ampa[i-1])*dt/tau_p
     
     
 plt.figure(1); plt.show(); plt.clf()

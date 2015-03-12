@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 T   = 1000                  # ms, Temps total de la simulation
-dt  = 0.01                  # ms, Pas de temps de la simulation
+dt  = 0.1                   # ms, Pas de temps de la simulation
 t   = np.arange(0,T,dt)     # ms, Vecteur des temps en lesquels sont calculées les variables
 N   = len(t)                # Longueur du vecteur des temps 
 
@@ -54,7 +54,9 @@ for k in range( len(i_amp) ):
 
 
 # calculer la fréquence théorique et la représenter sur le même graphique
-
+fI = np.zeros(len(i_amp))
+for i in range(len(i_amp)):
+    fI[i] = 1000/(tau_m*np.log(R_m*i_amp[i]/(R_m*i_amp[i]-theta)))
 
 # Figure 
 plt.figure(1); plt.show(); plt.clf()
@@ -62,6 +64,7 @@ plt.figure(1); plt.show(); plt.clf()
 # Courbe F-I
 plt.subplot(111) 
 plt.plot(i_amp, compte_pa, 'ro', label='simulation')
+plt.plot(i_amp, fI, 'b-', label='frequence')
 plt.xlabel('Courant (microA)')
 plt.ylabel('Frequence, Hz')
 plt.legend(loc='upper left')

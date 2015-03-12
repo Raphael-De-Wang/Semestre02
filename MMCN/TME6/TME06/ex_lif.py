@@ -35,8 +35,8 @@ for i in range(1,N):
     if (t[i]>=t_on) and (t[i]<t_off):
         i_inj[i]  = i_amp
             
-    # compléter la ligne suivante 
-    # v[i] = 
+    # compléter la ligne suivante
+    v[i] = v[i-1] + dt*(-v[i-1]+R_m*i_inj[i])/tau_m
 
     # detection de PA
     if v[i-1] > theta:

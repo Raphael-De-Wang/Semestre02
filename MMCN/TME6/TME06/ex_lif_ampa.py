@@ -24,7 +24,8 @@ T_dur = 1.          # ms, 1ms / durée de l'impulsion de du neurotransmetteur
 alpha_ampa = 0.93   # 1/(mM x ms)
 beta_ampa  = 0.19   # 1/ms
 g_ampa     = 0.1    # mS/cm2, conductance maximale de recepteurs AMPA
-E_ampa     = 60.    # mV, Potentiel d'inversion du récépteur AMPA
+# E_ampa     = 60.    # mV, Potentiel d'inversion du récépteur AMPA
+E_ampa     = -10.    # mV, Potentiel d'inversion du récépteur AMPA
 
 # Excitabilité
 
@@ -49,10 +50,12 @@ for i in range(1,N):
         T_nt[i] = T_amp
     
     # ajouter les recepterus AMPA
-    # p_ampa[i] = 
+    tau_p = 1./(alpha_ampa*T_nt[i]+beta_ampa)
+    p_inf = alpha_ampa*T_nt[i]/(alpha_ampa*T_nt[i]+beta_ampa)
+    p_ampa[i] = p_ampa[i-1] + (p_inf-p_ampa[i-1])*dt/tau_p
 
     # compléter la ligne avec le calcul de courant AMPA
-    # i_ampa[i] = 
+    i_ampa[i] = g_ampa*p_ampa[i]*(v[i]-E_ampa)
 
     # potentiel membranaire
     v[i] = v[i-1] + dt / tau_m * ( - v[i-1] - r_m * i_ampa[i] )
