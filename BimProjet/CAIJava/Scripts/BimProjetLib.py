@@ -2,6 +2,7 @@
 import operator
 import numpy as np
 import matplotlib.pyplot as plt
+import pylab
 
 from Bio import SeqIO
 from Bio.Seq import Seq
@@ -10,6 +11,34 @@ from Bio.Alphabet import generic_dna
 from Bio.SeqIO.FastaIO import FastaWriter
 
 WORKPATH="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/"
+
+#### Format ####
+def toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain):
+    return "%s_%s_%d_%d_%s"%(gName,RF,begin,end,domain)
+
+def gNameRFBeginEndDomainToStrArray(ID):
+    (gName,RF,begin,end,domain) = ID.split("_")
+    return (gName,RF,int(begin),int(end),domain)
+    
+def Step2FormatSepBestDomain(line):
+    score = float(line[0])
+    gId   = line[4]
+    gName,ARC,RF = gId.split("__")
+    domain = line[5]
+    RF = RF.split("_")[-1]
+    reverse,begin,end = indiceBeginEnd(RF,int(line[2]),int(line[3]))
+    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
+    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
+
+def Step2FormatSepArchs(line):
+    score = float(line[0])
+    gId   = line[3]
+    domain= line[4]
+    gName,ARC,RF = gId.split("__")
+    RF = RF.split("_")[-1]
+    reverse,begin,end = indiceBeginEnd(RF,int(line[1]),int(line[2]))
+    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
+    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
 
 def readFASTA(fname="AT_arc_metatrans.filtered.fasta"):
     return SeqIO.index(fname, "fasta")
@@ -74,6 +103,15 @@ def readgCAIs(fname=WORKPATH+"output/cais.lst"):
     fb.close()
     return CAI_dict
 
+def gCAIsDictToDomDict(CAI_dict,domIdDict,keys):
+    gCAIsDomDict = dict()
+    for key in keys:
+        ids = domIdDict[key]
+        gCAIsDomDict[key] = []
+        for i in ids :
+            gCAIsDomDict[key].append(CAI_dict.get(i))
+    return gCAIsDomDict
+    
 def readClstr(fname):
     fb       = open(fname)
     CLS_dict = dict()
@@ -101,6 +139,22 @@ def read2step(fname):
     M = np.array([ line.strip().split() for line in fb ])
     fb.close()
     return M
+
+def domainIdDict(idList):
+    did = dict()
+    for ID in idList:
+        gName,RF,begin,end,domain = gNameRFBeginEndDomainToStrArray(ID)
+        if did.has_key(domain):
+            did[domain].append(ID)
+        else:
+            did[domain] = [ID]
+    return did
+
+def accumulateNivExprDom(nivExprDomDict,domIdDict):
+    acc = dict()
+    for key in domIdDict:
+        acc[key] = len(domIdDict[key])*nivExprDomDict[key]
+    return acc
 
 def sortDictByValue(dic):
     return sorted(dic.items(), key=operator.itemgetter(1),reverse=True)
@@ -132,14 +186,36 @@ def step2GnameComp(step2Elmt,match):
         print step2Elmt
         raise
         exit()
-        
+
+def autolabel(ax,rects):
+    # attach some text labels
+    for rect in rects:
+        height = rect.get_height()
+        ax.text(rect.get_x()+rect.get_width()/2., 1.05*height, '%d'%int(height), ha='center', va='bottom')
+
+def plotBarChart(plotList,labels):
+    fig, ax = plt.subplots()
+    rects   = ax.bar(np.arange(len(plotList)), plotList, color='blue')
+    # add some text for labels, title and axes ticks
+    ax.set_ylabel('Niveau d\'Expression')
+    ax.set_title('Sorted Niveau d\'Expression par domaine')
+    # ax.set_xticks(ind+width)
+    ax.set_xticklabels(labels,rotation=90)
+    # autolabel(ax,rects)
+    plt.show()
+
+def plotgCAIsDomain(X,Y):
+    print len(np.unique(Y))
+    pylab.hist2d(X,Y,bins=len(np.unique(Y)))
+    pylab.show()
+    
 def plotgCAISNivExpr(gCAIs,nivExpr,figName=None):
     fig = plt.figure()
     # plt.subplot(223)
     plt.ylim(ymax=1.2)
-    plt.xlabel("Genome")
-    plt.ylabel("Score")
-    plt.plot(gCAIs,label="gCAIs")
+    # plt.xlabel("Genome")
+    # plt.ylabel("Score")
+    plt.plot(gCAIs,'ro',label="gCAIs")
     plt.plot(nivExpr*1./max(nivExpr),label="Niveau d'Expression")
     # plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.legend(loc=2, borderaxespad=0.)
@@ -147,7 +223,7 @@ def plotgCAISNivExpr(gCAIs,nivExpr,figName=None):
         plt.savefig(figName)
     else:
         plt.show()
-    
+
 def plotHist(scores,figName=None):
     fig = plt.figure()
     plt.hist(scores)
@@ -184,34 +260,6 @@ def nivExprDomain(step2MList, colNum):
         else:
             nivExprDict[domain] = ne + 1
     return nivExprDict
-
-#### Format ####
-def toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain):
-    return "%s_%s_%d_%d_%s"%(gName,RF,begin,end,domain)
-
-def gNameRFBeginEndDomainToStrArray(ID):
-    (gName,RF,begin,end,domain) = ID.split("_")
-    return (gName,RF,int(begin),int(end),domain)
-    
-def Step2FormatSepBestDomain(line):
-    score = float(line[0])
-    gId   = line[4]
-    gName,ARC,RF = gId.split("__")
-    domain = line[5]
-    RF = RF.split("_")[-1]
-    reverse,begin,end = indiceBeginEnd(RF,int(line[2]),int(line[3]))
-    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
-    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
-
-def Step2FormatSepArchs(line):
-    score = float(line[0])
-    gId   = line[3]
-    domain= line[4]
-    gName,ARC,RF = gId.split("__")
-    RF = RF.split("_")[-1]
-    reverse,begin,end = indiceBeginEnd(RF,int(line[1]),int(line[2]))
-    gId   = toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain)
-    return (score,gName,domain,gId,ARC,RF,reverse,begin,end,"")
 
 #### trier la donnee ####
 def trierFastaByDomain(tgtDomain,fastaDict,step2List,writeFileName,formatFunc):

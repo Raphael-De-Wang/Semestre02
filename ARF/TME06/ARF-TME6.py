@@ -127,7 +127,7 @@ def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
 def phiGaussien(x,data,var):
-    return np.array([ np.exp(-np.linalg.norm(record - data,axis=1)**2)/var for record in x ])
+    return np.array([ np.exp(-(np.linalg.norm(record - data,axis=1)**2)/var) for record in x ])
 
 class SVM(Classifier,OptimFunc,GradientDescent):
     def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6):
