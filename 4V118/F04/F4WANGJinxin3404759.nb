@@ -1,0 +1,4363 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    171662,       4354]
+NotebookOptionsPosition[    166667,       4189]
+NotebookOutlinePosition[    167030,       4205]
+CellTagsIndexPosition[    166987,       4202]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+F 4 : Agitation Thermique, Vitesse des Mol\[EAcute]cules et Diffusion\
+\>", "Title",
+ CellChangeTimes->{3.6342177862409353`*^9}],
+
+Cell[CellGroupData[{
+
+Cell["1. Mesure du coefficient de diffusion", "Section",
+ CellChangeTimes->{3.634746505561092*^9}],
+
+Cell[TextData[{
+ " Montrer que : \t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"A", "/", "H"}], ")"}], "2"], TraditionalForm]]],
+ "= 4 \[Pi] D t\n\t\nGaussien :\n\tg(x) = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"\[Sigma]", 
+      SqrtBox[
+       RowBox[{"2", "\[Pi]"}]]}]], 
+    SuperscriptBox["e", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"x", "-", "\[Mu]"}], "\[Sigma]"], ")"}], "2"]}]]}], 
+   TraditionalForm]]],
+ "\nCentr\[EAcute]e : \n\tA = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Integral]", 
+     RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+    RowBox[{"N", "(", 
+     RowBox[{"0", ",", 
+      SuperscriptBox["\[Sigma]", "2"]}]}]}], TraditionalForm]]],
+ ")dx = ",
+ Cell[BoxData[
+  FormBox[
+   UnderoverscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"\[Sigma]", 
+      SqrtBox[
+       RowBox[{"2", "\[Pi]"}]]}]], 
+    SuperscriptBox["e", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["x", "\[Sigma]"], ")"}], "2"]}]]}], TraditionalForm]]],
+ "dx\n\tH=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", 
+    RowBox[{"\[Sigma]", 
+     SqrtBox[
+      RowBox[{"2", "\[Pi]"}]]}]], TraditionalForm]]],
+ "\nDonc : \n\t",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["A", "H"], TraditionalForm]]],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Integral]", 
+     RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+    RowBox[{
+     SuperscriptBox["e", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "2"]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["x", "\[Sigma]"], ")"}], "2"]}]], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}], TraditionalForm]]],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox["A", "H"], ")"}], "2"], TraditionalForm]]],
+ "=(",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Integral]", "0", "\[Infinity]"], 
+    RowBox[{
+     SuperscriptBox["e", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "2"]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["x", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}]], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}], TraditionalForm]]],
+ ") * (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Integral]", "0", "\[Infinity]"], 
+    RowBox[{
+     SuperscriptBox["e", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "2"]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["y", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}]], 
+     RowBox[{"\[DifferentialD]", "y"}]}]}], TraditionalForm]]],
+ ")\n\t      = ",
+ Cell[BoxData[
+  FormBox[
+   UnderoverscriptBox["\[Integral]", "0", "\[Infinity]"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    UnderoverscriptBox[
+     RowBox[{"\[Integral]", " "}], "0", "\[Infinity]"]}], TraditionalForm]]],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "2"]}], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["x", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["y", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}], ")"}]}]], 
+   TraditionalForm]]],
+ "dx dy\n\t      =  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Integral]", 
+    SubscriptBox["\[Integral]", 
+     SuperscriptBox["R", "2"]]}], TraditionalForm]]],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "2"]}], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["x", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["y", 
+          RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}], ")"}]}]], 
+   TraditionalForm]]],
+ "dx dy\n\t      = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Integral]", "0", "\[Infinity]"], 
+    UnderoverscriptBox[
+     RowBox[{"\[Integral]", 
+      RowBox[{"r", "*"}]}], "0", 
+     FractionBox["\[Pi]", "2"]]}], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "2"]}], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox["r", 
+        RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}]], TraditionalForm]]],
+ "d\[Theta] dr \n\t      = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["\[Pi]", "2"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   UnderoverscriptBox["\[Integral]", "0", "\[Infinity]"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"r", "*", 
+    SuperscriptBox["e", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["r", 
+         RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}]]}], TraditionalForm]]],
+ "dr\n\t      = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["\[Pi]", "2"], "[", 
+    RowBox[{"4", 
+     SuperscriptBox["\[Sigma]", "2"]}], "]"}], TraditionalForm]]],
+ "\n\t      = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", "\[Pi]", " ", 
+    SuperscriptBox["\[Sigma]", "2"]}], TraditionalForm]]],
+ "\n\nSelon le formule de diffusion : \n\t",
+ Cell[BoxData[
+  RowBox[{
+   SuperscriptBox["\[Sigma]", "2"], "=", 
+   RowBox[{"2", "D", " ", "t"}]}]], "Input"],
+ "      \nOn a donc : \n\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"A", "/", "H"}], ")"}], "2"], TraditionalForm]]],
+ " =",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{
+     RowBox[{"2", "\[Pi]", " ", 
+      SuperscriptBox["\[Sigma]", "2"]}], "=", " ", 
+     RowBox[{"4", "\[Pi]", " ", "D", " ", "t"}]}]}], TraditionalForm]]],
+ "\n"
+}], "Text",
+ CellChangeTimes->{{3.634748707877707*^9, 3.6347487718126783`*^9}, {
+   3.6347489100703897`*^9, 3.6347489418547907`*^9}, {3.634749065983282*^9, 
+   3.634749070854609*^9}, {3.63474919682692*^9, 3.634749230167741*^9}, {
+   3.634749390646007*^9, 3.634749431556437*^9}, {3.634749574182036*^9, 
+   3.6347496540738773`*^9}, {3.634750848413197*^9, 3.6347508543198357`*^9}, {
+   3.634750917538187*^9, 3.634751043422421*^9}, {3.634751217856721*^9, 
+   3.634751222487547*^9}, {3.634751281336617*^9, 3.634751321032325*^9}, {
+   3.6347514676881847`*^9, 3.634751475032686*^9}, {3.634751721344656*^9, 
+   3.634751724143018*^9}, {3.6347517648246803`*^9, 3.634751789257732*^9}, {
+   3.634751830085981*^9, 3.6347521507188597`*^9}, {3.6347522058608723`*^9, 
+   3.634752340254176*^9}, {3.6347525507102213`*^9, 3.634752571959219*^9}, {
+   3.634752641470035*^9, 3.634752827717918*^9}, {3.6347528984593763`*^9, 
+   3.6347529606957293`*^9}, {3.634753133753872*^9, 3.634753135128127*^9}, {
+   3.6347533336136103`*^9, 3.6347533352830687`*^9}, {3.6347536110338984`*^9, 
+   3.634753671077354*^9}, 3.634753823095604*^9, {3.6347538659297123`*^9, 
+   3.634754010849124*^9}, {3.634754045385281*^9, 3.6347540850303183`*^9}, {
+   3.6347541791567507`*^9, 3.634754185263788*^9}, {3.634754383536954*^9, 
+   3.634754409903287*^9}, {3.634754460442511*^9, 3.6347544608743553`*^9}, {
+   3.6348034475504208`*^9, 3.634803456424191*^9}, {3.634803519287107*^9, 
+   3.6348035622802887`*^9}, {3.634826483298435*^9, 3.634826573695677*^9}, {
+   3.634826650785893*^9, 3.634826666922901*^9}, {3.634970418821752*^9, 
+   3.634970422914077*^9}, {3.634970542912712*^9, 3.634970563541247*^9}, {
+   3.63497077634682*^9, 3.634970779329412*^9}, {3.634971385215831*^9, 
+   3.634971396421412*^9}, {3.634971449808085*^9, 3.634971454536083*^9}, {
+   3.634971528697729*^9, 3.634971541804572*^9}, {3.6350084412716217`*^9, 
+   3.6350084596002417`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["x", "\[Sigma]"], ")"}], "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["y", "\[Sigma]"], ")"}], "2"]}], ")"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{"-", "\[Infinity]"}], ",", "\[Infinity]"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"y", ",", 
+      RowBox[{"-", "\[Infinity]"}], ",", "\[Infinity]"}], "}"}]}], "]"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["x", 
+           RowBox[{"2", "\[Sigma]"}]], ")"}], "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["y", 
+           RowBox[{"2", "\[Sigma]"}]], ")"}], "2"]}], ")"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "\[Infinity]"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"y", ",", "0", ",", "\[Infinity]"}], "}"}]}], "]"}], " ", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.63475446446245*^9, 3.634754759928296*^9}, {
+  3.634754802288509*^9, 3.634754829223756*^9}, {3.6347548656901903`*^9, 
+  3.63475489227321*^9}, {3.634804003037266*^9, 3.634804053882066*^9}, {
+  3.634804098857377*^9, 3.634804108816853*^9}, {3.6348041463266373`*^9, 
+  3.634804147710387*^9}, {3.634804284340096*^9, 3.6348042877362537`*^9}, {
+  3.634804319030403*^9, 3.634804335515759*^9}, {3.6348265937673903`*^9, 
+  3.634826636512125*^9}, {3.634970588401355*^9, 3.634970598077662*^9}, {
+  3.6349713652693663`*^9, 3.6349713669759912`*^9}, {3.635008560205708*^9, 
+  3.6350085785536423`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   RowBox[{"2", " ", "\[Pi]", " ", 
+    SuperscriptBox["\[Sigma]", "2"]}], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", 
+     SuperscriptBox["\[Sigma]", "2"], "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.634754756398624*^9, 3.634754761559082*^9}, {
+   3.6347548236941032`*^9, 3.634754830133582*^9}, {3.634754866942835*^9, 
+   3.634754912632135*^9}, {3.6348040462662153`*^9, 3.6348040550569487`*^9}, {
+   3.6348041030631123`*^9, 3.634804109809173*^9}, 3.6348041491500683`*^9, 
+   3.634804288801536*^9, 3.6348043399328947`*^9, {3.634826616602867*^9, 
+   3.634826638302081*^9}, {3.6349302098432713`*^9, 3.634930221705971*^9}, {
+   3.634970578182971*^9, 3.634970599346912*^9}, 3.63497136818969*^9, {
+   3.635008574132244*^9, 3.6350085802428007`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   RowBox[{"2", " ", "\[Pi]", " ", 
+    SuperscriptBox["\[Sigma]", "2"]}], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", 
+     SuperscriptBox["\[Sigma]", "2"], "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.634754756398624*^9, 3.634754761559082*^9}, {
+   3.6347548236941032`*^9, 3.634754830133582*^9}, {3.634754866942835*^9, 
+   3.634754912632135*^9}, {3.6348040462662153`*^9, 3.6348040550569487`*^9}, {
+   3.6348041030631123`*^9, 3.634804109809173*^9}, 3.6348041491500683`*^9, 
+   3.634804288801536*^9, 3.6348043399328947`*^9, {3.634826616602867*^9, 
+   3.634826638302081*^9}, {3.6349302098432713`*^9, 3.634930221705971*^9}, {
+   3.634970578182971*^9, 3.634970599346912*^9}, 3.63497136818969*^9, {
+   3.635008574132244*^9, 3.635008580596877*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Coefficients de diffusion \[AGrave] partir de la masse mol\[EAcute]culaire \
+\>", "Section",
+ CellChangeTimes->{{3.634219610237111*^9, 3.634219613672676*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nomsDesMolecules", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<H+\>\"", ",", "\"\<OH-\>\"", ",", "\"\<MW100\>\"", ",", 
+     "\"\<saccharose\>\"", ",", "\"\<ribonuclease\>\"", ",", 
+     "\"\<Lysozyme\>\"", ",", "\"\<S\[EAcute]rumalbumine\>\"", ",", 
+     "\"\<H\[EAcute]moglobine\>\"", ",", "\"\<Ur\[EAcute]ase\>\"", ",", 
+     "\"\<Myosine\>\"", ",", "\"\<Virus\>\"", ",", "\"\<TMV\>\"", ",", 
+     "\"\<DNA\>\"", ",", "\"\<particule sph\[EAcute]rique\>\""}], "}"}]}], 
+  ";", 
+  RowBox[{"masseDesMolecules", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Quantity", "[", 
+      RowBox[{"mm", ",", "\"\<Gramme/Mole\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"mm", ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "1", ",", "17", ",", "100", ",", "342", ",", "13683", ",", "14100", 
+         ",", "66500", ",", "68000", ",", "480000", ",", "493000", ",", 
+         RowBox[{"10.7", "*", 
+          SuperscriptBox["10", "6"]}], ",", 
+         RowBox[{"40", "*", 
+          SuperscriptBox["10", "6"]}], ",", 
+         RowBox[{"25", "*", 
+          SuperscriptBox["10", "6"]}], ",", 
+         RowBox[{"40000", "*", 
+          SuperscriptBox["10", "6"]}]}], "}"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"coeffDesDiff", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Quantity", "[", 
+      RowBox[{"cd", ",", "\"\<cm^2/Second\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"cd", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"9.31", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "5"}]]}], ",", 
+         RowBox[{"5.26", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "5"}]]}], ",", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "5"}]], ",", 
+         RowBox[{"0.4586", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "5"}]]}], ",", 
+         RowBox[{"1.19", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"1.04", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"0.594", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"0.69", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"0.346", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"0.116", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"0.115", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "6"}]]}], ",", 
+         RowBox[{"4.4", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "8"}]]}], ",", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "8"}]], ",", 
+         RowBox[{"5", "*", 
+          SuperscriptBox["10", 
+           RowBox[{"-", "9"}]]}]}], "}"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1.3825", ",", "\"\<g/cm^3\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"300", ",", "\"\<Kelvin\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Eta]", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]], ",", "\"\<Pascal*second\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NA", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"6.022", "*", 
+      SuperscriptBox["10", "23"]}], ",", "\"\<Mole^-1\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"R", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"8.314", ",", "\"\<Joule/(Kelvin*Mole)\>\""}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.634223952861704*^9, 3.634224238902689*^9}, {
+   3.634224446669833*^9, 3.634224503777327*^9}, {3.634224537297975*^9, 
+   3.634224560488934*^9}, {3.634224593918407*^9, 3.63422459563735*^9}, {
+   3.634224650090315*^9, 3.634224719275676*^9}, {3.634225181524774*^9, 
+   3.634225231362266*^9}, {3.6342252631377897`*^9, 3.634225390325975*^9}, {
+   3.634225770886973*^9, 3.634225771343322*^9}, 3.6342262444899063`*^9, 
+   3.634227734539227*^9, {3.634231102488967*^9, 3.6342311101240797`*^9}}],
+
+Cell[TextData[Cell[BoxData[{
+ FormBox[
+  RowBox[{"k", "=", 
+   FractionBox["R", "NA"]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"D", "=", 
+   FractionBox[
+    RowBox[{"k", "*", "T"}], 
+    RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r"}]]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["V", "molecule"], "=", 
+   RowBox[{
+    FractionBox[
+     SubscriptBox["m", "molecule"], "\[Rho]"], "=", 
+    RowBox[{
+     FractionBox["4", "3"], "\[Pi]", "*", 
+     SuperscriptBox["r", "3"]}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["m", "molecule"], "=", 
+   FractionBox["masseDeMolecule", "NombreParMole"]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"r", " ", "=", " ", 
+   RowBox[{"\[AliasDelimiter]", 
+    RadicalBox[
+     RowBox[{
+      FractionBox["massDeMolecule", 
+       RowBox[{"NombreParMole", "*", "\[Rho]"}]], "*", 
+      FractionBox["3", 
+       RowBox[{"4", "\[Pi]"}]]}], "3"]}]}], TraditionalForm]}]]], "Text",
+ CellChangeTimes->{{3.634226200247602*^9, 3.6342263044821587`*^9}, {
+  3.634226335107696*^9, 3.634226335107774*^9}, {3.634227181215671*^9, 
+  3.6342273778260193`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"rayon", "[", "massemolecule_", "]"}], ":=", 
+   RowBox[{"(", 
+    RadicalBox[
+     RowBox[{
+      FractionBox["massemolecule", 
+       RowBox[{"NA", "*", "\[Rho]"}]], "*", 
+      FractionBox["3", 
+       RowBox[{"4", "\[Pi]"}]]}], "3"], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fk", "[", "massemolecule_", "]"}], ":=", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{"R", "*", "T"}], 
+     RowBox[{"NA", "*", "6", "*", "\[Pi]", "*", "\[Eta]", "*", 
+      RowBox[{"rayon", "[", "massemolecule", "]"}]}]], ")"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.6342212910328608`*^9, 3.634221298446672*^9}, {
+  3.634225818469068*^9, 3.6342258373214493`*^9}, {3.634227405173238*^9, 
+  3.634227459830469*^9}, {3.634228281309355*^9, 3.634228442332686*^9}, {
+  3.634230148486877*^9, 3.634230151348523*^9}, {3.634230527492753*^9, 
+  3.634230679620543*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rayons", "=", 
+   RowBox[{"rayon", "[", "masseDesMolecules", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"coeffDesDiffFk", "=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{"fk", "[", "masseDesMolecules", "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.634227546659536*^9, 3.634227614728388*^9}, {
+   3.634227666491652*^9, 3.634227672831832*^9}, {3.6342277057584047`*^9, 
+   3.634227710816267*^9}, {3.6342277616192904`*^9, 3.634227762230543*^9}, {
+   3.6342286639119*^9, 3.6342287184244843`*^9}, {3.6342288477289553`*^9, 
+   3.634228853032421*^9}, {3.634228914037525*^9, 3.634228947196431*^9}, {
+   3.634228988495429*^9, 3.63422901240777*^9}, {3.63422912368366*^9, 
+   3.634229131316671*^9}, {3.6342301268263283`*^9, 3.634230159016181*^9}, {
+   3.63423054056454*^9, 3.634230548145933*^9}, {3.634230811069289*^9, 
+   3.634230817044701*^9}, {3.634230897278698*^9, 3.6342309585130053`*^9}, {
+   3.634230996960268*^9, 3.634231022576283*^9}, 3.634231206710054*^9, {
+   3.6342318587726507`*^9, 3.6342319047064*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "nomsDesMolecules", ",", "masseDesMolecules", ",", "coeffDesDiff", ",", 
+      "rayons", ",", "coeffDesDiffFk"}], "}"}], "]"}], ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Mol\[EAcute]cules\>\"", ",", "\"\<Masse Mol\[EAcute]culaire\>\"", 
+        ",", "\"\<Coefficient de diffusion D \!\(\*SuperscriptBox[\(cm\), \(2\
+\)]\)/s\>\"", ",", "\"\<Rayon\>\"", ",", 
+        "\"\<Coefficients de diffusion\>\""}], "}"}]}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.634227826116774*^9, 3.634227857194373*^9}, {
+  3.634227910387074*^9, 3.634228063120555*^9}, {3.6342286429470863`*^9, 
+  3.6342286557850037`*^9}, {3.6342292191179132`*^9, 3.634229219581337*^9}, {
+  3.6342295009868183`*^9, 3.6342296094165792`*^9}, {3.634229664985485*^9, 
+  3.634229798920788*^9}, {3.634230110882372*^9, 3.634230120778839*^9}, {
+  3.63423071363157*^9, 3.634230720165593*^9}, {3.634231038947052*^9, 
+  3.6342310660123243`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Mol\[EAcute]cules\"\>",
+       HoldForm], 
+      TagBox["\<\"Masse Mol\[EAcute]culaire\"\>",
+       HoldForm], 
+      TagBox["\<\"Coefficient de diffusion D \
+\\!\\(\\*SuperscriptBox[\\(cm\\), \\(2\\)]\\)/s\"\>",
+       HoldForm], 
+      TagBox["\<\"Rayon\"\>",
+       HoldForm], 
+      TagBox["\<\"Coefficients de diffusion\"\>",
+       HoldForm]},
+     {"\<\"H+\"\>", 
+      TemplateBox[{"1"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"0.00009310000000000001`"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"6.594296946050928`*^-9"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"3.332122052211436`*^-9"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"OH-\"\>", 
+      TemplateBox[{"17"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"0.000052600000000000005`"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"1.6955794340714573`*^-8"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"1.2958993150798506`*^-9"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"MW100\"\>", 
+      TemplateBox[{"100"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{FractionBox["1", "100000"]},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"3.060801507031683`*^-8"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"7.178839340704551`*^-10"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"saccharose\"\>", 
+      TemplateBox[{"342"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"4.586000000000001`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"4.611517579379967`*^-8"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"4.764809391818724`*^-10"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"ribonuclease\"\>", 
+      TemplateBox[{"13683"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"1.1899999999999998`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"1.577232105574775`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"1.3931368880396596`*^-10"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"Lysozyme\"\>", 
+      TemplateBox[{"14100"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"1.04`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"1.5930944968117466`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"1.379265468353654`*^-10"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"S\[EAcute]rumalbumine\"\>", 
+      TemplateBox[{"66500"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"5.939999999999999`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"2.671626329881171`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"8.224579173744008`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"H\[EAcute]moglobine\"\>", 
+      TemplateBox[{"68000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"6.9`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"2.691564577340675`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"8.163654128067262`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"Ur\[EAcute]ase\"\>", 
+      TemplateBox[{"480000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"3.4599999999999995`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"5.163159946070687`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"4.255727597493645`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"Myosine\"\>", 
+      TemplateBox[{"493000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"1.16`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"5.209357224584624`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"4.217987234407575`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"Virus\"\>", 
+      TemplateBox[{"1.07`*^7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"1.15`*^-7"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"1.453103088157215`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"1.512143388300989`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"TMV\"\>", 
+      TemplateBox[{"40000000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{"4.4000000000000004`*^-8"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"2.2552178325981365`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"9.7431839865565`*^-12"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"DNA\"\>", 
+      TemplateBox[{"25000000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{FractionBox["1", "100000000"]},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"1.9281841241295838`*^-6"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"1.1395697121345098`*^-11"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]},
+     {"\<\"particule sph\[EAcute]rique\"\>", 
+      TemplateBox[{"40000000000"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               
+               RowBox[{
+                "\"g\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+                 "\"mol\""}]}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: grams per mole"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox["\"Grams\"", "\"Moles\""]}], "]"}]& )], 
+      TemplateBox[{FractionBox["1", "200000000"]},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"cm\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+                 "\[InvisibleSpace]", "\"s\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: centimeters squared per second"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             SuperscriptBox["\"Centimeters\"", "2"], "\"Seconds\""]}], 
+          "]"}]& )], 
+      TemplateBox[{"0.000022552178325981362`"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+          ShowStringCharacters -> False], "Unit: centimeters"]& ),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )], 
+      TemplateBox[{"9.743183986556503`*^-13"},
+       "QuantityUnit",
+       DisplayFunction->(TooltipBox[
+         StyleBox[
+          RowBox[{#, "\[InvisibleSpace]", 
+            StyleBox[
+             RowBox[{" ", 
+               RowBox[{
+                 SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+                 "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"s\"", 
+                 "\[ThinSpace]", "\"K\"", "\[InvisibleSpace]", "\")\""}]}], 
+             "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+          False], "Unit: meter squared kelvins per second kelvin difference"]& \
+),
+       InterpretationFunction->(RowBox[{"Quantity", "[", 
+          RowBox[{#, ",", 
+            FractionBox[
+             RowBox[{"\"Kelvins\"", " ", 
+               SuperscriptBox["\"Meters\"", "2"]}], 
+             RowBox[{"\"KelvinsDifference\"", " ", "\"Seconds\""}]]}], 
+          "]"}]& )]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {
+     None, {"Mol\[EAcute]cules", "Masse Mol\[EAcute]culaire", 
+       "Coefficient de diffusion D \!\(\*SuperscriptBox[\(cm\), \(2\)]\)/s", 
+       "Rayon", "Coefficients de diffusion"}}]]]], "Output",
+ CellChangeTimes->{
+  3.634229782576037*^9, 3.6342298308198853`*^9, 3.634230113651903*^9, 
+   3.634230167096407*^9, {3.634231040866053*^9, 3.634231066903018*^9}, {
+   3.634930215187399*^9, 3.634930224133539*^9}}]
+}, Open  ]],
+
+Cell["\<\
+On obeserve qu\[CloseCurlyQuote]il existe des differences entre les \
+coefficients de diffusion theorique et lesquelle de notre motif, les \
+differences soient grands, soitent petits. Si l\[CloseCurlyQuote]on a des \
+differences tres grand, c\[CloseCurlyQuote]est a dire que notre modele n\
+\[CloseCurlyQuote]adapte pas assez le molecule. L\[CloseCurlyQuote]hypothese \
+est voir le molecule comme un sphere. Mais ce n\[CloseCurlyQuote]est pas le \
+cas en real.\
+\>", "Text",
+ CellChangeTimes->{{3.635162802944107*^9, 3.6351628209523773`*^9}, {
+  3.635163214267932*^9, 3.635163337108199*^9}, {3.635163484581883*^9, 
+  3.635163485552515*^9}, {3.6351635296435947`*^9, 3.635163624913451*^9}, {
+  3.635163738698222*^9, 3.635163748130845*^9}, {3.6351638172088013`*^9, 
+  3.635163884408845*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Diffusion dans un tube de liquide", "Section",
+ CellChangeTimes->{3.63423020908454*^9}],
+
+Cell[CellGroupData[{
+
+Cell["1./ Stabilit\[EAcute] d\[CloseCurlyQuote]un gradient de sucrose.", \
+"Subsection",
+ CellChangeTimes->{3.634271442534923*^9}],
+
+Cell[TextData[{
+ "Un gradient de saccharose de 10 cm de hauteur est g\[EAcute]n\[EAcute]r\
+\[EAcute] dans un tube vertical. On suppose que les variations de densit\
+\[EAcute] ne jouent pas de r\[OHat]le particulier. En combien de temps \
+devient-il homog\[EGrave]ne sous l\[CloseCurlyQuote]action de la diffusion. \
+On consid\[EGrave]re que le gradient est homog\[EGrave]ne si la \
+d\[EAcute]viation standard correspond \[AGrave] la hauteur.\nLe coefficient \
+de diffusion du saccharose et de la fluoroc\[EAcute]ine : D1 = 5 * ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]], 
+    SuperscriptBox["cm", "2"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "/s. On suppose que le tube n\[CloseCurlyQuote]est pas soumis \[AGrave] des \
+d\[EAcute]placements ou manipulations."
+}], "Text",
+ CellChangeTimes->{{3.634271455153224*^9, 3.634271467198456*^9}, {
+  3.634271793619619*^9, 3.634271799371304*^9}, {3.634272165929618*^9, 
+  3.634272191734201*^9}, {3.6342728062437363`*^9, 3.634272817347295*^9}, {
+  3.634272918693787*^9, 3.6342729368418713`*^9}, {3.6342731795050583`*^9, 
+  3.6342731799942102`*^9}, {3.6342733921613693`*^9, 3.634273440627284*^9}, {
+  3.634273493732771*^9, 3.634273509901222*^9}, {3.634276114257062*^9, 
+  3.6342761438973427`*^9}, {3.634276192529195*^9, 3.634276196133754*^9}}],
+
+Cell[TextData[{
+ "Consid\[EAcute]rons la diffusion dans le tube est dans une seule direction. \
+\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"D", " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Sigma]", "^", "2"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"2", " ", "t"}], ")"}]}], "=", 
+     RowBox[{
+      RowBox[{">", "t"}], "=", 
+      FractionBox[
+       SuperscriptBox["\[Sigma]", "2"], 
+       RowBox[{"2", "*", "D"}]]}]}]}], TraditionalForm]]]
+}], "Text",
+ CellChangeTimes->{{3.63427614889741*^9, 3.634276179885364*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "tube"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"10", ",", "\"\<Centimetre\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["D", "saccharose"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"5", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]]}], ",", "\"\<cm^2/s\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"tSaccharose", "[", "\[Sigma]_", "]"}], ":=", 
+    FractionBox[
+     SuperscriptBox["\[Sigma]", "2"], 
+     RowBox[{"2", "*", 
+      SubscriptBox["D", "saccharose"]}]]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tSaccharose", "[", 
+   SubscriptBox["\[Sigma]", "tube"], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.634271666622447*^9, 3.6342717027659607`*^9}, {
+   3.634271738609049*^9, 3.6342717388289003`*^9}, {3.634272822799841*^9, 
+   3.634272824508636*^9}, {3.634272940067094*^9, 3.6342731265219507`*^9}, {
+   3.634273183282455*^9, 3.63427321302402*^9}, {3.634273788859713*^9, 
+   3.6342738448266478`*^9}, {3.634274228004668*^9, 3.6342742526034727`*^9}, {
+   3.6342753830588217`*^9, 3.63427539147538*^9}, 3.6342761854270153`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"10000000"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634273129086623*^9, 3.63427318548244*^9, {3.6342738385801277`*^9, 
+   3.6342738589973307`*^9}, 3.634274059062456*^9, 3.6342741799896317`*^9, 
+   3.634274254662877*^9, {3.634275388102873*^9, 3.6342754216326723`*^9}, 
+   3.6342762038888206`*^9, {3.6349302157746763`*^9, 3.634930224191093*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Day\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Month\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.634273217586256*^9, 3.634273278070223*^9}, {
+  3.634273849368071*^9, 3.6342738553201637`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{FractionBox["25000", "9"]},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634273233347211*^9, 3.6342732789378033`*^9}, {
+   3.6342738560841637`*^9, 3.634273868239706*^9}, 3.6342740623384933`*^9, 
+   3.634274258689225*^9, {3.6342754141347923`*^9, 3.634275425509009*^9}, {
+   3.634930215799796*^9, 3.634930224207502*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{FractionBox["3125", "27"]},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"days\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: days"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Days\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634273233347211*^9, 3.6342732789378033`*^9}, {
+   3.6342738560841637`*^9, 3.634273868239706*^9}, 3.6342740623384933`*^9, 
+   3.634274258689225*^9, {3.6342754141347923`*^9, 3.634275425509009*^9}, {
+   3.634930215799796*^9, 3.634930224218829*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{FractionBox["2500", "657"]},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"mo\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: months"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Months\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634273233347211*^9, 3.6342732789378033`*^9}, {
+   3.6342738560841637`*^9, 3.634273868239706*^9}, 3.6342740623384933`*^9, 
+   3.634274258689225*^9, {3.6342754141347923`*^9, 3.634275425509009*^9}, {
+   3.634930215799796*^9, 3.634930224220027*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2./ Stabilit\[EAcute] d\[CloseCurlyQuote]une bande color\[EAcute]e :", \
+"Subsection",
+ CellChangeTimes->{3.634273327445902*^9}],
+
+Cell["\<\
+Une fine bande d\[CloseCurlyQuote]un colorant, la fluoroc\[EAcute]ine, est \
+ins\[EAcute]r\[EAcute]e horizontalement au centre d\[CloseCurlyQuote]un tube \
+vertical de 10 cm de haut. Combien de temps faut-il pour que cette bande tr\
+\[EGrave]s fine acqui\[EGrave]re une d\[EAcute]viation standard \[Sigma] = \
+2.5 mm, puis 2.5 cm ?\
+\>", "Text",
+ CellChangeTimes->{{3.634273339712706*^9, 3.634273351625355*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<mm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     SubscriptBox["\[Sigma]", "ds"], ",", "\"\<cm\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tSaccharose", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.634273882786614*^9, 3.634274035527466*^9}, {
+   3.634274076058769*^9, 3.634274080895359*^9}, {3.634274143883494*^9, 
+   3.634274156660659*^9}, {3.634274187814939*^9, 3.634274201012046*^9}, {
+   3.634274268384555*^9, 3.634274296953579*^9}, 3.634275400402009*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"6250.`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634274201769558*^9, {3.6342742710877657`*^9, 3.634274297775696*^9}, {
+   3.634275410242304*^9, 3.6342754305177183`*^9}, 3.634276217793434*^9, {
+   3.634930215872468*^9, 3.634930224262103*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"1.7361111111111112`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634274201769558*^9, {3.6342742710877657`*^9, 3.634274297775696*^9}, {
+   3.634275410242304*^9, 3.6342754305177183`*^9}, 3.634276217793434*^9, {
+   3.634930215872468*^9, 3.6349302242747717`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<cm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tSaccharose", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Day\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6342743115933*^9, 3.634274324224574*^9}, 
+   3.634275402742279*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"625000.`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634274317494656*^9, 3.634274324837472*^9}, {
+   3.634275406172399*^9, 3.634275434776228*^9}, 3.6342762204309053`*^9, {
+   3.6349302159222517`*^9, 3.634930224313064*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"173.61111111111111`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634274317494656*^9, 3.634274324837472*^9}, {
+   3.634275406172399*^9, 3.634275434776228*^9}, 3.6342762204309053`*^9, {
+   3.6349302159222517`*^9, 3.634930224326146*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"7.233796296296296`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"days\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: days"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Days\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634274317494656*^9, 3.634274324837472*^9}, {
+   3.634275406172399*^9, 3.634275434776228*^9}, 3.6342762204309053`*^9, {
+   3.6349302159222517`*^9, 3.634930224327351*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3./ Stabilit\[EAcute] d\[CloseCurlyQuote]une bande \
+macromol\[EAcute]culaire color\[EAcute]e :", "Subsection",
+ CellChangeTimes->{3.6342743697051907`*^9}],
+
+Cell["\<\
+Les questions sont les m\[EHat]mes que pour 2./ mais le colorant est associ\
+\[EAcute]e \[AGrave] une mol\[EAcute]cule de masse mol\[EAcute]culaire 1000 \
+fois plus grosse que la fluoroc\[EAcute]ine.\
+\>", "Text",
+ CellChangeTimes->{{3.634274380545619*^9, 3.634274383774181*^9}}],
+
+Cell[TextData[Cell[BoxData[{
+ FormBox[
+  RowBox[{"k", "=", 
+   FractionBox["R", "NA"]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"D", "=", 
+   FractionBox[
+    RowBox[{"k", "*", "T"}], 
+    RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r"}]]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["V", "molecule"], "=", 
+   RowBox[{
+    FractionBox[
+     SubscriptBox["m", "molecule"], "\[Rho]"], "=", 
+    RowBox[{
+     FractionBox["4", "3"], "\[Pi]", "*", 
+     SuperscriptBox["r", "3"]}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SubscriptBox["m", "molecule"], "=", 
+   FractionBox["masseDeMolecule", "NombreParMole"]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"r", " ", "=", " ", 
+   RadicalBox[
+    RowBox[{
+     FractionBox["massDeMolecule", 
+      RowBox[{"NombreParMole", "*", "\[Rho]"}]], "*", 
+     FractionBox["3", 
+      RowBox[{"4", "\[Pi]"}]]}], "3"]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   FractionBox[
+    SubscriptBox["D", "grosse"], 
+    SubscriptBox["D", "saccharose"]], "=", 
+   FractionBox[
+    FractionBox[
+     RowBox[{"k", "*", "T"}], 
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", 
+      SubscriptBox["r", "grosse"]}]], 
+    FractionBox[
+     RowBox[{"k", "*", "T"}], 
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", 
+      SubscriptBox["r", "saccharose"]}]]]}], 
+  TraditionalForm], "\[LineSeparator]", 
+ FormBox[
+  RowBox[{
+  "Supposons", " ", "que", " ", "le", " ", "temp\[EAcute]rature", " ", "et", 
+   " ", "dynamic", " ", "viscosity", " ", "sont", " ", "m\[EHat]me"}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"Donc", ",", " ", 
+   RowBox[{
+    RowBox[{"on", " ", 
+     RowBox[{"a", " ", ":", "\[IndentingNewLine]", " ", 
+      FractionBox[
+       SubscriptBox["D", "grosse"], 
+       SubscriptBox["D", "saccharose"]]}]}], "=", 
+    RowBox[{
+     FractionBox[
+      SubscriptBox["r", "saccharose"], 
+      SubscriptBox["r", "grosse"]], "=", 
+     RowBox[{
+      FractionBox[
+       RadicalBox[
+        RowBox[{
+         FractionBox["massDeSaccharose", 
+          RowBox[{"NombreParMole", "*", "\[Rho]"}]], "*", 
+         FractionBox["3", 
+          RowBox[{"4", "\[Pi]"}]]}], "3"], 
+       RadicalBox[
+        RowBox[{
+         FractionBox["massDeGrosse", 
+          RowBox[{"NombreParMole", "*", "\[Rho]"}]], "*", 
+         FractionBox["3", 
+          RowBox[{"4", "\[Pi]"}]]}], "3"]], "=", 
+      RadicalBox[
+       FractionBox["massDeSaccharose", "massDeGrosse"], "3"]}]}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+  "sachant", " ", "que", " ", "les", " ", "variations", " ", "de", " ", 
+   "densit\[EAcute]", " ", "ne", " ", "jouent", " ", "pas", " ", "de", " ", 
+   "r\[OHat]le", " ", 
+   RowBox[{"particulier", "."}]}], TraditionalForm]}]]], "Text",
+ CellChangeTimes->{{3.634274585092166*^9, 3.6342746475328407`*^9}, {
+  3.634274684482486*^9, 3.6342746886009398`*^9}, {3.634274808648528*^9, 
+  3.63427490634833*^9}, {3.6342749449044113`*^9, 3.634275148260909*^9}, {
+  3.634275211104866*^9, 3.634275274828081*^9}, {3.634276032340365*^9, 
+  3.634276049922604*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["D", "grosse"], "=", 
+   RowBox[{
+    RadicalBox[
+     FractionBox["1", "1000"], "3"], 
+    SubscriptBox["D", "saccharose"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tGrosse", "[", "\[Sigma]_", "]"}], ":=", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["\[Sigma]", "2"], 
+     RowBox[{"2", "*", 
+      SubscriptBox["D", "grosse"]}]], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<mm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     SubscriptBox["\[Sigma]", "ds"], ",", "\"\<cm\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tGrosse", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.634275300183524*^9, 3.63427534553065*^9}, {
+  3.634275439785446*^9, 3.6342755415840673`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"62500.`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.63427552818257*^9, 3.634275544348188*^9}, 
+   3.6342762262516537`*^9, {3.63493021597585*^9, 3.634930224369034*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"17.36111111111111`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.63427552818257*^9, 3.634275544348188*^9}, 
+   3.6342762262516537`*^9, {3.63493021597585*^9, 3.634930224380719*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<cm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tGrosse", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Day\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Week\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Month\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.634275560531987*^9, {3.634275595428114*^9, 3.634275602676362*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"6.25`*^6"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634275561692836*^9, 3.6342756032587023`*^9, 3.6342762291976967`*^9, {
+   3.6349302160229483`*^9, 3.634930224422811*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"1736.111111111111`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634275561692836*^9, 3.6342756032587023`*^9, 3.6342762291976967`*^9, {
+   3.6349302160229483`*^9, 3.634930224434702*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"72.33796296296296`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"days\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: days"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Days\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634275561692836*^9, 3.6342756032587023`*^9, 3.6342762291976967`*^9, {
+   3.6349302160229483`*^9, 3.6349302244364653`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"10.333994708994709`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"wk\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: weeks"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Weeks\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634275561692836*^9, 3.6342756032587023`*^9, 3.6342762291976967`*^9, {
+   3.6349302160229483`*^9, 3.63493022443817*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"2.378234398782344`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"mo\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: months"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Months\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634275561692836*^9, 3.6342756032587023`*^9, 3.6342762291976967`*^9, {
+   3.6349302160229483`*^9, 3.634930224439406*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4./ Stabilit\[EAcute] d\[CloseCurlyQuote]une bande virale \
+color\[EAcute]e :", "Subsection",
+ CellChangeTimes->{3.634275711597969*^9}],
+
+Cell["\<\
+Les questions sont les m\[EHat]mes que pour 2./ mais le colorant est associ\
+\[EAcute]e \[AGrave] une particule virale 1000000 fois plus grosse que la \
+fluoroc\[EAcute]ine.\
+\>", "Text",
+ CellChangeTimes->{{3.634275736249877*^9, 3.634275740352754*^9}}],
+
+Cell[TextData[Cell[BoxData[{
+ FormBox[
+  RowBox[{"V", "=", 
+   RowBox[{
+    FractionBox["4", "3"], "\[Pi]", "*", 
+    SuperscriptBox["r", "3"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{" ", 
+   RowBox[{
+    FractionBox[
+     SubscriptBox["D", "virale"], 
+     SubscriptBox["D", "saccharose"]], "=", 
+    RowBox[{
+     FractionBox[
+      SubscriptBox["r", "saccharose"], 
+      SubscriptBox["r", "virale"]], "=", 
+     RadicalBox[
+      FractionBox[
+       SubscriptBox["V", "saccharose"], 
+       SubscriptBox["V", "virale"]], "3"]}]}]}], TraditionalForm]}]]], "Text",\
+
+ CellChangeTimes->{
+  3.634275785242515*^9, {3.634276315623204*^9, 3.634276425298399*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["D", "virale"], "=", 
+   RowBox[{
+    RadicalBox[
+     FractionBox["1", "1000000"], "3"], 
+    SubscriptBox["D", "saccharose"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tVirale", "[", "\[Sigma]_", "]"}], ":=", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["\[Sigma]", "2"], 
+     RowBox[{"2", "*", 
+      SubscriptBox["D", "virale"]}]], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<mm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     SubscriptBox["\[Sigma]", "ds"], ",", "\"\<cm\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tVirale", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Day\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6342764351141863`*^9, 3.634276481231448*^9}, {
+  3.6342765659565287`*^9, 3.63427663541625*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"625000.`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634276621015552*^9, 3.6342766358334427`*^9}, {
+  3.63493021609403*^9, 3.634930224480831*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"173.61111111111111`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634276621015552*^9, 3.6342766358334427`*^9}, {
+  3.63493021609403*^9, 3.634930224493619*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"7.233796296296296`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"days\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: days"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Days\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634276621015552*^9, 3.6342766358334427`*^9}, {
+  3.63493021609403*^9, 3.634930224494882*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Sigma]", "ds"], "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "\"\<cm\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{"tVirale", "[", 
+   SubscriptBox["\[Sigma]", "ds"], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Hour\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Day\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Week\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{"t", ",", "\"\<Month\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{3.6342766590368433`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"6.25`*^7"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: seconds"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634276660748921*^9, {3.634930216261655*^9, 3.6349302245334997`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"17361.11111111111`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"h\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: hours"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Hours\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634276660748921*^9, {3.634930216261655*^9, 3.634930224546989*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"723.3796296296296`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"days\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: days"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Days\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634276660748921*^9, {3.634930216261655*^9, 3.63493022454884*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"103.33994708994709`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"wk\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: weeks"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Weeks\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634276660748921*^9, {3.634930216261655*^9, 3.63493022455021*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"23.782343987823438`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"mo\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: months"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Months\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.634276660748921*^9, {3.634930216261655*^9, 3.634930224551313*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Solution stochastique de l\[CloseCurlyQuote]\[EAcute]quation de \
+diffusion", "Section",
+ CellChangeTimes->{3.6347550678667717`*^9}],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["\[Delta]C", "\[Delta]t"], "=", 
+    RowBox[{"D", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[Delta]", "2"], "C"}], 
+      SuperscriptBox["\[Delta]x", "2"]]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"C", "=", 
+    RowBox[{
+     SubscriptBox["C", "0"], "*", 
+     FractionBox[
+      SuperscriptBox["e", 
+       RowBox[{"-", 
+        FractionBox[
+         SuperscriptBox["x", "2"], 
+         RowBox[{"4", "D", " ", "t"}]]}]], 
+      SqrtBox[
+       RowBox[{"4", "\[Pi]", " ", "D", " ", "t"}]]]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.635160865250977*^9, 3.63516102963179*^9}, 
+   3.635161126284894*^9, {3.6351612399767723`*^9, 3.635161247756425*^9}, {
+   3.635161330251548*^9, 3.635161339524501*^9}, {3.635161793774671*^9, 
+   3.6351618751363153`*^9}, {3.635161910169243*^9, 3.635161919203717*^9}, {
+   3.635161976989613*^9, 3.63516198532787*^9}, {3.635162022727441*^9, 
+   3.6351620247386436`*^9}, {3.6351620725599337`*^9, 3.635162072910749*^9}, {
+   3.6351621093616953`*^9, 3.63516214028883*^9}, {3.635162268752001*^9, 
+   3.6351622692984247`*^9}, {3.635162441747055*^9, 3.635162509038782*^9}, {
+   3.635162751372356*^9, 3.635162753133963*^9}, {3.635163076145686*^9, 
+   3.63516307887638*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"solutionC", "[", 
+   RowBox[{"x_", ",", "t_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["C", "0"], "*", 
+     FractionBox[
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", 
+        FractionBox[
+         SuperscriptBox["x", "2"], 
+         RowBox[{"4", "D", " ", "t"}]]}]], 
+      SqrtBox[
+       RowBox[{"4", "\[Pi]", " ", "D", " ", "t"}]]]}], ")"}], "//", 
+   "N"}]}]], "Input",
+ CellChangeTimes->{{3.635161347241029*^9, 3.635161462817708*^9}, {
+   3.6351616433859787`*^9, 3.635161644750154*^9}, 3.6351617386106777`*^9, {
+   3.635162857009465*^9, 3.635162946663548*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"solutionC", "[", 
+    RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"solutionC", "[", 
+       RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}], ",", "x"}], "]"}], 
+  "*", "D"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.635161478166019*^9, 3.635161496751565*^9}, {
+   3.635161537397004*^9, 3.635161613275773*^9}, {3.635161676977621*^9, 
+   3.635161678156707*^9}, 3.635161727769205*^9, {3.635162691839101*^9, 
+   3.635162721364705*^9}, {3.635163032670889*^9, 3.635163032962582*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"0.14104739588693907`", " ", 
+     SuperscriptBox["2.718281828459045`", 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"0.25`", " ", 
+         SuperscriptBox["x", "2"]}], 
+        RowBox[{"D", " ", "t"}]]}]], " ", "D", " ", 
+     SubscriptBox["C", "0"]}], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"D", " ", "t"}], ")"}], 
+     RowBox[{"3", "/", "2"}]]]}], "+", 
+  FractionBox[
+   RowBox[{"0.07052369794346953`", " ", 
+    SuperscriptBox["2.718281828459045`", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"0.25`", " ", 
+        SuperscriptBox["x", "2"]}], 
+       RowBox[{"D", " ", "t"}]]}]], " ", 
+    SuperscriptBox["x", "2"], " ", 
+    SubscriptBox["C", "0"]}], 
+   RowBox[{"D", " ", 
+    SuperscriptBox["t", "2"], " ", 
+    SqrtBox[
+     RowBox[{"D", " ", "t"}]]}]]}]], "Output",
+ CellChangeTimes->{
+  3.635161734990157*^9, {3.6351627048633823`*^9, 3.6351627246785793`*^9}, 
+   3.6351629195527287`*^9, 3.6351629506604033`*^9, 3.635163034705558*^9}],
+
+Cell[BoxData[
+ RowBox[{"D", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{"0.14104739588693907`", " ", 
+       SuperscriptBox["2.718281828459045`", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["x", "2"]}], 
+          RowBox[{"D", " ", "t"}]]}]], " ", 
+       SubscriptBox["C", "0"]}], 
+      RowBox[{"D", " ", "t", " ", 
+       SqrtBox[
+        RowBox[{"D", " ", "t"}]]}]]}], "+", 
+    FractionBox[
+     RowBox[{"0.07052369794346953`", " ", 
+      SuperscriptBox["2.718281828459045`", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"0.25`", " ", 
+          SuperscriptBox["x", "2"]}], 
+         RowBox[{"D", " ", "t"}]]}]], " ", 
+      SuperscriptBox["x", "2"], " ", 
+      SubscriptBox["C", "0"]}], 
+     RowBox[{
+      SuperscriptBox["D", "2"], " ", 
+      SuperscriptBox["t", "2"], " ", 
+      SqrtBox[
+       RowBox[{"D", " ", "t"}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.635161734990157*^9, {3.6351627048633823`*^9, 3.6351627246785793`*^9}, 
+   3.6351629195527287`*^9, 3.6351629506604033`*^9, 3.635163034707046*^9}]
+}, Open  ]],
+
+Cell["Donc : \tils sont parailles", "Text",
+ CellChangeTimes->{{3.635163112442873*^9, 3.635163127524835*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["5. L\[CloseCurlyQuote]exp\[EAcute]rience de J. Perrin", "Section",
+ CellChangeTimes->{3.634756160733164*^9}],
+
+Cell[CellGroupData[{
+
+Cell["1./ Tracer l\[CloseCurlyQuote]histogramme de la distribution.", \
+"Subsubsection",
+ CellChangeTimes->{3.6347565737614737`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"fr\[EAcute]quence", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "2", ",", "15", ",", "32", ",", "95", ",", "111", ",", "87", 
+     ",", "47", ",", "8", ",", "5", ",", "0", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"BarChart3D", "[", "fr\[EAcute]quence", "]"}]}], "Input",
+ CellChangeTimes->{{3.634756452117777*^9, 3.634756546695305*^9}, {
+  3.634756911518835*^9, 3.634756912342358*^9}}],
+
+Cell[BoxData[
+ Graphics3DBox[{
+   StyleBox[{
+     {EdgeForm[GrayLevel[0.85]], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.02, 0.02}], Scaled[{0.985, 0.02, 0.02}], 
+        Scaled[{0.985, 0.98, 0.02}], Scaled[{0.015, 0.98, 0.02}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.02, 0.02}], Scaled[{0.985, 0.02, 0.02}], 
+        Scaled[{1, 0, 0}], Scaled[{0, 0, 0}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.985, 0.02, 0.02}], Scaled[{1, 0, 0}], Scaled[{1, 1, 0}], 
+        Scaled[{0.985, 0.98, 0.02}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.98, 0.02}], Scaled[{0.985, 0.98, 0.02}], 
+        Scaled[{1, 1, 0}], Scaled[{0, 0.99999, 0}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.02, 0.02}], Scaled[{0, 0, 0}], 
+        Scaled[{0, 0.99999, 0}], Scaled[{0.015, 0.98, 0.02}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0, 0, 0}], Scaled[{1, 0, 0}], Scaled[{1, 1, 0}], 
+        Scaled[{0, 0.99999, 0}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}]}, 
+     {Opacity[0], EdgeForm[None], 
+      CuboidBox[{{-0.6483999999999999, -0.25, 0}, {13.616399999999997`, 1.25, 
+        0.024}}]}, 
+     {EdgeForm[None], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.98, 0.02}], Scaled[{0.985, 0.98, 0.02}], 
+        Scaled[{0.985, 0.98, 0.98}], Scaled[{0.015, 0.98, 0.98}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.98, 0.02}], Scaled[{0.985, 0.98, 0.02}], 
+        Scaled[{1, 1, 0}], Scaled[{0, 0.99999, 0}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{1, 1, 0}], Scaled[{1, 1, 1}], Scaled[{0.985, 0.98, 0.98}], 
+        Scaled[{0.985, 0.98, 0.02}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.98, 0.98}], Scaled[{0.985, 0.98, 0.98}], 
+        Scaled[{1, 1, 1}], Scaled[{0, 1, 1}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0.015, 0.98, 0.02}], Scaled[{0, 0.99999, 0}], 
+        Scaled[{0, 1, 1}], Scaled[{0.015, 0.98, 0.98}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}], 
+      Polygon3DBox[{
+       Scaled[{0, 0.99999, 0}], Scaled[{1, 1, 0}], Scaled[{1, 1, 1}], 
+        Scaled[{0, 1, 1}]},
+       VertexColors->{
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.97858, 0.678934, 0.157834]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.98572, 0.785956, 0.43855599999999995`]], 
+         Directive[
+          Opacity[0.1], 
+          RGBColor[0.99048, 0.857304, 0.6257039999999999]], 
+         Directive[
+          Opacity[0.1], 
+          GrayLevel[1]]}]}},
+    StripOnInput->False,
+    Lighting->{{"Ambient", 
+       GrayLevel[1]}}], 
+   {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+    0.1]}], {}, 
+    {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+     0.1]}], 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{0., 0., 0.}, {0., 1., 0.}, {0., 1., 1.}, {
+              0., 0., 1.}, {1., 0., 0.}, {1., 1., 0.}, {1., 1., 1.}, {1., 0., 
+              1.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{31.649750290421906`, 65.90673947251005}, {
+           73.03144817674261, 87.03396347387314}}],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{1.088, 0., 0.}, {1.088, 1., 0.}, {1.088, 
+              1., 2.}, {1.088, 0., 2.}, {2.088, 0., 0.}, {2.088, 1., 0.}, {
+              2.088, 1., 2.}, {2.088, 0., 2.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{55.90733521923481, 89.96421592128988}, {
+           72.31908014475302, 88.10995050410597}}],
+         StatusArea[#, 2]& ,
+         TagBoxNote->"2"],
+        StyleBox["2", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[2, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{2.176, 0., 0.}, {2.176, 1., 0.}, {2.176, 
+              1., 15.}, {2.176, 0., 15.}, {3.176, 0., 0.}, {3.176, 1., 0.}, {
+              3.176, 1., 15.}, {3.176, 0., 15.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{80.11522978065554, 114.08593491893015`}, {
+           50.44329070126845, 89.18884475473973}}],
+         StatusArea[#, 15]& ,
+         TagBoxNote->"15"],
+        StyleBox["15", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[15, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{3.2640000000000002`, 0., 0.}, {
+              3.2640000000000002`, 1., 0.}, {3.2640000000000002`, 1., 32.}, {
+              3.2640000000000002`, 0., 32.}, {4.264, 0., 0.}, {4.264, 1., 
+              0.}, {4.264, 1., 32.}, {4.264, 0., 32.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{104.4204502475669, 138.27215413727714`}, {
+           21.36147612799735, 90.27065802428663}}],
+         StatusArea[#, 32]& ,
+         TagBoxNote->"32"],
+        StyleBox["32", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[32, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{4.352, 0., 0.}, {4.352, 1., 0.}, {4.352, 
+              1., 95.}, {4.352, 0., 95.}, {5.352, 0., 0.}, {5.352, 1., 0.}, {
+              5.352, 1., 95.}, {5.352, 0., 95.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{128.63210458015553`, 
+           162.52313262802423`}, {-90.23272914121713, 91.35540217518863}}],
+         StatusArea[#, 95]& ,
+         TagBoxNote->"95"],
+        StyleBox["95", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[95, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{5.44, 0., 0.}, {5.44, 1., 0.}, {5.44, 1., 
+              111.}, {5.44, 0., 111.}, {6.44, 0., 0.}, {6.44, 1., 0.}, {6.44, 
+              1., 111.}, {6.44, 0., 111.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{153.35014309854023`, 
+           186.87505482218893`}, {-118.24369303655274`, 92.44308913425115}}],
+         StatusArea[#, 111]& ,
+         TagBoxNote->"111"],
+        StyleBox["111", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[111, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{6.5280000000000005`, 0., 0.}, {
+              6.5280000000000005`, 1., 0.}, {6.5280000000000005`, 1., 87.}, {
+              6.5280000000000005`, 0., 87.}, {7.5280000000000005`, 0., 0.}, {
+              7.5280000000000005`, 1., 0.}, {7.5280000000000005`, 1., 87.}, {
+              7.5280000000000005`, 0., 87.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          ImageSizeCache->{{178.2288269550674, 
+           211.45818558321253`}, {-74.137866717031, 93.53373089307998}}],
+         StatusArea[#, 87]& ,
+         TagBoxNote->"87"],
+        StyleBox["87", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[87, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{7.6160000000000005`, 0., 0.}, {
+              7.6160000000000005`, 1., 0.}, {7.6160000000000005`, 1., 47.}, {
+              7.6160000000000005`, 0., 47.}, {8.616, 0., 0.}, {8.616, 1., 
+              0.}, {8.616, 1., 47.}, {8.616, 0., 47.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{202.9221110598296, 
+           235.90862286977125`}, {-1.4670567212313443`, 94.62733950852218}}],
+         StatusArea[#, 47]& ,
+         TagBoxNote->"47"],
+        StyleBox["47", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[47, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{8.703999999999999, 0., 0.}, {
+              8.703999999999999, 1., 0.}, {8.703999999999999, 1., 8.}, {
+              8.703999999999999, 0., 8.}, {9.703999999999999, 0., 0.}, {
+              9.703999999999999, 1., 0.}, {9.703999999999999, 1., 8.}, {
+              9.703999999999999, 0., 8.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{227.65372781459496`, 260.2401376086226}, {
+           69.05180649532412, 95.72392710311023}}],
+         StatusArea[#, 8]& ,
+         TagBoxNote->"8"],
+        StyleBox["8", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[8, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{9.791999999999998, 0., 0.}, {
+              9.791999999999998, 1., 0.}, {9.791999999999998, 1., 5.}, {
+              9.791999999999998, 0., 5.}, {10.791999999999998`, 0., 0.}, {
+              10.791999999999998`, 1., 0.}, {10.791999999999998`, 1., 5.}, {
+              10.791999999999998`, 0., 5.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{252.45272067315545`, 284.8083835229848}, {
+           75.44016453596286, 96.82350586551001}}],
+         StatusArea[#, 5]& ,
+         TagBoxNote->"5"],
+        StyleBox["5", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[5, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{10.879999999999997`, 0., 0.}, {
+              10.879999999999997`, 1., 0.}, {10.879999999999997`, 1., 0.}, {
+              10.879999999999997`, 0., 0.}, {11.879999999999997`, 0., 0.}, {
+              11.879999999999997`, 1., 0.}, {11.879999999999997`, 1., 0.}, {
+              11.879999999999997`, 0., 0.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{277.31936533915916`, 309.4036313948922}, {
+           85.39968449071173, 97.9260880509724}}],
+         StatusArea[#, 0]& ,
+         TagBoxNote->"0"],
+        StyleBox["0", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0, {"Graphics3DLabel"}], "Tooltip"]& ]}, 
+     {RGBColor[0.97858, 0.678934, 0.157834], EdgeForm[{GrayLevel[0], Opacity[
+      0.1]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            Directive[
+             EdgeForm[
+              Directive[
+               RGBColor[
+               0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+               AbsoluteThickness[1.5]]]], {}, {}], 
+           StyleBox[{
+             
+             GraphicsComplex3DBox[{{11.967999999999996`, 0., 0.}, {
+              11.967999999999996`, 1., 0.}, {11.967999999999996`, 1., 0.}, {
+              11.967999999999996`, 0., 0.}, {12.967999999999996`, 0., 0.}, {
+              12.967999999999996`, 1., 0.}, {12.967999999999996`, 1., 0.}, {
+              12.967999999999996`, 0., 0.}}, {
+               Polygon3DBox[{4, 3, 2, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917]}], 
+               Polygon3DBox[{5, 6, 7, 8}, VertexColors -> {
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.48929, 0.339467, 0.078917], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{2, 3, 7, 6}, VertexColors -> {
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{5, 8, 4, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.97858, 0.678934, 0.157834]}], 
+               Polygon3DBox[{4, 8, 7, 3}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}], 
+               Polygon3DBox[{2, 6, 5, 1}, VertexColors -> {
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.97858, 0.678934, 0.157834], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668], 
+                  RGBColor[0.995716, 0.9357868, 0.8315668]}]}]}, 
+            Lighting -> {{"Ambient", 
+               GrayLevel[1]}}, StripOnInput -> False]},
+          
+          ImageSizeCache->{{302.2539390225513, 334.115296108177}, {
+           86.47665922571296, 99.03168598178853}}],
+         StatusArea[#, 0]& ,
+         TagBoxNote->"0"],
+        StyleBox["0", {"Graphics3DLabel"}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0, {"Graphics3DLabel"}], 
+        "Tooltip"]& ]}}, {}, {}}, {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}}, {}}, GraphicsGroup3DBox[
+    {GrayLevel[0], 
+     StyleBox[{},
+      Antialiasing->False]}]},
+  Axes->{True, True, True},
+  AxesEdge->{{-1, -1}, {1, -1}, {-1, 1}},
+  AxesLabel->{None, None, None},
+  BoxRatios->NCache[{1, 
+     Rational[1, 5], GoldenRatio^(-1)}, {1, 0.2, 0.6180339887498948}],
+  Boxed->False,
+  FaceGrids->{{{0, 1, 0}, {None, Automatic}}, {{0, 0, -1}, {
+     None, None}}, {{-1, 0, 0}, {None, None}}},
+  FaceGridsStyle->Automatic,
+  Lighting->"Neutral",
+  Method->{"RotationControl" -> "Globe"},
+  PlotRangePadding->Scaled[0.02],
+  Ticks->{{{0, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {12.967999999999996`, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {1.044, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {2.132, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {3.22, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {4.308, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {5.396000000000001, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {6.484, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {7.572000000000001, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {8.66, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {9.747999999999998, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {10.835999999999999`, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {11.923999999999996`, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {0., 
+      FormBox["\"\"", TraditionalForm], {0.01, 0}}, {12.967999999999996`, 
+      FormBox["\"\"", TraditionalForm], {0.01, 0}}}, {{0, 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {1., 
+      FormBox["\"\"", TraditionalForm], {0.005, 0}}, {0., 
+      FormBox["\"\"", TraditionalForm], {0.01, 0}}, {1., 
+      FormBox["\"\"", TraditionalForm], {0.01, 0}}}, Automatic},
+  ViewPoint->{2, -10, 2}]], "Output",
+ CellChangeTimes->{{3.634756540533819*^9, 3.6347565473625393`*^9}, 
+   3.634756912932322*^9, {3.6349302164671*^9, 3.634930224623548*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2./ Calculer la moyenne et l\[CloseCurlyQuote]\[EAcute]cart type.", \
+"Subsubsection",
+ CellChangeTimes->{3.634756588445726*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"borneInf", "  ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{
+        RowBox[{"-", "5.5"}], ",", "5.5", ",", "1"}], "]"}], "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "7"}]]}], ",", "\"\<metre\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"borneSup", "  ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{
+        RowBox[{"-", "4.5"}], ",", "6.5", ",", "1"}], "]"}], "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "7"}]]}], ",", "\"\<metre\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"borneMean", "=", 
+   FractionBox[
+    RowBox[{"borneInf", "+", "borneSup"}], "2"]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"deplaceList", "=", 
+    RowBox[{"{", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "0"}], ",", 
+    RowBox[{"i", "<", 
+     RowBox[{"Length", "[", "fr\[EAcute]quence", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", " ", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"j", "=", "0"}], ",", 
+      RowBox[{"j", "<", 
+       RowBox[{"fr\[EAcute]quence", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+      RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"deplaceList", "=", 
+       RowBox[{"Append", "[", 
+        RowBox[{"deplaceList", ",", 
+         RowBox[{"borneMean", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Sigma]", "=", 
+  RowBox[{
+   RowBox[{"StandardDeviation", "[", "deplaceList", "]"}], "//", 
+   "N"}]}]}], "Input",
+ CellChangeTimes->{{3.6347566588673067`*^9, 3.634756694417282*^9}, {
+  3.634757482288402*^9, 3.634757644098936*^9}, {3.6347577562269497`*^9, 
+  3.634757759877646*^9}, {3.634757930965383*^9, 3.634757945033578*^9}, {
+  3.634758038305891*^9, 3.634758044856089*^9}, {3.634758104638047*^9, 
+  3.634758108820364*^9}, {3.634758141435906*^9, 3.6347581778558598`*^9}, {
+  3.634758223814068*^9, 3.634758295996518*^9}, {3.634758341236652*^9, 
+  3.634758459219303*^9}, {3.634758501407702*^9, 3.634758537712023*^9}, {
+  3.634758852123046*^9, 3.634758876484268*^9}, {3.634758907990842*^9, 
+  3.6347589842313223`*^9}, {3.6347590350761003`*^9, 3.634759073109758*^9}, {
+  3.634759646794203*^9, 3.634759684410248*^9}, {3.634759731732191*^9, 
+  3.6347597422438583`*^9}, {3.63475977310839*^9, 3.63475981431035*^9}, {
+  3.634760224307131*^9, 3.6347602286266117`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"1.4471117151371068`*^-7"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"m\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: meters"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Meters\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{{3.634756689661866*^9, 3.634756694831332*^9}, 
+   3.63475755559518*^9, 3.6347575857588*^9, {3.634757627743017*^9, 
+   3.634757644701766*^9}, {3.6347579395146637`*^9, 3.634757945639627*^9}, {
+   3.6347581547548122`*^9, 3.6347581784354973`*^9}, {3.634758435988925*^9, 
+   3.6347584508610163`*^9}, {3.634758502723639*^9, 3.634758513655993*^9}, {
+   3.634758858069927*^9, 3.634758869386454*^9}, {3.634758909993969*^9, 
+   3.634758953061998*^9}, 3.6347589846135902`*^9, 3.634759037531464*^9, 
+   3.634759120286577*^9, {3.634759647990991*^9, 3.63475968598247*^9}, {
+   3.634759847550954*^9, 3.6347598582913237`*^9}, 3.634760230159347*^9, {
+   3.634930217416313*^9, 3.6349302246705637`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+3./ Calculer le coefficient de diffusion de la particule \[AGrave] partir des \
+observations\
+\>", "Subsubsection",
+ CellChangeTimes->{3.634760189624407*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2", ",", "\"\<second\>\""}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6347602685742073`*^9, 3.634760292603211*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"coeffDiff", "=", 
+  FractionBox[
+   SuperscriptBox["\[Sigma]", "2"], 
+   RowBox[{"2", "*", "t"}]]}]], "Input",
+ CellChangeTimes->{{3.634760324517597*^9, 3.634760358769746*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"5.235330790217647`*^-15"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", 
+          RowBox[{
+            SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/\"", 
+            "\[InvisibleSpace]", "\"s\""}]}], 
+        "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+    "Unit: meters squared per second"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", 
+       FractionBox[
+        SuperscriptBox["\"Meters\"", "2"], "\"Seconds\""]}], 
+     "]"}]& )]], "Output",
+ CellChangeTimes->{{3.6347603385821867`*^9, 3.634760359870454*^9}, {
+  3.634930218149077*^9, 3.634930224712852*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+4./ Donner l\[CloseCurlyQuote]expression du coefficient de diffusion pour une \
+particule de cette taille.\
+\>", "Subsubsection",
+ CellChangeTimes->{3.6347601990777473`*^9}],
+
+Cell[TextData[Cell[BoxData[
+ RowBox[{"D", "=", 
+  FractionBox[
+   RowBox[{"k", "*", "T"}], 
+   RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r"}]]}]], "Input"]], "Text",\
+
+ CellChangeTimes->{{3.634760460685215*^9, 3.6347604651479263`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["5./ En d\[EAcute]duire le nombre d\[CloseCurlyQuote]Avogadro.", \
+"Subsubsection",
+ CellChangeTimes->{3.6347602071591454`*^9}],
+
+Cell[TextData[{
+ Cell[BoxData[{
+  FormBox[
+   RowBox[{
+    RowBox[{"R", "=", 
+     RowBox[{
+      SubscriptBox["k", "B"], "*", "Na"}]}], " "}], 
+   TraditionalForm], "\[IndentingNewLine]", 
+  FormBox[
+   RowBox[{"D", "=", 
+    FractionBox[
+     RowBox[{"k", "*", "T"}], 
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r"}]]}], 
+   TraditionalForm]}],
+  FormatType->"TraditionalForm"],
+ "\nDonc :\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"D", "=", 
+    FractionBox[
+     RowBox[{"R", "*", "T"}], 
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r", "*", "Na"}]]}], 
+   TraditionalForm]]],
+ "\nNa = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"R", "*", "T"}], 
+    RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r", "*", "D"}]], 
+   TraditionalForm]]]
+}], "Text",
+ CellChangeTimes->{{3.634760506522684*^9, 3.634760507523418*^9}, {
+  3.634760639758375*^9, 3.634760685553974*^9}, {3.634760871059956*^9, 
+  3.634760878400296*^9}, {3.634760919895055*^9, 3.634760963541461*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"298", ",", "\"\<Kelvin\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"r", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"4", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "7"}]]}], ",", "\"\<Metre\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"R", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"8.314", ",", "\"\<Joule/Kelvin/mole\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Eta]", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"0.9", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "5"}]]}], ",", "\"\<kilogramme/centimetre/second\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Na", "=", 
+  RowBox[{
+   RowBox[{"UnitConvert", "[", 
+    FractionBox[
+     RowBox[{"R", "*", "T"}], 
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r", "*", "coefDiff"}]], 
+    "]"}], "//", "N"}]}]}], "Input",
+ CellChangeTimes->{{3.634760734437993*^9, 3.634760771676079*^9}, {
+  3.6347608034755497`*^9, 3.63476086141803*^9}, {3.634760968332284*^9, 
+  3.634761043577218*^9}, {3.63476108100779*^9, 3.634761240302017*^9}, {
+  3.634761295425675*^9, 3.6347613193229933`*^9}, {3.634761368756933*^9, 
+  3.634761369975604*^9}}],
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  FractionBox[
+   TemplateBox[{"3.6510910246858636`*^11"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            
+            RowBox[{"\"s\"", "\[ThinSpace]", "\"K\"", "\[ThinSpace]", "\"J\"",
+               "\[InvisibleSpace]", "\"/(\"", "\[InvisibleSpace]", "\"kg\"", 
+              "\[ThinSpace]", "\"mol\"", "\[ThinSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: second kelvin joules per kilogram mole kelvin difference"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Joules\"", " ", "\"Kelvins\"", " ", "\"Seconds\""}], 
+          
+          RowBox[{"\"KelvinsDifference\"", " ", "\"Kilograms\"", " ", 
+            "\"Moles\""}]]}], "]"}]& )], "coefDiff"], "]"}]], "Output",
+ CellChangeTimes->{
+  3.63476085636765*^9, 3.6347611526499767`*^9, {3.634761234156488*^9, 
+   3.634761242729444*^9}, {3.634761297628978*^9, 3.6347613204461412`*^9}, {
+   3.6349302204961557`*^9, 3.634930224811453*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["6. Constante bimol\[EAcute]culaire de r\[EAcute]action", "Section",
+ CellChangeTimes->{3.634761430277175*^9}],
+
+Cell[TextData[Cell[BoxData[{
+ FormBox[
+  RowBox[{"D", "=", 
+   FractionBox[
+    RowBox[{"k", "*", "T"}], 
+    RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r"}]]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"k", " ", "=", " ", 
+   FractionBox[
+    RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r", "*", "D"}], "T"]}], 
+  TraditionalForm]}]]], "Text",
+ CellChangeTimes->{{3.6349296766343393`*^9, 3.634929711476922*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"vitK", "[", 
+    RowBox[{"\[Eta]_", ",", "r_", ",", "D_", ",", "T_"}], "]"}], ":=", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{"6", "*", "\[Pi]", "*", "\[Eta]", "*", "r", "*", "D"}], "T"], 
+    ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"300", ",", "\"\<Kelvin\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Eta]", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]], ",", "\"\<Pascal*second\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<\[CapitalARing]\>\""}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.634929780212571*^9, 3.634929822479341*^9}, {
+  3.6349299751274557`*^9, 3.634930129793202*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"k", "=", 
+  RowBox[{
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"vitK", "[", 
+       RowBox[{"\[Eta]", ",", "d", ",", "D", ",", "T"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"D", ",", "coeffDesDiff"}], "}"}]}], "]"}], "]"}], "//", 
+   "N"}]}]], "Input",
+ CellChangeTimes->{{3.6349301391701193`*^9, 3.634930169582885*^9}, 
+   3.634930201846612*^9, {3.634930253262426*^9, 3.634930301239009*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{"5.849645520984196`*^-23"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"3.304955471576463`*^-23"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"6.283185307179587`*^-24"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"2.881468781872558`*^-24"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"7.4769905155437045`*^-25"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"6.534512719466769`*^-25"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"3.7322120724646734`*^-25"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"4.335397861953915`*^-25"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"2.1739821162841366`*^-25"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"7.288494956328319`*^-26"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"7.225663103256525`*^-26"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"2.764601535159018`*^-26"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"6.283185307179587`*^-27"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )], ",", 
+   TemplateBox[{"3.1415926535897934`*^-27"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", 
+            RowBox[{"\"kg\"", "\[ThinSpace]", 
+              SuperscriptBox["\"m\"", "2"], "\[InvisibleSpace]", "\"/(\"", 
+              "\[InvisibleSpace]", 
+              SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\"K\"", 
+              "\[InvisibleSpace]", "\")\""}]}], 
+          "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+      "Unit: kilogram meters squared per second squared kelvin"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", 
+         FractionBox[
+          RowBox[{"\"Kilograms\"", " ", 
+            SuperscriptBox["\"Meters\"", "2"]}], 
+          RowBox[{"\"Kelvins\"", " ", 
+            SuperscriptBox["\"Seconds\"", "2"]}]]}], "]"}]& )]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.634930203821213*^9, 3.634930225398099*^9}, {
+  3.6349302631133432`*^9, 3.63493030275979*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+7. R\[EAcute]versibilit\[EAcute] ou non de la diffusion unidimensionnelle le \
+long de l\[CloseCurlyQuote]ADN\
+\>", "Section",
+ CellChangeTimes->{3.6347614430419807`*^9}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1366, 744},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Linux x86 (64-bit) (December 4, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 138, 3, 93, "Title"],
+Cell[CellGroupData[{
+Cell[743, 29, 98, 1, 65, "Section"],
+Cell[844, 32, 8036, 260, 752, "Text"],
+Cell[CellGroupData[{
+Cell[8905, 296, 1989, 53, 152, "Input"],
+Cell[10897, 351, 823, 15, 37, "Output"],
+Cell[11723, 368, 821, 15, 37, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12593, 389, 171, 3, 65, "Section"],
+Cell[12767, 394, 4338, 118, 316, "Input"],
+Cell[17108, 514, 1217, 36, 207, "Text"],
+Cell[18328, 552, 925, 24, 137, "Input"],
+Cell[19256, 578, 1072, 19, 55, "Input"],
+Cell[CellGroupData[{
+Cell[20353, 601, 1129, 24, 60, "Input"],
+Cell[21485, 627, 39625, 935, 348, "Output"]
+}, Open  ]],
+Cell[61125, 1565, 798, 13, 55, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61960, 1583, 96, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[62081, 1588, 130, 2, 45, "Subsection"],
+Cell[62214, 1592, 1347, 24, 77, "Text"],
+Cell[63564, 1618, 537, 17, 68, "Text"],
+Cell[CellGroupData[{
+Cell[64126, 1639, 1277, 33, 159, "Input"],
+Cell[65406, 1674, 714, 15, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[66157, 1694, 415, 8, 77, "Input"],
+Cell[66575, 1704, 677, 14, 49, "Output"],
+Cell[67255, 1720, 678, 14, 49, "Output"],
+Cell[67936, 1736, 681, 14, 49, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68666, 1756, 134, 2, 44, "Subsection"],
+Cell[68803, 1760, 421, 7, 55, "Text"],
+Cell[CellGroupData[{
+Cell[69249, 1771, 882, 21, 99, "Input"],
+Cell[70134, 1794, 613, 14, 32, "Output"],
+Cell[70750, 1810, 624, 14, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71411, 1829, 578, 14, 99, "Input"],
+Cell[71992, 1845, 590, 13, 32, "Output"],
+Cell[72585, 1860, 597, 13, 32, "Output"],
+Cell[73185, 1875, 597, 13, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73831, 1894, 161, 2, 44, "Subsection"],
+Cell[73995, 1898, 289, 5, 33, "Text"],
+Cell[74287, 1905, 3205, 93, 482, "Text"],
+Cell[CellGroupData[{
+Cell[77517, 2002, 1157, 34, 228, "Input"],
+Cell[78677, 2038, 535, 12, 32, "Output"],
+Cell[79215, 2052, 542, 12, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[79794, 2069, 774, 18, 143, "Input"],
+Cell[80571, 2089, 543, 13, 34, "Output"],
+Cell[81117, 2104, 549, 13, 32, "Output"],
+Cell[81669, 2119, 552, 13, 32, "Output"],
+Cell[82224, 2134, 550, 13, 32, "Output"],
+Cell[82777, 2149, 552, 13, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83378, 2168, 141, 2, 44, "Subsection"],
+Cell[83522, 2172, 263, 5, 33, "Text"],
+Cell[83788, 2179, 686, 22, 98, "Text"],
+Cell[CellGroupData[{
+Cell[84499, 2205, 1260, 36, 247, "Input"],
+Cell[85762, 2243, 514, 12, 32, "Output"],
+Cell[86279, 2257, 521, 12, 32, "Output"],
+Cell[86803, 2271, 521, 12, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[87361, 2288, 727, 17, 143, "Input"],
+Cell[88091, 2307, 491, 12, 34, "Output"],
+Cell[88585, 2321, 495, 12, 32, "Output"],
+Cell[89083, 2335, 495, 12, 32, "Output"],
+Cell[89581, 2349, 496, 12, 32, "Output"],
+Cell[90080, 2363, 499, 12, 32, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[90640, 2382, 141, 2, 65, "Section"],
+Cell[90784, 2386, 1389, 36, 105, "Text"],
+Cell[92176, 2424, 651, 19, 92, "Input"],
+Cell[CellGroupData[{
+Cell[92852, 2447, 680, 17, 77, "Input"],
+Cell[93535, 2466, 1051, 32, 69, "Output"],
+Cell[94589, 2500, 1142, 34, 78, "Output"]
+}, Open  ]],
+Cell[95746, 2537, 109, 1, 33, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[95892, 2543, 114, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[96031, 2548, 132, 2, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[96188, 2554, 460, 10, 55, "Input"],
+Cell[96651, 2566, 44903, 965, 267, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[141603, 3537, 134, 2, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[141762, 3543, 2716, 68, 287, "Input"],
+Cell[144481, 3613, 1115, 20, 34, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[145645, 3639, 167, 4, 35, "Subsubsection"],
+Cell[145815, 3645, 209, 5, 32, "Input"],
+Cell[CellGroupData[{
+Cell[146049, 3654, 200, 5, 59, "Input"],
+Cell[146252, 3661, 755, 19, 34, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[147056, 3686, 183, 4, 35, "Subsubsection"],
+Cell[147242, 3692, 241, 6, 45, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[147520, 3703, 132, 2, 35, "Subsubsection"],
+Cell[147655, 3707, 996, 33, 160, "Text"],
+Cell[CellGroupData[{
+Cell[148676, 3744, 1334, 38, 154, "Input"],
+Cell[150013, 3784, 1243, 27, 52, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[151317, 3818, 115, 1, 65, "Section"],
+Cell[151435, 3821, 445, 12, 82, "Text"],
+Cell[151883, 3835, 895, 26, 131, "Input"],
+Cell[CellGroupData[{
+Cell[152803, 3865, 470, 12, 32, "Input"],
+Cell[153276, 3879, 13168, 299, 85, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[166471, 4182, 180, 4, 65, "Section"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
