@@ -101,20 +101,34 @@ nivExprAccuDomDict = accumulateNivExprDom(nivExprDomDict,domIdDict)
 nivExprAccuDomSortList = np.array(sortDictByValue(nivExprAccuDomDict))
 nivExpr = np.array([ int(val) for val in nivExprAccuDomSortList[:,1]])
 domains  = nivExprAccuDomSortList[:,0]
-plotBarChart(nivExpr[:100],domains[:100])
+# plotBarChart(nivExpr[:100],domains[:100])
+nivExpr400 = nivExpr[:400]
+domains400 = domains[:400]
+plotBarChart(nivExpr400,domains400,"nivExpr400")
+moy = np.mean(nivExpr400)
+std = np.std(nivExpr400)
+plotBarChart(nivExpr400[nivExpr400<moy],domains400[nivExpr400<moy],"nivExpr400<moy")
+plotBarChart(nivExpr400[nivExpr400<moy+std],domains400[nivExpr400<moy+std],"nivExpr400moy+std")
+plotBarChart(nivExpr400[nivExpr400<moy+2*std],domains400[nivExpr400<moy+2*std],"nivExpr400moy+2std")
 
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
 gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
-plotgCAIsDomain(gCAIsDomList[:20000,1],gCAIsDomList[:20000,0])
-
+step = 100
+plotgCAIsDomain2(gCAIsDomList[:,1],gCAIsDomList[:,0],"gCAIsDistr")
+exit()
+for i in range(200,401,step):
+    indice = ( gCAIsDomList[:,0] < i+1)*(gCAIsDomList[:,0] > i - step )
+    plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleur%d"%i)
+    plotgCAIsDomain2(gCAIsDomList[indice,1],gCAIsDomList[indice,0]-i+step+1,"gCAIsDistr%d"%i)
+exit()
 print "Nombre de nivExpr < 30 : ", sum(nivExpr<30)
 indice1 = (nivExpr>30)*(nivExpr<100)
 print "Nombre de 30 < nivExpr < 100 : ", sum(indice1)
 indice2 = nivExpr>100
 print "Nombre de nivExpr > 100 : ", sum(indice2)
 
-
+exit()
 # saving plots
 # np.savetxt("gCAIs.nivExpr.txt", np.array(zip(gCAIs,nivExpr)))
 plotgCAISNivExpr(gCAIs[indice1],nivExpr[indice1],"30<nivExpr<100")

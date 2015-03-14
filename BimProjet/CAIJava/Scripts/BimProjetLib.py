@@ -193,7 +193,7 @@ def autolabel(ax,rects):
         height = rect.get_height()
         ax.text(rect.get_x()+rect.get_width()/2., 1.05*height, '%d'%int(height), ha='center', va='bottom')
 
-def plotBarChart(plotList,labels):
+def plotBarChart(plotList,labels,figName=None):
     fig, ax = plt.subplots()
     rects   = ax.bar(np.arange(len(plotList)), plotList, color='blue')
     # add some text for labels, title and axes ticks
@@ -202,12 +202,30 @@ def plotBarChart(plotList,labels):
     # ax.set_xticks(ind+width)
     ax.set_xticklabels(labels,rotation=90)
     # autolabel(ax,rects)
-    plt.show()
-
-def plotgCAIsDomain(X,Y):
-    print len(np.unique(Y))
+    if figName:
+        plt.savefig(figName)
+    else:
+        plt.show()
+    plt.close()
+    
+def plotgCAIsDomain(X,Y,figName=None):
     pylab.hist2d(X,Y,bins=len(np.unique(Y)))
-    pylab.show()
+    if figName:
+        pylab.savefig(figName)
+    else:
+        pylab.show()
+    pylab.close()
+    
+def plotgCAIsDomain2(X,Y,figName=None):
+    T = np.arctan2(X,np.ones(len(X)))
+    pylab.scatter(X,Y, s=75, c=T, alpha=.5)
+    pylab.xlim(0  ,1.2), pylab.xticks([])
+    pylab.ylim(-0.5,len(np.unique(Y))), pylab.yticks([])
+    if figName:
+        pylab.savefig(figName)
+    else:
+        pylab.show()
+    pylab.close()
     
 def plotgCAISNivExpr(gCAIs,nivExpr,figName=None):
     fig = plt.figure()
@@ -223,7 +241,8 @@ def plotgCAISNivExpr(gCAIs,nivExpr,figName=None):
         plt.savefig(figName)
     else:
         plt.show()
-
+    plt.close()
+    
 def plotHist(scores,figName=None):
     fig = plt.figure()
     plt.hist(scores)
@@ -231,7 +250,8 @@ def plotHist(scores,figName=None):
         plt.savefig(figName)
     else:
         plt.show()
-    
+    plt.close()
+        
 def saveIDgCAInivExpr(fname,data):
     fb = open(fname,'w')
     # fb.write("ID\tgCAIs\tNivExpr\n")
