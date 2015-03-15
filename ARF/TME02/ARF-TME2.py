@@ -11,27 +11,39 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
     #nbex : nombre d'exemples
     # ex_type : vrai pour gaussiennes, faux pour echiquier
     #epsilon : bruit
-
     if data_type==0:
         #melange de 2 gaussiennes
         xpos=np.random.multivariate_normal([centerx,centery],np.diag([sigma,sigma]),nbex/2)
         xneg=np.random.multivariate_normal([-centerx,-centery],np.diag([sigma,sigma]),nbex/2)
         data=np.vstack((xpos,xneg))
         y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
-        
     if data_type==1:
         #melange de 4 gaussiennes
         xpos=np.vstack((np.random.multivariate_normal([centerx,centery],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([-centerx,-centery],np.diag([sigma,sigma]),nbex/4)))
         xneg=np.vstack((np.random.multivariate_normal([-centerx,centery],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx,-centery],np.diag([sigma,sigma]),nbex/4)))
         data=np.vstack((xpos,xneg))
         y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
-
     if data_type==2:
+        # melange de 16 gaussiennes
+        data = None
+        y    = None
+        for wx,wy in [[1,1],[1,4],[4,1],[4,4]]:
+            xpos=np.vstack((np.random.multivariate_normal([centerx*wx,centery*wy],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([-centerx*wx,-centery*wy],np.diag([sigma,sigma]),nbex/4)))
+            xneg=np.vstack((np.random.multivariate_normal([-centerx*wx,centery*wy],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx*wx,-centery*wy],np.diag([sigma,sigma]),nbex/4)))
+            if data is None or y is None:
+                data=np.vstack((xpos,xneg))
+                y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
+            else:
+                data=np.vstack((data,xpos,xneg))
+                if wx == wy:
+                    y=np.hstack((y,np.ones(nbex/2),-np.ones(nbex/2)))
+                else:
+                    y=np.hstack((y,-np.ones(nbex/2),np.ones(nbex/2)))
+    if data_type==3:
         #echiquier
         data=np.reshape(np.random.uniform(-4,4,2*nbex),(nbex,2))
         y=np.ceil(data[:,0])+np.ceil(data[:,1])
         y=2*(y % 2)-1
-
     # un peu de bruit
     data[:,0]+=np.random.normal(0,epsilon,nbex)
     data[:,1]+=np.random.normal(0,epsilon,nbex)
@@ -160,6 +172,8 @@ for k in [2**i for i in range(6)] :
     # plot_frontiere(data,y,knn.predict,"knn(k=%d)"%k)
     print "function: Knn[%d]\t Score: %f\n"%(k,knn.score(testX,testY))
     plot_frontiere(testX,testY,knn.predict)
+    
+exit()
 
 for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
     for h in (0.7,0.5,0.3,0.1,0.05):
