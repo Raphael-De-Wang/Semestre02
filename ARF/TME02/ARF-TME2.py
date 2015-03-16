@@ -173,8 +173,6 @@ for k in [2**i for i in range(6)] :
     print "function: Knn[%d]\t Score: %f\n"%(k,knn.score(testX,testY))
     plot_frontiere(testX,testY,knn.predict)
     
-exit()
-
 for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
     for h in (0.7,0.5,0.3,0.1,0.05):
         parzen = Parzen(K,h)
