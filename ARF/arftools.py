@@ -53,8 +53,8 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
         y=np.ceil(data[:,0])+np.ceil(data[:,1])
         y=2*(y % 2)-1
     # un peu de bruit
-    data[:,0]+=np.random.normal(0,epsilon,nbex)
-    data[:,1]+=np.random.normal(0,epsilon,nbex)
+    data[:,0]+=np.random.normal(0,epsilon,len(data))
+    data[:,1]+=np.random.normal(0,epsilon,len(data))
     # on mélange les données
     idx = np.random.permutation((range(y.size)))
     data=data[idx,:]

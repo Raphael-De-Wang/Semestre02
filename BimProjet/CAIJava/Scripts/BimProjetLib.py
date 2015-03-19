@@ -145,15 +145,29 @@ def domainIdDict(idList):
     for ID in idList:
         gName,RF,begin,end,domain = gNameRFBeginEndDomainToStrArray(ID)
         if did.has_key(domain):
-            did[domain].append(ID)
+            if ID not in did.get(domain):
+                did[domain].append(ID)
         else:
             did[domain] = [ID]
     return did
 
+def domainGenomeDict(idList):
+    dgs = dict()
+    for ID in idList:
+        gName,RF,begin,end,domain = gNameRFBeginEndDomainToStrArray(ID)
+        if dgs.has_key(domain):
+            if gName not in dgs.get(domain):
+                dgs[domain].append(gName)
+        else:
+            dgs[domain] = [gName]
+    return dgs
+
 def accumulateNivExprDom(nivExprDomDict,domIdDict):
     acc = dict()
     for key in domIdDict:
-        acc[key] = len(domIdDict[key])*nivExprDomDict[key]
+        acc[key] = 0
+        for gName in domIdDict[key]:
+            acc[key] = acc[key] + nivExprDomDict[gName]
     return acc
 
 def sortDictByValue(dic):
@@ -195,6 +209,7 @@ def autolabel(ax,rects):
 
 def plotBarChart(plotList,labels,figName=None):
     fig, ax = plt.subplots()
+    fig.set_figheight(fig.get_figheight()+2)
     rects   = ax.bar(np.arange(len(plotList)), plotList, color='blue')
     # add some text for labels, title and axes ticks
     ax.set_ylabel('Niveau d\'Expression')
@@ -209,7 +224,11 @@ def plotBarChart(plotList,labels,figName=None):
     plt.close()
     
 def plotgCAIsDomain(X,Y,figName=None):
-    pylab.hist2d(X,Y,bins=len(np.unique(Y)))
+    pylab.figure(figsize=(20,4))
+    pylab.hist2d(Y,X,bins=[len(np.unique(Y)),50])
+    pylab.xlabel("Domain Sorted By Translation Level")
+    pylab.ylabel("gCAIs")
+    pylab.colorbar()
     if figName:
         pylab.savefig(figName)
     else:
@@ -217,10 +236,13 @@ def plotgCAIsDomain(X,Y,figName=None):
     pylab.close()
     
 def plotgCAIsDomain2(X,Y,figName=None):
-    T = np.arctan2(X,np.ones(len(X)))
-    pylab.scatter(X,Y, s=75, c=T, alpha=.5)
-    pylab.xlim(0  ,1.2), pylab.xticks([])
-    pylab.ylim(-0.5,len(np.unique(Y))), pylab.yticks([])
+    T = np.arctan(X)#,np.ones(len(X)))
+    pylab.figure(figsize=(20,4))
+    pylab.scatter(Y,X, s=75, c=T, alpha=.5)
+    pylab.ylim(0,1.2), pylab.yticks([])
+    pylab.xlim(0,len(np.unique(Y))), pylab.xticks([])
+    pylab.xlabel("Domain Sorted By Translation Level")
+    pylab.ylabel("gCAIs")
     if figName:
         pylab.savefig(figName)
     else:
@@ -280,6 +302,13 @@ def nivExprDomain(step2MList, colNum):
         else:
             nivExprDict[domain] = ne + 1
     return nivExprDict
+
+def getGIDList(step2MList):
+    GIDs = []
+    for line in step2MList:
+        (score,gName,domain,gId,ARC,RF,reverse,begin,end,desc) = Step2FormatSepArchs(line)
+        GIDs.append(toStringGNameRFBeginEndDomain(gName,RF,begin,end,domain))
+    return np.array(GIDs)
 
 #### trier la donnee ####
 def trierFastaByDomain(tgtDomain,fastaDict,step2List,writeFileName,formatFunc):

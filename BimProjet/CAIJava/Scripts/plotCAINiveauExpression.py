@@ -82,42 +82,47 @@ def sortByNivExprDomJoinCAIs(sortCAIs,nivExprDomDict):
 
 # loading
 CLS_dict = readClstr("AT_arc_metatrans.filtered.fasta.clstr")
-CAI_dict = readgCAIs("../output/cais.lst.bestdomain.e-8")
+CAI_dict = readgCAIs("../output/cais.lst.2step")
 step2MList   = read2step("AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step")
-nivExprDomDict = nivExprDomain(step2MList, 4)
 # step2MList[binSearch(step2MList,step2GnameComp,"GG7SD3401DYJ3N")]
 
-nivExprDomDict = nivExprDomain(step2MList,4)
-print "Domaine Nombre: ",len(nivExprDomDict)
+# nivExprDomDict = nivExprDomain(step2MList,4)
+# print "Domaine Nombre: ",len(nivExprDomDict)
 # sortCLS = np.array(sortDictByValue(CLS_dict))
-sortCAIs = np.array(sortDictByValue(CAI_dict))
+# sortCAIs = np.array(sortDictByValue(CAI_dict))
 
 # gID,nivExpr,gCAIs = sortByCAIsJoinNivExprDom(sortCAIs,nivExprDomDict)
-gID,nivExpr,gCAIs = sortByNivExprDomJoinCAIs(sortCAIs,nivExprDomDict)
+# gID,nivExpr,gCAIs = sortByNivExprDomJoinCAIs(sortCAIs,nivExprDomDict)
+gIDList = getGIDList(step2MList)
 
 # Accumulate Niveau Expression :
-domIdDict = domainIdDict(gID)
-nivExprAccuDomDict = accumulateNivExprDom(nivExprDomDict,domIdDict)
+domIdDict = domainIdDict(gIDList)
+domGenomeDict = domainGenomeDict(gIDList)
+nivExprAccuDomDict = accumulateNivExprDom(CLS_dict,domGenomeDict)
 nivExprAccuDomSortList = np.array(sortDictByValue(nivExprAccuDomDict))
 nivExpr = np.array([ int(val) for val in nivExprAccuDomSortList[:,1]])
 domains  = nivExprAccuDomSortList[:,0]
-# plotBarChart(nivExpr[:100],domains[:100])
-nivExpr400 = nivExpr[:400]
-domains400 = domains[:400]
-plotBarChart(nivExpr400,domains400,"nivExpr400")
-moy = np.mean(nivExpr400)
-std = np.std(nivExpr400)
-plotBarChart(nivExpr400[nivExpr400<moy],domains400[nivExpr400<moy],"nivExpr400<moy")
-plotBarChart(nivExpr400[nivExpr400<moy+std],domains400[nivExpr400<moy+std],"nivExpr400moy+std")
-plotBarChart(nivExpr400[nivExpr400<moy+2*std],domains400[nivExpr400<moy+2*std],"nivExpr400moy+2std")
-
+'''
+moy = np.mean(nivExpr)
+std = np.std(nivExpr)
+plotBarChart(nivExpr,domains,"NivExprAll")
+plotBarChart(nivExpr[nivExpr<moy],domains[nivExpr<moy],"nivExpr<moy")
+plotBarChart(nivExpr[nivExpr<moy+std],domains[nivExpr<moy+std],"nivExprmoy+std")
+plotBarChart(nivExpr[nivExpr<moy+2*std],domains[nivExpr<moy+2*std],"nivExprmoy+2std")
+plotBarChart(nivExpr[nivExpr<moy+3*std],domains[nivExpr<moy+3*std],"nivExprmoy+3std")
+plotBarChart(nivExpr[nivExpr<moy+4*std],domains[nivExpr<moy+4*std],"nivExprmoy+4std")
+'''
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
 gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
-step = 100
+indice = gCAIsDomList[:,0] < 1000
+plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop1000")
+indice = gCAIsDomList[:,0] < 500
+plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop500")
 plotgCAIsDomain2(gCAIsDomList[:,1],gCAIsDomList[:,0],"gCAIsDistr")
 exit()
-for i in range(200,401,step):
+step = 100
+for i in range(100,401,step):
     indice = ( gCAIsDomList[:,0] < i+1)*(gCAIsDomList[:,0] > i - step )
     plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleur%d"%i)
     plotgCAIsDomain2(gCAIsDomList[indice,1],gCAIsDomList[indice,0]-i+step+1,"gCAIsDistr%d"%i)
