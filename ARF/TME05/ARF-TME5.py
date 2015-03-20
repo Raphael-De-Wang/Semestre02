@@ -154,3 +154,4 @@ print "score: ",perc.score(testXGau,testY)
 plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])))
 plot_data(testX,testY)
 plt.show()
+

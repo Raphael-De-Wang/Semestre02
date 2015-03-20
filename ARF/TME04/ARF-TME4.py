@@ -100,7 +100,7 @@ alpha  = 0.5
 rb     = Rosenbrock(alpha)
 rb_f   = OptimFunc(rb.f,rb.grad_f)
 rb_grd = GradientDescent(rb_f,max_iter=5000)
-# rb_grd.optimize()
+rb_grd.optimize()
     
 # <markdowncell>
 
@@ -117,8 +117,8 @@ def hinge_grad(data,y,w): # return (n,d)
 # 
 # + Coder une classe Perceptron qui hérite de Classifier, OptimFunc, et GradientDescent.  Tester la sur des données artificielles.
 class Perceptron(Classifier,OptimFunc,GradientDescent):
-    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6):
-        self.dim = 2
+    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6,dim=2):
+        self.dim = dim
         GradientDescent.__init__(self,self,eps,max_iter,delta)
     def fit(self,data,y):
         self.data = data
@@ -140,29 +140,56 @@ perc.fit(trainX,trainY)
 print perc.score(testX,testY)
 
 # + Tracer la trajectoire de l'apprentissage dans l'espace des poids et les frontières obtenues dans l'espace d'exemple.
-'''
-m=5
-x=np.arange(-m,m,2*m/20.)
-y=np.arange(-m,m,2*m/20.)
-xx,yy=np.meshgrid(x,y)
-grid=np.c_[xx.ravel(),yy.ravel()]
-z=.f(grid).reshape(xx.shape)
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-surf = ax.plot_surface(xx, yy, z, rstride=1, cstride=1, cmap=cm.gist_rainbow, linewidth=0, antialiased=False)
-fig.colorbar(surf)
-ax.plot(grd_rosen.log_x[:,0],grd_rosen.log_x[:,1],grd_rosen.log_f.ravel(),color='black')
-plt.show()
-'''
-# 
+def traceEspaceDesPoids(perc,grd,m=5):
+    x=np.arange(-m,m,2*m/20.)
+    y=np.arange(-m,m,2*m/20.)
+    xx,yy=np.meshgrid(x,y)
+    grid=np.c_[xx.ravel(),yy.ravel()]
+    z=np.reshape([perc.f(w) for w in grid],xx.shape)
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+    surf = ax.plot_surface(xx, yy, z, rstride=1, cstride=1, cmap=cm.gist_rainbow, linewidth=0, antialiased=False)
+    fig.colorbar(surf)
+    ax.plot(grd.log_x[:,0],grd.log_x[:,1],grd.log_f.ravel(),color='black')
+    plt.show()
+
+# traceEspaceDesPoids(perc,rb_grd)
+    
 # + Modifier vos fonctions afin de permettre la prise en compte d'un biais.
-# 
+class PerceptronBias(Perceptron):
+    def fit(self,data,y,bias=None):
+        if bias is None:
+            bias=np.zeros(len(data[0]))
+        self.data = data - bias
+        self.y    = y
+        self.optimize()
+
+perc = PerceptronBias()
+perc.fit(trainX,trainY,[0.2,0.1])
+print perc.score(testX,testY)
+# traceEspaceDesPoids(perc,rb_grd)
+
 # + Creer une nouvelle classe PerceptronQuad qui implémente une erreur quadratique (aux moindres carrrés). Quelles différences remarquez vous ?
-# 
+def quadratique_f(data,y,w):
+    return ((y - data.dot(w.T))**2)/2
+    
+def quadratique_grad(data,y,w):
+    return -(y - data.dot(w.T))*data
+
+class PerceptronQuad(PerceptronBias):
+    def f(self,w):
+        return quadratique_f(self.data,self.y,w).sum()
+    def grad_f(self,w):
+        return quadratique_grad(self.data,self.y,w).sum(0)
+
+perc = PerceptronQuad()
+perc.fit(trainX,trainY,[0.2,0.1])
+print perc.score(testX,testY)
+traceEspaceDesPoids(perc,rb_grd)
+
 # + Coder une fonction de projection polynomiale des données comme vu en TD. Faites les expériences et tracer les frontières. 
-# 
+
 # + Modifier vos fonctions afin de permettre une descente de gradient stochastique. Quelles différences observez-vous ?
 
 # <codecell>
-
 

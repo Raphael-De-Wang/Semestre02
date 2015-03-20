@@ -91,7 +91,11 @@ def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace d
         res=res.reshape(xvec.shape)
         # tracer des frontieres
         plt.contourf(xvec,yvec,res,colors=('gray','blue'),levels=[-1,0,1])
-        
+
+def plot(x,labels,f,step=20,fname=None):
+    plot_frontiere(x,f,step)
+    plot_data(x,labels)
+    plt.show()
 ##################################################################
 
 class Classifier(object):
@@ -123,10 +127,10 @@ class OptimFunc(object):
 
 class GradientDescent(object):
     def __init__(self,optim_f,eps=1e-4,max_iter=5000,delta=1e-6):
-        self.eps=eps
-        self.optim_f=optim_f
+        self.eps     =eps
+        self.optim_f =optim_f
         self.max_iter=max_iter
-        self.delta=delta
+        self.delta   =delta
     def reset(self):
         self.i=0
         self.x = self.optim_f.x_random()
@@ -137,7 +141,7 @@ class GradientDescent(object):
         if reset:
             self.reset()
         while not self.stop():
-            self.x = self.x - self.get_eps()*self.optim_f.grad_f(self.x)
+            self.x    = self.x - self.get_eps()*self.optim_f.grad_f(self.x)
             self.log_x=np.vstack((self.log_x,self.x))
             self.log_f=np.vstack((self.log_f,self.optim_f.f(self.x)))
             self.log_grad=np.vstack((self.log_grad,self.optim_f.grad_f(self.x)))

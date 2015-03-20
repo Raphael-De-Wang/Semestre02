@@ -123,21 +123,21 @@ class NeuroNetwork(Classifier):
                 resultats.append(-1.)
         return np.array(resultats)
         
-trainX,trainY = gen_arti(data_type=2)
-testX ,testY  = gen_arti(data_type=2)
+trainX,trainY = gen_arti(data_type=3)
+testX ,testY  = gen_arti(data_type=3)
 # np.save("trainX",trainX[:10])
 # np.save("trainY",trainY[:10])
 # trainX = np.load("trainX.npy")
 # trainY = np.load("trainY.npy")
 # trainY = np.array(zip(trainY,trainY))
-eta = 0.1
-# ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,5],[sigmoid,grad_sigmoid,5,4]],2)
-ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,20]],1,0.5,eta)
+eta = 0.2
+ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10],[sigmoid,grad_sigmoid,10,6]],1,0.5,eta)
+# ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,15]],1,0.5,eta)
 # ann = NeuroNetwork([[tangH,grad_tangH,3,5]],1,eta)
 
 # print ann.layers[-1].getWeightMatrix()
 
-for i in xrange(20):
+while ann.score(testX,testY) < 0.9:
     ann.fit(trainX,trainY)
     print ann.score(testX,testY)
 
