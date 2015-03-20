@@ -174,7 +174,7 @@ def quadratique_f(data,y,w):
     return ((y - data.dot(w.T))**2)/2
     
 def quadratique_grad(data,y,w):
-    return -(y - data.dot(w.T))*data
+    return -(y - data.dot(w.T)).dot(data)
 
 class PerceptronQuad(PerceptronBias):
     def f(self,w):
@@ -182,12 +182,15 @@ class PerceptronQuad(PerceptronBias):
     def grad_f(self,w):
         return quadratique_grad(self.data,self.y,w).sum(0)
 
-perc = PerceptronQuad()
+perc = PerceptronQuad(delta=1e-10)
+# perc.eps = .001
 perc.fit(trainX,trainY,[0.2,0.1])
 print perc.score(testX,testY)
-traceEspaceDesPoids(perc,rb_grd)
+# traceEspaceDesPoids(perc,rb_grd)
 
 # + Coder une fonction de projection polynomiale des données comme vu en TD. Faites les expériences et tracer les frontières. 
+
+traceEspaceDesCouts(trainX,trainY,perc.log_x,perc.x)
 
 # + Modifier vos fonctions afin de permettre une descente de gradient stochastique. Quelles différences observez-vous ?
 

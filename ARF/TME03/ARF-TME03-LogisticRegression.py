@@ -11,7 +11,7 @@ from arftools import *
 def sigmoid(w,x):
     return 1./(1.+np.exp(x.dot(w)))
 def grad_sigmoid(w,x,y):
-    return (sigmoid(w,x)-y).dot(x)/y.size
+    return (sigmoid(w,x)-y).dot(x)
 
 class LogisticRegression(Classifier,OptimFunc,GradientDescent):
     def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6,dim=2):
@@ -37,4 +37,6 @@ lr.fit(trainX,trainY)
 print lr.score(testX,testY)
 
 plot(testX,testY,lr.predict,step=100)
+
+
 

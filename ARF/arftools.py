@@ -78,7 +78,7 @@ def make_grid(xmin=-5,xmax=5,ymin=-5,ymax=5,data=None,step=20):
     grid=np.c_[xx.ravel(),yy.ravel()]
     return grid,xx,yy
 
-    #Frontiere de decision
+#Frontiere de decision
 def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
                                     # et trace la frontiere
         grid,xvec,yvec=make_grid(data=x,step=step)
@@ -93,9 +93,38 @@ def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace d
         plt.contourf(xvec,yvec,res,colors=('gray','blue'),levels=[-1,0,1])
 
 def plot(x,labels,f,step=20,fname=None):
+    fig = plt.figure()
     plot_frontiere(x,f,step)
     plot_data(x,labels)
+    if fname is None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
+def traceVraisemblance(vList,fname=None):
+    fig = plt.figure()
+    plt.plot()
+    if fname is None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
+def traceEspaceDesCouts(X,y,allw,wstar):
+    # tracer de l'espace des couts
+    ngrid = 20
+    w1range = np.linspace(-14, 14, ngrid)
+    w2range = np.linspace(-15, 15, ngrid)
+    w1,w2 = np.meshgrid(w1range,w2range)
+    cost = np.array([[np.log(((X.dot(np.array([w1i,w2j]))-y)**2).sum()) for w1i in w1range] for w2j in w2range])
+    fig = plt.figure()
+    plt.contour(w1, w2, cost)
+    plt.scatter(wstar[0], wstar[1],c='r')
+    plt.plot(allw[:,0],allw[:,1],'b+-' ,lw=2 )
     plt.show()
+    plt.close(fig)
+        
 ##################################################################
 
 class Classifier(object):
