@@ -127,7 +127,8 @@ def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
 def phiGaussien(x,data,var):
-    return np.array([ np.exp(-(np.linalg.norm(record - data,axis=1)**2)/var) for record in x ])
+    # return np.array([ np.exp(-(np.linalg.norm(record - data,axis=1)**2)/var) for record in x ])
+    return np.array([ np.exp(-np.sum((record - data)**2,axis=1)/var) for record in x ])
 
 trainX,trainY = gen_arti(data_type=1)
 testX ,testY  = gen_arti(nbex=100,data_type=1)
