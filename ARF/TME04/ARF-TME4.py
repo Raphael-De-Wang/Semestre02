@@ -190,9 +190,11 @@ print perc.score(testX,testY)
 
 # + Coder une fonction de projection polynomiale des données comme vu en TD. Faites les expériences et tracer les frontières. 
 
-traceEspaceDesCouts(trainX,trainY,perc.log_x,perc.x)
+# traceEspaceDesCouts(trainX,trainY,perc.log_x,perc.x)
 
 # + Modifier vos fonctions afin de permettre une descente de gradient stochastique. Quelles différences observez-vous ?
+
+raise NotImplementedError("gradient stochastique non implemente")
 
 # <codecell>
 
