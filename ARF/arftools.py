@@ -31,6 +31,14 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
         xneg=np.vstack((np.random.multivariate_normal([-centerx,centerx],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx,-centerx],np.diag([sigma,sigma]),nbex/4)))
         data=np.vstack((xpos,xneg))
         y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
+    if data_type==4:
+        #melange de 4 gaussiennes
+        xpos=np.vstack((np.random.multivariate_normal([centerx,centerx],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([-centerx,-centerx],np.diag([sigma,sigma]),nbex/4)))
+        xneg=np.vstack((np.random.multivariate_normal([-centerx,centerx],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx,-centerx],np.diag([sigma,sigma]),nbex/4)))
+        data=np.vstack((xpos,xneg))
+        y=np.hstack((np.zeros(nbex/4),2*np.ones(nbex/4)))
+        y=np.hstack((y, 3*np.ones(nbex/4)))
+        y=np.hstack((y, np.ones(nbex/4)))
     if data_type==2:
         # melange de 16 gaussiennes
         data = None
@@ -65,6 +73,12 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
 def plot_data(x,labels):
         plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
         plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
+        
+def plot_data_4class(x,labels):
+        plt.scatter(x[labels==0,0],x[labels==0,1],c='red',marker='x')
+        plt.scatter(x[labels==1,0],x[labels==1,1],c='green',marker='+')
+        plt.scatter(x[labels==2,0],x[labels==2,1],c='yellow',marker='o')
+        plt.scatter(x[labels==3,0],x[labels==3,1],c='pink',marker='*')
 
 def make_grid(xmin=-5,xmax=5,ymin=-5,ymax=5,data=None,step=20):
     if data!=None:
@@ -79,23 +93,32 @@ def make_grid(xmin=-5,xmax=5,ymin=-5,ymax=5,data=None,step=20):
     return grid,xx,yy
 
 #Frontiere de decision
-def plot_frontiere(x,f,step=20): # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
-                                    # et trace la frontiere
+def plot_frontiere(x,f,step=20):
         grid,xvec,yvec=make_grid(data=x,step=step)
-        #mmax=x.max(0)
-        #mmin=x.min(0)
-        #x1grid,x2grid=np.meshgrid(np.linspace(mmin[0],mmax[0],step),np.linspace(mmin[1],mmax[1],step))
-        #grid=np.hstack((x1grid.reshape(x1grid.size,1),x2grid.reshape(x2grid.size,1)))
-        # calcul de la prediction pour chaque point de la grille
         res=f(grid)
         res=res.reshape(xvec.shape)
-        # tracer des frontieres
         plt.contourf(xvec,yvec,res,colors=('gray','blue'),levels=[-1,0,1])
+
+def plot_frontiere_4class(x,f,step=20):
+        grid,xvec,yvec=make_grid(data=x,step=step)
+        res=f(grid)
+        res=res.reshape(xvec.shape)
+        plt.contourf(xvec,yvec,res,colors=('gray','blue','orange','cyan'),levels=[-1,0,1,2,3])
 
 def plot(x,labels,f,step=20,fname=None):
     fig = plt.figure()
     plot_frontiere(x,f,step)
     plot_data(x,labels)
+    if fname is None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
+def plot_4class(x,labels,f,step=20,fname=None):
+    fig = plt.figure()
+    plot_frontiere_4class(x,f,step)
+    plot_data_4class(x,labels)
     if fname is None:
         plt.show()
     else:
@@ -124,7 +147,7 @@ def traceEspaceDesCouts(X,y,allw,wstar):
     plt.plot(allw[:,0],allw[:,1],'b+-' ,lw=2 )
     plt.show()
     plt.close(fig)
-        
+
 ##################################################################
 
 class Classifier(object):

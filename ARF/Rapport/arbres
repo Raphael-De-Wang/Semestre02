@@ -1,3 +1,5 @@
+(Le coût de calcul est O(logN). N est la taille d'échantillons. )
+
 /users/nfs/Etu9/3404759/Workspace/Semestre02/ARF/TME01 $ python ARF-TME1.py
 0.999
 var 0 :  <=|> -0.031184 

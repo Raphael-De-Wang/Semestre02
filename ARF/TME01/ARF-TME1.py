@@ -1,38 +1,11 @@
 # -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
-
-# <markdowncell>
-
-# # TME1
-# 
-# _Objectifs_ :
-# 
-# * prendre en main la syntaxe objet python (et les modules)
-# 
-# * expérimenter les arbres de décisions
-# 
-# * découverte des effets de sur/sous-apprentissage
-# 
-# 
-# ## Arbre de décisions et objets
-
-# <markdowncell>
-
-# Le code suivant est une implémentation objet des arbres de décision en python, pour variable continue.
-# Il y a 3 passages à compléter (une ligne à chaque fois) :
-# 
-# * dans la classe mère Classifier, la fonction score(x,y), qui doit donner la précision sur l'ensemble (x,y) en utilisant la fonction predict
-# 
-# * dans la classe DecisionTree, dans fit et predict
-# 
-# Lisez bien le code de facon a comprendre grossierement comment fonctionne les objets en python. Completez ce qui est necessaire.
-
-# <codecell>
-
 import numpy as np
 from collections import Counter
 import pydot  #pour l'affichage graphique d'arbres
 import matplotlib.pyplot as plt
+
+from arftools import *
+
 ###############################
 # Fonctions auxiliaires
 ###############################
@@ -263,110 +236,31 @@ class DecisionTree(Classifier):
     def to_pdf(self,filename,dic_var=None):
         pydot.graph_from_dot_data(self.to_dot(dic_var)).write_pdf(filename)
 
-# <markdowncell>
+def plot_scores(arange,repeat,xTrain,yTrain,xTest,yTest):
+    scores = []
+    for depth in arange:
+        s = []
+        for i in range(repeat):
+            dt = DecisionTree(max_depth=depth)
+            dt.fit(xTrain,yTrain)
+            s.append(dt.score(xTest,yTest))
+        scores.append(np.mean(s))
 
-# 
-# ## Expérimentations sur jeu de données artificielles 
-# 
-# + Prenez en main le code suivant, que génère-t-il comme données ? Visualiser quelques exemples.
-# 
-# + Sur quelques exemples, apprenez un arbre de décision et observer l'erreur. Tracer les frontières de décisions. 
-# 
-# + Observez l'erreur sur l'ensemble d'apprentissage. Comment se comporte-t-elle en fonction des deux paramètres ? Est-elle une bonne prédiction de l'erreur de votre modèle ? Comment de manière simple obtenir une meilleure prédiction (ensemble de test) ?
-# 
-# + Partager votre ensemble en deux sous-ensembles, un d'apprentissage qui vous servira à apprendre votre modèle, l'autre de test qui vous servira à évaluer l'erreur. Faites une évaluation intensive et tracez en fonction de la profondeur l'erreur en apprentissage et en test
-# 
-# + Ajouter un peu de bruit au données (paramètre epsilon de l'algorithme, compléter l'algo de manière a prendre en compte epsilon), recommencez vos expériences. Que remarquez-vous ?
-# 
-# <codecell>
+    fig = plt.plot(range(2,16),scores,'b-')
+    plt.xlabel("Depth of Decision Tree")
+    plt.ylabel("Score")
+    plt.show()
+    plt.close(fig)
 
+xTrain,yTrain = gen_arti(data_type=4)
+xTest, yTest  = gen_arti(data_type=4)
 
-def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
-    # center : entre des gaussiennes
-    # sigma : ecart type des gaussiennes
-    # nbex : nombre d'exemples
-    # ex_type : vrai pour gaussiennes, faux pour echiquier
-    # epsilon : bruit
+# plot_scores(range(2,16),10,xTrain,yTrain,xTest,yTest)
 
-    if data_type==0:
-        # melange de 2 gaussiennes
-        xpos=np.random.multivariate_normal([centerx,centerx],np.diag([sigma,sigma]),nbex/2)
-        xneg=np.random.multivariate_normal([-centerx,-centerx],np.diag([sigma,sigma]),nbex/2)
-        data=np.vstack((xpos,xneg))
-        y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
-    if data_type==1:
-        # melange de 4 gaussiennes
-        xpos=np.vstack((np.random.multivariate_normal([centerx,centerx],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([-centerx,-centerx],np.diag([sigma,sigma]),nbex/4)))
-        xneg=np.vstack((np.random.multivariate_normal([-centerx,centerx],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx,-centerx],np.diag([sigma,sigma]),nbex/4)))
-        data=np.vstack((xpos,xneg))
-        y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
-
-    if data_type==2:
-        # melange de 16 gaussiennes
-        data = None
-        y    = None
-        for wx,wy in [[1,1],[1,4],[4,1],[4,4]]:
-            xpos=np.vstack((np.random.multivariate_normal([centerx*wx,centery*wy],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([-centerx*wx,-centery*wy],np.diag([sigma,sigma]),nbex/4)))
-            xneg=np.vstack((np.random.multivariate_normal([-centerx*wx,centery*wy],np.diag([sigma,sigma]),nbex/4),np.random.multivariate_normal([centerx*wx,-centery*wy],np.diag([sigma,sigma]),nbex/4)))
-            if data is None or y is None:
-                data=np.vstack((xpos,xneg))
-                y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
-            else:
-                data=np.vstack((data,xpos,xneg))
-                if wx == wy:
-                    y=np.hstack((y,np.ones(nbex/2),-np.ones(nbex/2)))
-                else:
-                    y=np.hstack((y,-np.ones(nbex/2),np.ones(nbex/2)))
-    if data_type==3:
-        # echiquier
-        data=np.reshape(np.random.uniform(-4,4,2*nbex),(nbex,2))
-        y=np.ceil(data[:,0])+np.ceil(data[:,1])
-        y=2*(y % 2)-1
-
-    # un peu de bruit
-    data[:,0]+=np.random.normal(0,epsilon,len(data))
-    data[:,1]+=np.random.normal(0,epsilon,len(data))
-    # on mélange les données
-    idx = np.random.permutation((range(y.size)))
-    data=data[idx,:]
-    y=y[idx]
-    return data,y
-
-# affichage en 2D des donnees
-def plot_data(x,labels):
-    plt.scatter(x[labels<0,0],x[labels<0,1],c='red',marker='x')
-    plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
-
-# Frontiere de decision
-def plot_frontiere(x,f,step=20):
-    # script qui engendre une grille sur l'espace des exemples, calcule pour chaque point le label
-    # et trace la frontiere
-    mmax=x.max(0)
-    mmin=x.min(0)
-    x1grid,x2grid=np.meshgrid(np.linspace(mmin[0],mmax[0],step),np.linspace(mmin[1],mmax[1],step))
-    grid=np.hstack((x1grid.reshape(x1grid.size,1),x2grid.reshape(x2grid.size,1)))
-    # calcul de la prediction pour chaque point de la grille
-    res=np.array([f(grid[i,:]) for i in range(x1grid.size)])
-    res=res.reshape(x1grid.shape)
-    # tracer des frontieres
-    plt.contourf(x1grid,x2grid,res,colors=('gray','blue'),levels=[-1,0,1])
-
-
-xTrain,yTrain = gen_arti(data_type=3)
-xTest, yTest  = gen_arti(data_type=3)
-scores = []
-for depth in range(2,16):
-    s = []
-    for i in range(10):
-        dt = DecisionTree(max_depth=depth)
-        dt.fit(xTrain,yTrain)
-        s.append(dt.score(xTest,yTest))
-    scores.append(np.mean(s))
-
-fig = plt.plot(range(2,16),scores,'b-')
-plt.xlabel("Depth of Decision Tree")
-plt.ylabel("Score")
-plt.show()
+dt = DecisionTree(15)
+dt.fit(xTrain,yTrain)
+plot_4class(xTest,yTest,dt.predict,step=100)
+print dt.score(xTest,yTest)
 
 exit()
 plot_frontiere(xTest,dt.predict,step=1000)

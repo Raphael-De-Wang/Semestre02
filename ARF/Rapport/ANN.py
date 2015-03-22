@@ -44,6 +44,7 @@ class Layer(object):
         self.inputSize = inputSize
         self.layerSize = layerSize
         self.eta       = eta
+        self.delta     = np.array([np.inf])
     def forward(self,prevZ):
         self.prevZ  = prevZ
         self.Z      = np.array([ n.f(prevZ) for n in self.layer ])
@@ -117,29 +118,36 @@ class NeuroNetwork(Classifier):
         for x in X:
             x = np.append(x,1)
             self.forward(x)
-            if self.outputLayer.Z >= self.seuil:
-                resultats.append(1.)
+            if len(self.outputLayer.Z) == 1:
+                if self.outputLayer.Z >= self.seuil:
+                    resultats.append(1.)
+                else:
+                    resultats.append(-1.)
             else:
-                resultats.append(-1.)
+                resultats.append(np.argmax(self.outputLayer.Z))
         return np.array(resultats)
+    def error(self):
+        return abs(self.outputLayer.delta.sum())
         
-trainX,trainY = gen_arti(data_type=3)
-testX ,testY  = gen_arti(data_type=3)
+trainX,trainY = gen_arti(data_type=4)
+testX ,testY  = gen_arti(data_type=4)
 # np.save("trainX",trainX[:10])
 # np.save("trainY",trainY[:10])
 # trainX = np.load("trainX.npy")
 # trainY = np.load("trainY.npy")
 # trainY = np.array(zip(trainY,trainY))
 eta = 0.2
-ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10],[sigmoid,grad_sigmoid,10,6]],1,0.5,eta)
-# ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,15]],1,0.5,eta)
+# ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10],[sigmoid,grad_sigmoid,10,6]],1,0.5,eta)
+ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10]],4,0.5,eta)
 # ann = NeuroNetwork([[tangH,grad_tangH,3,5]],1,eta)
 
 # print ann.layers[-1].getWeightMatrix()
 
-while ann.score(testX,testY) < 0.9:
+while ann.error() > 0.0001:
     ann.fit(trainX,trainY)
-    print ann.score(testX,testY)
+    print ann.error()
+    
+plot_4class(testX,testY,ann.predict,step=100)
 
 # resultats = ann.predict([ np.append(x,1) for x in testX ])
 '''
