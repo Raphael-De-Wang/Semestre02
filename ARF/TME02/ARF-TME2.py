@@ -200,7 +200,7 @@ for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
         plot_frontiere(testX,testY,parzen.predict,fname)
         # plot_frontiere(testX,testY,parzen.predict)
 '''
-arange = np.arange(0.05,1.2,0.1)
+arange = [0.001*(2**i) for i in range(10) ] # np.arange(0.001,0.52,0.01)
 for t in [0,2,3]:
     trainX,trainY = gen_arti(data_type=t)
     testX ,testY  = gen_arti(data_type=t)
