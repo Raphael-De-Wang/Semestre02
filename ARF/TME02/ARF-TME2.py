@@ -122,7 +122,7 @@ class Knn(Classifier):
     def predict(self,X):
         # return np.array([ 1 if self.trY[np.array([ np.linalg.norm(X - x) for x in self.trX ]).argsort()[1:self.k+1]].sum() > 0 else -1 for X in tstX ])
         D = np.array([ np.linalg.norm(X - x) for x in self.trX ])
-        sortInd = D.argsort()[1:self.k+1]
+        sortInd = D.argsort()[:self.k]
         if self.trY[sortInd].sum() > 0:
             return 1
         else:
@@ -174,26 +174,49 @@ def uniform(x0,x,h):
         khi = (u - a)/(b-a)
     return khi/2 < h
 
+'''
+t = 0
+
+trainX,trainY = gen_arti(data_type=t)
+testX ,testY  = gen_arti(data_type=t)
+
+# for k in [2**i for i in range(10,14)] :
+k = len(trainY)
+knn = Knn(k)
+knn.fit(trainX,trainY)
+# print "function: data_type[%d] Knn[%d]\t Score: %f\n"%(t,k,knn.score(testX,testY))
+# plot_frontiere(testX,testY,knn.predict)
+fname = "knn[k=%d][data_type=%d][score=%f].png"%(k,t,knn.score(testX,testY))
+print fname
+plot_frontiere(testX,testY,knn.predict,fname)
+
+for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
+    for h in (0.7,0.5,0.3,0.1,0.05):
+        parzen = Parzen(K,h)
+        parzen.fit(trainX,trainY)
+        # print "function: %s[%2f]\t Score: %f\n"%(K.__name__,h,parzen.score(testX,testY))
+        fname = "parzen[K=%s][h=%2f][score=%f][data_type=%d].png"%(K.__name__,h,parzen.score(testX,testY),2)
+        print fname
+        plot_frontiere(testX,testY,parzen.predict,fname)
+        # plot_frontiere(testX,testY,parzen.predict)
+'''
+arange = np.arange(0,1.5,0.2)
 for t in range(4):
     trainX,trainY = gen_arti(data_type=t)
     testX ,testY  = gen_arti(data_type=t)
-    
-    for k in [2**i for i in range(10)] :
-        knn = Knn(k)
-        knn.fit(trainX,trainY)
-        # print "function: data_type[%d] Knn[%d]\t Score: %f\n"%(t,k,knn.score(testX,testY))
-        # plot_frontiere(testX,testY,knn.predict)
-        fname = "knn[k=%d][data_type=%d][score=%f].png"%(k,t,knn.score(testX,testY))
-        print fname
-        plot_frontiere(testX,testY,knn.predict,fname)
 
-for t in range(4):
     for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
-        for h in (0.7,0.5,0.3,0.1,0.05):
+        scores = []
+        fname = "parzen[K=%s][data_type=%d].png"%(K.__name__,t)
+        for h in arange:
             parzen = Parzen(K,h)
             parzen.fit(trainX,trainY)
-            # print "function: %s[%2f]\t Score: %f\n"%(K.__name__,h,parzen.score(testX,testY))
-            fname = "parzen[K=%s][h=%2f][score=%f].png"%(K.__name__,h,parzen.score(testX,testY))
-            print fname
-            plot_frontiere(testX,testY,parzen.predict,fname)
-            # plot_frontiere(testX,testY,parzen.predict)
+            scores.append(parzen.score(testX,testY))
+        fig = plt.figure()
+        plt.plot(scores,arange)
+        plt.ylabel("Scores")
+        plt.xlabel("Taille de Fenetre")
+        plt.savefig(fname)
+        plt.close(fig)
+        print fname
+        
