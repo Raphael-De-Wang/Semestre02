@@ -200,12 +200,12 @@ for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
         plot_frontiere(testX,testY,parzen.predict,fname)
         # plot_frontiere(testX,testY,parzen.predict)
 '''
-arange = np.arange(0,1.5,0.2)
-for t in range(2,4):
+arange = np.arange(0.1,4.1,0.5)
+for t in [0,2,3]:
     trainX,trainY = gen_arti(data_type=t)
     testX ,testY  = gen_arti(data_type=t)
 
-    for K in [hypercube,sphere,gauss,laplace,epanechikov,uniform]:
+    for K in [hypercube,sphere,gauss]: #,laplace,epanechikov,uniform]:
         scores = []
         fname = "parzen[K=%s][data_type=%d].png"%(K.__name__,t)
         for h in arange:
@@ -213,7 +213,7 @@ for t in range(2,4):
             parzen.fit(trainX,trainY)
             scores.append(parzen.score(testX,testY))
         fig = plt.figure()
-        plt.plot(scores,arange)
+        plt.plot(arange,scores)
         plt.ylabel("Scores")
         plt.xlabel("Taille de Fenetre")
         plt.savefig(fname)
