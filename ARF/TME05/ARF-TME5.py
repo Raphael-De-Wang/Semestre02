@@ -176,7 +176,7 @@ for t in [1,2,3,5]:
         perc = PerceptronPlugin()
         perc.x = w
         perc._reset=False
-        perc.eps = 1e-6
+        # perc.eps = 1e-6
         perc.l   = 0.7
         perc.fit(trainXGau,trainY)
         fname="./Plugin/phiGaussien[var=%d][dataType=%d]"%(var*10,t)
