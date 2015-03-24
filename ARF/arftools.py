@@ -63,8 +63,8 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
         y=2*(y % 2)-1
     if data_type==5:
         # echiquier
-        data0=np.random.multivariate_normal([ 1.5, 1.5],[[0.5,1],[1,0.5]],nbex/2)
-        data1=np.random.multivariate_normal([-1.5,-1.5],[[0.5,1],[1,0.5]],nbex/2)
+        data0=np.random.multivariate_normal([ 1.5, 1.5],[[0.5,-0.5],[1,0.5]],nbex/2)
+        data1=np.random.multivariate_normal([-1.5,-1.5],[[0.5,-0.5],[1,0.5]],nbex/2)
         data =np.vstack((data0,data1))
         y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
     # un peu de bruit
@@ -88,7 +88,7 @@ def plot_data_4class(x,labels):
         plt.scatter(x[labels==4,0],x[labels==4,1],c='red',marker='x')
 
 def make_grid(xmin=-5,xmax=5,ymin=-5,ymax=5,data=None,step=20):
-    if data!=None:
+    if data is None:
         xmax=np.max(data[:,0])
         xmin=np.min(data[:,0])
         ymax=np.max(data[:,1])
@@ -196,8 +196,8 @@ class GradientDescent(object):
         self.log_x=np.array(self.x)
         self.log_f=np.array(self.optim_f.f(self.x))
         self.log_grad=np.array(self.optim_f.grad_f(self.x))
-    def optimize(self,reset=True):
-        if reset:
+    def optimize(self,_reset=True):
+        if _reset:
             self.reset()
         while not self.stop():
             self.x    = self.x - self.get_eps()*self.optim_f.grad_f(self.x)

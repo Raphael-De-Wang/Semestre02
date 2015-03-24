@@ -20,51 +20,6 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from arftools import *
 
-class OptimFunc(object):
-    def __init__(self,f=None,grad_f=None,dim=2):
-        self._f=f
-        self._grad_f=grad_f
-        self.dim=dim
-    def x_random(self,low=-5,high=5):
-        return random.random(self.dim)*(high-low)+low
-    def f(self,x):
-        return self._f(to_array(x))
-    def grad_f(self,x):
-       return self._grad_f(to_array(x))
-
-class GradientDescent(object):
-    def __init__(self,optim_f,eps=1e-4,max_iter=5000,delta=1e-6):
-        self.eps=eps
-        self.optim_f=optim_f
-        self.max_iter=max_iter
-        self.delta=delta
-    def reset(self):
-        self.i=0
-        self.x = self.optim_f.x_random()
-        self.log_x=np.array(self.x)
-        self.log_f=np.array(self.optim_f.f(self.x))
-        self.log_grad=np.array(self.optim_f.grad_f(self.x))
-    def optimize(self,reset=True):
-        if reset:
-            self.reset()
-        while not self.stop():
-            self.x = self.x - self.get_eps()*self.optim_f.grad_f(self.x)
-            self.log_x=np.vstack((self.log_x,self.x))
-            self.log_f=np.vstack((self.log_f,self.optim_f.f(self.x)))
-            self.log_grad=np.vstack((self.log_grad,self.optim_f.grad_f(self.x)))
-            self.i+=1
-    def stop(self):
-        return (self.i>2) and (self.max_iter and (self.i>self.max_iter) or (self.delta and np.abs(self.log_f[-1]-self.log_f[-2]))<self.delta)
-    def get_eps(self):
-        return self.eps
-
-# <markdowncell>
-
-# Un exemple d'utilisation est le suivant, pour la fonction f(x)=x.cos(x) :
-
-# <codecell>
-
-
 def xcosx_f(x):
     return x*np.cos(x)
 def xcosx_grad(x):
@@ -114,7 +69,8 @@ class Perceptron(Classifier,OptimFunc,GradientDescent):
         self.dim  = len(data[0])
         self.data = data
         self.y    = y
-        self.optimize()
+        self._reset= True
+        self.optimize(self._reset)
     def f(self,w):
         return hinge_f(self.data,self.y,w).sum()
     def grad_f(self,w):
@@ -122,37 +78,110 @@ class Perceptron(Classifier,OptimFunc,GradientDescent):
     def predict(self,testX):
         X = to_array(testX)
         return np.sign(X.dot(self.x))
+    
+def quadratique_f(data,y,w):
+    return ((y - data.dot(w.T))**2)/2
+    
+def quadratique_grad(data,y,w):
+    return -(y - data.dot(w.T)).dot(data)
+
+class PerceptronQuad(Perceptron):
+    def f(self,w):
+        return quadratique_f(self.data,self.y,w).sum()/len(self.data)
+    def grad_f(self,w):
+        return quadratique_grad(self.data,self.y,w).sum(0)/len(self.data)
+
+class PerceptronPlugin(Perceptron):
+    def __init__(self,eps=1e-4,max_iter=5000,delta=1e-6,l=0):
+        super(PerceptronPlugin,self).__init__(eps,max_iter,delta)
+        self.l = l
+    def _plugin_f(self,data,y,w):
+        return ((1. - y*data.dot(w))**2) + np.linalg.norm(w**2)*self.l
+    def _plugin_grad(self,data,y,w):
+        return (2*(1-y*data.dot(w))*(-y*data.T)).T + 2.*self.l*w
+    def f(self,w):
+        return self._plugin_f(self.data,self.y,w).sum()
+    def grad_f(self,w):
+        # w = np.array(map(lambda x : max(0., 0.001 - x), w))
+        return self._plugin_grad(self.data,self.y,w).sum(0)
 
 def projection(data):
     return np.array([ [1,record[0],record[1],record[0]*record[1],record[0]**2,record[1]**2] for record in data ])
 
-def phiGaussien(x,data,var):
-    # return np.array([ np.exp(-(np.linalg.norm(record - data,axis=1)**2)/var) for record in x ])
-    return np.array([ np.exp(-np.sum((record - data)**2,axis=1)/var) for record in x ])
-
-trainX,trainY = gen_arti(data_type=2)
-testX ,testY  = gen_arti(data_type=2)
+def phiGaussien(X,D,var):
+    return np.array([ np.exp(-np.sum((record - D)**2,axis=1)/var) for record in X ])
 '''
+t   = 0
+var = 0.5
+trainX,trainY = gen_arti(data_type=t)
+testX ,testY  = gen_arti(data_type=t)
+
 trainX6D = projection(trainX)
 testX6D = projection(testX)
-perc   = Perceptron()
+perc   = PerceptronPlugin()
+perc.l = 1.
+perc.eps=1e-5
 perc.fit(trainX6D,trainY)
-# print perc.predict(testX)
+plot(testX,testY, lambda x: perc.predict(np.array([projection(x)])))
 print perc.score(testX6D,testY)
-plot_frontiere(None, lambda x: perc.predict(np.array([projection(x)])))
-plot_data(testX,testY)
-plt.show()
-'''
-var = 0.5
+exit()
+
 trainXGau = phiGaussien(trainX,trainX,var)
 testXGau  = phiGaussien(testX,trainX,var)
-perc      = Perceptron()
+# perc      = Perceptron()
+# perc = PerceptronQuad(delta=1e-3)
+perc = PerceptronPlugin()
+# perc.eps=1e-10
 perc.fit(trainXGau,trainY)
-print "score: ",perc.score(testXGau,testY)
-# print "np.shape(perc.predict(testXGau)): ",np.shape(perc.predict(testXGau))
-plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])))
-plot_data(testX,testY)
-plt.show()
+plot(testX,testY,lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])),50)
+print perc.score(testXGau,testY)
+exit()
+''' 
 
+for t in [1,2,3,5]:
+    trainX,trainY = gen_arti(data_type=t)
+    testX ,testY  = gen_arti(data_type=t)
+    '''
+    oldScore = 0
+    for i in range(10):
+        trainX6D = projection(trainX)
+        testX6D = projection(testX)
+        perc = Perceptron()
+        perc.fit(trainX6D,trainY)
+        print "hing loss score: ",perc.score(testX6D,testY)
+        w = perc.x
+        perc = PerceptronPlugin()
+        perc.x = w
+        perc._reset=False
+        perc.eps = 1e-6
+        perc.l   = 0.7
+        perc.fit(trainX6D,trainY)
+        score = perc.score(testX6D,testY)
+        print "Plugin score: ", score
+        if score > oldScore:
+            oldScore = score
+            oldPerc  = perc
+    fname="./Plugin/polynomial[dataType=%d]"%(t)
+    print fname
+    plot(testX,testY,lambda x: oldPerc.predict(np.array([projection(x)])),50,fname)
+    '''
+    interv = np.arange(0.1,2.6,0.3)
+    for var in interv:
+        trainXGau = phiGaussien(trainX,trainX,var)
+        testXGau  = phiGaussien(testX,trainX,var)
+        perc = Perceptron()
+        perc.fit(trainXGau,trainY)
+        print "hing loss score: ",perc.score(testXGau,testY)
+        w = perc.x
+        perc = PerceptronPlugin()
+        perc.x = w
+        perc._reset=False
+        perc.eps = 1e-6
+        perc.l   = 0.7
+        perc.fit(trainXGau,trainY)
+        fname="./Plugin/phiGaussien[var=%d][dataType=%d]"%(var*10,t)
+        print fname
+        plot(testX,testY,lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])),50,fname)
+        print perc.score(testXGau,testY)
 
 
