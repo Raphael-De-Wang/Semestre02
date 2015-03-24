@@ -138,7 +138,7 @@ print perc.score(testXGau,testY)
 exit()
 ''' 
 
-for t in [1,2,3,5]:
+for t in [5]:
     trainX,trainY = gen_arti(data_type=t)
     testX ,testY  = gen_arti(data_type=t)
     '''
@@ -165,13 +165,15 @@ for t in [1,2,3,5]:
     print fname
     plot(testX,testY,lambda x: oldPerc.predict(np.array([projection(x)])),50,fname)
     '''
-    interv = np.arange(0.1,2.6,0.3)
+    interv = np.arange(0.1,1.6,0.5)
     for var in interv:
         trainXGau = phiGaussien(trainX,trainX,var)
         testXGau  = phiGaussien(testX,trainX,var)
         perc = Perceptron()
         perc.fit(trainXGau,trainY)
-        print "hing loss score: ",perc.score(testXGau,testY)
+        fname="./hingeLoss/phiGaussien[var=%d][dataType=%d]"%(var*10,t)
+        plot(testX,testY,lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])),50,fname)
+        print "hinge loss score: ",perc.score(testXGau,testY)
         w = perc.x
         perc = PerceptronPlugin()
         perc.x = w
