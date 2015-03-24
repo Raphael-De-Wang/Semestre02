@@ -130,14 +130,12 @@ def phiGaussien(x,data,var):
     # return np.array([ np.exp(-(np.linalg.norm(record - data,axis=1)**2)/var) for record in x ])
     return np.array([ np.exp(-np.sum((record - data)**2,axis=1)/var) for record in x ])
 
-trainX,trainY = gen_arti(data_type=1)
-testX ,testY  = gen_arti(nbex=100,data_type=1)
-
+trainX,trainY = gen_arti(data_type=2)
+testX ,testY  = gen_arti(data_type=2)
 '''
-
 trainX6D = projection(trainX)
 testX6D = projection(testX)
-perc   = Perceptron(dim=6)
+perc   = Perceptron()
 perc.fit(trainX6D,trainY)
 # print perc.predict(testX)
 print perc.score(testX6D,testY)
@@ -155,4 +153,6 @@ print "score: ",perc.score(testXGau,testY)
 plot_frontiere(None, lambda x: perc.predict(np.array([phiGaussien(x,trainX,var)])))
 plot_data(testX,testY)
 plt.show()
+
+
 

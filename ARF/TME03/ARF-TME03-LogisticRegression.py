@@ -27,7 +27,7 @@ class LogisticRegression(Classifier,OptimFunc,GradientDescent):
         return grad_sigmoid(w,self.data,self.y)
     def predict(self,testX):
         X = to_array(testX)
-        return np.sign(sigmoid(self.x,X) - 0.5)
+        return -np.sign(sigmoid(self.x,X) - 0.5)
 
 trainX,trainY = gen_arti()
 testX ,testY  = gen_arti()

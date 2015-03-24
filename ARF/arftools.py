@@ -39,6 +39,7 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
         y=np.hstack((np.zeros(nbex/4),2*np.ones(nbex/4)))
         y=np.hstack((y, 3*np.ones(nbex/4)))
         y=np.hstack((y, np.ones(nbex/4)))
+        y=y+1
     if data_type==2:
         # melange de 16 gaussiennes
         data = None
@@ -60,6 +61,12 @@ def gen_arti(centerx=1,centery=1,sigma=0.1,nbex=1000,data_type=0,epsilon=0.02):
         data=np.reshape(np.random.uniform(-4,4,2*nbex),(nbex,2))
         y=np.ceil(data[:,0])+np.ceil(data[:,1])
         y=2*(y % 2)-1
+    if data_type==5:
+        # echiquier
+        data0=np.random.multivariate_normal([ 1.5, 1.5],[[0.5,1],[1,0.5]],nbex/2)
+        data1=np.random.multivariate_normal([-1.5,-1.5],[[0.5,1],[1,0.5]],nbex/2)
+        data =np.vstack((data0,data1))
+        y=np.hstack((np.ones(nbex/2),-np.ones(nbex/2)))
     # un peu de bruit
     data[:,0]+=np.random.normal(0,epsilon,len(data))
     data[:,1]+=np.random.normal(0,epsilon,len(data))
@@ -75,10 +82,10 @@ def plot_data(x,labels):
         plt.scatter(x[labels>0,0],x[labels>0,1],c='green',marker='+')
         
 def plot_data_4class(x,labels):
-        plt.scatter(x[labels==0,0],x[labels==0,1],c='red',marker='x')
         plt.scatter(x[labels==1,0],x[labels==1,1],c='green',marker='+')
         plt.scatter(x[labels==2,0],x[labels==2,1],c='yellow',marker='o')
         plt.scatter(x[labels==3,0],x[labels==3,1],c='pink',marker='*')
+        plt.scatter(x[labels==4,0],x[labels==4,1],c='red',marker='x')
 
 def make_grid(xmin=-5,xmax=5,ymin=-5,ymax=5,data=None,step=20):
     if data!=None:
@@ -103,7 +110,7 @@ def plot_frontiere_4class(x,f,step=20):
         grid,xvec,yvec=make_grid(data=x,step=step)
         res=f(grid)
         res=res.reshape(xvec.shape)
-        plt.contourf(xvec,yvec,res,colors=('gray','blue','orange','cyan'),levels=[-1,0,1,2,3])
+        plt.contourf(xvec,yvec,res,colors=('gray','blue','orange','cyan'),levels=[-1,1,2,3,4])
 
 def plot(x,labels,f,step=20,fname=None):
     fig = plt.figure()

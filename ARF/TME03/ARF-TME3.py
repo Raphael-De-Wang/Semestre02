@@ -83,11 +83,11 @@ class GradientDescent(object):
             
         while (self.stop() <> True):
             self.i = self.i + 1
-            print self.x
+            # print self.x
             self.x = self.x - self.get_eps()*self.optim_f.grad_f(self.x)
-            print self.x
+            # print self.x
             self.log_x   = np.vstack((self.log_x,self.x))
-            print self.log_f.shape,self.optim_f.f(self.x).shape
+            # print self.log_f.shape,self.optim_f.f(self.x).shape
             self.log_f   = np.vstack((self.log_f,self.optim_f.f(self.x)))
             self.log_grad=np.vstack((self.log_grad,self.optim_f.grad_f(self.x)))
             
@@ -178,11 +178,7 @@ ax = fig.gca(projection='3d')
 surf = ax.plot_surface(xx, yy, z, rstride=1, cstride=1, cmap=cm.gist_rainbow, linewidth=0, antialiased=False)
 fig.colorbar(surf)
 
-try:
-    ax.plot(grd_rosen.log_x[:,0],grd_rosen.log_x[:,1],grd_rosen.log_f.ravel(),color='black')
-except:
-    print np.shape(grd_rosen.log_x)
-    exit()
+ax.plot(grd_rosen.log_x[:,0],grd_rosen.log_x[:,1],grd_rosen.log_f.ravel(),color='black')
     
 plt.show()
 

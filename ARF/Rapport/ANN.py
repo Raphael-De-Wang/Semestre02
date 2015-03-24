@@ -24,7 +24,7 @@ class Neuron(object):
         self.inputSize = inputSize
         self.weights   = self.x_random()
     def x_random(self,low=-1,high=1):
-        return np.random.randn(self.inputSize)*(high-low)+low
+        return np.random.random(self.inputSize)*(high-low)+low
     def a(self,x):
         self.A = np.sum(self.weights*x)
         return self.A
@@ -102,17 +102,14 @@ class NeuroNetwork(Classifier):
             delta       = self.layers[i].calculateDelta(deltaWeiSum)
             wm          = self.layers[i].getWeightMatrix()
             deltaWeiSum = np.sum(delta * wm.T,axis=1)
-
         # update layer weights
         for i in range(len(self.layers)):
             self.layers[i].updateWeights()
-
     def optimize(self):
         for i in range(len(self.x)):
             self.forward(self.x[i])
             self.err.append((self.y[i] - self.outputLayer.Z)**2/2.)
             self.backProp(self.x[i],self.y[i])
-        
     def predict(self,X):
         resultats = []
         for x in X:
@@ -124,31 +121,43 @@ class NeuroNetwork(Classifier):
                 else:
                     resultats.append(-1.)
             else:
-                resultats.append(np.argmax(self.outputLayer.Z))
+                resultats.append(np.argmax(self.outputLayer.Z)+1)
         return np.array(resultats)
     def error(self):
         return abs(self.outputLayer.delta.sum())
-        
-trainX,trainY = gen_arti(data_type=4)
-testX ,testY  = gen_arti(data_type=4)
+
+t = 0
+trainX,trainY = gen_arti(data_type=t)
+testX ,testY  = gen_arti(data_type=t)
+
 # np.save("trainX",trainX[:10])
 # np.save("trainY",trainY[:10])
 # trainX = np.load("trainX.npy")
 # trainY = np.load("trainY.npy")
 # trainY = np.array(zip(trainY,trainY))
+
 eta = 0.2
-# ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10],[sigmoid,grad_sigmoid,10,6]],1,0.5,eta)
-ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10]],4,0.5,eta)
-# ann = NeuroNetwork([[tangH,grad_tangH,3,5]],1,eta)
-
 # print ann.layers[-1].getWeightMatrix()
+for k in range(10):
+    bestANN = None
+    bestScore = 0
+    ann = NeuroNetwork([[tangH,grad_tangH,3,3]],1,0.5,eta)
+    # ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10],[sigmoid,grad_sigmoid,10,6]],1,0.5,eta)
+    # ann = NeuroNetwork([[sigmoid,grad_sigmoid,3,10]],4,0.5,eta)
+    for i in range(5):
+        ann.fit(trainX,trainY)
+        score = ann.score(testX,testY)
+        print score
+        if score < 0.5:
+            break
+        if score > 0.99:
+            break
+    if score > bestScore:
+        bestANN  = ann
+        bestScore= score
 
-while ann.error() > 0.0001:
-    ann.fit(trainX,trainY)
-    print ann.error()
-    
-plot_4class(testX,testY,ann.predict,step=100)
-
+# plot_4class(testX,testY,ann.predict,step=20)
+plot(testX,testY,ann.predict,step=50)
 # resultats = ann.predict([ np.append(x,1) for x in testX ])
 '''
 fig = plt.figure()
