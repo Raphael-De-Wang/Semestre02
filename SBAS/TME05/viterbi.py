@@ -161,7 +161,7 @@ print viterbiTraining(obs,pi0,2,2,20)
 '''
 
 # Q3.C
-print viterbiTraining2(pi0,p,e,t,nomIter=1)
+print viterbiTraining2(pi0,p,e,t,nomIter=10)
 print p
 print e
 
