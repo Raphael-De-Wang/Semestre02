@@ -252,6 +252,7 @@ def plot_scores(arange,repeat,xTrain,yTrain,xTest,yTest):
     plt.show()
     plt.close(fig)
 
+'''
 xTrain,yTrain = gen_arti(data_type=4)
 xTest, yTest  = gen_arti(data_type=4)
 
@@ -267,3 +268,4 @@ plot_frontiere(xTest,dt.predict,step=1000)
 plot_data(xTest,yTest)
 plt.show()
 print dt.__repr__()
+'''

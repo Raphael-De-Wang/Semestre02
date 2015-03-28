@@ -13,7 +13,7 @@ S=np.array([F,U])
 O=np.array([H,T])
 p=np.array([[0.99,0.01],[0.05,0.95]])
 e=np.array([[0.5,0.5],[0.9,0.1]])
-pi0=np.array([1.,0])
+pi0=np.array([1.-1e-10,1e-10])
 
 # Function basique
 def accumulate(M):
@@ -61,6 +61,21 @@ def viterbi(observs,PI0,P,E):
     for o in observs[1:]:
         v = np.vstack((v,max(v[-1])*P[np.argmax(v[-1])]*E[:,observs[o]]))
     return (max(v[-1]),np.argmax(v,axis=1))
+
+# Viterbi
+def viterbi(observs,PI0,P,E):
+    # forward
+    delta = np.array([np.log(PI0) + np.log(E[:,observs[0]])])
+    phi   = -np.ones(len(P))
+    for o in observs[1:]:
+        delta  = np.vstack((delta, [ max(delta[-1] + P[:,i]) + np.log(E[i,o]) for i in range(len(P)) ]))
+        phi    = np.vstack((phi,[ np.argmax(delta[-1] + P[:,i]) for i in range(len(P))]))
+    # backward
+    seq = [np.argmax(delta[-1])]
+    for i in range(len(phi)-1,0,-1):
+        seq.append(phi[i,seq[-1]])
+    seq.reverse()
+    return (max(delta[-1]),seq)
 
 # Estimation des parametres :
 def sampling(PI0,P,E,T,nombre):
@@ -153,7 +168,7 @@ print viterbiTraining(obs,pi0,2,2,20)
 '''
 
 # Q3.C
-print p,e
-exit()
-print viterbiTraining2(pi0,p,e,t)
+print viterbiTraining2(pi0,p,e,t,nomIter=1)
+print p
+print e
 
