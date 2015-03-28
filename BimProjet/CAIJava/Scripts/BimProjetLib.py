@@ -2,6 +2,7 @@
 import operator
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import pylab
 
 from Bio import SeqIO
@@ -223,31 +224,66 @@ def plotBarChart(plotList,labels,figName=None):
         plt.show()
     plt.close()
     
-def plotgCAIsDomain(X,Y,figName=None):
-    pylab.figure(figsize=(20,4))
-    pylab.hist2d(Y,X,bins=[len(np.unique(Y)),50])
+def plotgCAIsDomain(X,Y,xDiv=1,yDiv=20,figName=None):
+    fig = pylab.figure(figsize=(160,3))
+    pylab.hist2d(Y,X,bins=[len(np.unique(Y))/yDiv,xDiv], norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
     pylab.xlabel("Domain Sorted By Translation Level")
     pylab.ylabel("gCAIs")
-    pylab.colorbar()
+    pylab.title("Desity Plot - Domains Grouped by [%d], gCAIs Divided by [%d], Top [%d] Domains (PS : values in brackets are manipulable)"%(xDiv,yDiv,len(np.unique(Y))))
+    cbar = pylab.colorbar()
+    if figName:
+        pylab.savefig(figName)
+    else:
+        pylab.show()
+    pylab.close(fig)
+    
+def plotgCAIsDomain2(X,Y,figName=None):
+    T = np.arctan(X)#,np.ones(len(X)))
+    pylab.figure(figsize=(20,4))
+    pylab.scatter(Y,X, s=5, c=T, alpha=.4,marker='x')
+    pylab.xlabel("Domain Sorted By Translation Level")
+    pylab.ylabel("gCAIs")
+    pylab.ylim(0,1.02), pylab.yticks(pylab.arange(0,1.1,0.1))
+    pylab.xlim(0,len(np.unique(Y))), pylab.xticks([])
+    pylab.plot(Y,np.ones(len(Y))*0.025,'k-')
+    pylab.plot(Y,np.ones(len(Y)),'k-')
+    pylab.title("gCAIs values distributions ordered by expression level, the colors correspond to gCAI value, each colume represent a domain")
     if figName:
         pylab.savefig(figName)
     else:
         pylab.show()
     pylab.close()
     
-def plotgCAIsDomain2(X,Y,figName=None):
-    T = np.arctan(X)#,np.ones(len(X)))
+def plotgCAIsDomain3(X,Y,NivExpr,figName=None):
     pylab.figure(figsize=(20,4))
-    pylab.scatter(Y,X, s=75, c=T, alpha=.5)
-    pylab.ylim(0,1.2), pylab.yticks([])
-    pylab.xlim(0,len(np.unique(Y))), pylab.xticks([])
+    pylab.scatter(Y,X, s=5, c=np.arctan(NivExpr), alpha=.4,marker='x')
     pylab.xlabel("Domain Sorted By Translation Level")
     pylab.ylabel("gCAIs")
+    pylab.ylim(0,1.02), pylab.yticks(pylab.arange(0,1.1,0.1))
+    pylab.xlim(0,len(np.unique(Y))), pylab.xticks(np.arange(0,len(np.unique(Y)),1000))
+    pylab.plot(Y,np.ones(len(Y))*0.025,'k-')
+    pylab.plot(Y,np.ones(len(Y)),'k-')
+    pylab.colorbar()
+    pylab.title("gCAIs values distributions ordered by expression level, the colors correspond to Expression Level, each colume represent a domain")
     if figName:
         pylab.savefig(figName)
     else:
         pylab.show()
     pylab.close()
+    
+def plotgCAIsDomain4(X,Y,xDiv=5,yDiv=25,figName=None):
+    fig = pylab.figure(figsize=(200,5))
+    pylab.hist2d(X,Y,bins=[max(X),yDiv], norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
+    pylab.xlabel("Expression Level")
+    pylab.ylabel("gCAIs")
+    pylab.title("Desity Plot - Expressoin Level Grouped by [%d], gCAIs Divided by [%d] (PS : values in brackets are manipulable)"%(xDiv,yDiv))
+    pylab.xlim(0,5000)
+    cbar = pylab.colorbar()
+    if figName:
+        pylab.savefig(figName)
+    else:
+        pylab.show()
+    pylab.close(fig)
     
 def plotgCAISNivExpr(gCAIs,nivExpr,figName=None):
     fig = plt.figure()

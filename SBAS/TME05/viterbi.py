@@ -46,7 +46,6 @@ def simulation(PI0,P,E,T):
 
     etatsCaches = np.array([])
     observs     = np.array([])
-
     etatsCaches = np.append(etatsCaches,choisiEtat(aPI0,tirageAleatoire()))
     observs     = np.append(observs,choisiEtat(aE[etatsCaches[0]],tirageAleatoire()))
 
@@ -99,12 +98,35 @@ def viterbiTraining(observs,PI0,N,M,nomIter):
     return (P,E)
 
 # 3c) (Viterbi training deuxime version)
-def viterbiTraining2(observs,PI0,N,M,nomIter):
-    pass
-
-def logVraisemblance():
-    pass
+def logVraisemblance(etatsCaches,observs,PI0,P,E):
+    return np.log(PI0[etatsCaches[0]]) + np.log(E[etatsCaches[0],observs[0]]) + \
+                np.sum([ [np.log(P[etatsCaches[i-1],etatsCaches[i]]), np.log(E[etatsCaches[i],observs[i]])] for i in range(1,len(observs)) ])
     
+def viterbiTraining2(PI0,P,E,t,nomIter=100,nomSampling=100):
+    N,M = np.shape(E)
+    best_lv = -np.inf
+    for i in xrange(nomIter):
+        # part plusieurs fois (100x) d'une initialisation aleatoire des parametres de l'HMM
+        observs = sampling(PI0,P,E,t,nomSampling)[:,1]
+        # utilise Viterbi training pour estimer les parametres
+        etatsCaches = None
+        for obs in observs:
+            prob,X = viterbi(obs,PI0,P,E)
+            if etatsCaches == None:
+               etatsCaches = np.array([X])
+            else:
+                etatsCaches = np.append(etatsCaches,[X],axis=0)
+        eE = estiE(etatsCaches,observs,N,M)
+        eP = estiP(etatsCaches,N)
+        # calcule la log-vraisemblance pour les parametres estimes
+        lv = sum([ logVraisemblance(etatsCaches[i],observs[i],PI0,eP,eE) for i in range(len(observs)) ])
+        print "Log Vraisemblance: ",lv
+        if lv > best_lv:
+            best_lv = lv
+            bestE   = eE
+            bestP   = eP
+    return (bestP,bestE)
+
 # Q1
 t = 200
 '''
@@ -131,3 +153,7 @@ print viterbiTraining(obs,pi0,2,2,20)
 '''
 
 # Q3.C
+print p,e
+exit()
+print viterbiTraining2(pi0,p,e,t)
+

@@ -114,12 +114,24 @@ plotBarChart(nivExpr[nivExpr<moy+4*std],domains[nivExpr<moy+4*std],"nivExprmoy+4
 '''
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
+xDiv=1
+yDiv=10
+'''
 gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
+# indice = gCAIsDomList[:,0] < top
+plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],xDiv,yDiv,figName="gCAIsChaleur[Top%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
+
 indice = gCAIsDomList[:,0] < 1000
 plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop1000")
 indice = gCAIsDomList[:,0] < 500
 plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop500")
 plotgCAIsDomain2(gCAIsDomList[:,1],gCAIsDomList[:,0],"gCAIsDistr")
+
+gCAIsDomNivExprList = np.array([[i,g,nivExprAccuDomDict.get(d)] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
+plotgCAIsDomain3(gCAIsDomNivExprList[:,1],gCAIsDomNivExprList[:,0],gCAIsDomNivExprList[:,2],"gCAIsDistrColoreExpr")
+'''
+gCAIsDomNivExprList = np.array([[g,nivExprAccuDomDict.get(d)] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
+plotgCAIsDomain4(gCAIsDomNivExprList[:,1],gCAIsDomNivExprList[:,0],xDiv,yDiv,figName="gCAIsExprChaleur[xDiv=%d][yDiv=%d]"%(xDiv,yDiv))
 exit()
 step = 100
 for i in range(100,401,step):
