@@ -57,13 +57,6 @@ def simulation(PI0,P,E,T):
 
 # Viterbi
 def viterbi(observs,PI0,P,E):
-    v = np.array([PI0])*E[:,observs[0]]
-    for o in observs[1:]:
-        v = np.vstack((v,max(v[-1])*P[np.argmax(v[-1])]*E[:,observs[o]]))
-    return (max(v[-1]),np.argmax(v,axis=1))
-
-# Viterbi
-def viterbi(observs,PI0,P,E):
     # forward
     delta = np.array([np.log(PI0) + np.log(E[:,observs[0]])])
     phi   = -np.ones(len(P))
