@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/bin/python
 
 import numpy as np
@@ -8,6 +9,11 @@ F="FAIR"
 U="UNFAIR"
 H="HEAD"
 T="TAIL"
+
+F="F"
+U="U"
+H="H"
+T="T"
 
 S=np.array([F,U])
 O=np.array([H,T])
@@ -136,32 +142,33 @@ def viterbiTraining2(PI0,P,E,t,nomIter=100,nomSampling=100):
     return (bestP,bestE)
 
 # Q1
-t = 200
-'''
+t = 2000
 Xt,Yt=simulation(pi0,p,e,t)
-print Xt,Yt
-'''
+# print "Xt", ''.join(translate(Xt,S))
+# print "Yt", ''.join(translate(Yt,O))
 
 # Q2
-# print viterbi(Xt,pi0,p,e)
-
+'''
+probs,etatsCachees = viterbi(Xt,pi0,p,e)
+print "Log de probabilité : ", probs
+print "Etats Cachees : ", ''.join(translate(etatsCachees,S))
+'''
 # Q3
-# print sampling(pi0,p,e,t,10)
+samples = sampling(pi0,p,e,t,10)
+etatsCachees = samples[:,0]
+observs      = samples[:,1]
 
 # Q3.A
-'''
-print estiP(np.array([[0,0,1],[0,1,0]]),2)
-print estiE(np.array([[0,0,1],[0,1,0]]),np.array([[0,0,1],[1,1,2]]),2,3)
-'''
+# print estiP(etatsCachees,2)
+# print estiE(etatsCachees,observs,2,2)
 
 # Q3.B
-'''
 obs = sampling(pi0,p,e,t,100)[:,1]
 print viterbiTraining(obs,pi0,2,2,20)
-'''
 
 # Q3.C
+'''
 print viterbiTraining2(pi0,p,e,t,nomIter=10)
 print p
 print e
-
+'''
