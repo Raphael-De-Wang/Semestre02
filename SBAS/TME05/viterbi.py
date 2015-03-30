@@ -126,7 +126,7 @@ def viterbiTraining2(PI0,P,E,t,nomIter=100,nomSampling=100):
         etatsCaches = None
         for obs in observs:
             prob,X = viterbi(obs,PI0,P,E)
-            if etatsCaches == None:
+            if etatsCaches is None:
                etatsCaches = np.array([X])
             else:
                 etatsCaches = np.append(etatsCaches,[X],axis=0)
@@ -148,23 +148,23 @@ Xt,Yt=simulation(pi0,p,e,t)
 # print "Yt", ''.join(translate(Yt,O))
 
 # Q2
-'''
 probs,etatsCachees = viterbi(Xt,pi0,p,e)
 print "Log de probabilité : ", probs
 print "Etats Cachees : ", ''.join(translate(etatsCachees,S))
-'''
+
 # Q3
+'''
 samples = sampling(pi0,p,e,t,10)
 etatsCachees = samples[:,0]
 observs      = samples[:,1]
-
+'''
 # Q3.A
 # print estiP(etatsCachees,2)
 # print estiE(etatsCachees,observs,2,2)
 
 # Q3.B
-obs = sampling(pi0,p,e,t,100)[:,1]
-print viterbiTraining(obs,pi0,2,2,20)
+# obs = sampling(pi0,p,e,t,100)[:,1]
+# print viterbiTraining(obs,pi0,2,2,20)
 
 # Q3.C
 '''
