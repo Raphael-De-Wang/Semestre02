@@ -1,0 +1,79 @@
+hmmsearch - search a sequence database with a profile HMM
+HMMER 2.3.2 (Oct 2003)
+Copyright (C) 1992-2003 HHMI/Washington University School of Medicine
+Freely distributed under the GNU General Public License (GPL)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HMM file:                   b.1.1.1.hmm [b.1.1.1]
+Sequence database:          b.1.1.1.queries
+per-sequence score cutoff:  [none]
+per-domain score cutoff:    [none]
+per-sequence Eval cutoff:   <= 10        
+per-domain Eval cutoff:     [none]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query HMM:   b.1.1.1
+Accession:   [none]
+Description: [none]
+  [No calibration for HMM; E-values are upper bounds]
+
+Scores for complete sequences (score includes all domains):
+Sequence Description                                    Score    E-value  N 
+-------- -----------                                    -----    ------- ---
+d2i24n_  b.1.1.1 (N:) automated matches {Nurse shark     40.5    1.3e-12   1
+d3r4da1  b.1.1.1 (A:1-107) automated matches {Mouse (   -18.1          2   1
+
+Parsed for domains:
+Sequence Domain  seq-f seq-t    hmm-f hmm-t      score  E-value
+-------- ------- ----- -----    ----- -----      -----  -------
+d2i24n_    1/1       2   112 ..     1   131 []    40.5  1.3e-12
+d3r4da1    1/1       2   104 ..     1   131 []   -18.1        2
+
+Alignments of top-scoring domains:
+d2i24n_: domain 1 of 1, from 2 to 112: score 40.5, E = 1.3e-12
+                   *->vtqspssvlvseGetvtLsCsyssssesstsspsifWyrqrdsnqpg
+                      v q+p+ +++  Ge++t++C +  s       ++ +Wyr +    pg
+     d2i24n_     2    VDQTPQRITKETGESLTINCVVRDSR---CVLSTGYWYRKP----PG 41   
+
+                   kspefliygakgyrsskneapsvkgRfsldkldksksgsstLtIsnlqpe
+                   ++ e+ i+               +g  ++++ + +++ s++L+I +l+++
+     d2i24n_    42 SRNEESIS---------------DGGRYVETVNRGSK-SFSLRINDLTVK 75   
+
+                   DsGtYyCavelnspggs...pkgklifgkgtrLtVkp<-*
+                   DsGtY C+ e+ +++++   +      g gt +tV +   
+     d2i24n_    76 DSGTYRCKPESRYGSYDavcAALNDQYGGGTVVTVNA    112  
+
+d3r4da1: domain 1 of 1, from 2 to 104: score -18.1, E = 2
+                   *->vtqspssvlvseGetvtLsCsyssssesstsspsifWyrqrdsnqpg
+                      vt ++ + +v+e+++v L +   +          ++Wy+ +      
+     d3r4da1     2    VTIEAVPPQVAEDNNVLLLVHNLPL-----ALGAFAWYKGN----TT 39   
+
+                   kspefliygakgyrsskneapsvkgRfsldkldksksgsstLtIsnlqpe
+                      ++++++ ++  s++n  +  ++  ++     s++   +L ++  +++
+     d3r4da1    40 AIDKEIARFVPN--SNMNFTGQAYSGREII---YSNG---SLLFQMITMK 81   
+
+                   DsGtYyCavelnspggspkgklifgkgtrLtVkp<-*
+                   D G+Y+  + +             + +t+ tV     
+     d3r4da1    82 DMGVYTLDMTDE-----------NYRRTQATVRF    104  
+
+
+Histogram of all scores:
+score    obs    exp  (one = represents 1 sequences)
+-----    ---    ---
+> -19      2      -|==                                                         
+
+
+% No statistical fit available
+
+Total sequences searched: 2
+
+Whole sequence top hits:
+tophits_s report:
+     Total hits:           2
+     Satisfying E cutoff:  2
+     Total memory:         21K
+
+Domain top hits:
+tophits_s report:
+     Total hits:           2
+     Satisfying E cutoff:  2
+     Total memory:         22K
