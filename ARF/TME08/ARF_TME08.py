@@ -49,7 +49,7 @@ class Kmeans(object):
 
     def class_cost(self,class_indice, data_indice):
         mu = self.prototype[class_indice]
-        return np.sum([ [ np.linalg.norm(x-m)**2 for m in mu ] for x in self.data[data_indice]], axis=0)/sum(data_indice)
+        return np.sum([ [ np.linalg.norm(x[i]-mu[i])**2 for i in range(self.dim) ] for x in self.data[data_indice]], axis=0)/sum(data_indice)
     
     def cost(self):
         return np.sum([ [ np.linalg.norm(x-mu) for mu in self.prototype ] for x in self.data ])
