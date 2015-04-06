@@ -53,10 +53,13 @@ def step3():
     # -- false positive (FP), eqv. with false alarm, Type I error
     # -- false negative (FN), eqv. with miss, Type II error
     for key in famDict:
+        print key
         for testFamily in famDict.keys():
+            print "\t",testFamily
             paser = parseHmmer3Tab(key,testFamily,searchPath)
             for query in paser:
-                print query.hits[0].bitscore
+                # print "\t\t",query.hits[0].bitscore
+                print "\t\t",len(query.hits),"hits"
 
 # step1()
 # step2()
