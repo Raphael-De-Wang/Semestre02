@@ -104,3 +104,13 @@ def hmmSearch(modelFamilyName,hmmPath,dbFamilyName,famFastaPath,outputPath,searc
 
 def parseHmmer3Tab(modelFamilyName,dbFamilyName,searchPath):
     return SearchIO.parse(hmmer3TabName(searchPath,modelFamilyName,dbFamilyName),'hmmer3-tab')
+
+
+def precision(TP,FP):
+    return TP/(TP+FP)
+
+def recall(TP,FN):
+    return TP/(TP+FN)
+
+def fScore(TP,FP,FN):
+    return 2.*precision(TP,FP)*recall(TP,FN)/(precision(TP,FP)+recall(TP,FN))

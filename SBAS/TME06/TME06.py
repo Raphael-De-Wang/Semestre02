@@ -10,10 +10,16 @@ fb.close()
 # group sequences in family
 famDict = groupSeqFamily(seqDict)
 
-# remove family less than 100 population
+# remove family less than certain population
+seuil = 30
+filterSeqFamily(famDict,seuil)
+print "[%d] Families have more than [%d] members\n"%(len(famDict),seuil)
+
 seuil = 150
 filterSeqFamily(famDict,seuil)
 print "[%d] Families have more than [%d] members\n"%(len(famDict),seuil)
+
+print "Family Names: ", famDict.keys()
 
 # write fasta in family
 famFastaPath = "famFasta/"
