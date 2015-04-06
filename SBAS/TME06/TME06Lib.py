@@ -8,6 +8,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from Bio import SeqIO
+from Bio import SearchIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import generic_dna
@@ -34,6 +35,8 @@ def readFasta(fb):
     return seqDict
 
 def writeFasta(fb,seqList):
+    if len(seqList) <= 0:
+        raise ValueError("No data to Persist.")
     writer = FastaWriter(fb)
     writer.write_header()
     for record in seqList:
@@ -70,9 +73,34 @@ def trainFastaFileName(path,familyName):
     
 def testFastaFileName(path,familyName):
     return op.join(path,familyName+'.test.fa')
+
+def alnFastaFileName(path,familyName):
+    return op.join(path,familyName+'.aln')
+    
+def hmmModelName(path,familyName):
+    return op.join(path,familyName+'.hmm')
+    
+def outputSearchFileName(path,modelFamilyName,dbFamilyName):
+    return op.join(path,modelFamilyName+'-'+dbFamilyName+'.output')
+    
+def hmmer3TabName(path,modelFamilyName,dbFamilyName):
+    return op.join(path,modelFamilyName+'-'+dbFamilyName+'.hmmer3-tab')
     
 def aligClustalW(familyName,inPath,outPath):
-    clustalwCMD = subprocess.check_output(["which","clustalw"])
-    clustalw_cline = ClustalwCommandline(clustalwCMD, infile=trainFastaFileName(inPath,familyName), outfile=op.join(outPath,familyName+'.aln'))
-    clustalw_cline()
+    clustalwCMD = subprocess.check_output(["which","clustalw2"]).strip()
+    clustalw_cline = ClustalwCommandline(clustalwCMD, infile=trainFastaFileName(inPath,familyName), outfile=alnFastaFileName(outPath,familyName))
+    return subprocess.check_output(str(clustalw_cline).split())
 
+def hmmBuild(familyName,inPath,outPath):
+    hmmBuildCMD = subprocess.check_output(["which","hmmbuild"]).strip()
+    rst = subprocess.check_output([hmmBuildCMD,hmmModelName(outPath,familyName),alnFastaFileName(inPath,familyName)])
+    
+def hmmSearch(modelFamilyName,hmmPath,dbFamilyName,famFastaPath,outputPath,searchPath):
+    hmmSearchCMD = subprocess.check_output(["which","hmmsearch"]).strip()
+    rst = subprocess.check_output([hmmSearchCMD,"-o", outputSearchFileName(outputPath,modelFamilyName,dbFamilyName),
+                                    '--tblout', hmmer3TabName(searchPath,modelFamilyName,dbFamilyName),
+                                    hmmModelName(hmmPath,modelFamilyName),
+                                    testFastaFileName(famFastaPath,dbFamilyName)])
+
+def parseHmmer3Tab(modelFamilyName,dbFamilyName,searchPath):
+    return SearchIO.parse(hmmer3TabName(searchPath,modelFamilyName,dbFamilyName),'hmmer3-tab')
