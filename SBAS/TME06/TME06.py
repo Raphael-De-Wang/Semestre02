@@ -60,12 +60,22 @@ def step3():
     # -- false negative (FN), eqv. with miss, Type II error
     for key in famDict:
         print key
+        TP,FN,FP = 0,0,0
         for testFamily in famDict.keys():
             print "\t",testFamily
             paser = parseHmmer3Tab(key,testFamily,searchPath)
             for query in paser:
-                # print "\t\t",query.hits[0].bitscore
+                print "\t\t",query.hits[0].bitscore
                 print "\t\t",len(query.hits),"hits"
+                hits = len(query.hits)
+                if key == testFamily:
+                    TP = hits
+                    # FN = 
+                else:
+                    FP += hits
+        prec = precision(TP,FP)
+        reca = recall(TP,FN)
+        fsco = fScore(TP,FP,FN)
 
 # step1()
 # step2()
