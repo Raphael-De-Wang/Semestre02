@@ -1,5 +1,6 @@
 #!env python
 import pylab
+import pickle
 import operator
 import subprocess
 import numpy as np
@@ -86,7 +87,7 @@ def outputSearchFileName(path,modelFamilyName,dbFamilyName):
 def hmmer3TabName(path,modelFamilyName,dbFamilyName):
     return op.join(path,modelFamilyName+'-'+dbFamilyName+'.hmmer3-tab')
     
-def aligClustalW(familyName,inPath,outPath):
+def clustalW(familyName,inPath,outPath):
     clustalwCMD = subprocess.check_output(["which","clustalw2"]).strip()
     clustalw_cline = ClustalwCommandline(clustalwCMD, infile=trainFastaFileName(inPath,familyName), outfile=alnFastaFileName(outPath,familyName))
     return subprocess.check_output(str(clustalw_cline).split())
@@ -107,10 +108,21 @@ def parseHmmer3Tab(modelFamilyName,dbFamilyName,searchPath):
 
 
 def precision(TP,FP):
-    return TP/(TP+FP)
+    return 1.*TP/(TP+FP)
 
 def recall(TP,FN):
-    return TP/(TP+FN)
+    return 1.*TP/(TP+FN)
 
 def fScore(TP,FP,FN):
     return 2.*precision(TP,FP)*recall(TP,FN)/(precision(TP,FP)+recall(TP,FN))
+
+def save_dict(d,fname):
+    fb = open(fname,'w')
+    pickle.dump(d,fb)
+    fb.close()
+
+def load_dict(fname):
+    fb = open(fname)
+    b = pickle.load(fb)
+    fb.close()
+    return b
