@@ -102,6 +102,9 @@ nivExprAccuDomDict = accumulateNivExprDom(CLS_dict,domGenomeDict)
 nivExprAccuDomSortList = np.array(sortDictByValue(nivExprAccuDomDict))
 nivExpr = np.array([ int(val) for val in nivExprAccuDomSortList[:,1]])
 domains  = nivExprAccuDomSortList[:,0]
+
+np.savetxt('nivExprAccuDomSortList', nivExprAccuDomSortList)
+
 '''
 moy = np.mean(nivExpr)
 std = np.std(nivExpr)
@@ -114,6 +117,9 @@ plotBarChart(nivExpr[nivExpr<moy+4*std],domains[nivExpr<moy+4*std],"nivExprmoy+4
 '''
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
+gCAIsDomSortList = np.array(sortDictByValue(gCAIsDomDict))
+np.savetxt('gCAIsDomSortList',gCAIsDomSortList)
+exit()
 xDiv=1
 yDiv=10
 '''
