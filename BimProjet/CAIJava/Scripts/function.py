@@ -63,11 +63,8 @@ def pfam2go_to_funcDomainDict(pfam2go):
 
 DOMAIN_LIST = []
 FUNC_LIST   = []
-ANCE_LIST   = []
 DF_LIST     = []
 FF_LIST     = []
-FA_LIST     = []
-DA_LIST     = []
 
 def add_df_edge(dot,domain,funcName):
     func = funcName.replace(':','')
@@ -78,14 +75,14 @@ def add_df_edge(dot,domain,funcName):
             DOMAIN_LIST.append(domain)
             dot.add_node(node1)
         else:
-            node1 = dot.get_node(domain)[0]
+            node1 = dot.get_node(domain)
         #####
         if funcName not in FUNC_LIST:
             node2 = pydot.Node(func, style="filled", fillcolor="yellow")
             FUNC_LIST.append(funcName)
             dot.add_node(node2)
         else:
-            node2 = dot.get_node(func)[0]
+            node2 = dot.get_node(func)
         #####
         edge = pydot.Edge(node1,node2)
         DF_LIST.append([domain,func])
@@ -93,43 +90,43 @@ def add_df_edge(dot,domain,funcName):
 
 def add_da_edge(dot,domain,anceName):
     ance = anceName.replace(':','')
-    if [domain,anceName] not in DA_LIST:
+    if [domain,anceName] not in DF_LIST:
         if domain not in DOMAIN_LIST:
             # node1 = pydot.Node(domain, style="filled", fillcolor="green")
             node1 = pydot.Node(domain, style="filled", fillcolor="green")
             DOMAIN_LIST.append(domain)
             dot.add_node(node1)
         else:
-            node1 = dot.get_node(domain)[0]
+            node1 = dot.get_node(domain)
         #####
-        if anceName not in ANCE_LIST:
+        if anceName not in FUNC_LIST:
             node2 = pydot.Node(ance, style="filled", fillcolor="yellow")
-            ANCE_LIST.append(anceName)
+            FUNC_LIST.append(anceName)
             dot.add_node(node2)
         else:
-            node2 = dot.get_node(ance)[0]
+            node2 = dot.get_node(ance)
         #####
         edge = pydot.Edge(node1,node2)
-        DA_LIST.append([domain,anceName])
+        DF_LIST.append([domain,anceName])
         dot.add_edge(edge)
         
 def add_ff_edge( dot, funcName1, funcName2 ):
     func1 = funcName1.replace(':','')
     func2 = funcName2.replace(':','')
     if [funcName1,funcName2] not in FF_LIST:
-        if func1 not in FUNC_LIST:
+        if funcName1 not in FUNC_LIST:
             node1 = pydot.Node(func1, style="filled", fillcolor="yellow")
             FUNC_LIST.append(funcName1)
             dot.add_node(node1)
         else:
-            node1 = dot.get_node(func1)[0]
+            node1 = dot.get_node(func1)
         #####
         if funcName2 not in FUNC_LIST:
             node2 = pydot.Node(func2, style="filled", fillcolor="yellow")
             FUNC_LIST.append(funcName2)
             dot.add_node(node2)
         else:
-            node2 = dot.get_node(func2)[0]
+            node2 = dot.get_node(func2)
         #####
         edge = pydot.Edge(node1,node2)
         FF_LIST.append([funcName1,funcName2])
@@ -138,25 +135,25 @@ def add_ff_edge( dot, funcName1, funcName2 ):
 def add_fa_edge( dot, funcName, anceName ):
     func = funcName.replace(':','')
     ance = anceName.replace(':','')
-    if [funcName,anceName] not in FA_LIST:
-        if func not in FUNC_LIST:
+    if [funcName,anceName] not in FF_LIST:
+        if funcName not in FUNC_LIST:
             node1 = pydot.Node(func, style="filled", fillcolor="yellow")
             FUNC_LIST.append(funcName)
             dot.add_node(node1)
         else:
-            node1 = dot.get_node(func)[0]
+            node1 = dot.get_node(func)
         #####
-        if ance not in ANCE_LIST:
+        if anceName not in FUNC_LIST:
             node2 = pydot.Node(ance, style="filled", fillcolor="#976856")
-            ANCE_LIST.append(anceName)
+            FUNC_LIST.append(anceName)
             dot.add_node(node2)
         else:
-            node2 = dot.get_node(ance)[0]
+            node2 = dot.get_node(ance)
         #####
         edge = pydot.Edge(node1,node2)
-        FA_LIST.append([funcName,anceName])
+        FF_LIST.append([funcName,anceName])
         dot.add_edge(edge)
-
+        
 def search_ancestor( dot, funcName, go_dict, meta_dict):
     for key in go_dict:
         if funcName in go_dict[key].descendants:
@@ -164,5 +161,5 @@ def search_ancestor( dot, funcName, go_dict, meta_dict):
                 add_fa_edge( dot, funcName, key )
             else:
                 search_ancestor( dot, key, go_dict, meta_dict)
-    # raise ValueError("Ancestor is not found in %d search depth. "%(max_dept))
+
         

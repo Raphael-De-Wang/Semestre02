@@ -16,6 +16,7 @@ from Bio.Alphabet import generic_dna
 from Bio.SeqIO.FastaIO import FastaWriter
 from Bio.Align.Applications import ClustalwCommandline
 
+
 def descriptionDict(desc):
     dDict = {}
     dList = desc.split()
@@ -125,3 +126,52 @@ def load_dict(fname):
     b = pickle.load(fb)
     fb.close()
     return b
+
+def plotRocCurv(key,TP,FP,P,interv,fname=None):
+    vmax = max(np.ravel(TP.tolist(),FP.tolist()))
+    x,y = [],[]
+    # b110_tp,b110_fp,b110_fn,b110_sc = [],[],[],[]
+    ran  = int(vmax/interv+1)
+    for i in range(1,ran):
+        vtp = sum(TP>i*interv)
+        vfp = sum(FP>i*interv)
+        vfn = P - vtp - vfp
+        if vtp + vfp <> 0:
+            prec = precision(vtp,vfp)
+            reca = recall(vtp,vfn)
+            x.append(reca)
+            y.append(prec)
+            '''
+            if key == 'b.1.1.0':
+                print "family[%s] %d: precision [%f], recall [%f]"%(key,i,prec,reca)
+                print "TP: %f, FP: %f, FN: %f, Score: %d"%(vtp,vfp,vfn,i*interv)
+                b110_tp.append(vtp)
+                b110_fp.append(vfp)
+                b110_fn.append(vfn)
+                b110_sc.append(i*interv)
+            '''
+    fig = plt.figure()
+    plt.title("Roc Curv: %s family"%key)
+    plt.xlabel("Specificity(recall %)")
+    plt.ylabel("Sensitivity(precision %)")
+    plt.ylim((0,1.1))
+    plt.plot(x,y)
+    if fname <> None:
+        plt.savefig(fname.replace('.','-')+'-'+key+'.png')
+    else:
+        plt.show()
+    plt.close(fig)
+    '''
+    if key == 'b.1.1.0':
+        fig = plt.figure()
+        indice = b110_sc
+        plt.title("TP,FP,FN: %s family"%key)
+        plt.xlabel("Score")
+        plt.ylabel("Value")
+        plt.plot(indice,b110_tp,label='TP')
+        plt.plot(indice,b110_fp,label='FP')
+        plt.plot(indice,b110_fn,label='FN')
+        plt.legend(loc=1)
+        plt.savefig(key.replace('.','-')+'TP-FP-FN'+'.png')
+        plt.close(fig)
+    '''

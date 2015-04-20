@@ -2,7 +2,8 @@
 from TME06Lib import *
 
 # read Fasta
-fname = "astral-scopedom-seqres-sel-gs-bib-90-2.05.fa"
+# fname = "astral-scopedom-seqres-sel-gs-bib-90-2.05.fa"
+fname = "astral-scopedom-seqres-sel-gs-bib-30-2.05.fa"
 fb = open(fname)
 seqDict = readFasta(fb)
 fb.close()
@@ -15,7 +16,7 @@ famDict = groupSeqFamily(seqDict)
 # filterSeqFamily(famDict,seuil)
 # print "[%d] Families have more than [%d] members\n"%(len(famDict),seuil)
 
-seuil = 150
+seuil = 50
 filterSeqFamily(famDict,seuil)
 print "[%d] Families have more than [%d] members\n"%(len(famDict),seuil)
 
@@ -63,9 +64,11 @@ def step3():
     # -- false positive (FP), eqv. with false alarm, Type I error
     # -- false negative (FN), eqv. with miss, Type II error
     famTrainTestSize = load_dict('famTrainTestSize')
+    TP,FP = 0,0,0
+    testsize = 0
     for key in famDict:
         print key
-        TP,FN,FP = 0,0,0
+        testsize += famTrainTestSize.get(key)[1]
         for testFamily in famDict.keys():
             print "\t",testFamily
             paser = parseHmmer3Tab(key,testFamily,searchPath)
@@ -74,15 +77,39 @@ def step3():
                 print "\t\t",len(query.hits),"hits"
                 hits = len(query.hits)
                 if key == testFamily:
-                    TP = hits
-                    FN = famTrainTestSize.get(key)[1] - TP
+                    TP += hits
                 else:
                     FP += hits
+    if TP + FP <> 0:
+        FN = testsize - TP - FP
         prec = precision(TP,FP)
         reca = recall(TP,FN)
         fsco = fScore(TP,FP,FN)
         print "family[%s]: precision [%f], recall [%f], fScore [%f]"%(key,prec,reca,fsco)
 
-#step1()
-#step2()
+def RocCurv():
+    # step 3 : analyse
+    # -- true positive (TP), eqv. with hit
+    # -- true negative (TN), eqv. with correct rejection
+    # -- false positive (FP), eqv. with false alarm, Type I error
+    # -- false negative (FN), eqv. with miss, Type II error
+    famTrainTestSize = load_dict('famTrainTestSize')
+    testsize = 0
+    TP,FP = [],[]
+    for key in famDict:
+        for testFamily in famDict.keys():
+            paser = parseHmmer3Tab(key,testFamily,searchPath)
+            for query in paser:
+                for hit in query:
+                    if hit.query_id == testFamily:
+                        TP.append(hit.bitscore)
+                    else:
+                        FP.append(hit.bitscore)
+        TP.sort(reverse=True)
+        FP.sort(reverse=True)
+        plotRocCurv(key,np.array(TP),np.array(FP),famTrainTestSize.get(key)[1],10,'RocCurv')
+
+step1()
+step2()
 step3()
+RocCurv()

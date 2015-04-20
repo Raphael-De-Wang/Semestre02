@@ -13,7 +13,7 @@ def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict):
     de = dict()
     for i,d in enumerate(domains):
         ne = nivExprAccuDomDict.get(d)
-        if ne > 1000 :
+        if ne > 500 :
             for g in gCAIsDomDict.get(d):
                 if g > 0.8 :
                     if dg.has_key(d):
@@ -91,12 +91,13 @@ handle.close()
 deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict)
 # domainHTML(deSortList,pfam2go_dict,dg,de)
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
-# print len(np.array(dfList))
+print len(dfList)
 # print len(np.unique(np.array(dfList)[:,1]))
 
 # Construire l'arbre
 dot = pydot.Dot(graph_type='digraph')
-for d,func in dfList[:1]:
+for d,func in dfList:
+    print "domain : %s, function : %s "%(d,func)
     if func not in goslimmeta_dict.keys():
         add_df_edge(dot,d,func)
     else:
@@ -104,8 +105,8 @@ for d,func in dfList[:1]:
     for key in goDict:
         if func in goDict[key].descendants:
             if key not in goslimmeta_dict.keys():
-                add_ff_edge( dot, func, key)
-                ance= search_ancestor(dot,key,goDict,goslimmeta_dict)
+                # add_ff_edge( dot, func, key)
+                search_ancestor(dot,key,goDict,goslimmeta_dict)
             else:
                 add_fa_edge( dot, func, key)
     
@@ -114,6 +115,6 @@ for d,func in dfList[:1]:
 
 dot.write_png('/tmp/graph.png', prog='dot')
 
-print DF_LIST
-print FF_LIST
-print FA_LIST
+# print DF_LIST
+# print FF_LIST
+

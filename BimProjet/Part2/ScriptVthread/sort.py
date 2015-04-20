@@ -47,7 +47,7 @@ class Master(object):
     def slaveConnectAll(self):
         self.slaveConnList = []
         slaveList = []
-        self.pwd = getpass.getpass("Password for Slave Connections : ")
+        self.pwd = 'Lu@81823334' # getpass.getpass("Password for Slave Connections : ")
         for slaveAddress in self.slaveList:
             if self.isAlive(slaveAddress):
                 slaveList.append(slaveAddress)
@@ -95,7 +95,7 @@ class Master(object):
             except:
                 print "process [%d] second time fail"%slaveID
                 raise
-        print conn.root.slaveHostname(), ' is connected. '
+        print "slave service on ", conn.root.slaveHostname(), ' is connected. '
         return conn
 
     def connectAllServices(self):
@@ -106,10 +106,10 @@ class Master(object):
             
     def disconnect_slave(self,conn):
         if not conn.closed:
-            print "Slave Service Connection with ", conn.root.slaveHostname(), ' is disconnecting. '
+            print "Slave Service on ", conn.root.slaveHostname(), ' is disconnecting. '
             conn.close()
         else:
-            print "Slave Service Connection with ", conn.root.slaveHostname(), ' is disconnected. '
+            print "Slave Service on ", conn.root.slaveHostname(), ' is disconnected. '
             
     def disconnectAllServices(self):
         for conn in self.services:
@@ -137,7 +137,7 @@ class Master(object):
         self.servUpdateNGList(sid)
 
     def rstName(self,queryFile,tacheID):
-        return queryFile+"-rst%09d"%(tacheID)
+        return queryFile+"-rst%03d"%(tacheID)
         
     def getTacheNum(self):
         iCount = -1
@@ -160,7 +160,7 @@ class Master(object):
         self.gNameList     = ['' for i in xrange(len(self.services))]
         self.tacheID       = 0
         self.tacheIDlock   = threading.Lock()
-        self.tacheNum      = 4
+        self.tacheNum      = self.getTacheNum()
         print "getTacheNum(): ", self.getTacheNum()
         
         for sid in range(len(self.services)):
@@ -181,6 +181,17 @@ class Master(object):
             count += niv
             handle.write("%s\t%d\n"%(gN,niv))
             self.servUpdateNGList(sid)
+            '''
+            neMax = max(self.nivExprList)
+            for sid,value in enumerate(self.nivExprList):
+                if value == neMax:
+                    niv = self.nivExprList[sid]
+                    gN  = self.gNameList[sid]
+                    count += niv
+                    handle.write("%s\t%d\n"%(gN,niv))
+                    self.servUpdateNGList(sid)
+            '''
+                    
         handle.close()
 
         print "%d records are writed..."%count
@@ -214,15 +225,21 @@ class Master(object):
             raise
         
 
-slaveList = [machine_address%(3,j,i) for i in range(2,4) for j in [2] ]
+slaveList = [machine_address%(5,j,i) for i in range(2,17) for j in [3] ]
 uname     = '3404759'
 
-# queryFile = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS828_DNA_N3/ERR420353_54_MERGED_FASTQ_readsWithpCDS.fasta'
-# queryFile = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS821_DNA_Marshmallow/ERR420344_48_MERGED_FASTQ_readsWithpCDS.fasta'
-# queryFile = '/users/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS857_DNA_Anemone/ERR420357_58_MERGED_FASTQ_readsWithpCDS.fasta'
-queryFile = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS861_DNA_Marker113/ERR420363_68_MERGED_FASTQ_readsWithpCDS.fasta'
+queryFile1 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS828_DNA_N3/ERR420353_54_MERGED_FASTQ_readsWithpCDS.fasta'
+queryFile2 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS857_DNA_Anemone/ERR420357_58_MERGED_FASTQ_readsWithpCDS.fasta'
+# queryFile1 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS821_DNA_Marshmallow/ERR420344_48_MERGED_FASTQ_readsWithpCDS.fasta'
+# queryFile2 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS861_DNA_Marker113/ERR420363_68_MERGED_FASTQ_readsWithpCDS.fasta'
 
+outputFileName1 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS828_DNA_N3/ERR420353_54_MERGED_FASTQ_readsWithpCDS.fasta-nivExpr'
+outputFileName2 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS857_DNA_Anemone/ERR420357_58_MERGED_FASTQ_readsWithpCDS.fasta-nivExpr'
+# outputFileName1 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS821_DNA_Marshmallow/ERR420344_48_MERGED_FASTQ_readsWithpCDS.fasta-nivExpr'
+# outputFileName2 = '/users/nfs/Etu9/3404759/Workspace/Sources/BioDB/Axial_FS861_DNA_Marker113/ERR420363_68_MERGED_FASTQ_readsWithpCDS.fasta-nivExpr'
 
-outputFileName = '/tmp/output'
-m = Master(slaveList,uname,portNum,queryFile,outputFileName)
+m = Master(slaveList,uname,portNum,queryFile1,outputFileName1)
+m.run()
+
+m = Master(slaveList,uname,portNum,queryFile2,outputFileName2)
 m.run()
