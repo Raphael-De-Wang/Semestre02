@@ -99,10 +99,11 @@ def hmmBuild(familyName,inPath,outPath):
 def hmmSearch(modelFamilyName,hmmPath,dbFamilyName,famFastaPath,outputPath,searchPath):
     hmmSearchCMD = subprocess.check_output(["which","hmmsearch"]).strip()
     rst = subprocess.check_output([hmmSearchCMD,"-o", outputSearchFileName(outputPath,modelFamilyName,dbFamilyName),
+                                    '-T', '0',
                                     '--tblout', hmmer3TabName(searchPath,modelFamilyName,dbFamilyName),
                                     hmmModelName(hmmPath,modelFamilyName),
                                     testFastaFileName(famFastaPath,dbFamilyName)])
-
+ 
 def parseHmmer3Tab(modelFamilyName,dbFamilyName,searchPath):
     return SearchIO.parse(hmmer3TabName(searchPath,modelFamilyName,dbFamilyName),'hmmer3-tab')
 
@@ -127,51 +128,50 @@ def load_dict(fname):
     fb.close()
     return b
 
-def plotRocCurv(key,TP,FP,P,interv,fname=None):
+def performance(TP,FP,FN):
+        prec = precision(TP,FP)
+        reca = recall(TP,FN)
+        fsco = fScore(TP,FP,FN)
+        print "precision [%f], recall [%f], fScore [%f]"%(prec,reca,fsco)
+        return (prec,reca,fsco)
+
+def plotRocCurv(TP,FP,P,interv,fname=None):
     vmax = max(np.ravel(TP.tolist(),FP.tolist()))
     x,y = [],[]
-    # b110_tp,b110_fp,b110_fn,b110_sc = [],[],[],[]
+    vtpList, vfpList, vfnList = [],[],[]
     ran  = int(vmax/interv+1)
     for i in range(1,ran):
         vtp = sum(TP>i*interv)
         vfp = sum(FP>i*interv)
         vfn = P - vtp - vfp
+        vtpList.append(vtp)
+        vfpList.append(vfp)
+        vfnList.append(vfn)
         if vtp + vfp <> 0:
-            prec = precision(vtp,vfp)
-            reca = recall(vtp,vfn)
+            prec,reca,fsco = performance(vtp,vfp,vfn)
+            # prec = precision(vtp,vfp)
+            # reca = recall(vtp,vfn)
             x.append(reca)
             y.append(prec)
-            '''
-            if key == 'b.1.1.0':
-                print "family[%s] %d: precision [%f], recall [%f]"%(key,i,prec,reca)
-                print "TP: %f, FP: %f, FN: %f, Score: %d"%(vtp,vfp,vfn,i*interv)
-                b110_tp.append(vtp)
-                b110_fp.append(vfp)
-                b110_fn.append(vfn)
-                b110_sc.append(i*interv)
-            '''
-    fig = plt.figure()
-    plt.title("Roc Curv: %s family"%key)
+    fig = plt.figure(1,figsize=(10,5))
+    plt.subplot(121)
+    plt.title("Roc Curv")
     plt.xlabel("Specificity(recall %)")
     plt.ylabel("Sensitivity(precision %)")
     plt.ylim((0,1.1))
     plt.plot(x,y)
+    plt.subplot(122)
+    plt.title("TP, FP, FN")
+    plt.xlabel("Scale")
+    plt.ylabel("Value")
+    plt.plot(range(1,ran),vtpList,label='TP')
+    plt.plot(range(1,ran),vfpList,label='FP')
+    plt.plot(range(1,ran),vfnList,label='FN')
+    plt.legend(loc=5)
     if fname <> None:
-        plt.savefig(fname.replace('.','-')+'-'+key+'.png')
+        plt.savefig(fname.replace('.','-')+'.png')
     else:
         plt.show()
     plt.close(fig)
-    '''
-    if key == 'b.1.1.0':
-        fig = plt.figure()
-        indice = b110_sc
-        plt.title("TP,FP,FN: %s family"%key)
-        plt.xlabel("Score")
-        plt.ylabel("Value")
-        plt.plot(indice,b110_tp,label='TP')
-        plt.plot(indice,b110_fp,label='FP')
-        plt.plot(indice,b110_fn,label='FN')
-        plt.legend(loc=1)
-        plt.savefig(key.replace('.','-')+'TP-FP-FN'+'.png')
-        plt.close(fig)
-    '''
+
+    

@@ -95,18 +95,19 @@ print len(dfList)
 # print len(np.unique(np.array(dfList)[:,1]))
 
 # Construire l'arbre
-dot = pydot.Dot(graph_type='digraph')
+dot = pydot.Dot(graph_type='digraph',ratio="expand", size='100! 10000!')
 for d,func in dfList:
     print "domain : %s, function : %s "%(d,func)
     if func not in goslimmeta_dict.keys():
         add_df_edge(dot,d,func)
     else:
         add_da_edge(dot,d,func)
+        
     for key in goDict:
         if func in goDict[key].descendants:
             if key not in goslimmeta_dict.keys():
                 # add_ff_edge( dot, func, key)
-                search_ancestor(dot,key,goDict,goslimmeta_dict)
+                search_ancestor(dot,func,key,goDict,goslimmeta_dict)
             else:
                 add_fa_edge( dot, func, key)
     
