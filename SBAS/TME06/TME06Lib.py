@@ -16,7 +16,6 @@ from Bio.Alphabet import generic_dna
 from Bio.SeqIO.FastaIO import FastaWriter
 from Bio.Align.Applications import ClustalwCommandline
 
-
 def descriptionDict(desc):
     dDict = {}
     dList = desc.split()

@@ -363,3 +363,10 @@ def trierFastaByDomain(tgtDomain,fastaDict,step2List,writeFileName,formatFunc):
     writer.write_footer()
     fb.close()
 
+#### save list ####
+def save_list(fname, slist):
+    handle = open(fname,'w')
+    for record in slist:
+        handle.write('\t'.join(map(str, record)) + '\n')
+    handle.close()
+    
