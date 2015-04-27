@@ -1,0 +1,21 @@
+>seq1
+ACCACTACTCATCATCATTCATCGGCTGTGC
+>seq2
+GACTCGATCAGCATTATHGGGCTGTCGTAG
+>seq3
+GGCTGGCTGTACTATTATTAGCTAGCTGATG
+>seq4
+GGCTGCTGACAGGATGATAGCTACGATCGA
+
+--------------------------------------------------------
+
+CLUSTAL 2.0.12 multiple sequence alignment
+
+
+seq1            --ACCACTACTC-ATCATCATTCATCGGCTGTGC---
+seq2            -------GACTCGATCAGCATTATHGGGCTGTCGTAG
+seq3            ---GGCTGGCTGTACTATTATTAGCTAGCTGATG---
+seq4            GGCTGCTGACAGGATGATAGCTA--CGATCGA-----
+                         *   *  *    *        *      
+
+---------------------------------------------------------------------
