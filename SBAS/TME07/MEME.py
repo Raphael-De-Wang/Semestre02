@@ -26,6 +26,8 @@ def likelihood_log(seqList,Z,pt,W):
     ll = 0
     for i,record in enumerate(seqList):
         pos = np.argmax(Z[i])
+        # print "Z[i]: \n", Z[i]
+        # print "pos : ", pos
         seq = record.seq
         ll += np.log(P(seq,pos,pt,W)/(len(seq)-W+1))
     return ll
@@ -35,7 +37,8 @@ def init_p0_random(seqList,W):
     p0[:,0] = np.ones(4)*0.25
     i = np.random.randint(len(seqList))
     j = np.random.randint(len(seqList[i].seq)-W)
-    # print seqList[i].seq[j:j+W]
+    print "seq%d, position %d"%(i,j)
+    print "random motif : ", seqList[i].seq[j:j+W]
     for indice,c in enumerate(seqList[i].seq[j:j+W]):
         p0[code_dict[c],indice+1] = 0.5
     return p0
@@ -77,6 +80,30 @@ def M_step(seqList,W,Zt):
     pt[:,0]  = pt[:,0] / sum(pt[:,0])
     return pt
 
+def get_motives(record, W):
+    seq = "%s"%record.seq
+    return [ seq[i:i+W] for i in range(len(seq)-W+1) ]
+
+def M_step_v2(seqList,W,Zt):
+    # Calcul de Pck
+    pt = np.ones((4,W+1))
+    for c in ['A','C','G','T']:
+        for pos in range(1,W+1):
+            for i,record in enumerate(seqList):
+                for j,motif in enumerate(get_motives(record,W)):
+                    if motif[pos-1] == c:
+                        pt[code_dict[c],pos] += Zt[i,j]
+    # Calcul de P0
+    pt[:,0] = [1+Nc(seqList,'A')-pt[0,1:].sum(),
+               1+Nc(seqList,'C')-pt[1,1:].sum(),
+               1+Nc(seqList,'G')-pt[2,1:].sum(),
+               1+Nc(seqList,'T')-pt[3,1:].sum()]
+    # normalisation de Pt
+    pt[:,1:] = pt[:,1:] / (Zt.sum() + 4)
+    # normalisation de P0
+    pt[:,0]  = pt[:,0] / sum(pt[:,0])
+    return pt
+
 def MEME(seqList,W,epsilon):
     # init p0
     pt = init_p0_random(seqList,W)
@@ -85,18 +112,27 @@ def MEME(seqList,W,epsilon):
     # Iteration until change in p(t) < epsilon
     while len(vr_list) < 2 or abs(vr_list[-2] - vr_list[-1]) > epsilon :
         Zt = E_step(seqList,pt,W)
-        pt = M_step(seqList,W,Zt)
+        pt = M_step_v2(seqList,W,Zt)
         vr_list.append(likelihood_log(seqList,Zt,pt,W))
     return pt,Zt
 
-W = 14
+def get_motif(seqList,indice,pos,W):
+    seq = "%s"%seqList[indice].seq
+    return seq[pos:pos+W]
+
+def run_meme(handle,W=14):
+    seqList = readFasta(handle)
+    # print init_p0_random(seqList,W)
+    pt,Zt =  MEME(seqList,W,0.01)
+    print "pt : \n",pt
+    print '\n'
+    print "Zt : \n",Zt,"\n"
+    print "motives positions : ", np.argmax(Zt,axis=1),"\n"
+    print "motives : \n"
+    for indice,pos in enumerate(np.argmax(Zt,axis=1)):
+        print get_motif(seqList,indice,pos,W)
+
+
 handle = open("hw1_hidden_motif.txt")
-seqList = readFasta(handle)
-# print init_p0_random(seqList,W)
-pt,Zt =  MEME(seqList,W,0.0000000001)
-
-print "pt : \n",pt
-print '\n'
-print "Zt : \n",Zt
-print "motives positions : ", np.argmax(Zt,axis=1)
-
+run_meme(handle)        
+handle.close()
