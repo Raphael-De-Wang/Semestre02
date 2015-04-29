@@ -39,7 +39,6 @@ if len(train_df.Age[ train_df.Age.isnull() ]) > 0:
 # Remove the Name column, Cabin, Ticket, and Sex (since I copied and filled it to Gender)
 train_df = train_df.drop(['Name', 'Sex', 'Ticket', 'Cabin', 'PassengerId'], axis=1) 
 
-
 # TEST DATA
 test_df = pd.read_csv('test.csv', header=0)        # Load the test file into a dataframe
 
