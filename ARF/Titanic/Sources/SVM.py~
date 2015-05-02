@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import csv as csv
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression 
 
 # Data cleanup
 # TRAIN DATA
@@ -22,13 +22,13 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
-forest = RandomForestClassifier(n_estimators=100)
-forest = forest.fit( train_data, train_labels )
+lr = LogisticRegression()
+lr = lr.fit( train_data, train_labels )
 
 print 'Predicting...'
-output = forest.predict(test_data).astype(int)
+output = lr.predict(test_data).astype(int)
 
-predictions_file = open("RF.csv", "wb")
+predictions_file = open("LR.csv", "wb")
 open_file_object = csv.writer(predictions_file)
 open_file_object.writerow(["PassengerId","Survived"])
 open_file_object.writerows(zip(test_id, output))

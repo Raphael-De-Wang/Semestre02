@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import csv as csv
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 
 # Data cleanup
 # TRAIN DATA
@@ -22,13 +22,13 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
-forest = RandomForestClassifier(n_estimators=100)
-forest = forest.fit( train_data, train_labels )
+clf = SVC()
+clf = clf.fit( train_data, train_labels )
 
 print 'Predicting...'
-output = forest.predict(test_data).astype(int)
+output = clf.predict(test_data).astype(int)
 
-predictions_file = open("RF.csv", "wb")
+predictions_file = open("CLF.csv", "wb")
 open_file_object = csv.writer(predictions_file)
 open_file_object.writerow(["PassengerId","Survived"])
 open_file_object.writerows(zip(test_id, output))

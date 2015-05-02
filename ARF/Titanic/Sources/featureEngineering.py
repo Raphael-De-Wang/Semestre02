@@ -12,91 +12,111 @@ def substrings_in_string(big_string, substrings):
     print big_string
     return np.nan
 
-
-def phase1clean(df):
-    #setting silly values to nan
+def fare(df):
+    # setting silly values to nan
     df.Fare = df.Fare.map(lambda x: np.nan if x==0 else x)
-    
-    #Special case for cabins as nan may be signal
-    df.Cabin = df.Cabin.fillna('Unknown')    
 
+def is_odd(x):
+    try:
+        if int(x[-1])%2==0:
+            return 1
+        return 2
+    except:
+        return 0
+    
+def cabin(df):
+    # Special case for cabins as nan may be signal
+    df.Cabin = df.Cabin.fillna('Unknown')    
+    # Turning cabin number into Deck
+    cabin_list = ['A', 'B', 'C', 'D', 'E', 'F', 'T', 'G', 'Unknown']
+    cabin_dict = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'T':7, 'G':8, 'Unknown':0}
+    df['Deck'] = df['Cabin'].map(lambda x: substrings_in_string(x, cabin_list))
+    df['Deck'] = df['Deck'].map(lambda x: cabin_dict[x])
+    df['Side'] = df['Cabin'].map(lambda x: is_odd(x))
+    
+#replacing all titles with mr, mrs, miss, master
+title_dict = { 'Master':0, 'Miss':1,'Mr':2, 'Mrs':3 }
+def replace_titles(x):
+    if x['Title'] in ['Don', 'Major', 'Capt', 'Jonkheer', 'Rev', 'Col']:
+        return title_dict['Mr']
+    elif x['Title'] in ['Countess', 'Mme']:
+        return title_dict['Mrs']
+    elif x['Title'] in ['Mlle', 'Ms']:
+        return title_dict['Miss']
+    elif x['Title'] =='Dr':
+        if x['Sex']=='Male':
+            return title_dict['Mr']
+        else:
+            return title_dict['Mrs']
+    else:
+        return title_dict[x['Title']]
+        
+def title(df):
     #creating a title column from name
     title_list=['Mrs', 'Mr', 'Master', 'Miss', 'Major', 'Rev',
                 'Dr', 'Ms', 'Mlle','Col', 'Capt', 'Mme', 'Countess',
                 'Don', 'Jonkheer']
 
     df['Title']=df['Name'].map(lambda x: substrings_in_string(x, title_list))
+    df['Title']=df[['Title','Sex']].apply(lambda x: replace_titles(x),axis=1)
     
-    #replacing all titles with mr, mrs, miss, master
-    def replace_titles(x):
-        title=x['Title']
-        if title in ['Don', 'Major', 'Capt', 'Jonkheer', 'Rev', 'Col']:
-            return 'Mr'
-        elif title in ['Countess', 'Mme']:
-            return 'Mrs'
-        elif title in ['Mlle', 'Ms']:
-            return 'Miss'
-        elif title =='Dr':
-            if x['Sex']=='Male':
-                return 'Mr'
-            else:
-                return 'Mrs'
-        else:
-            return title
-    df['Title']=df.apply(replace_titles, axis=1)
-
-    #Turning cabin number into Deck
-    cabin_list = ['A', 'B', 'C', 'D', 'E', 'F', 'T', 'G', 'Unknown']
-    df['Deck']=df['Cabin'].map(lambda x: substrings_in_string(x, cabin_list))
-        
+def familySize(df):
     #Creating new family_size column
     df['Family_Size']=df['SibSp']+df['Parch']
-    
+
+def clean1(df):
+    familySize(df)
+    title(df)
+    cabin(df)
+    fare(df)
     return df
     
-def phase2clean(train, test):
-    #data type dictionary
-    data_type_dict={'Pclass':'ordinal', 'Sex':'nominal', 
-                    'Age':'numeric', 
-                    'Fare':'numeric', 'Embarked':'nominal', 'Title':'nominal',
-                    'Deck':'nominal', 'Family_Size':'ordinal'}      
-
+def clean2(train, test):
     #imputing nan values
     for df in [train, test]:
         classmeans = df.pivot_table('Fare', rows='Pclass', aggfunc='mean')
         df.Fare = df[['Fare', 'Pclass']].apply(lambda x: classmeans[x['Pclass']] if pd.isnull(x['Fare']) else x['Fare'], axis=1 )
-        meanAge=np.mean(df.Age)
-        df.Age=df.Age.fillna(meanAge)
         modeEmbarked = mode(df.Embarked)[0][0]
         df.Embarked = df.Embarked.fillna(modeEmbarked)
 
-
-#    Fare per person
+    for df in [train,test]:
+        agemeans = df.pivot_table('Age', rows='Pclass', aggfunc='mean')
+        df.Age = df[['Age', 'Pclass']].apply(lambda x: agemeans[x['Pclass']] if pd.isnull(x['Age']) else x['Age'], axis=1 )
+        
+    # Fare per person
     for df in [train, test]:
         df['Fare_Per_Person']=df['Fare']/(df['Family_Size']+1)
-    
+        
     #Age times class
+    def protocol(x):
+        if x['Age']<15 or x['Sex']=='female':
+            return 1
+        else:
+            return 0
+            
     for df in [train, test]:
-        df['AgeClass']=df['Age']*df['Pclass']
-    
-    data_type_dict['Fare_Per_Person']='numeric'
-    data_type_dict['AgeClass']='numeric'
-    
-    return [train,test, data_type_dict]
-    
-def discretise_numeric(train, test, data_type_dict, no_bins=10):
-    N=len(train)
-    M=len(test)
-    test=test.rename(lambda x: x+N)
-    joint_df=train.append(test)
-    for column in data_type_dict:
-        if data_type_dict[column]=='numeric':
-            joint_df[column]=pd.qcut(joint_df[column], 10)
-            data_type_dict[column]='ordinal'
-    train=joint_df.ix[range(N)]
-    test=joint_df.ix[range(N,N+M)]
-    return train, test, data_type_dict
+        df['AgeClass'] = df['Age']*df['Pclass']
+        df['Protocole']= df[['Age', 'Sex']].apply(lambda x: protocol(x), axis=1 )
 
+    return [train,test]
+
+def convert(train,test):
+    for df in [train,test]:
+        # female = 0, Male = 1
+        df['Gender'] = df['Sex'].map( {'female': 0, 'male': 1} ).astype(int)
+
+        # Embarked from 'C', 'Q', 'S'
+        # All missing Embarked -> just make them embark from most common place
+        if len(df.Embarked[ df.Embarked.isnull() ]) > 0:
+            df.Embarked[ df.Embarked.isnull() ] = df.Embarked.dropna().mode().values
+
+        # convert all Embarked strings to int
+        Ports = list(enumerate(np.unique(df['Embarked']))) # determine all values of Embarked,
+        Ports_dict = { name : i for i, name in Ports }           # set up a dictionary in the form  Ports : index
+        df.Embarked = df.Embarked.map( lambda x: Ports_dict[x]).astype(int) # Convert all Embark strings to int
+
+    return [train,test]
+    
 def clean(no_bins=0):
     # you'll want to tweak this to conform with your computer's file system
     trainpath = 'train.csv'
@@ -104,15 +124,18 @@ def clean(no_bins=0):
     traindf   = pd.read_csv(trainpath)
     testdf    = pd.read_csv(testpath)
 
-    traindf=phase1clean(traindf)
-    testdf=phase1clean(testdf)
+    traindf = clean1(traindf)
+    testdf  = clean1(testdf)
     
-    traindf, testdf, data_type_dict=phase2clean(traindf, testdf)
+    traindf, testdf = clean2(traindf, testdf)
+    traindf, testdf = convert(traindf,testdf)
     
-    traindf, testdf, data_type_dict=discretise_numeric(traindf, testdf, data_type_dict)
+    # Remove the Name column, Cabin, Ticket
+    traindf = traindf.drop(['Name', 'Ticket', 'Sex','Cabin'], axis=1)
+    testdf  = testdf.drop(['Name', 'Ticket', 'Sex','Cabin'], axis=1)
+    
+    return [traindf, testdf]
 
-    return [traindf, testdf, data_type_dict]
-
-traindf, testdf, data_type_dict = clean()
-traindf.to_csv('cleanedTrain.csv')
-testdf.to_csv('cleanedTest.csv')
+traindf, testdf = clean()
+traindf.to_csv('cleanedTrain.csv',index=False)
+testdf.to_csv('cleanedTest.csv',index=False)

@@ -50,8 +50,7 @@ def E_step(seqList,pt,W):
         Zt[i] = Zt[i]/s
     return Zt
 
-def Nc(seqList,c):
-    seq = ''.join([ "%s"%record.seq for record in seqList ])
+def Nc(seq,c):
     return sum(np.array(list(seq)) == c)
 
 def M_step(seqList,W,Zt):
@@ -70,10 +69,11 @@ def M_step(seqList,W,Zt):
             for j in jRange:
                 pt[code_dict[c],j+1] += Zt[i,pos-j-1]
     # Calcul de P0
-    pt[:,0] = [1+Nc(seqList,'A')-pt[0,1:].sum(),
-               1+Nc(seqList,'C')-pt[1,1:].sum(),
-               1+Nc(seqList,'G')-pt[2,1:].sum(),
-               1+Nc(seqList,'T')-pt[3,1:].sum()]
+    seqAll = ''.join([ "%s"%record.seq for record in seqList ])
+    pt[:,0] = [1+Nc(seqAll,'A')-pt[0,1:].sum(),
+               1+Nc(seqAll,'C')-pt[1,1:].sum(),
+               1+Nc(seqAll,'G')-pt[2,1:].sum(),
+               1+Nc(seqAll,'T')-pt[3,1:].sum()]
     # normalisation de Pt
     pt[:,1:] = pt[:,1:] / (Zt.sum() + 4)
     # normalisation de P0
@@ -123,16 +123,40 @@ def get_motif(seqList,indice,pos,W):
 def run_meme(handle,W=14):
     seqList = readFasta(handle)
     # print init_p0_random(seqList,W)
-    pt,Zt =  MEME(seqList,W,0.01)
+    pt,Zt =  MEME(seqList,W,0.001)
+    motif_list = []
     print "pt : \n",pt
     print '\n'
     print "Zt : \n",Zt,"\n"
     print "motives positions : ", np.argmax(Zt,axis=1),"\n"
     print "motives : \n"
     for indice,pos in enumerate(np.argmax(Zt,axis=1)):
-        print get_motif(seqList,indice,pos,W)
+        motif_list.append(get_motif(seqList,indice,pos,W))
+        print motif_list[-1]
+    return motif_list
 
-
+def motif_count(motif_list):
+    W = len(motif_list[0])
+    m = np.zeros((4,W))
+    for i in range(W):
+        for c in ['A','C','G','T']:
+            m[code_dict[c],i] = Nc(motif_list[:,i],c)
+    return m
+    
+'''
 handle = open("hw1_hidden_motif.txt")
-run_meme(handle)        
+motif_list = run_meme(handle)
 handle.close()
+'''
+motif_list = np.array([list('ATGAAAGTTGCGGA'),
+                       list('ATCAGAATACCTGA'),
+                       list('ATGAAGGGTCCTGG'),
+                       list('TTAAATACTACTGA'),
+                       list('ATGATAAGTCATCA'),
+                       list('ATGGAAGGTACACA'),
+                       list('GTAAAAACAACGGA'),
+                       list('AGCACAATTATTTA'),
+                       list('ATAACAATTACTGA'),
+                       list('ATGTAAAGTAAGGA')])
+
+print motif_count(motif_list)
