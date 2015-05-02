@@ -20,7 +20,7 @@ def is_odd(x):
     try:
         if int(x[-1])%2==0:
             return 1
-        return 2
+        return -1
     except:
         return 0
     
@@ -29,13 +29,13 @@ def cabin(df):
     df.Cabin = df.Cabin.fillna('Unknown')    
     # Turning cabin number into Deck
     cabin_list = ['A', 'B', 'C', 'D', 'E', 'F', 'T', 'G', 'Unknown']
-    cabin_dict = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'T':7, 'G':8, 'Unknown':0}
+    cabin_dict = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'T':7, 'G':8, 'Unknown':-1}
     df['Deck'] = df['Cabin'].map(lambda x: substrings_in_string(x, cabin_list))
     df['Deck'] = df['Deck'].map(lambda x: cabin_dict[x])
     df['Side'] = df['Cabin'].map(lambda x: is_odd(x))
     
 #replacing all titles with mr, mrs, miss, master
-title_dict = { 'Master':0, 'Miss':1,'Mr':2, 'Mrs':3 }
+title_dict = { 'Master':1, 'Miss':2,'Mr':3, 'Mrs':4 }
 def replace_titles(x):
     if x['Title'] in ['Don', 'Major', 'Capt', 'Jonkheer', 'Rev', 'Col']:
         return title_dict['Mr']

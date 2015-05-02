@@ -3,6 +3,8 @@
 import pandas as pd
 import numpy as np
 import csv as csv
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 
 # Data cleanup
@@ -14,7 +16,7 @@ X = train_df.values[:, 1::]
 y = train_df.values[:, 0]
 
 # Fit a random forest with (mostly) default parameters to determine feature importance
-forest = RandomForestClassifier(oob_score=True, n_estimators=10000)
+forest = RandomForestClassifier(oob_score=True, n_estimators=100)
 forest.fit(X, y)
 feature_importance = forest.feature_importances_
 
@@ -23,7 +25,7 @@ feature_importance = 100.0 * (feature_importance / feature_importance.max())
 
 # A threshold below which to drop features from the final data set. Specifically, this number represents
 # the percentage of the most important feature's importance value
-fi_threshold = 15
+fi_threshold = 0 # 15
 
 # Get the indexes of all features over the importance threshold
 important_idx = np.where(feature_importance > fi_threshold)[0]
@@ -39,7 +41,7 @@ print "\nFeatures sorted by importance (DESC):\n", important_features[sorted_idx
 
 # Adapted from http://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_regression.html
 pos = np.arange(sorted_idx.shape[0]) + .5
-plt.subplot(1, 2, 2)
+plt.figure()
 plt.barh(pos, feature_importance[important_idx][sorted_idx[::-1]], align='center')
 plt.yticks(pos, important_features[sorted_idx[::-1]])
 plt.xlabel('Relative Importance')
