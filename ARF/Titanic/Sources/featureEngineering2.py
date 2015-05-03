@@ -116,14 +116,15 @@ def find_Embarked(x, df):
                 return df.at[i,'Embarked'][0]
     
 def tichet_to_number(x):
+    if x['Ticket'] == 'LINE':
+        return 0
     try:
-        tNum = int(x)
+        tNum = int(x['Ticket'])
     except:
-        tNum = int(''.split(x)[-1])
+        tNum = int(x['Ticket'].split()[-1])
     return tNum
     
 def clean2(df):
-    df.Ticket = df[['Ticket']].apply(lambda x : tichet_to_number(x), axis=1)
     #imputing nan values
     classmeans = df.pivot_table('Fare', rows='Pclass', aggfunc='mean')
     df.Fare = df[['Fare', 'Pclass']].apply(lambda x: classmeans[x['Pclass']] if pd.isnull(x['Fare']) else x['Fare'], axis=1 )
@@ -147,6 +148,7 @@ def clean2(df):
     df['AgeClass'] = df['Age']*df['Pclass']
     df['AgeGenderClass'] = df['Age']*df['Gender']*df['Pclass']
     df['Protocole']= df[['Title_Mr', 'Sex','Pclass']].apply(lambda x: protocol(x), axis=1 )
+    df.Ticket = df[['Ticket']].apply(lambda x : tichet_to_number(x), axis=1)
     return df
 
 def convert(df):
