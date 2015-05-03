@@ -134,14 +134,14 @@ def clean2(df):
             if x['Title_Mr']<3 or x['Sex']=='female':
                 return 1
         return 0
+    # female = 1, Male = 2
+    df['Gender'] = df['Sex'].map( {'female': 1, 'male': 2} ).astype(int)
     df['AgeClass'] = df['Age']*df['Pclass']
+    df['AgeGenderClass'] = df['Age']*df['Gender']*df['Pclass']
     df['Protocole']= df[['Title_Mr', 'Sex','Pclass']].apply(lambda x: protocol(x), axis=1 )
     return df
 
 def convert(df):
-    # female = 0, Male = 1
-    df['Gender'] = df['Sex'].map( {'female': 0, 'male': 1} ).astype(int)
-    
     # Embarked from 'C', 'Q', 'S'
     # All missing Embarked -> just make them embark from most common place
     if len(df.Embarked[ df.Embarked.isnull() ]) > 0:
