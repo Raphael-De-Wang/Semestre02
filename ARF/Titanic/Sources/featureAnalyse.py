@@ -12,6 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 train_df = pd.read_csv('cleanedTrain.csv', header=0)        # Load the train file into a dataframe
 
 features_list = train_df.columns.values[1::]
+train_df = train_df.drop(['AgeGenderClass'],axis=1)
 X = train_df.values[:, 1::]
 y = train_df.values[:, 0]
 
@@ -25,7 +26,7 @@ feature_importance = 100.0 * (feature_importance / feature_importance.max())
 
 # A threshold below which to drop features from the final data set. Specifically, this number represents
 # the percentage of the most important feature's importance value
-fi_threshold = 0
+fi_threshold = 15
 
 # Get the indexes of all features over the importance threshold
 important_idx = np.where(feature_importance > fi_threshold)[0]

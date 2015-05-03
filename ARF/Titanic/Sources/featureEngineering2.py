@@ -115,7 +115,15 @@ def find_Embarked(x, df):
             if cmp(df.at[i,'Ticket'][0],x['Ticket'][0]) <= 0:
                 return df.at[i,'Embarked'][0]
     
+def tichet_to_number(x):
+    try:
+        tNum = int(x)
+    except:
+        tNum = int(''.split(x)[-1])
+    return tNum
+    
 def clean2(df):
+    df.Ticket = df[['Ticket']].apply(lambda x : tichet_to_number(x), axis=1)
     #imputing nan values
     classmeans = df.pivot_table('Fare', rows='Pclass', aggfunc='mean')
     df.Fare = df[['Fare', 'Pclass']].apply(lambda x: classmeans[x['Pclass']] if pd.isnull(x['Fare']) else x['Fare'], axis=1 )
@@ -168,7 +176,7 @@ def clean(no_bins=0):
     df = clean2(df)
     df = convert(df)
     # Remove the Name column, Cabin, Ticket
-    df  = df.drop(['Name', 'Ticket', 'Sex', 'Cabin','Family_Name'], axis=1)
+    df  = df.drop(['Name', 'Sex', 'Cabin','Family_Name'], axis=1)
     return df,tlabel_df
 
 df,tlabel = clean()
