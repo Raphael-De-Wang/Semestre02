@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import csv as csv
+from operator import itemgetter
 from sklearn.grid_search import GridSearchCV,RandomizedSearchCV
 from sklearn.ensemble import RandomForestClassifier
 
@@ -39,10 +40,10 @@ tX = test_df.values
 sqrtfeat = int(np.sqrt(X.shape[1]))
 
 # Simple grid test (162 combinations)
-grid_test1 = { "n_estimators"      : [1000, 2500, 5000],
+grid_test1 = { "n_estimators"      : [100, 250, 500],
                "criterion"         : ["gini", "entropy"],
                "max_features"      : [sqrtfeat-1, sqrtfeat, sqrtfeat+1],
-               "max_depth"         : [5, 10, 25],
+               "max_depth"         : [3, 5, 10],
                "min_samples_split" : [2, 5, 10] }
 
 # Large randomized test using max_depth to control tree size (5000 possible combinations)
@@ -61,19 +62,19 @@ random_test2 = { "n_estimators"      : np.rint(np.linspace(X.shape[0]*2, X.shape
                  "max_leaf_nodes"    : np.rint(np.linspace(10, X.shape[0]/50, 10)).astype(int) }
 
 forest = RandomForestClassifier(oob_score=True)
-'''
+
 print "Hyperparameter optimization using GridSearchCV..."
 grid_search = GridSearchCV(forest, grid_test1, n_jobs=-1, cv=10)
 grid_search.fit(X, y)
 best_params_from_grid_search = report(grid_search.grid_scores_)
-'''
+
 print "Hyperparameter optimization using RandomizedSearchCV with max_depth parameter..."
 grid_search = RandomizedSearchCV(forest, random_test1, n_jobs=-1, cv=10, n_iter=100)
 grid_search.fit(X, y)
 best_params_from_rand_search1 = report(grid_search.grid_scores_)
-'''
+
 print "...and using RandomizedSearchCV with min_samples_leaf + max_leaf_nodes parameters..."
 grid_search = RandomizedSearchCV(forest, random_test2, n_jobs=-1, cv=10, n_iter=500)
 grid_search.fit(X, y)
 best_params_from_rand_search2 = report(grid_search.grid_scores_)
-'''
+

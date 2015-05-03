@@ -22,6 +22,9 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
+# {'max_features': 4, 'min_samples_split': 5, 'criterion': 'gini', 'max_depth': 10, 'n_estimators': 100}
+# {'max_leaf_nodes': 15, 'min_samples_leaf': 2, 'n_estimators': 2673, 'max_features': 4, 'criterion': 'gini', 'min_samples_split': 9}
+# {'max_features': 4, 'min_samples_split': 4, 'criterion': 'gini', 'max_depth': 6.0, 'n_estimators': 2673}
 forest = RandomForestClassifier(n_estimators=200,max_depth=3)
 forest = forest.fit( train_data, train_labels )
 
