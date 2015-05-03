@@ -130,12 +130,12 @@ def clean2(df):
     df['Fare_Per_Person']=df['Fare']/(df['Family_Size']+1)
     #Age times class
     def protocol(x):
-        if x['Age']<15 or x['Sex']=='female':
-            return 1
-        else:
-            return 0
+        if x['Pclass'] < 3:
+            if x['Title_Mr']<3 or x['Sex']=='female':
+                return 1
+        return 0
     df['AgeClass'] = df['Age']*df['Pclass']
-    df['Protocole']= df[['Age', 'Sex']].apply(lambda x: protocol(x), axis=1 )
+    df['Protocole']= df[['Title_Mr', 'Sex','Pclass']].apply(lambda x: protocol(x), axis=1 )
     return df
 
 def convert(df):
