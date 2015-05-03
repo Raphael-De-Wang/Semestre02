@@ -13,8 +13,8 @@ test_df  = pd.read_csv('cleanedTest.csv',  header=0)        # Load the test file
 train_labels = train_df.Survived.values
 test_id = test_df.PassengerId.values
 
-train_df = train_df.drop(['Survived','PassengerId'], axis=1)
-test_df = test_df.drop(['PassengerId'], axis=1)
+train_df = train_df[['AgeClass', 'Age', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender']]
+test_df = test_df[['AgeClass', 'Age', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender']]
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
@@ -22,7 +22,7 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
-forest = RandomForestClassifier(n_estimators=100)
+forest = RandomForestClassifier(n_estimators=500,max_depth=3)
 forest = forest.fit( train_data, train_labels )
 
 print 'Predicting...'

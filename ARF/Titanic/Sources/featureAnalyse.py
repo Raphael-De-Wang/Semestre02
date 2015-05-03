@@ -25,7 +25,7 @@ feature_importance = 100.0 * (feature_importance / feature_importance.max())
 
 # A threshold below which to drop features from the final data set. Specifically, this number represents
 # the percentage of the most important feature's importance value
-fi_threshold = 0 # 15
+fi_threshold = 15
 
 # Get the indexes of all features over the importance threshold
 important_idx = np.where(feature_importance > fi_threshold)[0]
