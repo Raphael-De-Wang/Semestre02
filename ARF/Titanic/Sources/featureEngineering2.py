@@ -109,6 +109,14 @@ def find_cabin_by_family(x, df):
                     if df.at[i,'Ticket'][0] == x['Ticket']:
                         if not pd.isnull(df.at[i,'Cabin'][0]):
                             return df.at[i,'Cabin'][0]
+
+def find_cabin_by_ticket(x,df):
+    for i in df.index:
+        if not pd.isnull(df.at[i,'Cabin'][0]):
+            if cmp(df.at[i,'Ticket'][0],x['Ticket'][0]) <= 0:
+                return df.at[i,'Cabin'][0]
+    
+                        
 def find_Embarked(x, df):
     for i in df.index:
         if not pd.isnull(df.at[i,'Name'][0]):
@@ -131,6 +139,7 @@ def clean2(df):
     df.Embarked = df.apply(lambda x : find_Embarked(x, df) if pd.isnull(x['Embarked']) else x['Embarked'], axis=1)
     agemeans = df.pivot_table('Age', rows=['Pclass','Title_Mr'], aggfunc='mean')
     df.Cabin = df.apply(lambda x : find_cabin_by_family(x, df) if pd.isnull(x['Cabin']) and x['Family_Size'] > 0 else x['Cabin'], axis=1)
+    # df.Cabin = df.apply(lambda x : find_cabin_by_ticket(x, df) if pd.isnull(x['Cabin']) and x['Family_Size'] > 0 else x['Cabin'], axis=1)
     cabin(df)
     df.Age = df.apply(lambda x : find_age_by_family(x, df) if pd.isnull(x['Age']) and x['Family_Size'] > 0 else x['Age'], axis=1)
     df.Age = df[['Age', 'Pclass','Title_Mr']].apply(lambda x: agemeans[x['Pclass'],x['Title_Mr']] if pd.isnull(x['Age']) else x['Age'], axis=1)
