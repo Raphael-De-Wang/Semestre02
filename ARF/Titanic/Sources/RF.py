@@ -13,8 +13,11 @@ test_df  = pd.read_csv('cleanedTest.csv',  header=0)        # Load the test file
 train_labels = train_df.Survived.values
 test_id = test_df.PassengerId.values
 
-train_df = train_df[['AgeGenderClass', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender']]
-test_df = test_df[['AgeGenderClass', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender']]
+# clist = ['AgeGenderClass', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender','Ticket']
+clist = ['AgeClass', 'Fare_Per_Person', 'SibSp', 'Deck','Ticket','Age','Fare','Protocole']
+
+train_df = train_df[clist]
+test_df = test_df[clist]
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
@@ -25,7 +28,7 @@ print 'Training...'
 # {'max_features': 4, 'min_samples_split': 5, 'criterion': 'gini', 'max_depth': 10, 'n_estimators': 100}
 # {'max_leaf_nodes': 15, 'min_samples_leaf': 2, 'n_estimators': 2673, 'max_features': 4, 'criterion': 'gini', 'min_samples_split': 9}
 # {'max_features': 4, 'min_samples_split': 4, 'criterion': 'gini', 'max_depth': 6.0, 'n_estimators': 2673}
-forest = RandomForestClassifier(n_estimators=200,max_depth=3)
+forest = RandomForestClassifier(n_estimators=100,max_depth=6,criterion='gini',min_samples_split=9,max_features=4)
 forest = forest.fit( train_data, train_labels )
 
 print 'Training Score...'
