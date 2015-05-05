@@ -60,7 +60,7 @@ def optimize_estimator(feature_range, df):
         score = cv_score(rf, X, y)
         print "---------------------------------------------------------------"
         print "iteration : %d, score : %f "%(i,score)
-        print "estimator : ", estimator
+        print "estimator : ", rf
         history.append([i,rf,score])
     return history
 
