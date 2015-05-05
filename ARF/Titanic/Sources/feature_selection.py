@@ -3,25 +3,31 @@
 import pandas as pd
 import numpy as np
 import csv as csv
+import operator
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from sklearn.feature_selection import RFECV
 from sklearn.ensemble import RandomForestClassifier
 
+class RandomForestClassifierWithCoef(RandomForestClassifier):
+    def fit(self, *args, **kwargs):
+        super(RandomForestClassifierWithCoef, self).fit(*args, **kwargs)
+        self.coef_ = self.feature_importances_
 
-train_df = pd.read_csv('cleanedTrain.csv', header=0)        # Load the train file into a dataframe
+def sort_features(train_df,numIter=50):
+    y        = train_df[["PassengerId","Survived"]].values[:, 1]
+    train_df = train_df.drop(["PassengerId","Survived","Ticket"],axis=1)
+    X        = train_df.values
+    feature_list = train_df.columns.values[0::]
+    forest = RandomForestClassifierWithCoef()
+    selector = RFECV(forest, step=1, cv=5)
+    support = np.zeros(len(feature_list))
+    
+    for i in xrange(numIter):
+        s = selector.fit(X, y)
+        support += np.array(s.support_)
 
-features_list = train_df.columns.values[1::]
-y = train_df[["PassengerId","Survived"]].values[:, 1]
-train_df = train_df.drop(["PassengerId","Survived"],axis=1)
-X = train_df.values
+    return np.array(sorted(zip(feature_list, support), key=operator.itemgetter(1),reverse=True))[:,0]
 
-# Fit a random forest with (mostly) default parameters to determine feature importance
-forest = RandomForestClassifier(oob_score=True, n_estimators=200)
-selector = RFECV(forest, step=1, cv=5)
-selector = selector.fit(X, y)
-print features_list
-print 'selector.support_ : ', selector.support_
-print 'selector.ranking_ : ', selector.ranking_
-print 'selector.grid_scores_ : ', selector.grid_scores_
-print 'selector.n_features_  : ', selector.n_features_ 
+# train_df = pd.read_csv('cleanedTrain.csv', header=0)        # Load the train file into a dataframe
+# print sort_features(train_df)
