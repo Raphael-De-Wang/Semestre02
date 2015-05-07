@@ -18,8 +18,8 @@ test_id = test_df.PassengerId.values
 # clist = ['Ticket', 'AgeGenderClass', 'Protocole', 'Fare_Per_Person', 'Fare', 'Title', 'AgeClass', 'Age', 'SibSp', 'Gender', 'Deck', 'Pclass', 'Title_Mr', 'Embarked', 'Parch', 'Family_Size', 'Side']
 clist = ['Fare', 'Fare_Per_Person', 'AgeGenderClass', 'Age', 'AgeClass', 'Protocole', 'Title', 'SibSp', 'Gender', 'Deck', 'Pclass', 'Embarked', 'Title_Mr', 'Parch', 'Side', 'Family_Size']
 
-train_df = train_df[clist[:11]]
-test_df = test_df[clist[:11]]
+train_df = train_df[clist[:8]]
+test_df = test_df[clist[:8]]
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
@@ -64,13 +64,13 @@ forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='en
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 
-
+'''
 # 8 features exclude Ticket
 # your submission scored 0.79904
 forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             max_depth=3, max_features=5, max_leaf_nodes=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=250, n_jobs=1,
+            min_samples_leaf=1, min_samples_split=10,
+            min_weight_fraction_leaf=0.0, n_estimators=300, n_jobs=1,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 '''
@@ -78,11 +78,11 @@ forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gi
 # your submission scored 0.79904
 forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             max_depth=3, max_features=6, max_leaf_nodes=None,
-            min_samples_leaf=1, min_samples_split=20,
+            min_samples_leaf=1, min_samples_split=10,
             min_weight_fraction_leaf=0.0, n_estimators=300, n_jobs=1,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
-
+'''
 forest = forest.fit( train_data, train_labels )
 
 print 'Training Score...'
