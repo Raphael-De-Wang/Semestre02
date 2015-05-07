@@ -20,8 +20,8 @@ clist = ['Fare', 'Fare_Per_Person', 'AgeGenderClass', 'Age', 'AgeClass', 'Protoc
  'Title', 'SibSp', 'Gender', 'Deck', 'Pclass', 'Embarked', 'Title_Mr', 'Parch',
  'Side', 'Family_Size']
 
-train_df = train_df[clist[:8]]
-test_df = test_df[clist[:8]]
+train_df = train_df[clist[:11]]
+test_df = test_df[clist[:11]]
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
