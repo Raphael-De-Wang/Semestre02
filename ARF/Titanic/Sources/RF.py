@@ -78,7 +78,7 @@ forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gi
 # your submission scored 0.79904
 forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             max_depth=3, max_features=6, max_leaf_nodes=None,
-            min_samples_leaf=1, min_samples_split=10,
+            min_samples_leaf=1, min_samples_split=20,
             min_weight_fraction_leaf=0.0, n_estimators=300, n_jobs=1,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
