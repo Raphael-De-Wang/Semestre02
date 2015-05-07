@@ -14,9 +14,9 @@ class RandomForestClassifierWithCoef(RandomForestClassifier):
         super(RandomForestClassifierWithCoef, self).fit(*args, **kwargs)
         self.coef_ = self.feature_importances_
 
-def sort_features(train_df,numIter=50):
-    y        = train_df[["PassengerId","Survived"]].values[:, 1]
-    train_df = train_df.drop(["PassengerId","Survived","Ticket"],axis=1)
+def sort_features(df,numIter=50):
+    y        = df[["PassengerId","Survived"]].values[:, 1]
+    train_df = df.drop(["PassengerId","Survived"],axis=1)
     X        = train_df.values
     feature_list = train_df.columns.values[0::]
     forest = RandomForestClassifierWithCoef()

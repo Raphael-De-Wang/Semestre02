@@ -1,5 +1,6 @@
-#!env python
+#!/usr/bin/python
 
+import sys
 import pandas as pd
 import numpy as np
 import csv as csv
@@ -12,6 +13,9 @@ from feature_selection import RandomForestClassifierWithCoef,sort_features
 
 train_df = pd.read_csv('cleanedTrain.csv', header=0)
 test_df  = pd.read_csv('cleanedTest.csv',  header=0)
+
+train_df = train_df.drop(['Ticket'],axis=1) 
+test_df  = test_df.drop(['Ticket'],axis=1) 
 
 '''
 y = train_df.Survived.values
@@ -37,20 +41,19 @@ print rst.best_estimator_
 '''
 
 def optimize_estimator(feature_range, df):
-    feature_slist= sort_features(df)
+    feature_slist= sort_features(df,100)
     print "feature list : ", feature_slist 
     y = df.Survived.values
     train_df = df.drop(['Survived'],axis=1)
     history = []
     rf = RandomForestClassifier()
     for i in feature_range:
-        grid = { "n_estimators"      : range(100,500,100),
+        grid = { "n_estimators"      : range(200,400,50),
             "criterion"         : ["gini", "entropy"],
-            "max_features"      : range(3,i+1,1),
-            "max_depth"         : range(3,11),
-            "min_samples_split" : range(2,15,2),
-            "min_samples_leaf"  : range(1,6),
-            "max_leaf_nodes"    : range(2,6)}
+            "max_features"      : range(3,i+1,2),
+            "max_depth"         : [3],
+            "min_samples_split" : range(2,21,2)}
+
         # select features 
         flist = feature_slist[:i]
         X = train_df[flist].values
@@ -60,8 +63,10 @@ def optimize_estimator(feature_range, df):
         score = cv_score(rf, X, y)
         print "---------------------------------------------------------------"
         print "iteration : %d, score : %f "%(i,score)
-        print "estimator : ", rf
-        history.append([i,rf,score])
+        print "estimator [%d]: "%i, rf
+        # history.append([i,rf,score])
     return history
 
-history = optimize_estimator(range(4,11), train_df)
+f = int(sys.argv[1])
+t = int(sys.argv[2])
+optimize_estimator(range(f,t), train_df)
