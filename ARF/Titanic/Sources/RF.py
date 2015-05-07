@@ -16,10 +16,10 @@ test_id = test_df.PassengerId.values
 # clist = ['AgeGenderClass', 'Fare', 'Fare_Per_Person', 'Family_Size', 'Embarked', 'Deck', 'SibSp', 'Title','Gender','Ticket']
 # clist = ['AgeClass', 'Fare_Per_Person', 'SibSp', 'Deck','Ticket','Age','Fare','Protocole']
 # clist = ['Ticket', 'AgeGenderClass', 'Protocole', 'Fare_Per_Person', 'Fare', 'Title', 'AgeClass', 'Age', 'SibSp', 'Gender', 'Deck', 'Pclass', 'Title_Mr', 'Embarked', 'Parch', 'Family_Size', 'Side']
-clist = ['Fare', 'Fare_Per_Person', 'AgeGenderClass', 'Age', 'AgeClass', 'Protocole', 'Title', 'SibSp', 'Gender', 'Deck', 'Pclass', 'Embarked', 'Title_Mr', 'Parch', 'Side', 'Family_Size']
+clist = ['Fare', 'Fare_Per_Person', 'AgeGenderClass', 'Age', 'AgeClass', 'Protocole', 'Title', 'SibSp', 'Gender', 'Pclass', 'Embarked', 'Title_Mr', 'Parch', 'Side', 'Family_Size']
 
-train_df = train_df[clist[:9]]
-test_df = test_df[clist[:9]]
+train_df = train_df[clist[:10]]
+test_df = test_df[clist[:10]]
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
@@ -70,7 +70,7 @@ forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='en
 forest = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             max_depth=3, max_features=6, max_leaf_nodes=None,
             min_samples_leaf=1, min_samples_split=15,
-            min_weight_fraction_leaf=0.0, n_estimators=350, n_jobs=1,
+            min_weight_fraction_leaf=0.0, n_estimators=250, n_jobs=1,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 '''
