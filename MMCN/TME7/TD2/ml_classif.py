@@ -83,7 +83,7 @@ for i in range(N):
         classe.append('b')
 
 # graphiques
-plt.figure(1); plt.clf(); # plt.show()                
+plt.figure(1); plt.clf(); plt.show()                
 
 # l'ensemble des donnees
 plt.subplot(221)
@@ -120,7 +120,6 @@ for i, x2 in enumerate(x2range):
 
         z = np.insert(z, 0, 1)       # bias 
         y[i,j] = np.dot(W2, z)
-
 
 # figure : transformation d'entrees
 X1, X2 = np.meshgrid(x1range, x2range)
