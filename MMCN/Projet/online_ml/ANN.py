@@ -1,20 +1,15 @@
 # -*- coding: utf-8 -*-
 #!env python
 
-import numpy as np
-import matplotlib.pyplot as plt
-from mytools import *
+import numpy   as     np
+from   mytools import *
 
 np.set_printoptions(precision=4)
 # np.seterr(all='raise')
 
 
 def sigmoid(h):
-    try:
-        return 1./(1.+np.exp(-h))
-    except:
-        print h
-        raise
+    return 1./(1.+np.exp(-h))
 
 def grad_sigmoid(h):
     return sigmoid(h)*(1.-sigmoid(h))
@@ -32,19 +27,11 @@ class Neuron(object):
         self.A = np.sum(self.weights*x)
         return self.A
     def f(self,x):
-        try:
-            return self._f(self.a(x))
-        except:
-            print self.weights
-            raise
+        return self._f(self.a(x))
     def grad_f(self,x):
         return self._grad_f(self.a(x))
     def updateWeights(self,delta,prevZ,eta=0.01):
-        try:
-            self.weights = self.weights - delta * prevZ * eta
-        except:
-            print detla
-            raise
+        self.weights = self.weights - delta * prevZ * eta
     
 class Layer(object):
     def __init__(self,inputSize,layerSize,g,grad_g,eta=0.01):
@@ -66,7 +53,6 @@ class Layer(object):
             self.layer[i].updateWeights(self.delta[i],self.prevZ,self.eta)
     def calculateDelta(self,nextDeltaWeightSum):
         raise NotImplementedError("calculateDelta non implemente")
-
 
 class HiddenLayer(Layer):
     def __init__(self,inputSize,layerSize,g,grad_g,eta=0.01):
@@ -122,26 +108,32 @@ class NeuroNetwork(Classifier):
         for i in range(len(self.layers)-1,-1,-1):
             delta       = self.layers[i].calculateDelta(deltaWeiSum)
             wm          = self.layers[i].getWeightMatrix()
-            # deltaWeiSum = np.sum(delta * wm.T,axis=1)
             deltaWeiSum = np.dot(wm.T,delta)
         # update layer weights
         for i in range(len(self.layers)):
             self.layers[i].updateWeights()
     def optimize(self):
-        for i in range(len(self.x)):
-            self.forward(self.x[i])
-            self.backProp(self.x[i],self.y[i])
-            self.err.append(sum(self.outputLayer.delta**2))
-            if self.err[-1] < 1e-2:
-                return
+        for k in range(5):
+            print "Iteration [%d]"%k
+            for i in range(len(self.x)):
+                self.forward(self.x[i])
+                self.backProp(self.x[i],self.y[i])
+                self.err.append(sum(self.outputLayer.delta**2))
+                if self.err[-1] < 1e-5:
+                    return
+        print self.err[-1]
     def predict(self,X):
         yk = []
         ykCible = []
         for x in X:
             self.forward(x)
-            # print self.outputLayer.Z
             yk.append(2.*np.argmax(self.outputLayer.Z)-90)
             ykCible.append(x[0]+x[-1])
         return np.array(yk),np.array(ykCible)
-    def error(self):
-        return abs(self.outputLayer.delta.sum())
+    def y_esti(self,x):
+        self.forward(x)
+        yk  = self.outputLayer.Z
+        vDk = np.array([ dk(i,self.outputLayer.layerSize) for i in range(self.outputLayer.layerSize)])
+        return np.dot(yk,vDk)/np.sum(yk)
+    def get_output(self,x):
+        return self.outputLayer.Z
