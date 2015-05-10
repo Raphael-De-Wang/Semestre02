@@ -29,12 +29,11 @@ testX ,testY  = data_random(data_size=1000)
 
 ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
 ann.fit(trainX,trainY)
-
+'''
 yk, ykCible = ann.predict(testX)
 print "ykCible   : ",ykCible
 print "yk        : ",yk
-
-# print "yk/ykCible: ",yk/ykCible
+'''
 
 # 2. Représenter graphiquement les courbes d'accord
 fig = plt.figure()
