@@ -112,8 +112,8 @@ class NeuroNetwork(Classifier):
         # update layer weights
         for i in range(len(self.layers)):
             self.layers[i].updateWeights()
-    def optimize(self):
-        for k in range(5):
+    def optimize(self,numIter=5):
+        for k in range(numIter):
             print "Iteration [%d]"%k
             for i in range(len(self.x)):
                 self.forward(self.x[i])
@@ -121,7 +121,7 @@ class NeuroNetwork(Classifier):
                 self.err.append(sum(self.outputLayer.delta**2))
                 if self.err[-1] < 1e-5:
                     return
-        print self.err[-1]
+        # print self.err[-1]
     def predict(self,X):
         yk = []
         ykCible = []
@@ -136,4 +136,5 @@ class NeuroNetwork(Classifier):
         vDk = np.array([ dk(i,self.outputLayer.layerSize) for i in range(self.outputLayer.layerSize)])
         return np.dot(yk,vDk)/np.sum(yk)
     def get_output(self,x):
+        self.forward(x)
         return self.outputLayer.Z
