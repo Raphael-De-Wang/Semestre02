@@ -27,130 +27,176 @@ trainY = np.vstack([trainY1,trainY2])
 # trainX,trainY = data_random(data_size=100)
 testX ,testY  = data_random(data_size=1000)
 
-<<<<<<< HEAD
 # ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
 # ann.fit(trainX,trainY)
 
 # yk, ykCible = ann.predict(testX)
 # print "ykCible   : ",ykCible
 # print "yk        : ",yk
-=======
-ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
-ann.fit(trainX,trainY)
 '''
 yk, ykCible = ann.predict(testX)
 print "ykCible   : ",ykCible
 print "yk        : ",yk
 '''
->>>>>>> 45f77fdde2ebf4fc6e4a0c6a2ff7efd44ecb14bb
 
 # 2. Représenter graphiquement les courbes d'accord
-fig = plt.figure()
-plt.suptitle('Representer graphiquement les courbes d\'accord', fontsize=16)
-x = 25
-r = 25
-plt.subplot(331)
-rObj = [ posAct(x,i,N1) for i in range(N1) ]
-plt.plot(rObj)
-plt.ylabel("Activity x=%d r=%d"%(x,r))
+def tuningCurves(fname=None):
+    fig = plt.figure(figsize=(20, 15))
+    plt.suptitle('Tuning Curves', fontsize=35)
+    x = 25
+    r = 25
+    plt.subplot(331,axisbg="#fdf6e3")
+    rObj = [ posAct(x,i,N1) for i in range(N1) ]
+    pos = np.argmax(rObj)
+    plt.plot(rObj,color="#2aa198",linewidth="2")
+    plt.plot(pos*np.ones(11),np.arange(0,1.05,0.1),'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity x=%d r=%d"%(x,r))
+    
+    plt.subplot(332,axisbg="#fdf6e3")
+    rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
+    plt.plot(range(N1,N1+N2),rPlu,color="#2aa198",linewidth="2")
+    plt.ylim(ymax=1)
+    
+    plt.subplot(333,axisbg="#fdf6e3")
+    rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
+    plt.plot(range(N1+N2,N1+N2+N3),rMin,color="#2aa198",linewidth="2")
+    plt.ylim(ymax=1)
+    
+    x = 0
+    r = 0
+    plt.subplot(334,axisbg="#fdf6e3")
+    rObj = [ posAct(x,i,N1) for i in range(N1) ]
+    pos = np.argmax(rObj)
+    plt.plot(rObj,color="#2aa198",linewidth="2")
+    plt.plot(pos*np.ones(11),np.arange(0,1.05,0.1),'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity x=%d r=%d"%(x,r))
+    
+    plt.subplot(335,axisbg="#fdf6e3")
+    rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
+    plt.plot(range(N1,N1+N2),rPlu,color="#2aa198",linewidth="2")
+    plt.ylim(ymax=1)
 
-plt.subplot(332)
-rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
-plt.plot(range(N1,N1+N2),rPlu)
-plt.ylim(ymax=1)
+    plt.subplot(336,axisbg="#fdf6e3")
+    rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
+    plt.plot(range(N1+N2,N1+N2+N3),rMin,color="#2aa198",linewidth="2")
+    plt.ylim(ymax=1)
 
-plt.subplot(333)
-rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
-plt.plot(range(N1+N2,N1+N2+N3),rMin)
-plt.ylim(ymax=1)
+    x = -25
+    r = -25
+    plt.subplot(337,axisbg="#fdf6e3")
+    rObj = [ posAct(x,i,N1) for i in range(N1) ]
+    pos = np.argmax(rObj)
+    plt.plot(rObj,color="#2aa198",linewidth="2")
+    plt.plot(pos*np.ones(11),np.arange(0,1.05,0.1),'--',color="#cb4b16",linewidth="2")
+    plt.xlabel("Position Neuron Index")
+    plt.ylabel("Activity x=%d r=%d"%(x,r))
+    
+    plt.subplot(338,axisbg="#fdf6e3")
+    rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
+    plt.plot(range(N1,N1+N2),rPlu,color="#2aa198",linewidth="2")
+    plt.xlabel("Direction Left to Right Neuron Index")
+    plt.ylim(ymax=1)
+    
+    plt.subplot(339,axisbg="#fdf6e3")
+    rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
+    plt.plot(range(N1+N2,N1+N2+N3),rMin,color="#2aa198",linewidth="2")
+    plt.xlabel("Direction Right to Left Neuron Index")
+    plt.ylim(ymax=1)
+    if fname==None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
 
-x = 0
-r = 0
-plt.subplot(334)
-rObj = [ posAct(x,i,N1) for i in range(N1) ]
-plt.plot(rObj)
-plt.ylabel("Activity x=%d r=%d"%(x,r))
+# 3. Représenter graphiquement la sortie du réseau
+def graph_sorti(ann,fname=None):
+    fig = plt.figure(figsize=(20, 15))
+    plt.suptitle('Sortie du Reseau', fontsize=35)
+    plt.subplot(311,axisbg="#fdf6e3")
+    i = minErrs[0]
+    Y = ann.get_output(testX[i])
+    y = np.arange(np.max(Y),-0.2,-0.01)
+    x = np.argmax(Y)*np.ones(len(y))
+    plt.plot(Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="2")
+    plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity")
+    plt.legend()
+    
+    plt.subplot(312,axisbg="#fdf6e3")
+    i = minErrs[1]
+    Y = ann.get_output(testX[i])
+    y = np.arange(np.max(Y),-0.2,-0.01)
+    x = np.argmax(Y)*np.ones(len(y))
+    plt.plot(Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="2")
+    plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity")
+    plt.legend()
+    
+    plt.subplot(313,axisbg="#fdf6e3")
+    i = minErrs[2]
+    Y = ann.get_output(testX[i])
+    y = np.arange(np.max(Y),-0.2,-0.01)
+    x = np.argmax(Y)*np.ones(len(y))
+    plt.plot(Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="2")
+    plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.xlabel("Neuron Index")
+    plt.ylabel("Activity")
+    plt.legend()
+    if fname==None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
 
-plt.subplot(335)
-rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
-plt.plot(range(N1,N1+N2),rPlu)
-plt.ylim(ymax=1)
+# 4. Estimer la performance du réseau
+def performance(err_list,fname=None):
+    moy = np.mean(elist)
+    std = np.std(elist)
+    print "Erreur Moyenne : ", moy
+    print "L'écart-type de l'erreur : ", std
+    fig = plt.figure(figsize=(20, 15))
+    ax = fig.add_subplot(111,axisbg="#fdf6e3")
+    plt.suptitle('Performance du Reseau', fontsize=35)
+    # plt.subplot(111,axisbg="#fdf6e3")
+    plt.hist(err_list.tolist(),color="#859900")
+    ax.text(30,450,"err_moy=%f\necart-type=%f"%(moy,std), style='italic',fontsize=20,
+            bbox={'facecolor':'#eee8d5', 'alpha':2, 'pad':15})
+    plt.ylabel("Occurences")
+    plt.xlabel("Erreur")
+    if fname==None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+    return moy,std
 
-plt.subplot(336)
-rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
-plt.plot(range(N1+N2,N1+N2+N3),rMin)
-plt.ylim(ymax=1)
-
-x = -25
-r = -25
-plt.subplot(337)
-rObj = [ posAct(x,i,N1) for i in range(N1) ]
-plt.plot(rObj)
-plt.xlabel("Position Neuron Index")
-plt.ylabel("Activity x=%d r=%d"%(x,r))
-
-plt.subplot(338)
-rPlu = [ rPlAct(r,i,N2) for i in range(N2) ]
-plt.plot(range(N1,N1+N2),rPlu)
-plt.xlabel("Direction Left to Right Neuron Index")
-plt.ylim(ymax=1)
-
-plt.subplot(339)
-rMin = [ rMiAct(r,i,N3) for i in range(N3) ]
-plt.plot(range(N1+N2,N1+N2+N3),rMin)
-plt.xlabel("Direction Right to Left Neuron Index")
-plt.ylim(ymax=1)
-
-plt.show()
-plt.close(fig)
+tuningCurves("TuningCurves.png")
 
 # training ANN et estimer les erreurs
 y_vrai = lambda x : x[0] + x[-1]
 erreur = lambda yv, ye : yv - ye
-while True:
-    elist  = []
-    minErrs= []
-    ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
-    ann.fit(trainX,trainY)
-    for x in testX:
-        yv = y_vrai(x)
-        err= erreur(yv,ann.y_esti(x))
-        elist.append(err)
-    elist = np.array(elist)
-    minErrs = np.argwhere(np.abs(elist) < 0.02)
-    minErrs = minErrs.flatten().tolist()
-    print minErrs
-    if len(minErrs) >= 3 :
-        break
-
-# 3. Représenter graphiquement la sortie du réseau
-fig = plt.figure()
-plt.suptitle('Representer graphiquement la sortie du reseau', fontsize=16)
-plt.subplot(311)
-i = minErrs[0]
-plt.plot(ann.get_output(testX[i]), label="x=%d, r=%d"%(testX[i][0],testX[i][-1]))
-plt.ylabel("Activity")
-plt.legend()
-
-plt.subplot(312)
-i = minErrs[1]
-plt.plot(ann.get_output(testX[i]), label="x=%d, r=%d"%(testX[i][0],testX[i][-1]))
-plt.ylabel("Activity")
-plt.legend()
-
-plt.subplot(313)
-i = minErrs[2]
-plt.plot(ann.get_output(testX[i]), label="x=%d, r=%d"%(testX[i][0],testX[i][-1]))
-plt.xlabel("Neuron Index")
-plt.ylabel("Activity")
-plt.legend()
-
-plt.show()
-plt.close(fig)
-
-# 4. Estimer la performance du réseau
-fig = plt.figure()
-plt.suptitle('Estimer la performance du reseau', fontsize=16)
-plt.hist(elist.tolist())
-plt.show()
-plt.close(fig)
+annList = []
+moyList = []
+stdList = []
+for i in range(10):
+    while True:
+        elist  = []
+        minErrs= []
+        ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
+        ann.fit(trainX,trainY)
+        for x in testX:
+            yv = y_vrai(x)
+            err= erreur(yv,ann.y_esti(x))
+            elist.append(err)
+        elist = np.array(elist)
+        minErrs = np.argwhere(np.abs(elist) < 0.02)
+        minErrs = minErrs.flatten().tolist()
+        print minErrs
+        if len(minErrs) >= 3 :
+            graph_sorti(ann,"LaSortieDuReseau[%d].png"%i)
+            moy, std = performance(elist,"LaPerformanceDuReseau[%d].png"%i)
+            moyList.append(moy)
+            stdList.append(std)
+            break
+    
+np.savetxt("err_moy_std.txt",np.array(zip(moyList,stdList)))

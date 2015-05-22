@@ -79,8 +79,6 @@ class Classifier(object):
         raise NotImplementedError("fit non  implemente")
     def predict(self,x):
         raise NotImplementedError("predict non implemente")
-    def score(self,x,y):
-        return (self.predict(x)==y).mean()
 
 class NeuroNetwork(Classifier):
     def __init__(self,topology,K,eta=0.01):
