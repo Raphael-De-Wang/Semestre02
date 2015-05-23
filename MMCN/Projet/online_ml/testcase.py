@@ -177,7 +177,7 @@ tuningCurves("TuningCurves.png")
 y_vrai = lambda x : x[0] + x[-1]
 erreur = lambda yv, ye : yv - ye
 
-for hlNum in [160]:
+for hlNum in [11]:
     annList    = []
     moyList    = []
     moyAbsList = []
@@ -185,7 +185,7 @@ for hlNum in [160]:
     for i in range(20):
         elist  = []
         minErrs= []
-        ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
+        ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,hlNum]],91,eta=0.01)
         ann.fit(trainX,trainY)
         for x in testX:
             yv = y_vrai(x)
