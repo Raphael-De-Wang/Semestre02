@@ -3,6 +3,7 @@
 
 from   ANN               import *
 import matplotlib.pyplot as     plt
+from operator import itemgetter
 
 '''
 print 'test a_unif: ', np.array(map(a_unif,np.arange(41),np.ones(41)*41))
@@ -109,7 +110,7 @@ def tuningCurves(fname=None):
     plt.close(fig)
 
 # 3. Représenter graphiquement la sortie du réseau
-def graph_sorti(ann,fname=None):
+def graph_sorti(ann,minErrs,fname=None):
     fig = plt.figure(figsize=(20, 15))
     plt.suptitle('Sortie du Reseau', fontsize=35)
     plt.subplot(311,axisbg="#fdf6e3")
@@ -150,17 +151,17 @@ def graph_sorti(ann,fname=None):
 
 # 4. Estimer la performance du réseau
 def performance(err_list,fname=None):
-    moy = np.mean(elist)
-    std = np.std(elist)
+    moy   = np.mean(err_list)
+    moyAbs= np.mean(abs(err_list))
+    std   = np.std(err_list)
     print "Erreur Moyenne : ", moy
+    print "Erreur Moyenne Abs: ", moyAbs
     print "L'écart-type de l'erreur : ", std
     fig = plt.figure(figsize=(20, 15))
     ax = fig.add_subplot(111,axisbg="#fdf6e3")
     plt.suptitle('Performance du Reseau', fontsize=35)
-    # plt.subplot(111,axisbg="#fdf6e3")
     plt.hist(err_list.tolist(),color="#859900")
-    ax.text(30,450,"err_moy=%f\necart-type=%f"%(moy,std), style='italic',fontsize=20,
-            bbox={'facecolor':'#eee8d5', 'alpha':2, 'pad':15})
+    plt.legend(["err_moy=%f\nerr_moy_abs=%f\necart-type=%f"%(moy,moyAbs,std)],prop={'size':16})
     plt.ylabel("Occurences")
     plt.xlabel("Erreur")
     if fname==None:
@@ -168,35 +169,34 @@ def performance(err_list,fname=None):
     else:
         plt.savefig(fname)
     plt.close(fig)
-    return moy,std
+    return moy,moyAbs,std
 
 tuningCurves("TuningCurves.png")
 
 # training ANN et estimer les erreurs
 y_vrai = lambda x : x[0] + x[-1]
 erreur = lambda yv, ye : yv - ye
-annList = []
-moyList = []
-stdList = []
+annList    = []
+moyList    = []
+moyAbsList = []
+stdList    = []
 for i in range(10):
-    while True:
-        elist  = []
-        minErrs= []
-        ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
-        ann.fit(trainX,trainY)
-        for x in testX:
-            yv = y_vrai(x)
-            err= erreur(yv,ann.y_esti(x))
-            elist.append(err)
-        elist = np.array(elist)
-        minErrs = np.argwhere(np.abs(elist) < 0.02)
-        minErrs = minErrs.flatten().tolist()
-        print minErrs
-        if len(minErrs) >= 3 :
-            graph_sorti(ann,"LaSortieDuReseau[%d].png"%i)
-            moy, std = performance(elist,"LaPerformanceDuReseau[%d].png"%i)
-            moyList.append(moy)
-            stdList.append(std)
-            break
+    elist  = []
+    minErrs= []
+    ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,21]],91,eta=0.01)
+    ann.fit(trainX,trainY)
+    for x in testX:
+        yv = y_vrai(x)
+        err= erreur(yv,ann.y_esti(x))
+        elist.append(err)
+    elist = np.array(elist)
+    minErrs = np.array(sorted(zip(np.arange(len(elist)),np.abs(elist)),key=itemgetter(1)))[:3,0]
+    graph_sorti(ann,minErrs,"LaSortieDuReseau[%d].png"%i)
+    moy,moyAbs,std = performance(elist,"LaPerformanceDuReseau[%d].png"%i)
+    moyList.append(moy)
+    moyAbsList.append(moyAbs)
+    stdList.append(std)
     
-np.savetxt("err_moy_std.txt",np.array(zip(moyList,stdList)))
+np.savetxt("err_moy_std.txt",np.array(zip(moyList,moyAbsList,stdList)))
+
+
