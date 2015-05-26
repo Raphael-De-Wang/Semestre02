@@ -136,3 +136,6 @@ class NeuroNetwork(Classifier):
     def get_output(self,x):
         self.forward(x)
         return self.outputLayer.Z
+    def get_hiddenZ(self,x):
+        self.forward(x)
+        return self.hiddenLayers[-1].Z

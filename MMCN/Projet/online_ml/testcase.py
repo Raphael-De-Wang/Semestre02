@@ -110,7 +110,7 @@ def tuningCurves(fname=None):
     plt.close(fig)
 
 # 3. Représenter graphiquement la sortie du réseau
-def graph_sorti(ann,minErrs,hlNum=20,fname=None):
+def graph_sorti(ann,minErrs,hlNum=21,fname=None):
     fig = plt.figure(figsize=(20, 15))
     plt.suptitle('Sortie du Reseau, Hidden Layer Size : %d'%hlNum, fontsize=35)
     plt.subplot(311,axisbg="#fdf6e3")
@@ -149,8 +149,49 @@ def graph_sorti(ann,minErrs,hlNum=20,fname=None):
         plt.savefig(fname)
     plt.close(fig)
 
+# 3. Représenter graphiquement la couche cachée du réseau
+def graph_hidden(ann,minErrs,hlNum=21,fname=None):
+    fig = plt.figure(figsize=(20, 15))
+    plt.suptitle('Sortie de la Couche Cachee du Reseau, Hidden Layer Size : %d'%hlNum, fontsize=35)
+    plt.subplot(311,axisbg="#fdf6e3")
+    i = minErrs[0]
+    Y = ann.get_hiddenZ(testX[i])
+    X = range(21)
+    # y = np.arange(np.max(Y),-0.2,-0.01)
+    # x = np.argmax(Y)*np.ones(len(y))
+    plt.bar(X,Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="1")
+    # plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity")
+    plt.legend()
+    
+    plt.subplot(312,axisbg="#fdf6e3")
+    i = minErrs[10]
+    Y = ann.get_hiddenZ(testX[i])
+    # y = np.arange(np.max(Y),-0.2,-0.01)
+    # x = np.argmax(Y)*np.ones(len(y))
+    plt.bar(X,Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="1")
+    # plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.ylabel("Activity")
+    plt.legend()
+    
+    plt.subplot(313,axisbg="#fdf6e3")
+    i = minErrs[200]
+    Y = ann.get_hiddenZ(testX[i])
+    # y = np.arange(np.max(Y),-0.2,-0.01)
+    # x = np.argmax(Y)*np.ones(len(y))
+    plt.bar(X,Y, label="x=%d, r=%d"%(testX[i][0],testX[i][-1]),color="#2aa198",linewidth="1")
+    # plt.plot(x,y,'--',color="#cb4b16",linewidth="2")
+    plt.xlabel("Neuron Index")
+    plt.ylabel("Activity")
+    plt.legend()
+    if fname==None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
 # 4. Estimer la performance du réseau
-def performance(err_list,hlNum=20,fname=None):
+def performance(err_list,hlNum=21,fname=None):
     moy   = np.mean(err_list)
     moyAbs= np.mean(abs(err_list))
     std   = np.std(err_list)
@@ -177,12 +218,14 @@ tuningCurves("TuningCurves.png")
 y_vrai = lambda x : x[0] + x[-1]
 erreur = lambda yv, ye : yv - ye
 
-for hlNum in [11]:
+ann = None
+
+for hlNum in [21]:
     annList    = []
     moyList    = []
     moyAbsList = []
     stdList    = []
-    for i in range(20):
+    for i in range(1):
         elist  = []
         minErrs= []
         ann = NeuroNetwork([[sigmoid,grad_sigmoid,64,hlNum]],91,eta=0.01)
@@ -192,11 +235,14 @@ for hlNum in [11]:
             err= erreur(yv,ann.y_esti(x))
             elist.append(err)
         elist = np.array(elist)
-        minErrs = np.array(sorted(zip(np.arange(len(elist)),np.abs(elist)),key=itemgetter(1)))[:3,0]
+        minErrs = np.array(sorted(zip(np.arange(len(elist)),np.abs(elist)),key=itemgetter(1)))[:,0]
         graph_sorti(ann,minErrs,hlNum,"LaSortieDuReseau[%d][hlNum%d].png"%(i,hlNum))
+        graph_hidden(ann,minErrs,hlNum,"LaSortieCoucheCacheeDuReseau[%d][hlNum%d].png"%(i,hlNum))
         moy,moyAbs,std = performance(elist,hlNum,"LaPerformanceDuReseau[%d][hlNum%d].png"%(i,hlNum))
         moyList.append(moy)
         moyAbsList.append(moyAbs)
         stdList.append(std)
-    np.savetxt("err_moy_std[hlNum%d].txt"%hlNum,np.array(zip(moyList,moyAbsList,stdList)))
+    # np.savetxt("err_moy_std[hlNum%d].txt"%hlNum,np.array(zip(moyList,moyAbsList,stdList)))
 
+
+    

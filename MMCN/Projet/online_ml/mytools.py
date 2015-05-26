@@ -45,3 +45,4 @@ def input_layer_active(D,N1=41,N2=11,N3=11): # D est un vector de taille N1+N2+N
         else:
             d[i] = rMiAct(data,i,N3)
     return d
+
