@@ -8,14 +8,14 @@ from function import *
 
 import subprocess
 
-def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict):
+def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=500,gSeuil=0.8):
     dg = dict()
     de = dict()
     for i,d in enumerate(domains):
         ne = nivExprAccuDomDict.get(d)
-        if ne > 500 :
+        if ne > neSeuil :
             for g in gCAIsDomDict.get(d):
-                if g > 0.8 :
+                if g > gSeuil :
                     if dg.has_key(d):
                         dg[d].append(g)
                     else:
@@ -55,11 +55,30 @@ def domain_function_list(domains,pfam2go_dict):
                 dfList.append([d,func])
     return dfList
     
+def domain_function_dict(domains,pfam2go_dict):
+    dfDict = {}
+    for i,d in enumerate(domains):
+        if pfam2go_dict.has_key(d):
+            for record in pfam2go_dict[d]:
+                func = record[2]
+                if dfDict.has_key(func):
+                    dfDict[func] += 1
+                else:
+                    dfDict[func] = 1
+    return dfDict
+    
 # loading
 CLS_dict = readClstr("AT_arc_metatrans.filtered.fasta.clstr")
 CAI_dict = readgCAIs("../output/cais.lst.2step")
-step2MList   = read2step("AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step")
+step2MList = read2step("AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step")
 gIDList = getGIDList(step2MList)
+
+# mean,std of CAI
+caiList = []
+for key,CAI in CAI_dict.iteritems():
+    caiList.append(CAI)
+moyCAI = np.mean(caiList)
+stdCAI = np.std(caiList)
 
 # Accumulate Niveau Expression :
 domIdDict = domainIdDict(gIDList)
@@ -69,6 +88,13 @@ nivExprAccuDomSortList = np.array(sortDictByValue(nivExprAccuDomDict))
 # nivExpr = np.array([ int(val) for val in nivExprAccuDomSortList[:,1]])
 domains  = nivExprAccuDomSortList[:,0]
 
+# mean,std of Niveau Expression :
+neList = []
+for key,ne in nivExprAccuDomDict.iteritems():
+    neList.append(ne)
+moyNE = np.mean(neList)
+stdNE = np.std(neList)
+    
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
 # gCAIsDomSortList = np.array(sortDictByValue(CAI_dict))
@@ -88,34 +114,148 @@ handle = open("GO_DICT.txt",'r')
 goDict = loadToDict(handle)
 handle.close()
 
-deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict)
+deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=moyNE,gSeuil=moyCAI)
+# deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=0,gSeuil=0)
 # domainHTML(deSortList,pfam2go_dict,dg,de)
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
-print len(dfList)
+# dfDict = domain_function_dict(np.array(deSortList)[:,0],pfam2go_dict)
+# print len(dfList)
 # print len(np.unique(np.array(dfList)[:,1]))
 
-# Construire l'arbre
-dot = pydot.Dot(graph_type='digraph',ratio="expand", size='100! 10000!')
-for d,func in dfList:
-    print "domain : %s, function : %s "%(d,func)
-    if func not in goslimmeta_dict.keys():
-        add_df_edge(dot,d,func)
-    else:
-        add_da_edge(dot,d,func)
-        
-    for key in goDict:
-        if func in goDict[key].descendants:
-            if key not in goslimmeta_dict.keys():
-                # add_ff_edge( dot, func, key)
-                search_ancestor(dot,func,key,goDict,goslimmeta_dict)
-            else:
-                add_fa_edge( dot, func, key)
+def constr_arbre():
+    # Construire l'arbre
+    dot = pydot.Dot(graph_type='digraph',ratio="expand", size='100! 10000!')
+    for d,func in dfList:
+        print "domain : %s, function : %s "%(d,func)
+        if func not in goslimmeta_dict.keys():
+            add_df_edge(dot,d,func)
+        else:
+            add_da_edge(dot,d,func)
+            
+        for key in goDict:
+            if func in goDict[key].descendants:
+                if key not in goslimmeta_dict.keys():
+                    # add_ff_edge( dot, func, key)
+                    search_ancestor(dot,func,key,goDict,goslimmeta_dict)
+                else:
+                    add_fa_edge( dot, func, key)
     
-# Dot.write('/tmp/graph.dot', format='raw', prog='dot')
-# subprocess.call(["dot", "-Tps", "/tmp/graph.dot", "-o", "/tmp/outfile.ps"])
-
-dot.write_png('/tmp/graph.png', prog='dot')
+    # Dot.write('/tmp/graph.dot', format='raw', prog='dot')
+    # subprocess.call(["dot", "-Tps", "/tmp/graph.dot", "-o", "/tmp/outfile.ps"])
+    
+    dot.write_png('/tmp/graph.png', prog='dot')
 
 # print DF_LIST
 # print FF_LIST
 
+def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
+    dfList = np.array([ [k,v] for k,v in dfDict.iteritems() ])
+    ind = np.arange(len(dfList))
+    fig = plt.figure(figsize=(100,7))
+    fig.subplots_adjust(bottom=0.3)
+    plt.title('Nombre de domain par function, CAI > %f, Niveau D\'Expression > %f'%(moyCAI,moyNE))
+    funcList = dfList[:,0]
+    nbrList  = [ int(n) for n in dfList[:,1] ]
+    plt.bar(ind, nbrList, width, color="#2aa198")
+    plt.xticks(ind+width/4.,funcList,rotation=80)
+    if fname==None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
+# plot_nbr_domain_par_func(dfDict,fname='nbr_domain_par_func.png')
+
+def add_in_dict(D,key,name,dom,cais,ne):
+    if not D.has_key(key):
+        D[key] = (name,[dom],[cais],[ne])
+    else:
+        n,dom_list,cais_list,ne_list = D[key]
+        if n <> name:
+            raise ValueError('different function name : %s, %s'%(n,name))
+        dom_list.append(dom)
+        cais_list.append(cais)
+        ne_list.append(ne)
+        D[key] = (name,dom_list,cais_list,ne_list)
+
+def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
+    bio_process = {}
+    molec_func  = {}
+    cellu_comp  = {}
+    for d,func in dfList:
+        if func in goslimmeta_dict.keys():
+            record = goslimmeta_dict.get(func)
+        elif func in goDict.keys():
+            record = goDict.get(func)
+        else:
+            continue
+        ne  = deDict[d]
+        cais= dgDict[d]
+        name= record.name
+        if record.type == 'biological_process':
+            add_in_dict(bio_process,func,name,d,cais,ne)
+        if record.type == 'molecular_function': 
+            add_in_dict(molec_func,func,name,d,cais,ne)
+        if record.type == 'cellular_component': 
+            add_in_dict(cellu_comp,func,name,d,cais,ne)
+    return bio_process,molec_func,cellu_comp
+    
+bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
+
+def plot_switch_view(func_type,func_dict,fname=None,figsize=(30,180)):
+    nameList = []
+    domList  = []
+    caisMinList = []
+    caisMaxList = []
+    caisMeanList= []
+    neList      = []
+    for key,value in func_dict.iteritems():
+        (name,dom_list,cais_list,ne_list) = value
+        nameList.append(name)
+        domList.append(len(dom_list))
+        cais_list = [j for i in cais_list for j in i]
+        caisMinList.append(min(cais_list))
+        caisMaxList.append(max(cais_list))
+        caisMeanList.append(np.mean(cais_list))
+        neList.append(sum(ne_list))
+    bottoms = np.arange(len(func_dict.keys())-1,-1,-1)
+    fig = plt.figure(figsize=figsize)
+    plt.suptitle(func_type, fontsize=35)
+    ax = plt.subplot(131,axisbg="#fdf6e3")
+    ax.set_title("Nombre de Domain par Function")
+    plt.bar(left=np.zeros(len(func_dict.keys())),
+            width=domList, bottom=bottoms,
+            color="#2aa198",orientation="horizontal",height=0.5)
+    plt.yticks(bottoms,nameList)
+    
+    ax = plt.subplot(132,axisbg="#fdf6e3")
+    ax.set_title("Niveau d'Expression")
+    plt.bar(left=np.zeros(len(func_dict.keys())),
+            width=neList, bottom=bottoms,
+            color="#2aa198",orientation="horizontal",height=0.5)
+    
+    ax = plt.subplot(133,axisbg="#fdf6e3")
+    ax.set_title("CAI")
+    plt.bar(left=np.zeros(len(func_dict.keys())),
+            width=caisMaxList, bottom=bottoms,
+            color="b",orientation="horizontal",
+            height=0.3,label='Max')
+    plt.bar(left=np.zeros(len(func_dict.keys())),
+            width=caisMeanList, bottom=bottoms,
+            color="g",orientation="horizontal",
+            height=0.4,label='Mean')
+    plt.bar(left=np.zeros(len(func_dict.keys())),
+            width=caisMinList, bottom=bottoms,
+            color="r",orientation="horizontal",
+            height=0.5,label='Min')
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2)
+    fig.subplots_adjust(left=0.3,hspace=0.05,bottom=0.01,top=0.95)
+    if fname == None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+    plt.close(fig)
+
+plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(30,100))
+plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,120))
+plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(30,30))

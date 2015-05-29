@@ -225,11 +225,12 @@ def plotBarChart(plotList,labels,figName=None):
     plt.close()
     
 def plotgCAIsDomain(X,Y,xDiv=1,yDiv=20,figName=None):
-    fig = pylab.figure(figsize=(160,3))
+    fig = pylab.figure(figsize=(320,3))
     pylab.hist2d(Y,X,bins=[len(np.unique(Y))/yDiv,xDiv], norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
     pylab.xlabel("Domain Sorted By Translation Level")
     pylab.ylabel("gCAIs")
     pylab.title("Desity Plot - Domains Grouped by [%d], gCAIs Divided by [%d], Top [%d] Domains (PS : values in brackets are manipulable)"%(xDiv,yDiv,len(np.unique(Y))))
+    fig.subplots_adjust(bottom=0.25)
     cbar = pylab.colorbar()
     if figName:
         pylab.savefig(figName)

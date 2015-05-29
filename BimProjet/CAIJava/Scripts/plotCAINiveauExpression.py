@@ -169,12 +169,14 @@ gCAIsDomSortList = np.array(sortDictByValue(CAI_dict))
 # save_list('gCAIsDomSortList',gCAIsDomSortList)
 
 xDiv=1
-yDiv=10
-'''
+yDiv=20
+
 gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
 # indice = gCAIsDomList[:,0] < top
-plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],xDiv,yDiv,figName="gCAIsChaleur[Top%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
+plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],yDiv,xDiv,figName="gCAIsChaleur[%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
+exit()
 
+'''
 indice = gCAIsDomList[:,0] < 1000
 plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop1000")
 indice = gCAIsDomList[:,0] < 500
@@ -207,8 +209,6 @@ deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 # print len(np.array(dfList))
 # print len(np.unique(np.array(dfList)[:,1]))
-
-exit()
 
 step = 100
 for i in range(100,401,step):

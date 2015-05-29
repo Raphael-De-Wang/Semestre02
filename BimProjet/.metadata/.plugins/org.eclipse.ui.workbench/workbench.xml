@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="17" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="686" maximized="true" width="1012" x="90" y="25">
 <fastViewData fastViewLocation="1024"/>
@@ -46,7 +46,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" partName="Utils.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/Utils.java" title="Utils.java" tooltip="CAIJava/src/utils/Utils.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/src/utils/Utils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="6206" selectionTopPixel="4270"/>
+<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="6206" selectionTopPixel="2768"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.clstr" partName="AT_arc_metatrans.filtered.fasta.clstr" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" title="AT_arc_metatrans.filtered.fasta.clstr" tooltip="CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
@@ -580,12 +580,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="right"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -593,7 +587,6 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
