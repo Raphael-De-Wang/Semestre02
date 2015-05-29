@@ -3,7 +3,10 @@
 import pandas as pd
 import numpy as np
 import csv as csv
-from sklearn.linear_model import LogisticRegression 
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegressionCV
+
+from judge import judge
 
 # Data cleanup
 # TRAIN DATA
@@ -13,8 +16,17 @@ test_df  = pd.read_csv('cleanedTest.csv',  header=0)        # Load the test file
 train_labels = train_df.Survived.values
 test_id = test_df.PassengerId.values
 
-train_df = train_df.drop(['Survived','PassengerId'], axis=1)
-test_df = test_df.drop(['PassengerId'], axis=1)
+clist = ['Pclass', 'Age', 'SibSp', 'Parch', 'Embarked', 'Family_Size', 'Title', 'Title_Mr',
+ 'Deck', 'Side', 'Fare_Per_Person', 'Gender', 'AgeGenderClass', 'Protocole',
+ 'Fare', 'AgeClass']
+
+clist = ['Pclass', 'Age', 'SibSp', 'Parch',
+         'Family_Size', 'Title', 'Title_Mr', 'Side',
+         'AgeGenderClass', 'Protocole','Fare']
+
+train_df = train_df[clist]
+test_df = test_df[clist]
+
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
@@ -22,7 +34,7 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
-lr = LogisticRegression()
+lr = LogisticRegression(max_iter=100, solver='newton-cg',)
 lr = lr.fit( train_data, train_labels )
 
 print 'Predicting...'
@@ -35,3 +47,4 @@ open_file_object.writerows(zip(test_id, output))
 predictions_file.close()
 print 'Done.'
 
+judge(testFile='LR.csv', ansFile='answers.csv')
