@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import csv as csv
 from sklearn.linear_model import LogisticRegression
-from sklearn.linear_model import LogisticRegressionCV
+# from sklearn.linear_model import LogisticRegressionCV
 
 from judge import judge
 
@@ -24,6 +24,8 @@ clist = ['Pclass', 'Age', 'SibSp', 'Parch',
          'Family_Size', 'Title', 'Title_Mr', 'Side',
          'AgeGenderClass', 'Protocole','Fare']
 
+clist = ['Pclass', 'Age', 'Parch', 'Embarked', 'Title', 'Deck', 'Gender', 'Fare']
+
 train_df = train_df[clist]
 test_df = test_df[clist]
 
@@ -34,7 +36,7 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
-lr = LogisticRegression(max_iter=100, solver='newton-cg',)
+lr = LogisticRegression(solver='newton-cg')
 lr = lr.fit( train_data, train_labels )
 
 print 'Predicting...'

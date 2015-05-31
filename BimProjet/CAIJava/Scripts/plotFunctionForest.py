@@ -114,8 +114,8 @@ handle = open("GO_DICT.txt",'r')
 goDict = loadToDict(handle)
 handle.close()
 
-deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=moyNE,gSeuil=moyCAI)
-# deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=0,gSeuil=0)
+# deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=moyNE,gSeuil=moyCAI)
+deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=0,gSeuil=0)
 # domainHTML(deSortList,pfam2go_dict,dg,de)
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 # dfDict = domain_function_dict(np.array(deSortList)[:,0],pfam2go_dict)
@@ -202,60 +202,74 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
     
 bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
 
-def plot_switch_view(func_type,func_dict,fname=None,figsize=(30,180)):
+def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.6):
     nameList = []
     domList  = []
     caisMinList = []
     caisMaxList = []
     caisMeanList= []
     neList      = []
+    funcList    = []
     for key,value in func_dict.iteritems():
         (name,dom_list,cais_list,ne_list) = value
-        nameList.append(name)
-        domList.append(len(dom_list))
         cais_list = [j for i in cais_list for j in i]
+        if max(cais_list) < caiSeuil :
+            continue
         caisMinList.append(min(cais_list))
         caisMaxList.append(max(cais_list))
         caisMeanList.append(np.mean(cais_list))
+        nameList.append(name)
+        domList.append(len(dom_list))
         neList.append(sum(ne_list))
-    bottoms = np.arange(len(func_dict.keys())-1,-1,-1)
+        funcList.append(key)
+    bottoms = np.arange(len(nameList))*1.2
     fig = plt.figure(figsize=figsize)
-    plt.suptitle(func_type, fontsize=35)
+    plt.suptitle(func_type, fontsize=15)
     ax = plt.subplot(131,axisbg="#fdf6e3")
     ax.set_title("Nombre de Domain par Function")
-    plt.bar(left=np.zeros(len(func_dict.keys())),
-            width=domList, bottom=bottoms,
-            color="#2aa198",orientation="horizontal",height=0.5)
-    plt.yticks(bottoms,nameList)
-    
+    plt.bar(left=np.zeros(len(nameList)),
+            width=domList, bottom=bottoms,align="center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+    plt.yticks(bottoms+0.1,nameList)
     ax = plt.subplot(132,axisbg="#fdf6e3")
     ax.set_title("Niveau d'Expression")
-    plt.bar(left=np.zeros(len(func_dict.keys())),
-            width=neList, bottom=bottoms,
-            color="#2aa198",orientation="horizontal",height=0.5)
-    
+    plt.bar(left=np.zeros(len(nameList)),
+            width=neList, bottom=bottoms,align="center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+    plt.yticks(bottoms+0.1,funcList)
     ax = plt.subplot(133,axisbg="#fdf6e3")
     ax.set_title("CAI")
-    plt.bar(left=np.zeros(len(func_dict.keys())),
+    plt.bar(left=np.zeros(len(nameList)),align="center",
             width=caisMaxList, bottom=bottoms,
             color="b",orientation="horizontal",
-            height=0.3,label='Max')
-    plt.bar(left=np.zeros(len(func_dict.keys())),
+            height=0.8,label='Max')
+    plt.bar(left=np.zeros(len(nameList)),align="center",
             width=caisMeanList, bottom=bottoms,
             color="g",orientation="horizontal",
-            height=0.4,label='Mean')
-    plt.bar(left=np.zeros(len(func_dict.keys())),
+            height=0.9,label='Mean')
+    plt.bar(left=np.zeros(len(nameList)),align="center",
             width=caisMinList, bottom=bottoms,
             color="r",orientation="horizontal",
-            height=0.5,label='Min')
+            height=1.0,label='Min')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2)
-    fig.subplots_adjust(left=0.3,hspace=0.05,bottom=0.01,top=0.95)
+    plt.yticks(bottoms+0.1,funcList)
+    # ax.yaxis.tick_right()
+    # fig.subplots_adjust(left=0.3,hspace=0.05,bottom=0.1,top=0.90)
+    fig.subplots_adjust(left=0.3,bottom=0.1,top=0.90)
     if fname == None:
         plt.show()
     else:
         plt.savefig(fname)
+        handle = open(fname.replace('png','txt'),'w')
+        for f in funcList:
+            handle.write("%s\n"%f)
+        handle.close()
     plt.close(fig)
 
-plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(30,100))
-plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,120))
-plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(30,30))
+# plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(15,50))
+# plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,30))
+# plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(15,15))
+
+plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(30,15))
+plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(40,25))
+plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(30,15))

@@ -53,4 +53,4 @@ def judge(testFile, ansFile):
     if 0 == sum(judge_df.PassengerId.values <> test_df.PassengerId.values):
         print "Score : ", sum(judge_df.Survived.values == test_df.Survived.values)*1./len(test_df.Survived.values)
             
-judge(testFile='LR.csv', ansFile='answers.csv')
+# judge(testFile='LR.csv', ansFile='answers.csv')
