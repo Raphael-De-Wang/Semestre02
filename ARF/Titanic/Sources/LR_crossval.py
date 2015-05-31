@@ -40,7 +40,8 @@ def find_best_estimator(estimator, grid_test, X, y):
 
 def optimize_estimator(feature_range, df):
     feature_slist= sort_features(df,100)
-    print "feature list : ", feature_slist 
+    print "feature list : ", feature_slist
+    exit()
     y = df.Survived.values
     train_df = df.drop(['Survived'],axis=1)
     history = []

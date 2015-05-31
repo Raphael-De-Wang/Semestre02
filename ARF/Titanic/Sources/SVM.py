@@ -3,12 +3,15 @@
 import pandas as pd
 import numpy as np
 import csv as csv
-from sklearn.svm import SVC
+from sklearn.svm import SVC,NuSVC,LinearSVC
+
+from judge import judge
+
 
 # Data cleanup
 # TRAIN DATA
-train_df = pd.read_csv('cleanedTrain.csv', header=0)        # Load the train file into a dataframe
-test_df  = pd.read_csv('cleanedTest.csv',  header=0)        # Load the test file into a dataframe
+train_df = pd.read_csv('cleanedTrain2.csv', header=0)        # Load the train file into a dataframe
+test_df  = pd.read_csv('cleanedTest2.csv',  header=0)        # Load the test file into a dataframe
 
 train_labels = train_df.Survived.values
 test_id = test_df.PassengerId.values
@@ -21,17 +24,69 @@ test_df = test_df.drop(['PassengerId'], axis=1)
 train_data = train_df.values
 test_data = test_df.values
 
-print 'Training...'
-clf = SVC()
-clf = clf.fit( train_data, train_labels )
 
-print 'Predicting...'
-output = clf.predict(test_data).astype(int)
+def test_svc(C,degree,gamma,coef0):
+    # print '==== SVC ===='
+    # print 'Training...'
+    clf = SVC(kernel='poly',C=C,degree=degree,gamma=gamma,coef0=coef0)
+    clf = clf.fit( train_data, train_labels )
+    
+    # print 'Predicting...'
+    output = clf.predict(test_data).astype(int)
+    
+    predictions_file = open("CLF.csv", "wb")
+    open_file_object = csv.writer(predictions_file)
+    open_file_object.writerow(["PassengerId","Survived"])
+    open_file_object.writerows(zip(test_id, output))
+    predictions_file.close()
+    # print 'Done.'
+    print 'SVC : '
+    judge(testFile='CLF.csv', ansFile='answers.csv')
 
-predictions_file = open("CLF.csv", "wb")
-open_file_object = csv.writer(predictions_file)
-open_file_object.writerow(["PassengerId","Survived"])
-open_file_object.writerows(zip(test_id, output))
-predictions_file.close()
-print 'Done.'
 
+def test_nusvc():    
+    # print '==== NuSVC ===='
+    # print 'Training...'
+    clf = NuSVC()
+    clf = clf.fit( train_data, train_labels )
+    
+    # print 'Predicting...'
+    output = clf.predict(test_data).astype(int)
+    
+    predictions_file = open("CLF.csv", "wb")
+    open_file_object = csv.writer(predictions_file)
+    open_file_object.writerow(["PassengerId","Survived"])
+    open_file_object.writerows(zip(test_id, output))
+    predictions_file.close()
+    # print 'Done.'
+    print 'NuSVC : '
+    judge(testFile='CLF.csv', ansFile='answers.csv')
+
+
+def test_linearsvc():
+    # print '==== LinearSVC ===='
+    # print 'Training...'
+    clf = LinearSVC(loss='hinge')
+    clf = clf.fit( train_data, train_labels )
+    
+    # print 'Predicting...'
+    output = clf.predict(test_data).astype(int)
+    
+    predictions_file = open("CLF.csv", "wb")
+    open_file_object = csv.writer(predictions_file)
+    open_file_object.writerow(["PassengerId","Survived"])
+    open_file_object.writerows(zip(test_id, output))
+    predictions_file.close()
+    # print 'Done.'
+    print 'LinearSVC : '
+    judge(testFile='CLF.csv', ansFile='answers.csv')
+
+
+C      = 1
+degree = 2
+gamma  = 0.0
+coef0  = 0.0
+
+for gamma in np.arange(1.5,2.6,0.5):
+    print 'gamma : ', gamma
+    test_svc(C,degree,gamma,coef0)

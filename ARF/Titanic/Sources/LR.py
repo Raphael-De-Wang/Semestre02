@@ -20,11 +20,11 @@ clist = ['Pclass', 'Age', 'SibSp', 'Parch', 'Embarked', 'Family_Size', 'Title', 
  'Deck', 'Side', 'Fare_Per_Person', 'Gender', 'AgeGenderClass', 'Protocole',
  'Fare', 'AgeClass']
 
-clist = ['Pclass', 'Age', 'SibSp', 'Parch',
-         'Family_Size', 'Title', 'Title_Mr', 'Side',
-         'AgeGenderClass', 'Protocole','Fare']
+clist = ['Pclass', 'Age', 'Gender', 'Embarked', 'Fare', 'Title_Mr', 'Family_Size', 'Protocole', 'AgeGenderClass']
 
-clist = ['Pclass', 'Age', 'Parch', 'Embarked', 'Title', 'Deck', 'Gender', 'Fare']
+# clist = ['Pclass', 'Age', 'Gender', 'SibSp', 'Parch', 'Embarked', 'Fare', 'Title_Mr', 'Family_Size', 'Protocole', 'AgeGenderClass']
+
+# clist = ['Pclass', 'Age', 'Parch', 'SibSp', 'Embarked', 'Title', 'Gender', 'Fare']
 
 train_df = train_df[clist]
 test_df = test_df[clist]
@@ -36,7 +36,11 @@ train_data = train_df.values
 test_data = test_df.values
 
 print 'Training...'
+# lr = LogisticRegression(solver='liblinear',penalty='l2')
 lr = LogisticRegression(solver='newton-cg')
+# lr = LogisticRegression(solver='lbfgs')
+
+
 lr = lr.fit( train_data, train_labels )
 
 print 'Predicting...'
