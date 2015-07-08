@@ -6,8 +6,6 @@ import csv as csv
 from sklearn.linear_model import LogisticRegression
 # from sklearn.linear_model import LogisticRegressionCV
 
-from judge import judge
-
 # Data cleanup
 # TRAIN DATA
 train_df = pd.read_csv('cleanedTrain.csv', header=0)        # Load the train file into a dataframe
@@ -53,4 +51,3 @@ open_file_object.writerows(zip(test_id, output))
 predictions_file.close()
 print 'Done.'
 
-judge(testFile='LR.csv', ansFile='answers.csv')

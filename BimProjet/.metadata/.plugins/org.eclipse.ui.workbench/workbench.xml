@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="15" version="2.0">
 <workbenchAdvisor/>
-<window height="686" maximized="true" width="1012" x="90" y="25">
+<window height="657" maximized="true" width="1006" x="90" y="25">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -15,10 +15,11 @@
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="40" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditorNoSource" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -36,17 +37,19 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
+<part id="6"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava.java" partName="CAIJava.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/CAIJava.java" title="CAIJava.java" tooltip="CAIJava/src/utils/CAIJava.java" workbook="DefaultEditorWorkbook">
+<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava.java" partName="CAIJava.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/CAIJava.java" title="CAIJava.java" tooltip="CAIJava/src/utils/CAIJava.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/src/utils/CAIJava.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="58" selectionOffset="48924" selectionTopPixel="25030"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="5251" selectionTopPixel="1344"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" partName="Utils.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/Utils.java" title="Utils.java" tooltip="CAIJava/src/utils/Utils.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" partName="Utils.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/Utils.java" title="Utils.java" tooltip="CAIJava/src/utils/Utils.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/src/utils/Utils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="6206" selectionTopPixel="2768"/>
+<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="6206" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.clstr" partName="AT_arc_metatrans.filtered.fasta.clstr" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" title="AT_arc_metatrans.filtered.fasta.clstr" tooltip="CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
@@ -59,6 +62,14 @@
 <editor id="org.eclipse.ui.DefaultTextEditor" name="cais.lst.2step" partName="cais.lst.2step" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/cais.lst.2step" title="cais.lst.2step" tooltip="CAIJava/output/cais.lst.2step" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/cais.lst.2step"/>
 <editorState selectionHorizontalPixel="0" selectionLength="34" selectionOffset="18" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="cais.lst" partName="cais.lst" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/cais.lst" title="cais.lst" tooltip="CAIJava/output/cais.lst" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/cais.lst"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="3529"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="output" partName="output" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/output" title="output" tooltip="CAIJava/output/output" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/output"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="3164"/>
 </editor>
 </editors>
 <views>
@@ -74,9 +85,6 @@
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
-<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
 <columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="350" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="577" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.priorityField="35" org.eclipse.ui.ide.resourceField="105"/>
@@ -90,6 +98,9 @@
 </viewState>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
@@ -145,7 +156,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -260,13 +271,13 @@
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.eclipse.jdt.callhierarchy.view"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
@@ -291,7 +302,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24723247" ratioLeft="335" ratioRight="1020" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.5165165" ratioLeft="344" ratioRight="322" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.23423423" ratioLeft="156" ratioRight="510" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -409,14 +420,6 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/all.fasta"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/sequence.fasta"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava2.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.clstr"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
@@ -427,152 +430,161 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.clstr"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst.2step"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/Utils.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=CAIJava/\/usr\/lib\/jvm\/java-7-openjdk-amd64\/jre\/lib\/rt.jar&lt;java.lang(String.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava2.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/output"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava2.java"/>
 </editors>
-<item historyLabel="all.fasta" index="2">
+<item historyLabel="cais.lst" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
-<position info="not_deleted" x="420" y="14"/>
-</item>
-<item historyLabel="sequence.fasta" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
-<position info="not_deleted" x="420" y="14"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta" index="4"/>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
-<position info="not_deleted" x="390" y="14"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="5">
-<position info="not_deleted" x="74141" y="7"/>
-</item>
-<item historyLabel="CAIJava2.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="5">
-<position info="not_deleted" x="74141" y="7"/>
-</item>
-<item historyLabel="CAIJava.java" index="7">
-<position info="not_deleted" x="47860" y="0"/>
-</item>
-<item historyLabel="cais.lst" index="0">
-<position info="not_deleted" x="1224" y="0"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="5">
-<position info="not_deleted" x="74141" y="7"/>
-</item>
-<item historyLabel="CAIJava.java" index="7">
-<position info="not_deleted" x="14372" y="44"/>
-</item>
-<item historyLabel="CAIJava.java" index="7">
-<position info="not_deleted" x="14087" y="2"/>
-</item>
-<item historyLabel="CAIJava.java" index="7">
-<position info="not_deleted" x="48924" y="58"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="5">
-<position info="not_deleted" x="74141" y="7"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
-<position info="not_deleted" x="390" y="14"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="10">
-<position info="not_deleted" x="74141" y="7"/>
-</item>
-<item historyLabel="cais.lst" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="10">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="2">
 <position info="not_deleted" x="643" y="7"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="390" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="10">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="2">
 <position info="not_deleted" x="643" y="7"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="8">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="0">
 <position info="not_deleted" x="5728" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="390" y="14"/>
 </item>
-<item historyLabel="cais.lst.2step" index="12">
+<item historyLabel="cais.lst.2step" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="390" y="14"/>
 </item>
-<item historyLabel="CAIJava.java" index="13">
+<item historyLabel="CAIJava.java" index="5">
 <position info="not_deleted" x="48924" y="58"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642008" y="14"/>
 </item>
-<item historyLabel="CAIJava.java" index="13">
+<item historyLabel="CAIJava.java" index="5">
 <position info="not_deleted" x="48924" y="58"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="643" y="7"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642008" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="643" y="7"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="15"/>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="7"/>
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3642173" y="14"/>
 </item>
-<item historyLabel="cais.lst.2step" index="16">
+<item historyLabel="cais.lst.2step" index="8">
 <position info="not_deleted" x="18" y="34"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3633714" y="5"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="14">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="6">
 <position info="not_deleted" x="613" y="28"/>
 </item>
-<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="9">
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="1">
 <position info="not_deleted" x="3633714" y="5"/>
 </item>
-<item active="true" historyLabel="Utils.java" index="17">
+<item historyLabel="Utils.java" index="9">
 <position info="not_deleted" x="6206" y="28"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="48924" y="58"/>
+</item>
+<item historyLabel="String.class" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="14372" y="44"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="48924" y="58"/>
+</item>
+<item historyLabel="CAIJava2.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="14372" y="44"/>
+</item>
+<item historyLabel="String.class" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="14372" y="44"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="48924" y="58"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="13742" y="17"/>
+</item>
+<item historyLabel="CAIJava.java" index="10">
+<position info="not_deleted" x="13993" y="40"/>
+</item>
+<item historyLabel="cais.lst" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="output" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="15">
+<position info="not_deleted" x="5251" y="11"/>
+</item>
+<item historyLabel="CAIJava2.java" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="CAIJava.java" index="15">
+<position info="not_deleted" x="5251" y="11"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -580,6 +592,13 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
+<trimItem IMemento.internal.id="right"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -591,6 +610,18 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="output" tooltip="CAIJava/output/output">
+<persistable path="/CAIJava/output/output"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="cais.lst" tooltip="CAIJava/output/cais.lst">
+<persistable path="/CAIJava/output/cais.lst"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava2.java" tooltip="CAIJava/src/utils/CAIJava2.java">
+<persistable path="/CAIJava/src/utils/CAIJava2.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="String.class" tooltip="java.lang.String">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=CAIJava/\/usr\/lib\/jvm\/java-7-openjdk-amd64\/jre\/lib\/rt.jar&lt;java.lang(String.class"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="cleanUp.py" tooltip="CAIJava/Scripts/cleanUp.py">
 <persistable path="/CAIJava/Scripts/cleanUp.py"/>
 </file>
@@ -599,9 +630,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.clstr" tooltip="CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.clstr">
 <persistable path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.clstr"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava2.java" tooltip="CAIJava/src/utils/CAIJava2.java">
-<persistable path="/CAIJava/src/utils/CAIJava2.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" tooltip="CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step">
 <persistable path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
@@ -624,17 +652,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.fasta" tooltip="CAIJava/source/1_raw_sequences/AT_arc_metatrans.fasta">
 <persistable path="/CAIJava/source/1_raw_sequences/AT_arc_metatrans.fasta"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="cais.lst" tooltip="CAIJava/output/cais.lst">
-<persistable path="/CAIJava/output/cais.lst"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" tooltip="CAIJava/source/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step">
 <persistable path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="commands" tooltip="CAIJava/source/commands">
-<persistable path="/CAIJava/source/commands"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.wtf" tooltip="CAIJava/source/AT_arc_metatrans.wtf">
-<persistable path="/CAIJava/source/AT_arc_metatrans.wtf"/>
 </file>
 </mruList>
 </workbench>

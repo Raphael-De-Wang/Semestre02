@@ -171,8 +171,8 @@ def accumulateNivExprDom(nivExprDomDict,domIdDict):
             acc[key] = acc[key] + nivExprDomDict[gName]
     return acc
 
-def sortDictByValue(dic):
-    return sorted(dic.items(), key=operator.itemgetter(1),reverse=True)
+def sortDictByValue(dic,reverse=True):
+    return sorted(dic.items(), key=operator.itemgetter(1),reverse=reverse)
 
 def sortListByCol(tList,colNum):
     return sorted(tList,key=lambda lst: lst[colNum])
@@ -240,7 +240,7 @@ def plotgCAIsDomain(X,Y,xDiv=1,yDiv=20,figName=None):
     
 def plotgCAIsDomain2(X,Y,figName=None):
     T = np.arctan(X)#,np.ones(len(X)))
-    pylab.figure(figsize=(20,4))
+    pylab.figure(figsize=(30,4))
     pylab.scatter(Y,X, s=5, c=T, alpha=.4,marker='x')
     pylab.xlabel("Domain Sorted By Translation Level")
     pylab.ylabel("gCAIs")

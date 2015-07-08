@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="350" key="DIALOG_WIDTH"/>
 		<item value="134" key="DIALOG_Y_ORIGIN"/>
-		<item value="929" key="DIALOG_X_ORIGIN"/>
 		<item value="560" key="DIALOG_HEIGHT"/>
+		<item value="929" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="GG7SD3401AXWP5" key="selection"/>
+		<item value="fastaFormat" key="selection"/>
 		<list key="findhistory">
+			<item value="fastaFormat"/>
+			<item value="Gene Note table: "/>
 			<item value="GG7SD3401AXWP5"/>
 			<item value="ss"/>
 			<item value="PF00015"/>
 			<item value="GEQW5N301EBETI__ARC__6RF_RF5"/>
 			<item value="GEQW5N301DLIB1"/>
 			<item value="GEQW5N301A3EL3__ARC__6RF_RF1"/>
-			<item value="GG7SD3401DYJ3N"/>
-			<item value="GG7SD3401DDUOD"/>
 		</list>
 		<list key="replacehistory">
 		</list>

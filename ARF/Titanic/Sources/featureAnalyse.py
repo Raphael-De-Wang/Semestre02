@@ -21,7 +21,7 @@ forest = RandomForestClassifier(oob_score=True, n_estimators=100)
 forest.fit(X, y)
 feature_importance = forest.feature_importances_
 print feature_importance
-exit()
+
 # make importances relative to max importance
 feature_importance = 100.0 * (feature_importance / feature_importance.max())
 

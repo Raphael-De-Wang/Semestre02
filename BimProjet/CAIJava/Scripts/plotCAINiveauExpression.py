@@ -173,8 +173,10 @@ yDiv=20
 
 gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
 # indice = gCAIsDomList[:,0] < top
-plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],yDiv,xDiv,figName="gCAIsChaleur[%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
-exit()
+# plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],yDiv,xDiv,figName="gCAIsChaleur[%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
+# exit()
+
+plotgCAIsDomain2(gCAIsDomList[:,1],gCAIsDomList[:,0],"gCAIsDistr")
 
 '''
 indice = gCAIsDomList[:,0] < 1000

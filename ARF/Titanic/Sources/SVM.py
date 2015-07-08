@@ -5,9 +5,6 @@ import numpy as np
 import csv as csv
 from sklearn.svm import SVC,NuSVC,LinearSVC
 
-from judge import judge
-
-
 # Data cleanup
 # TRAIN DATA
 train_df = pd.read_csv('cleanedTrain2.csv', header=0)        # Load the train file into a dataframe
@@ -41,8 +38,6 @@ def test_svc(C,degree,gamma,coef0):
     predictions_file.close()
     # print 'Done.'
     print 'SVC : '
-    judge(testFile='CLF.csv', ansFile='answers.csv')
-
 
 def test_nusvc():    
     # print '==== NuSVC ===='
@@ -60,8 +55,6 @@ def test_nusvc():
     predictions_file.close()
     # print 'Done.'
     print 'NuSVC : '
-    judge(testFile='CLF.csv', ansFile='answers.csv')
-
 
 def test_linearsvc():
     # print '==== LinearSVC ===='
@@ -79,14 +72,3 @@ def test_linearsvc():
     predictions_file.close()
     # print 'Done.'
     print 'LinearSVC : '
-    judge(testFile='CLF.csv', ansFile='answers.csv')
-
-
-C      = 1
-degree = 2
-gamma  = 0.0
-coef0  = 0.0
-
-for gamma in np.arange(1.5,2.6,0.5):
-    print 'gamma : ', gamma
-    test_svc(C,degree,gamma,coef0)

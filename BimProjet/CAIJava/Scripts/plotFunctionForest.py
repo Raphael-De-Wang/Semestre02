@@ -22,6 +22,8 @@ def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil
                         dg[d] = [g]
                     if not de.has_key(d):
                         de[d] = ne
+                    elif de[d] <> ne :
+                            raise ValueError("Expression Level Value Conflict.")
     deSortList = np.array(sortDictByValue(de))
     return deSortList,dg,de
 
@@ -116,6 +118,20 @@ handle.close()
 
 # deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=moyNE,gSeuil=moyCAI)
 deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=0,gSeuil=0)
+#### 
+klist = []
+vseuil = 0.6
+ndg = {}
+nde = {}
+for k,vl in dg.iteritems():
+    if np.max(vl) > vseuil:
+        klist.append(k)
+for k in klist:
+    ndg[k] = dg[k]
+    nde[k] = de[k]
+deSortList = np.array(sortDictByValue(nde))
+
+####
 # domainHTML(deSortList,pfam2go_dict,dg,de)
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 # dfDict = domain_function_dict(np.array(deSortList)[:,0],pfam2go_dict)
@@ -200,9 +216,10 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
             add_in_dict(cellu_comp,func,name,d,cais,ne)
     return bio_process,molec_func,cellu_comp
     
-bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
+# bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
+bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
 
-def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.6):
+def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
     nameList = []
     domList  = []
     caisMinList = []
@@ -210,7 +227,15 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.6):
     caisMeanList= []
     neList      = []
     funcList    = []
+    fndict      = {}
     for key,value in func_dict.iteritems():
+        (name,dom_list,cais_list,ne_list) = value
+        if not fndict.has_key(key):
+            fndict[key] = sum(ne_list)
+        else :
+            fndict[key] += sum(ne_list)
+    for key,mNe in sortDictByValue(fndict,False):
+        value = func_dict[key]
         (name,dom_list,cais_list,ne_list) = value
         cais_list = [j for i in cais_list for j in i]
         if max(cais_list) < caiSeuil :
@@ -238,7 +263,7 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.6):
             color="#2aa198",orientation="horizontal",height=1.0)
     plt.yticks(bottoms+0.1,funcList)
     ax = plt.subplot(133,axisbg="#fdf6e3")
-    ax.set_title("CAI")
+    ax.set_title("gCAI")
     plt.bar(left=np.zeros(len(nameList)),align="center",
             width=caisMaxList, bottom=bottoms,
             color="b",orientation="horizontal",
