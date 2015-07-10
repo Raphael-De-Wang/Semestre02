@@ -11,7 +11,8 @@ for file in `ls $basepath` ; do
 		# hmmscan --domtblout /tmp/Spirodela_polyrhiza.domtblout Pfam/Pfam-A.hmm Marine/Streptophyta/Spirodela_polyrhiza_translate.fasta
 		fname="$basepath$file/$sfile"
 		# echo "hmmscan --domtblout ${fname/_translate.fasta/.domtblout} ${hmmfile} ${fname} > ${fname/_translate.fasta/_scan.output}"
-		du -sh $fname
+		# du -sh $fname
+		echo "~/Workspace/toolkits/FragGeneScan1.19/run_FragGeneScan.pl -genome=${fname} -out=${fname/fasta/out} -complete=0 -train=complete -thread=10"
 	    fi
 	done
     fi
