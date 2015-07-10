@@ -10,7 +10,8 @@ for file in `ls $basepath` ; do
 	    if [[ $sfile == *"translate.fasta" ]] ; then
 		# hmmscan --domtblout /tmp/Spirodela_polyrhiza.domtblout Pfam/Pfam-A.hmm Marine/Streptophyta/Spirodela_polyrhiza_translate.fasta
 		fname="$basepath$file/$sfile"
-		echo "hmmscan --domtblout ${fname/_translate.fasta/.domtblout} ${hmmfile} ${fname} > ${fname/_translate.fasta/_scan.output}"
+		# echo "hmmscan --domtblout ${fname/_translate.fasta/.domtblout} ${hmmfile} ${fname} > ${fname/_translate.fasta/_scan.output}"
+		du -sh $fname
 	    fi
 	done
     fi
