@@ -140,9 +140,9 @@ dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 
 def constr_arbre():
     # Construire l'arbre
-    dot = pydot.Dot(graph_type='digraph',ratio="expand", size='100! 10000!')
+    dot = pydot.Dot(graph_type='digraph' ,ratio="expand", size='100! 10000!')
     for d,func in dfList:
-        print "domain : %s, function : %s "%(d,func)
+        # print "domain : %s, function : %s "%(d,func)
         if func not in goslimmeta_dict.keys():
             add_df_edge(dot,d,func)
         else:
@@ -151,7 +151,7 @@ def constr_arbre():
         for key in goDict:
             if func in goDict[key].descendants:
                 if key not in goslimmeta_dict.keys():
-                    # add_ff_edge( dot, func, key)
+                    add_ff_edge( dot, func, key) ####
                     search_ancestor(dot,func,key,goDict,goslimmeta_dict)
                 else:
                     add_fa_edge( dot, func, key)
@@ -160,9 +160,11 @@ def constr_arbre():
     # subprocess.call(["dot", "-Tps", "/tmp/graph.dot", "-o", "/tmp/outfile.ps"])
     
     dot.write_png('/tmp/graph.png', prog='dot')
-
+    
+constr_arbre()
 # print DF_LIST
 # print FF_LIST
+exit()
 
 def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
     dfList = np.array([ [k,v] for k,v in dfDict.iteritems() ])

@@ -76,6 +76,8 @@ def add_df_edge(dot,domain,funcName):
             dot.add_node(node1)
         else:
             node1 = dot.get_node(domain)
+            if type(node1) == list:
+                node1 = node1[0]
         #####
         if funcName not in FUNC_LIST:
             node2 = pydot.Node(func, style="filled", fillcolor="yellow", layer='2',nodesep="1.5")
@@ -83,6 +85,8 @@ def add_df_edge(dot,domain,funcName):
             dot.add_node(node2)
         else:
             node2 = dot.get_node(func)
+            if type(node2) == list:
+                node2 = node2[0]
         #####
         edge = pydot.Edge(node1,node2)
         DF_LIST.append([domain,func])
@@ -98,6 +102,8 @@ def add_da_edge(dot,domain,anceName):
             dot.add_node(node1)
         else:
             node1 = dot.get_node(domain)
+            if type(node1) == list:
+                node1 = node1[0]
         #####
         if anceName not in FUNC_LIST:
             node2 = pydot.Node(ance, style="filled", fillcolor="#976856", layer='3',nodesep="1.5")
@@ -105,6 +111,8 @@ def add_da_edge(dot,domain,anceName):
             dot.add_node(node2)
         else:
             node2 = dot.get_node(ance)
+            if type(node2) == list:
+                node2 = node2[0]
         #####
         edge = pydot.Edge(node1,node2)
         DF_LIST.append([domain,anceName])
@@ -120,6 +128,8 @@ def add_ff_edge( dot, funcName1, funcName2 ):
             dot.add_node(node1)
         else:
             node1 = dot.get_node(func1)
+            if type(node1) == list:
+                node1 = node1[0]
         #####
         if funcName2 not in FUNC_LIST:
             node2 = pydot.Node(func2, style="filled", fillcolor="yellow", layer='2',nodesep="1.5")
@@ -127,6 +137,8 @@ def add_ff_edge( dot, funcName1, funcName2 ):
             dot.add_node(node2)
         else:
             node2 = dot.get_node(func2)
+            if type(node2) == list:
+                node2 = node2[0]
         #####
         edge = pydot.Edge(node1,node2)
         FF_LIST.append([funcName1,funcName2])
@@ -142,6 +154,8 @@ def add_fa_edge( dot, funcName, anceName ):
             dot.add_node(node1)
         else:
             node1 = dot.get_node(func)
+            if type(node1) == list:
+                node1 = node1[0]
         #####
         if anceName not in FUNC_LIST:
             node2 = pydot.Node(ance, style="filled", fillcolor="#976856", layer='3',nodesep="1.5")
@@ -149,6 +163,8 @@ def add_fa_edge( dot, funcName, anceName ):
             dot.add_node(node2)
         else:
             node2 = dot.get_node(ance)
+            if type(node2) == list:
+                node2 = node2[0]
         #####
         edge = pydot.Edge(node1,node2)
         FF_LIST.append([funcName,anceName])
