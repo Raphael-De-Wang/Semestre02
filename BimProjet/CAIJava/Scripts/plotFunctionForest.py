@@ -146,6 +146,14 @@ def constr_arbre():
     dot = pydot.Dot(graph_type='digraph' ,ratio="expand", size='100! 10000!')
     for d,func in dfList:
         print "domain : %s, function : %s "%(d,func)
+        if len(DOMAIN_LIST)%100 == 0:
+            print DOMAIN_LIST
+        if len(FUNC_LIST)%100 == 0:
+            print FUNC_LIST
+        if len(DF_LIST)%100 == 0:
+            print DF_LIST
+        if len(FF_LIST)%100 == 0:
+            print FF_LIST
         if func not in goslimmeta_dict.keys():
             add_df_edge(dot,d,func)
         else:
