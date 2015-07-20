@@ -118,9 +118,10 @@ handle.close()
 
 # deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=moyNE,gSeuil=moyCAI)
 deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=0,gSeuil=0)
+print 'Domain Expression Level List Done.'
 #### 
 klist = []
-vseuil = 0.6
+vseuil = 0.9
 ndg = {}
 nde = {}
 for k,vl in dg.iteritems():
@@ -130,19 +131,21 @@ for k in klist:
     ndg[k] = dg[k]
     nde[k] = de[k]
 deSortList = np.array(sortDictByValue(nde))
-
+print 'List Filtering Done. '
 ####
 # domainHTML(deSortList,pfam2go_dict,dg,de)
 dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 # dfDict = domain_function_dict(np.array(deSortList)[:,0],pfam2go_dict)
 # print len(dfList)
 # print len(np.unique(np.array(dfList)[:,1]))
+print 'Domain to GoTerms Done. '
+print 'Domain Function List Length: ', len(dfList)
 
 def constr_arbre():
     # Construire l'arbre
     dot = pydot.Dot(graph_type='digraph' ,ratio="expand", size='100! 10000!')
     for d,func in dfList:
-        # print "domain : %s, function : %s "%(d,func)
+        print "domain : %s, function : %s "%(d,func)
         if func not in goslimmeta_dict.keys():
             add_df_edge(dot,d,func)
         else:
@@ -158,9 +161,10 @@ def constr_arbre():
     
     # Dot.write('/tmp/graph.dot', format='raw', prog='dot')
     # subprocess.call(["dot", "-Tps", "/tmp/graph.dot", "-o", "/tmp/outfile.ps"])
-    
+    print 'writing plot file. '
     dot.write_png('/tmp/graph.png', prog='dot')
-    
+
+print 'Building Function tree. '
 constr_arbre()
 # print DF_LIST
 # print FF_LIST

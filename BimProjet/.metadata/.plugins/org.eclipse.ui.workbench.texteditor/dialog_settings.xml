@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="350" key="DIALOG_WIDTH"/>
-		<item value="91" key="DIALOG_Y_ORIGIN"/>
-		<item value="903" key="DIALOG_X_ORIGIN"/>
-		<item value="588" key="DIALOG_HEIGHT"/>
+		<item value="407" key="DIALOG_WIDTH"/>
+		<item value="288" key="DIALOG_Y_ORIGIN"/>
+		<item value="959" key="DIALOG_X_ORIGIN"/>
+		<item value="456" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="NumberOfPoints" key="selection"/>
+		<item value="ListOfGenes" key="selection"/>
 		<list key="findhistory">
+			<item value="ListOfGenes"/>
+			<item value="correlations"/>
+			<item value="extWValues"/>
+			<item value="ext"/>
+			<item value="externalWValues"/>
 			<item value="NumberOfPoints"/>
 			<item value="Number of points"/>
 			<item value="fastaFormat"/>
-			<item value="Gene Note table: "/>
-			<item value="GG7SD3401AXWP5"/>
-			<item value="ss"/>
-			<item value="PF00015"/>
-			<item value="GEQW5N301EBETI__ARC__6RF_RF5"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -251,15 +251,20 @@ public class CAIJava {
 				while (k < 64) {
 					String s = lr.readLine();
 					StringTokenizer st = new StringTokenizer(s, "\t ,");
-					while ((st.hasMoreTokens())) {
-						String ss = st.nextToken();
-						String tn = Utils.TripletName(k, "t", "c", "a", "g");
+					// while ((st.hasMoreTokens())) {
+						//String ss = st.nextToken();
+						//String tn = Utils.TripletName(k, "t", "c", "a", "g");
+						//int i = Utils.TripletNumber(tn);
+						//extWValues[i] = Float.parseFloat(ss);
+						String tn = st.nextToken();
 						int i = Utils.TripletNumber(tn);
+						String ss = st.nextToken();
 						extWValues[i] = Float.parseFloat(ss);
 						k++;
-					}
+					//}
 				}
 			}
+			System.out.println("extWValues : ");
 			Utils.printDistribution(extWValues, "t", "c", "g", "a");
 
 			// read external WValues 2
@@ -964,6 +969,7 @@ public class CAIJava {
 							float caivext = CalculateCAIValue(ss, extWValues);
 							sOut.append(caivext + " ");
 							correlations[7][i] = caivext;
+							System.out.println(caivext);
 						}
 
 						if (externalWValues2 != null) {
