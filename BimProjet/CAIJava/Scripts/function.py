@@ -2,9 +2,13 @@
 
 import pydot
 import cPickle
+import operator
 import numpy as np
 # import networkx as nx
 from graphviz import Digraph
+import matplotlib.pyplot as plt
+
+from BimProjetLib import sortDictByValue
 
 def loadToDict(handle):
     goDict = cPickle.load(handle)
@@ -185,3 +189,129 @@ def search_ancestor( dot, orig, funcName, go_dict, meta_dict, count=0):
                 count = search_ancestor( dot, funcName, key, go_dict, meta_dict, count)
     return count
         
+def add_in_dict(D,key,name,dom,cais,ne):
+    if not D.has_key(key):
+        D[key] = (name,[dom],[cais],[ne])
+    else:
+        n,dom_list,cais_list,ne_list = D[key]
+        if n <> name:
+            raise ValueError('different function name : %s, %s'%(n,name))
+        dom_list.append(dom)
+        cais_list.append(cais)
+        ne_list.append(ne)
+        D[key] = (name,dom_list,cais_list,ne_list)
+
+def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
+    bio_process = {}
+    molec_func  = {}
+    cellu_comp  = {}
+    for d,func in dfList:
+        if func in goslimmeta_dict.keys():
+            record = goslimmeta_dict.get(func)
+        elif func in goDict.keys():
+            record = goDict.get(func)
+        else:
+            continue
+        ne  = deDict[d]
+        cais= dgDict[d]
+        name= record.name
+        if record.type == 'biological_process':
+            add_in_dict(bio_process,func,name,d,cais,ne)
+        if record.type == 'molecular_function': 
+            add_in_dict(molec_func,func,name,d,cais,ne)
+        if record.type == 'cellular_component': 
+            add_in_dict(cellu_comp,func,name,d,cais,ne)
+    return bio_process,molec_func,cellu_comp
+    
+def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
+    nameList = []
+    domList  = []
+    caisMinList = []
+    caisMaxList = []
+    caisMeanList= []
+    neList      = []
+    funcList    = []
+    fndict      = {}
+    for key,value in func_dict.iteritems():
+        (name,dom_list,cais_list,ne_list) = value
+        if not fndict.has_key(key):
+            fndict[key] = sum(ne_list)
+        else :
+            fndict[key] += sum(ne_list)
+    for key,mNe in sortDictByValue(fndict,False):
+        value = func_dict[key]
+        (name,dom_list,cais_list,ne_list) = value
+        cais_list = [j for i in cais_list for j in i]
+        if max(cais_list) < caiSeuil :
+            continue
+        caisMinList.append(min(cais_list))
+        caisMaxList.append(max(cais_list))
+        caisMeanList.append(np.mean(cais_list))
+        nameList.append(name)
+        domList.append(len(dom_list))
+        neList.append(sum(ne_list))
+        funcList.append(key)
+    bottoms = np.arange(len(nameList))*1.2
+    fig = plt.figure(figsize=figsize)
+    plt.suptitle(func_type, fontsize=15)
+    ax = plt.subplot(131,axisbg="#fdf6e3")
+    ax.set_title("Nombre de Domain par Function")
+    plt.bar(left=np.zeros(len(nameList)),
+            width=domList, bottom=bottoms,align="edge", # "center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+    plt.yticks(bottoms+0.1,nameList)
+    ax = plt.subplot(132,axisbg="#fdf6e3")
+    ax.set_title("Niveau d'Expression")
+    plt.bar(left=np.zeros(len(nameList)),
+            width=neList, bottom=bottoms,align="edge", # "center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+    plt.yticks(bottoms+0.1,funcList)
+    ax = plt.subplot(133,axisbg="#fdf6e3")
+    ax.set_title("gCAI")
+    plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMaxList, bottom=bottoms,
+            color="b",orientation="horizontal",
+            height=0.7,label='Max')
+    plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMeanList, bottom=bottoms,
+            color="g",orientation="horizontal",
+            height=0.8,label='Mean')
+    plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMinList, bottom=bottoms,
+            color="r",orientation="horizontal",
+            height=0.9,label='Min')
+    # plt.legend(bbox_to_anchor=(1.05, 1), loc=2)
+    plt.yticks(bottoms+0.1,funcList)
+    # ax.yaxis.tick_right()
+    # fig.subplots_adjust(left=0.3,hspace=0.05,bottom=0.1,top=0.90)
+    fig.subplots_adjust(left=0.3,bottom=0.1,top=0.90)
+    if fname == None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+        handle = open(fname.replace('png','txt'),'w')
+        for f in funcList:
+            handle.write("%s\n"%f)
+        handle.close()
+    plt.close(fig)
+
+def domain_function_list(domains,pfam2go_dict):
+    dfList = []
+    for i,d in enumerate(domains):
+        if pfam2go_dict.has_key(d):
+            for record in pfam2go_dict[d]:
+                func = record[2]
+                dfList.append([d,func])
+    return dfList
+    
+def domain_function_dict(domains,pfam2go_dict):
+    dfDict = {}
+    for i,d in enumerate(domains):
+        if pfam2go_dict.has_key(d):
+            for record in pfam2go_dict[d]:
+                func = record[2]
+                if dfDict.has_key(func):
+                    dfDict[func] += 1
+                else:
+                    dfDict[func] = 1
+    return dfDict    

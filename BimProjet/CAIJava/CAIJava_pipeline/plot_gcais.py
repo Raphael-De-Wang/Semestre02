@@ -8,10 +8,10 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-def plotgCAIsDomain(X,Y,xDiv=1,yDiv=20,figName=None):
+def plotgCAIsDomain(X,Y,xDiv=1.,yDiv=20.,figName=None):
     fig = pylab.figure(figsize=(320,3))
-    # pylab.hist2d(Y,X,bins=[len(np.unique(Y))/yDiv,xDiv], norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
-    pylab.histogram2d(X,Y,bins=[len(np.unique(X)),yDiv])
+    # pylab.hist2d(X,Y,bins=[len(X)/xDiv,yDiv], norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
+    pylab.hist2d(X,Y,bins=[len(np.unique(X))/xDiv,yDiv],norm=mpl.colors.LogNorm(), cmap=mpl.cm.jet)
     pylab.xlabel("Domain Sorted By Translation Level")
     pylab.ylabel("gCAIs")
     pylab.title("Desity Plot - Domains Grouped by [%d], gCAIs Divided by [%d], Top [%d] Domains (PS : values in brackets are manipulable)"%(xDiv,yDiv,len(np.unique(Y))))
@@ -36,7 +36,6 @@ with open("domain_gcai_abundance.csv") as csv_handle :
             rsv_dname = dname
         X.append(x)
         Y.append(float(gcai))
-
         
 plotgCAIsDomain(X,Y,figName="gCAI_order_by_abundance")
 

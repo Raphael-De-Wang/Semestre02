@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="14" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
 <window height="657" maximized="true" width="1006" x="90" y="25">
 <fastViewData fastViewLocation="1024"/>
@@ -22,7 +22,7 @@
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditorNoSource" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -33,43 +33,13 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava.java" partName="CAIJava.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/CAIJava.java" title="CAIJava.java" tooltip="CAIJava/src/utils/CAIJava.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/src/utils/CAIJava.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="15570" selectionTopPixel="6127"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" partName="Utils.java" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/src/utils/Utils.java" title="Utils.java" tooltip="CAIJava/src/utils/Utils.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/src/utils/Utils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="13" selectionOffset="6672" selectionTopPixel="3757"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.clstr" partName="AT_arc_metatrans.filtered.fasta.clstr" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" title="AT_arc_metatrans.filtered.fasta.clstr" tooltip="CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
-<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="3633714" selectionTopPixel="1942561"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" partName="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" title="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" tooltip="CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
-<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="613" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="cais.lst.2step" partName="cais.lst.2step" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/cais.lst.2step" title="cais.lst.2step" tooltip="CAIJava/output/cais.lst.2step" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/cais.lst.2step"/>
-<editorState selectionHorizontalPixel="0" selectionLength="34" selectionOffset="18" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="cais.lst" partName="cais.lst" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/cais.lst" title="cais.lst" tooltip="CAIJava/output/cais.lst" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/cais.lst"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="wvalues" partName="wvalues" path="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/output/wvalues" title="wvalues" tooltip="CAIJava/output/wvalues" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CAIJava/output/wvalues"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="378" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="40960" selectionTopPixel="21522"/>
 </editor>
 </editors>
 <views>
@@ -111,10 +81,6 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (100 of 141 items)"/>
-<category IMemento.internal.id="Errors"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="310" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -281,7 +247,7 @@
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.29924813"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.3"/>
 <view id="org.eclipse.search.ui.views.SearchView" ratio="0.3"/>
 <view id="org.eclipse.jdt.callhierarchy.view" ratio="0.3"/>
 </fastViews>
@@ -379,58 +345,42 @@
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.4144144" ratioLeft="276" ratioRight="390" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.4144144" ratioLeft="276" ratioRight="390" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
 <page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.2027559" ratioLeft="103" ratioRight="405" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -449,76 +399,15 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst.2step"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/refset"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/wvalues"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/output/cais.lst.2step"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/Scripts/AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/Utils.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/CAIJava_By_EWValues.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CAIJava/src/utils/Utils.java"/>
 </editors>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8427" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8039" y="57"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8472" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8097" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="7987" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8008" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8039" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8097" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8321" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8355" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8394" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8428" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8472" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8097" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="7987" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8008" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8039" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8097" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8321" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8355" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8394" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8428" y="0"/>
-</item>
-<item historyLabel="CAIJava.java" index="0">
-<position info="not_deleted" x="8472" y="0"/>
-</item>
 <item historyLabel="CAIJava.java" index="0">
 <position info="not_deleted" x="8097" y="0"/>
 </item>
@@ -597,8 +486,77 @@
 <item historyLabel="refset" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="CAIJava.java" index="0">
+<item historyLabel="CAIJava.java" index="0">
 <position info="not_deleted" x="33522" y="12"/>
+</item>
+<item historyLabel="cais.lst" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="cais.lst" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="wvalues" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="wvalues" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="cais.lst" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="cais.lst.2step" index="9">
+<position info="not_deleted" x="18" y="34"/>
+</item>
+<item historyLabel="cais.lst" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="15570" y="11"/>
+</item>
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="10">
+<position info="not_deleted" x="613" y="28"/>
+</item>
+<item historyLabel="AT_arc_metatrans.filtered.fasta.clstr" index="11">
+<position info="not_deleted" x="3633714" y="5"/>
+</item>
+<item historyLabel="AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step" index="10">
+<position info="not_deleted" x="613" y="28"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="15570" y="11"/>
+</item>
+<item historyLabel="Utils.java" index="12">
+<position info="not_deleted" x="6672" y="13"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="3799" y="15"/>
+</item>
+<item historyLabel="CAIJava_By_EWValues.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="0" y="51935"/>
+</item>
+<item historyLabel="CAIJava_By_EWValues.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CAIJava_By_EWValues.java" index="13">
+<position info="not_deleted" x="30973" y="0"/>
+</item>
+<item historyLabel="CAIJava_By_EWValues.java" index="13">
+<position info="not_deleted" x="40719" y="10"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="0" y="51935"/>
+</item>
+<item historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="40960" y="0"/>
+</item>
+<item historyLabel="Utils.java" index="14">
+<position info="not_deleted" x="6672" y="13"/>
+</item>
+<item active="true" historyLabel="CAIJava.java" index="0">
+<position info="not_deleted" x="40960" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -608,13 +566,9 @@
 <trimLayout>
 <trimArea IMemento.internal.id="16384">
 <trimItem IMemento.internal.id="left"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
 </trimArea>
 <trimArea IMemento.internal.id="131072">
 <trimItem IMemento.internal.id="right"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.OutlineFolderView"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.ToolsFolderView"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
@@ -624,11 +578,16 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
 <trimItem IMemento.internal.id="bottom"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.ConsoleFolderView"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" tooltip="CAIJava/src/utils/Utils.java">
+<persistable path="/CAIJava/src/utils/Utils.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CAIJava_By_EWValues.java" tooltip="CAIJava/src/utils/CAIJava_By_EWValues.java">
+<persistable path="/CAIJava/src/utils/CAIJava_By_EWValues.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="refset" tooltip="CAIJava/output/refset">
 <persistable path="/CAIJava/output/refset"/>
 </file>
@@ -667,12 +626,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="sequence.fasta" tooltip="CAIJava/source/sequence.fasta">
 <persistable path="/CAIJava/source/sequence.fasta"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="all.fasta" tooltip="CAIJava/source/all.fasta">
-<persistable path="/CAIJava/source/all.fasta"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="AT_arc_metatrans.filtered.fasta.clstr" tooltip="CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr">
-<persistable path="/CAIJava/source/AT_arc_metatrans.filtered.fasta.clstr"/>
 </file>
 </mruList>
 </workbench>

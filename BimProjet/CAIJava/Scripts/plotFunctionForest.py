@@ -48,6 +48,7 @@ def domainHTML(deSortList,pfam2go_dict,dg,de):
     print '</body>'
     print '</html>'
     
+'''    
 def domain_function_list(domains,pfam2go_dict):
     dfList = []
     for i,d in enumerate(domains):
@@ -68,7 +69,8 @@ def domain_function_dict(domains,pfam2go_dict):
                 else:
                     dfDict[func] = 1
     return dfDict
-    
+'''
+
 # loading
 CLS_dict = readClstr("AT_arc_metatrans.filtered.fasta.clstr")
 CAI_dict = readgCAIs("../output/cais.lst.2step")
@@ -195,7 +197,7 @@ def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
     plt.close(fig)
 
 # plot_nbr_domain_par_func(dfDict,fname='nbr_domain_par_func.png')
-
+'''
 def add_in_dict(D,key,name,dom,cais,ne):
     if not D.has_key(key):
         D[key] = (name,[dom],[cais],[ne])
@@ -229,10 +231,12 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
         if record.type == 'cellular_component': 
             add_in_dict(cellu_comp,func,name,d,cais,ne)
     return bio_process,molec_func,cellu_comp
-    
+'''
+
 # bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
 bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
 
+'''
 def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
     nameList = []
     domList  = []
@@ -304,7 +308,7 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
             handle.write("%s\n"%f)
         handle.close()
     plt.close(fig)
-
+'''
 # plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(15,50))
 # plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,30))
 # plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(15,15))
