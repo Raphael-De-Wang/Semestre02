@@ -7,9 +7,14 @@ for sub in `ls $path`; do
     for ssub in `ls "${path}${sub}"`; do
 	if [[ -d "${path}${sub}" && ("${path}${sub}/${ssub}" = *"gb"* ) ]] ; then
 	    count=`grep -n CDS "${path}${sub}/${ssub}" | wc -l`
-	    if [ "$count" != "0" ]; then
-		echo "       ${sub}/${ssub}"
-	    fi
+	    # if [ "$count" != "0" ]; then
+	    echo "       ${sub}/${ssub} : $count"
+	    # fi
+	elif [[ -d "${path}${sub}" && ("${path}${sub}/${ssub}" = *"fragGeneScan.ffn") ]] ; then
+	    count=`grep -n '>' "${path}${sub}/${ssub}" | wc -l`
+	    # if [ "$count" != "0" ]; then
+	    echo "       ${sub}/${ssub} : $count"
+	    # fi
 	fi
     done
 done

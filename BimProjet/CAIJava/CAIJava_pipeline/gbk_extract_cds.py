@@ -1,9 +1,13 @@
 #!env python
 
+import sys
 from Bio import SeqIO
 
 # tgt = '/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/Phaeodactylum_tricornutum/Phaeodactylum_tricornutum.gb'
-tgt = '/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/Thalassiosira_pseudonana/Thalassiosira_pseudonana.gb'
+# tgt = '/users/Etu9/3404759/Workspace/Semestre02/BimProjet/CAIJava/source/Marine/Bacillariophyta/Thalassiosira_pseudonana.gb'
+
+input  = sys.argv[1]
+output = sys.argv[2]
 
 '''
 for idx,record in enumerate(SeqIO.parse(open(tgt), "genbank")) :
@@ -16,7 +20,7 @@ for idx,record in enumerate(SeqIO.parse(open(tgt), "genbank")) :
 
 i = 0
 seq_list = []
-input_handle = open(tgt)
+input_handle = open(input)
 for idx,record in enumerate(SeqIO.parse(input_handle, "genbank")) :
     for f in record.features :
         if f.type <> 'CDS' :
@@ -26,12 +30,20 @@ for idx,record in enumerate(SeqIO.parse(input_handle, "genbank")) :
             seq.dbxrefs     = f.qualifiers['db_xref']
             seq.description = ''# f.qualifiers['product'][0]
             # seq.name = f.qualifiers['gene']
-            seq.name = f.qualifiers['locus_tag'][0]
-            seq.id   = f.qualifiers['db_xref'][0]
+            try:
+                seq.name = '|'.join(f.qualifiers['db_xref'] + f.qualifiers['locus_tag'] + f.qualifiers['protein_id'] + f.qualifiers['product']).replace(':','|')
+            except:
+                try:
+                    seq.name = '|'.join(f.qualifiers['db_xref'] + f.qualifiers['locus_tag']).replace(':','|')
+                except:
+                    seq.name = '|'.join(f.qualifiers['db_xref']).replace(':','|')
+            seq.id   = seq.name
             seq_list.append(seq)
             
 # output_handle = open('/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/Phaeodactylum_tricornutum/Phaeodactylum_tricornutum.fasta','w')
-output_handle = open('/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/source/Thalassiosira_pseudonana/Thalassiosira_pseudonana.fasta','w')
+# output_handle = open(tgt.replace('.gb','_CDS.fasta'),'w')
+
+output_handle = open(output,'w')
 SeqIO.write(seq_list, output_handle, "fasta")
     
 input_handle.close()

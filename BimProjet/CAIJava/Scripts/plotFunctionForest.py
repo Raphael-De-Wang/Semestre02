@@ -141,19 +141,13 @@ dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 print 'Domain to GoTerms Done. '
 print 'Domain Function List Length: ', len(dfList)
 
+dfList = [['PF01121', 'GO:0015937']]
+
 def constr_arbre():
     # Construire l'arbre
     dot = pydot.Dot(graph_type='digraph' ,ratio="expand", size='100! 10000!')
-    for d,func in dfList:
-        print "domain : %s, function : %s "%(d,func)
-        if len(DOMAIN_LIST)%100 == 0:
-            print DOMAIN_LIST
-        if len(FUNC_LIST)%100 == 0:
-            print FUNC_LIST
-        if len(DF_LIST)%100 == 0:
-            print DF_LIST
-        if len(FF_LIST)%100 == 0:
-            print FF_LIST
+    for d,func in reversed(dfList):
+        # print "domain : %s, function : %s "%(d,func)
         if func not in goslimmeta_dict.keys():
             add_df_edge(dot,d,func)
         else:
@@ -174,8 +168,14 @@ def constr_arbre():
 
 print 'Building Function tree. '
 constr_arbre()
-# print DF_LIST
-# print FF_LIST
+print "length of DF_LIST : ", len(DF_LIST)
+print "length of FF_LIST : ", len(FF_LIST)
+# print "DF_LIST : ", DF_LIST
+# print "FF_LIST : ", FF_LIST
+ff_set = set()
+for ff in FF_LIST :
+    ff_set.add('->'.join(ff))
+print "length of FF_SET : ", len(ff_set)
 exit()
 
 def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):

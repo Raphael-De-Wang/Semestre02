@@ -3,7 +3,7 @@
 import pydot
 import cPickle
 import numpy as np
-import networkx as nx
+# import networkx as nx
 from graphviz import Digraph
 
 def loadToDict(handle):
@@ -170,12 +170,18 @@ def add_fa_edge( dot, funcName, anceName ):
         FF_LIST.append([funcName,anceName])
         dot.add_edge(edge)
         
-def search_ancestor( dot, orig, funcName, go_dict, meta_dict):
+def search_ancestor( dot, orig, funcName, go_dict, meta_dict, count=0):
+    if count > 10:
+        # print count, 'times call search ancestor'
+        return count
     for key in go_dict:
         if funcName in go_dict[key].descendants:
+            # print orig,'->',funcName
             if key in meta_dict.keys():
-                add_fa_edge( dot, orig, key )
+                add_fa_edge( dot, funcName, key )
             else:
-                search_ancestor( dot, orig, key, go_dict, meta_dict)
-
+                add_ff_edge( dot, funcName, key )
+                count += 1
+                count = search_ancestor( dot, funcName, key, go_dict, meta_dict, count)
+    return count
         
