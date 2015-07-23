@@ -234,6 +234,8 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
     fndict      = {}
     for key,value in func_dict.iteritems():
         (name,dom_list,cais_list,ne_list) = value
+        if max(cais_list) < caiSeuil :
+            continue
         if not fndict.has_key(key):
             fndict[key] = sum(ne_list)
         else :
@@ -242,8 +244,6 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
         value = func_dict[key]
         (name,dom_list,cais_list,ne_list) = value
         cais_list = [j for i in cais_list for j in i]
-        if max(cais_list) < caiSeuil :
-            continue
         caisMinList.append(min(cais_list))
         caisMaxList.append(max(cais_list))
         caisMeanList.append(np.mean(cais_list))
@@ -295,6 +295,96 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
         handle.close()
     plt.close(fig)
 
+def plot_switch_view_compare(func_type,func_dict_1,func_dict_2,fname=None,figsize=None,caiSeuil=0.0):
+    nameList = []
+    funcList = []
+    key_list = []    
+    fndict_1 = {}
+    for key,value_1 in func_dict_1.iteritems():
+        (name_1,dom_list_1,cais_list_1,ne_list_1) = value_1
+        if max(cais_list_1) < caiSeuil :
+            continue
+        if func_dict_2.has_key(key):
+            if not fndict_1.has_key(key):
+                fndict_1[key] = sum(ne_list_1)
+            else :
+                fndict_1[key] += sum(ne_list_1)
+    for key,mNe in sortDictByValue(fndict_1,False):
+        key_list.append(key)
+        (name,dom_list,cais_list,ne_list) = func_dict_1[key]
+        nameList.append(name)
+        funcList.append(key)
+    bottoms = np.arange(len(nameList))*1.2
+    fig = plt.figure(figsize=figsize)
+    plt.suptitle(func_type, fontsize=15)
+    def sub_plot_switch_view(func_dict, key_list, sub_num, name_appendix):
+        domList  = []
+        neList   = []
+        caisMinList = []
+        caisMaxList = []
+        caisMeanList= []
+        for key in key_list:
+            value = func_dict[key]
+            (name,dom_list,cais_list,ne_list) = value
+            cais_list = [j for i in cais_list for j in i ]
+            caisMinList.append(min(cais_list))
+            caisMaxList.append(max(cais_list))
+            caisMeanList.append(np.mean(cais_list))
+            domList.append(len(dom_list))
+            neList.append(sum(ne_list))
+        if (sub_num==1):
+            ax = plt.subplot(161,axisbg="#fdf6e3")
+        else:
+            ax = plt.subplot(162,axisbg="#fdf6e3")
+        ax.set_title("Nombre de Domain par Function %s"%name_appendix)
+        plt.bar(left=np.zeros(len(nameList)),
+                width=domList, bottom=bottoms,align="edge", # "center",
+                color="#2aa198",orientation="horizontal",height=1.0)
+        plt.yticks(bottoms+0.1,nameList)
+        if (sub_num==1):
+            ax = plt.subplot(163,axisbg="#fdf6e3")
+        else:
+            ax = plt.subplot(164,axisbg="#fdf6e3")
+        ax.set_title("Niveau d'Expression %s"%name_appendix)
+        plt.bar(left=np.zeros(len(nameList)),
+                width=neList, bottom=bottoms,align="edge", # "center",
+                color="#2aa198",orientation="horizontal",height=1.0)
+        plt.yticks(bottoms+0.1,funcList)
+        if (sub_num==1):        
+            ax = plt.subplot(165,axisbg="#fdf6e3")
+        else:
+            ax = plt.subplot(166,axisbg="#fdf6e3")
+            
+        ax.set_title("gCAI %s"%name_appendix)
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+                width=caisMaxList, bottom=bottoms,
+                color="b",orientation="horizontal",
+                height=0.7,label='Max')
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+                width=caisMeanList, bottom=bottoms,
+                color="g",orientation="horizontal",
+                height=0.8,label='Mean')
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+                width=caisMinList, bottom=bottoms,
+                color="r",orientation="horizontal",
+                height=0.9,label='Min')
+        # plt.legend(bbox_to_anchor=(1.05, 1), loc=2)
+        plt.yticks(bottoms+0.1,funcList)
+        # ax.yaxis.tick_right()
+        # fig.subplots_adjust(left=0.3,hspace=0.05,bottom=0.1,top=0.90)
+    sub_plot_switch_view(func_dict_1, key_list, 1, "Metagenomic")
+    sub_plot_switch_view(func_dict_2, key_list, 2, "")
+    fig.subplots_adjust(left=0.3,bottom=0.1,top=0.90)
+    if fname == None:
+        plt.show()
+    else:
+        plt.savefig(fname)
+        handle = open(fname.replace('png','txt'),'w')
+        for f in funcList:
+            handle.write("%s\n"%f)
+        handle.close()
+    plt.close(fig)
+
 def domain_function_list(domains,pfam2go_dict):
     dfList = []
     for i,d in enumerate(domains):
@@ -314,4 +404,24 @@ def domain_function_dict(domains,pfam2go_dict):
                     dfDict[func] += 1
                 else:
                     dfDict[func] = 1
-    return dfDict    
+    return dfDict
+    
+def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=500,gSeuil=0.8):
+    dg = dict()
+    de = dict()
+    for i,d in enumerate(domains):
+        ne = nivExprAccuDomDict.get(d)
+        if ne > neSeuil :
+            for g in gCAIsDomDict.get(d):
+                if g > gSeuil :
+                    if dg.has_key(d):
+                        dg[d].append(g)
+                    else:
+                        dg[d] = [g]
+                    if not de.has_key(d):
+                        de[d] = ne
+                    elif de[d] <> ne :
+                            raise ValueError("Expression Level Value Conflict.")
+    deSortList = np.array(sortDictByValue(de))
+    return deSortList,dg,de
+
