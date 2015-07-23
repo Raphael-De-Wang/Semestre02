@@ -8,25 +8,6 @@ from function import *
 
 import subprocess
 
-def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil=500,gSeuil=0.8):
-    dg = dict()
-    de = dict()
-    for i,d in enumerate(domains):
-        ne = nivExprAccuDomDict.get(d)
-        if ne > neSeuil :
-            for g in gCAIsDomDict.get(d):
-                if g > gSeuil :
-                    if dg.has_key(d):
-                        dg[d].append(g)
-                    else:
-                        dg[d] = [g]
-                    if not de.has_key(d):
-                        de[d] = ne
-                    elif de[d] <> ne :
-                            raise ValueError("Expression Level Value Conflict.")
-    deSortList = np.array(sortDictByValue(de))
-    return deSortList,dg,de
-
 def domainHTML(deSortList,pfam2go_dict,dg,de):
     print '<!DOCTYPE html>'
     print '<html>'
@@ -143,7 +124,7 @@ dfList = domain_function_list(np.array(deSortList)[:,0],pfam2go_dict)
 print 'Domain to GoTerms Done. '
 print 'Domain Function List Length: ', len(dfList)
 
-dfList = [['PF01121', 'GO:0015937']]
+# dfList = [['PF01121', 'GO:0015937']]
 
 def constr_arbre():
     # Construire l'arbre
@@ -168,17 +149,14 @@ def constr_arbre():
     print 'writing plot file. '
     dot.write_png('/tmp/graph.png', prog='dot')
 
+'''
 print 'Building Function tree. '
 constr_arbre()
 print "length of DF_LIST : ", len(DF_LIST)
 print "length of FF_LIST : ", len(FF_LIST)
-# print "DF_LIST : ", DF_LIST
-# print "FF_LIST : ", FF_LIST
-ff_set = set()
-for ff in FF_LIST :
-    ff_set.add('->'.join(ff))
-print "length of FF_SET : ", len(ff_set)
-exit()
+print "DF_LIST : ", DF_LIST
+print "FF_LIST : ", FF_LIST
+'''
 
 def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
     dfList = np.array([ [k,v] for k,v in dfDict.iteritems() ])
@@ -234,6 +212,7 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
 '''
 
 # bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
+
 bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
 
 '''
