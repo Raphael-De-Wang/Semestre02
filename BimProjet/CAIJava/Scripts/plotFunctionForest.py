@@ -149,14 +149,12 @@ def constr_arbre():
     print 'writing plot file. '
     dot.write_png('/tmp/graph.png', prog='dot')
 
-'''
 print 'Building Function tree. '
 constr_arbre()
 print "length of DF_LIST : ", len(DF_LIST)
 print "length of FF_LIST : ", len(FF_LIST)
 print "DF_LIST : ", DF_LIST
 print "FF_LIST : ", FF_LIST
-'''
 
 def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
     dfList = np.array([ [k,v] for k,v in dfDict.iteritems() ])
@@ -212,8 +210,7 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
 '''
 
 # bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
-
-bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
+# bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
 
 '''
 def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
@@ -291,7 +288,8 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
 # plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(15,50))
 # plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,30))
 # plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(15,15))
-
+'''
 plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(30,15))
 plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(40,25))
 plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(30,15))
+'''
