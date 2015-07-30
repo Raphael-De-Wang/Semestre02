@@ -1,7 +1,9 @@
 #!env python
+import sys
 import numpy as np
 
-tgt = 'outtxt'
+# tgt = 'outtxt'
+tgt = sys.argv[1]
 
 vec   = {}
 count = 0

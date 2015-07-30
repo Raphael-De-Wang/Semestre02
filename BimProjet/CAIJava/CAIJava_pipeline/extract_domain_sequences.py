@@ -53,7 +53,9 @@ else:
 for record in SeqIO.parse(cds, "fasta") :
     name = '|'.join(record.name.split('|')[:2])
     if seqDict.has_key(name) :
-        raise ValueError("Sequence Conflict.")
+        print record.name
+        print seqDict[name].name
+        # raise ValueError("Sequence Conflict [%s]."%name)
     seqDict[name] = record
 
 def normal_extract(domtblout,seqDict):
