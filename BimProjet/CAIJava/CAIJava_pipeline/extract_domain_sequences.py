@@ -55,43 +55,37 @@ for record in SeqIO.parse(cds, "fasta") :
     if seqDict.has_key(name) :
         print record.name
         print seqDict[name].name
-        # raise ValueError("Sequence Conflict [%s]."%name)
     seqDict[name] = record
 
-def normal_extract(domtblout,seqDict):
+def normal_extract(domtblout,seqDict,seuil=0):
     for line in domtblout :
         if line[0] == '#':
             continue
         dom = domItem(line.split())
         name = '|'.join(dom.qname.split('|')[:2])
         ref = name + '|' + dom.dom_accession + '|' + "%d.%d"%(dom.item_num, dom.item_id)
-        if dom.alifrom >= dom.alito :
+        if dom.alito - dom.alifrom <= seuil :
             continue
-        # seq = Seq(seqDict[name].seq.tostring()[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
         seq = Seq(str(seqDict[name].seq)[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
         record = SeqRecord(seq, id=ref, name=ref, description=dom.desc)
         record_list.append(record)
 
-def orf6_extract(domtblout,seqDict):
+def orf6_extract(domtblout,seqDict, seuil=0):
     for line in domtblout :
         if line[0] == '#':
             continue
         dom = domItem(line.split())
         name = '|'.join(dom.qname.split('|')[:2])
         ref = name + '|' + dom.dom_accession + '|' + "%d.%d"%(dom.item_num, dom.item_id)
-        if dom.alifrom >= dom.alito :
+        if dom.alito - dom.alifrom <= seuil :
             continue
         if   cmp("|ORF1|",dom.qname[-6:]) == 0:
-            # seq = Seq(seqDict[name].seq.tostring()[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
             seq = Seq(str(seqDict[name].seq)[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
         elif cmp("|ORF2|",dom.qname[-6:]) == 0:
-            # seq = Seq(seqDict[name].seq.tostring()[dom.alifrom*3+1:dom.alito*3+1], IUPAC.unambiguous_dna)
             seq = Seq(str(seqDict[name].seq)[dom.alifrom*3+1:dom.alito*3+1], IUPAC.unambiguous_dna)
         elif cmp("|ORF3|",dom.qname[-6:]) == 0:
-            # seq = Seq(seqDict[name].seq.tostring()[dom.alifrom*3+2:dom.alito*3+2], IUPAC.unambiguous_dna)
             seq = Seq(str(seqDict[name].seq)[dom.alifrom*3+2:dom.alito*3+2], IUPAC.unambiguous_dna)
         elif cmp("|ORF4|",dom.qname[-6:]) == 0:
-            # seq = Seq(seqDict[name].reverse_complement().seq.tostring()[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
             seq = Seq(str(seqDict[name].reverse_complement().seq)[dom.alifrom*3:dom.alito*3], IUPAC.unambiguous_dna)
         elif cmp("|ORF5|",dom.qname[-6:]) == 0:
             seq = Seq(str(seqDict[name].reverse_complement().seq)[dom.alifrom*3+1:dom.alito*3+1], IUPAC.unambiguous_dna)
@@ -102,10 +96,12 @@ def orf6_extract(domtblout,seqDict):
         record = SeqRecord(seq, id=ref, name=ref, description=dom.desc)
         record_list.append(record)
 
+seuil = 3
+        
 if ORF6:
-    orf6_extract(domtblout,seqDict)
+    orf6_extract(domtblout,seqDict,seuil)
 else:
-    normal_extract(domtblout,seqDict)
+    normal_extract(domtblout,seqDict,seuil)
 
 SeqIO.write( record_list, domFasta, "fasta")
 domFasta.close()
