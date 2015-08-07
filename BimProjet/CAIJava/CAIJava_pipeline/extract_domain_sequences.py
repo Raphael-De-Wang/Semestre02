@@ -96,7 +96,7 @@ def orf6_extract(domtblout,seqDict, seuil=0):
         record = SeqRecord(seq, id=ref, name=ref, description=dom.desc)
         record_list.append(record)
 
-seuil = 8
+seuil = 1
         
 if ORF6:
     orf6_extract(domtblout,seqDict,seuil)
