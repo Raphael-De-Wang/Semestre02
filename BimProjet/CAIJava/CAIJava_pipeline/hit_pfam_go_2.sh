@@ -66,12 +66,52 @@ EOF
 }
 
 pipeline_process_simple(){
-    species_list=$1
-    CLUSTER_NUM=$2
-    CLUSTER_ID=$3
+    species_list_meta="*Streptophyta-Spirodela_polyrhiza
+Rhodophyta-Chondrus_crispus
+Bacillariophyta-Thalassiosira_oceanica
+Haptophyta-Emiliania_huxleyi
+Chlorophyta-Micromonas_pusilla_CCMP1545
+Bacillariophyta-Phaeodactylum_tricornutum
+Chlorophyta-Coccomyxa_subellipsoidea
+Chlorophyta-Auxenochlorella_protothecoides
+Chlorophyta-Helicosporidium
+*Chlorophyta-Chlorella_vulgaris
+Chlorophyta-Chlamydomonas_reinhardtii
+*Chlorophyta-Trebouxia_gelatinosa
+Bacillariophyta-Thalassiosira_pseudonana
+Apicomplexa-Perkinsus_marinus
+Chlorophyta-Chlorella_variabilis
+*Streptophyta-Klebsormidium_flaccidum
+Chlorophyta-Volvox_carteri
+Rhodophyta-Cyanidioschyzon_merolae
+*Rhodophyta-Porphyridium_purpureum
+Chlorophyta-Ostreococcus_tauri
+Chlorophyta-Ostreococcus_lucimarinus
+Chlorophyta-Monoraphidium_neglectum"
+
+    species_list_2="*Ciliophora-Tetrahymena_malaccensis
+Ciliophora-Tetrahymena_thermophila
+Ciliophora-Ichthyophthirius_multifiliis
+*Ciliophora-Tetrahymena_elliotti
+*Ciliophora-Tetrahymena_borealis
+Rhodophyta-Galdieria_sulphuraria
+Cryptophyta-Cryptomonas_Paramecium
+*Ciliophora-Paramecium_biaurelia
+*Ciliophora-Paramecium_sexaurelia
+*Ciliophora-Paramecium_caudatum
+Ciliophora-Paramecium_tetraurelia
+Cryptophyta-Guillardia_theta
+Ciliophora-Oxytricha_trifallax
+Ciliophora-Stylonychia_lemnae
+Streptophyta-Physcomitrella_patens
+Chlorophyta-Nonlabens_ulvanivorans
+Cryptophyta-Hemiselmis_andersenii"
+
+    CLUSTER_NUM=$1
+    CLUSTER_ID=$2
     gcai_file_list=""
     LOOP_COUNT=0
-    for specie in $species_list ; do
+    for specie in $species_list_2 ; do
 	LOOP_COUNT=$((LOOP_COUNT+1))
 	HIT_NUM=$((LOOP_COUNT%CLUSTER_NUM)) 
 	if [ "$HIT_NUM" -ne "$CLUSTER_ID" ] ; then
@@ -84,7 +124,7 @@ EOF
 	pfname="$basepath/${array[0]}/${array[1]}_domain.fasta"
 	gfname="$basepath/${array[0]}/${array[1]}_gcai.csv"
 	echo "CALCULATE gCAI"
-	python calculate_cai_value.py $pfname ewvalues $gfname
+	python calculate_cai_value.py $pfname ewvalues_len30 $gfname
 	gcai_file_list="$gcai_file_list $gfname"
     done
     
@@ -173,3 +213,4 @@ EOF
 # calculate_signatures "$species_list_1" $1 $2
 # calculate_signatures "$species_list_2" $1 $2
 
+pipeline_process_simple $1 $2

@@ -58,6 +58,6 @@ def load_domain_gcai_abundance():
     return (X,Y,dlist)
     
 (X,Y,dlist) = load_domain_gcai_abundance()
-# plotgCAIsDomain(X,Y,figName="gCAI_order_by_abundance")
-plotgCAIsDomain2(X,Y,figName="gCAI_order_by_abundance2")
+plotgCAIsDomain(X,Y,figName="gCAI_order_by_abundance")
+# plotgCAIsDomain2(X,Y,figName="gCAI_order_by_abundance2")
 

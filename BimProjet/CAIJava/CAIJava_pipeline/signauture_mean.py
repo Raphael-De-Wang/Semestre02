@@ -73,6 +73,7 @@ inum = float(sys.argv[1])
 sign_dict,labels,all_espece_list = load_sign_dict(inum)
 # species_list = load_espece_names(inum,all_espece_list)
 # species_list = ['*Ciliophora-Paramecium_sexaurelia']
+'''
 species_list = ['*Ciliophora-Tetrahymena_malaccensis',
 'Ciliophora-Tetrahymena_thermophila',
 'Ciliophora-Ichthyophthirius_multifiliis',
@@ -90,6 +91,8 @@ species_list = ['*Ciliophora-Tetrahymena_malaccensis',
 'Streptophyta-Physcomitrella_patens',
 'Chlorophyta-Nonlabens_ulvanivorans',
 'Cryptophyta-Hemiselmis_andersenii']
+'''
+species_list = ['Metagenomic 30']
 
 moy = calculate_mean(sign_dict,species_list)
 # sign_vec_to_ewvalue("metagenomique")
