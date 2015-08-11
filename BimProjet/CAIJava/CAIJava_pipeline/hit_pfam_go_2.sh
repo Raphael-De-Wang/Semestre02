@@ -2,7 +2,6 @@
 
 # CLUSTER_NUM=$1
 # CLUSTER_ID=$2
-echo "HMMSCAN Pfam"
 
 basepath='/users/Etu9/3404759/Workspace/Semestre02/BimProjet/CAIJava/source/Marine'
 
@@ -66,7 +65,37 @@ EOF
     # python plot_gcais.py
 }
 
-species_list_1="*Chlorophyta-Picochlorum
+pipeline_process_simple(){
+    species_list=$1
+    CLUSTER_NUM=$2
+    CLUSTER_ID=$3
+    gcai_file_list=""
+    LOOP_COUNT=0
+    for specie in $species_list ; do
+	LOOP_COUNT=$((LOOP_COUNT+1))
+	HIT_NUM=$((LOOP_COUNT%CLUSTER_NUM)) 
+	if [ "$HIT_NUM" -ne "$CLUSTER_ID" ] ; then
+	    continue
+	fi
+	echo $specie
+	IFS='-' read -a array << EOF
+${specie/\*/}
+EOF
+	pfname="$basepath/${array[0]}/${array[1]}_domain.fasta"
+	gfname="$basepath/${array[0]}/${array[1]}_gcai.csv"
+	echo "CALCULATE gCAI"
+	python calculate_cai_value.py $pfname ewvalues $gfname
+	gcai_file_list="$gcai_file_list $gfname"
+    done
+    
+    echo "Abundance Sum UP"
+    python ordonner_domain_gcai_abundance.py $gcai_file_list
+    
+    echo "PLOT"
+    python plot_gcais.py
+}
+
+species_list="*Chlorophyta-Picochlorum
 *Chlorophyta-Trebouxia_gelatinosa
 *Ciliophora-Paramecium_biaurelia
 *Ciliophora-Paramecium_caudatum
@@ -85,9 +114,8 @@ Cryptophyta-Cryptomonas_Paramecium
 Cryptophyta-Guillardia_theta
 Cryptophyta-Hemiselmis_andersenii
 Rhodophyta-Galdieria_sulphuraria
-Streptophyta-Physcomitrella_patens"
-
-species_list_2="*Chlorophyta-Chlorella_vulgaris
+Streptophyta-Physcomitrella_patens
+*Chlorophyta-Chlorella_vulgaris
 *Rhodophyta-Porphyridium_purpureum
 *Streptophyta-Klebsormidium_flaccidum
 Apicomplexa-Perkinsus_marinus
@@ -109,8 +137,6 @@ Chlorophyta-Volvox_carteri
 Haptophyta-Emiliania_huxleyi
 Rhodophyta-Chondrus_crispus
 Rhodophyta-Cyanidioschyzon_merolae"
-
-# Chlorophyta-Micromonas
 
 # pipeline_process "$species_list_2" $1 $2 
 
@@ -144,7 +170,6 @@ EOF
     mv $outtxt /tmp/
 }
 
-calculate_signatures "$species_list_1" $1 $2
-
-calculate_signatures "$species_list_2" $1 $2
+# calculate_signatures "$species_list_1" $1 $2
+# calculate_signatures "$species_list_2" $1 $2
 

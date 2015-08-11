@@ -4,8 +4,7 @@ import numpy as np
 import operator
 
 from function import loadToDict, load_pfam2go_toDict, GOAnnotation, plot_switch_view_compare, switch_view, domain_function_list, domain_function_dict, familyReference
-from BimProjetLib import readClstr, readgCAIs, read2step,getGIDList, domainIdDict, domainGenomeDict, accumulateNivExprDom, sortDictByValue, gCAIsDictToDomDict
-
+from BimProjetLib import readClstr, readgCAIs, read2step, getGIDList, domainIdDict, domainGenomeDict, accumulateNivExprDom, sortDictByValue, gCAIsDictToDomDict
 
 with open("pfam2go") as handle :
     pfam2go_dict = load_pfam2go_toDict(handle)

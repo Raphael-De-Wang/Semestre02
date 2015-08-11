@@ -27,6 +27,8 @@ def CalculateCAIValue(seq, wvalues):
             gcai_log += math.log(0.01)
     # if miss > 20:
     #     raise ValueError("Too Many Missed Keys.")
+    if L == miss :
+        return -1
     return math.exp(gcai_log/(L-miss))
 
 def wvalue_to_dict(wvalue_handler):
@@ -39,20 +41,20 @@ def wvalue_to_dict(wvalue_handler):
             raise ValueError("Weight Key and Value Conflict.")
     return wv_dict
 
-domFasta_handler = open(sys.argv[1])
-
-wvalue_handler   = open(sys.argv[2])
+domFasta_handler = open(sys.argv[1]) # fasta file path
+wvalue_handler   = open(sys.argv[2]) # wvalue file path
 wvalue_dict = wvalue_to_dict(wvalue_handler)
 wvalue_handler.close()
 
-gcai_handler = open(sys.argv[3], 'w')
+gcai_handler = open(sys.argv[3], 'w') # gcai output file path
 csv_writer   = csv.writer(gcai_handler, delimiter='\t')
 
 gcai_list = []
 
 for record in SeqIO.parse(domFasta_handler, "fasta") :
     gcai = CalculateCAIValue(record.seq, wvalue_dict)
-    gcai_list.append([record.name,gcai])
+    if gcai >= 0 :
+        gcai_list.append([record.name,gcai])
 
 gcai_list = sorted(gcai_list, key=operator.itemgetter(1),reverse=True)
     

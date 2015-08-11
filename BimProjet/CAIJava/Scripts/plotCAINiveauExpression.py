@@ -130,7 +130,8 @@ def domain_function_list(domains,pfam2go_dict):
     
 # loading
 CLS_dict = readClstr("AT_arc_metatrans.filtered.fasta.clstr")
-CAI_dict = readgCAIs("../output/cais.lst.2step")
+# CAI_dict = readgCAIs("../output/cais.lst.2step")
+CAI_dict = readgCAIs("../output/AT_arc_metatrans.filtered.fasta.cais_list")
 step2MList   = read2step("AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step")
 # step2MList[binSearch(step2MList,step2GnameComp,"GG7SD3401DYJ3N")]
 
@@ -163,6 +164,7 @@ plotBarChart(nivExpr[nivExpr<moy+2*std],domains[nivExpr<moy+2*std],"nivExprmoy+2
 plotBarChart(nivExpr[nivExpr<moy+3*std],domains[nivExpr<moy+3*std],"nivExprmoy+3std")
 plotBarChart(nivExpr[nivExpr<moy+4*std],domains[nivExpr<moy+4*std],"nivExprmoy+4std")
 '''
+
 # gCAIs par domaine
 gCAIsDomDict = gCAIsDictToDomDict(CAI_dict,domIdDict,domains)
 gCAIsDomSortList = np.array(sortDictByValue(CAI_dict))
@@ -171,13 +173,13 @@ gCAIsDomSortList = np.array(sortDictByValue(CAI_dict))
 xDiv=1
 yDiv=20
 
-gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) ])
+gCAIsDomList = np.array([[i,g] for i,d in enumerate(domains) for g in gCAIsDomDict.get(d) if type(g) == float ])
 # indice = gCAIsDomList[:,0] < top
-# plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],yDiv,xDiv,figName="gCAIsChaleur[%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
+plotgCAIsDomain(gCAIsDomList[:,1],gCAIsDomList[:,0],yDiv,xDiv,figName="gCAIsChaleur[%d][xDiv=%d][yDiv=%d]"%(len(np.unique(gCAIsDomList[:,0])),xDiv,yDiv))
 # exit()
 
-plotgCAIsDomain2(gCAIsDomList[:,1],gCAIsDomList[:,0],"gCAIsDistr")
-
+plotgCAIsDomain2(gCAIsDomList[:,0],gCAIsDomList[:,1],"gCAIsDistr")
+exit()
 '''
 indice = gCAIsDomList[:,0] < 1000
 plotgCAIsDomain(gCAIsDomList[indice,1],gCAIsDomList[indice,0],"gCAIsChaleurTop1000")

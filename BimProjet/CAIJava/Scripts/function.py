@@ -1,5 +1,6 @@
 #!env python
 
+import csv
 import pydot
 import cPickle
 import operator
@@ -424,4 +425,42 @@ def familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2go_dict,neSeuil
                             raise ValueError("Expression Level Value Conflict.")
     deSortList = np.array(sortDictByValue(de))
     return deSortList,dg,de
+
+def load_pfam2go():
+    with open("pfam2go") as handle :
+        pfam2go_dict = load_pfam2go_toDict(handle)
+    return pfam2go_dict
+    
+def load_goslim():        
+    with  open("GO_SLIM_META_DICT.txt",'r') as handle :
+        goslimmeta_dict = loadToDict(handle)
+    return goslimmeta_dict
+        
+def load_godict():        
+    with open("GO_DICT.txt",'r') as handle :
+        goDict = loadToDict(handle)
+    return goDict
+
+def load_domain_gcai_abundance():
+    dom_gcai = {}
+    dom_abundance = {}
+    with open("/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/CAIJava_pipeline/domain_gcai_abundance.csv") as handle :
+        reader = csv.reader(handle, delimiter='\t')
+        for dname, gcai, abundance in reader :
+            if not dom_abundance.has_key(dname) :
+                dom_abundance[dname] = int(abundance)
+            elif dom_abundance[dname] <> int(abundance) :
+                raise ValueError("[%s] Abundance Value Conflict. "%dname)
+            if not dom_gcai.has_key(dname) :
+                dom_gcai[dname] = [float(gcai)]
+            else:
+                dom_gcai[dname].append(float(gcai))
+    return (dom_gcai, dom_abundance)
+
+def load_all_func_data():
+    pfam2go_dict = load_pfam2go()
+    goslimmeta_dict = load_goslim()
+    goDict = load_godict()
+    (dom_gcai, dom_abundance) = load_domain_gcai_abundance()
+    return ( pfam2go_dict, goslimmeta_dict, goDict, dom_gcai, dom_abundance )
 

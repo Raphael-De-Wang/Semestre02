@@ -237,9 +237,10 @@ def plotgCAIsDomain(X,Y,xDiv=1,yDiv=20,figName=None):
     else:
         pylab.show()
     pylab.close(fig)
-    
+
+'''    
 def plotgCAIsDomain2(X,Y,figName=None):
-    T = np.arctan(X)#,np.ones(len(X)))
+    T = np.arctan(Y)#,np.ones(len(X)))
     pylab.figure(figsize=(30,4))
     pylab.scatter(Y,X, s=5, c=T, alpha=.4,marker='x')
     pylab.xlabel("Domain Sorted By Translation Level")
@@ -248,6 +249,25 @@ def plotgCAIsDomain2(X,Y,figName=None):
     pylab.xlim(0,len(np.unique(Y))), pylab.xticks([])
     pylab.plot(Y,np.ones(len(Y))*0.025,'k-')
     pylab.plot(Y,np.ones(len(Y)),'k-')
+    pylab.title("gCAIs values distributions ordered by expression level, the colors correspond to gCAI value, each colume represent a domain")
+    if figName:
+        pylab.savefig(figName)
+    else:
+        pylab.show()
+    pylab.close()
+'''
+
+def plotgCAIsDomain2(X,Y,figName=None,xticks=[]):
+    T = np.arctan(Y)
+    fig = pylab.figure(figsize=(30,4))
+    xUniLen = len(np.unique(X))
+    pylab.scatter(X, Y, s=5, c=T, alpha=.4, marker='x')
+    pylab.xlabel("Domain Sorted By Translation Level")
+    pylab.ylabel("gCAIs")
+    pylab.ylim(0,1.02), pylab.yticks(pylab.arange(0,1.1,0.1))
+    pylab.xlim(0,xUniLen), pylab.xticks(xticks)
+    pylab.plot(np.arange(xUniLen),np.ones(xUniLen)*0.025,'k-')
+    pylab.plot(np.arange(xUniLen),np.ones(xUniLen),'k-')
     pylab.title("gCAIs values distributions ordered by expression level, the colors correspond to gCAI value, each colume represent a domain")
     if figName:
         pylab.savefig(figName)
