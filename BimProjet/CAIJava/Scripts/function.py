@@ -223,8 +223,8 @@ def switch_view(dfList,goDict,goslimmeta_dict,dgDict,deDict):
         if record.type == 'cellular_component': 
             add_in_dict(cellu_comp,func,name,d,cais,ne)
     return bio_process,molec_func,cellu_comp
-    
-def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
+
+def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.6):
     nameList = []
     domList  = []
     caisMinList = []
@@ -235,7 +235,8 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
     fndict      = {}
     for key,value in func_dict.iteritems():
         (name,dom_list,cais_list,ne_list) = value
-        if max(cais_list) < caiSeuil :
+        cais_list = [ j for i in cais_list for j in i ]        
+        if np.max(cais_list) < caiSeuil :
             continue
         if not fndict.has_key(key):
             fndict[key] = sum(ne_list)
@@ -244,7 +245,7 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
     for key,mNe in sortDictByValue(fndict,False):
         value = func_dict[key]
         (name,dom_list,cais_list,ne_list) = value
-        cais_list = [j for i in cais_list for j in i]
+        cais_list = [ j for i in cais_list for j in i ]
         caisMinList.append(min(cais_list))
         caisMaxList.append(max(cais_list))
         caisMeanList.append(np.mean(cais_list))
@@ -290,10 +291,118 @@ def plot_switch_view(func_type,func_dict,fname=None,figsize=None,caiSeuil=0.0):
         plt.show()
     else:
         plt.savefig(fname)
+        '''
         handle = open(fname.replace('png','txt'),'w')
         for f in funcList:
             handle.write("%s\n"%f)
         handle.close()
+        '''
+    plt.close(fig)
+
+def plot_switch_view_all_in_one(bio_process_1, bio_process_2, molec_func_1,molec_func_2 , cellu_comp_1, cellu_comp_2, fname=None, figsize=None, caiSeuil=0.0):
+    def plot_switch_view(func_type,func_dict_1,func_dict_2,fname,caiSeuil,subplot_pos):
+        nameList = []
+        domList  = []
+        caisMinList = []
+        caisMaxList = []
+        caisMeanList= []
+        caisMinList_2 = []
+        caisMaxList_2 = []
+        caisMeanList_2= []
+        neList      = []
+        funcList    = []
+        fndict      = {}
+        for key,value in func_dict_1.iteritems():
+            (name,dom_list,cais_list,ne_list) = value
+            (name_2,dom_list_2,cais_list_2,ne_list_2) = func_dict_2[key]
+            cais_list = [ j for i in cais_list for j in i ]        
+            cais_list_2 = [ j for i in cais_list_2 for j in i ]
+            if name <> name_2 or len(cais_list) <> len(cais_list_2) or len(dom_list) <> len(dom_list_2) or len(ne_list) <> len(ne_list_2) :
+                raise ValueError("Data Conflict In func_dict")
+            if np.max(cais_list) < caiSeuil :
+                continue
+            if not fndict.has_key(key):
+                fndict[key] = sum(ne_list)
+            else :
+                fndict[key] += sum(ne_list)
+        for key,mNe in sortDictByValue(fndict,False):
+            value_1 = func_dict_1[key]
+            value_2 = func_dict_2[key]
+            (name,dom_list,cais_list,ne_list) = value_1
+            (name_2,dom_list_2,cais_list_2,ne_list_2) = value_2
+            cais_list = [ j for i in cais_list for j in i ]
+            cais_list_2 = [ j for i in cais_list_2 for j in i ]
+            caisMinList.append(min(cais_list))
+            caisMaxList.append(max(cais_list))
+            caisMeanList.append(np.mean(cais_list))
+            caisMinList_2.append(min(cais_list_2))
+            caisMaxList_2.append(max(cais_list_2))
+            caisMeanList_2.append(np.mean(cais_list_2))
+            nameList.append(name)
+            domList.append(len(dom_list))
+            neList.append(sum(ne_list))
+            funcList.append(key)
+        bottoms = np.arange(len(nameList))*1.2
+        ax1 = plt.subplot(subplot_pos[0],subplot_pos[1],subplot_pos[2]+1,axisbg="#fdf6e3")
+        ax1.set_title("Nombre de Domain par Function")
+        plt.bar(left=np.zeros(len(nameList)),
+            width=domList, bottom=bottoms,align="edge", # "center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+        plt.yticks(bottoms+0.1,nameList)
+        ax2 = plt.subplot(subplot_pos[0],subplot_pos[1],subplot_pos[2]+2,axisbg="#fdf6e3")
+        ax2.set_title("Niveau d'Expression")
+        plt.bar(left=np.zeros(len(nameList)),
+            width=neList, bottom=bottoms,align="edge", # "center",
+            color="#2aa198",orientation="horizontal",height=1.0)
+        plt.yticks(bottoms+0.1,funcList)
+        ax3 = plt.subplot(subplot_pos[0],subplot_pos[1],subplot_pos[2]+3,axisbg="#fdf6e3")
+        ax3.set_title("gCAI")
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMaxList, bottom=bottoms,
+            color="b",orientation="horizontal",
+            height=0.7)
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMeanList, bottom=bottoms,
+            color="g",orientation="horizontal",
+            height=0.8)
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMinList, bottom=bottoms,
+            color="r",orientation="horizontal",
+            height=0.9)
+        plt.yticks(bottoms+0.1,funcList)
+        ax4 = plt.subplot(subplot_pos[0],subplot_pos[1],subplot_pos[2]+4,axisbg="#fdf6e3")
+        ax4.set_title("gCAI 2")
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMaxList_2, bottom=bottoms,
+            color="b",orientation="horizontal",
+            height=0.7,label='Max')
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMeanList_2, bottom=bottoms,
+            color="g",orientation="horizontal",
+            height=0.8,label='Mean')
+        plt.bar(left=np.zeros(len(nameList)),align="edge", # "center",
+            width=caisMinList_2, bottom=bottoms,
+            color="r",orientation="horizontal",
+            height=0.9,label='Min')
+        plt.yticks(bottoms+0.1,funcList)
+        return (ax1,ax2,ax3,ax4)
+    fig = plt.figure(figsize=figsize)
+    # plt.suptitle(, fontsize=15)
+    ax1,ax2,ax3,ax4 = plot_switch_view("Biological Process",bio_process_1,bio_process_2,fname,caiSeuil,[3,4,0])
+    bb = ax1.get_position()
+    plt.figtext(.1,bb.max[1]-.05,'Biological Process', fontsize=40, ha='center')
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2)
+    ax1,ax2,ax3,ax4 = plot_switch_view("Molecular Function",molec_func_1,molec_func_2,fname,caiSeuil, [3,4,4])
+    bb = ax1.get_position()
+    plt.figtext(.1,bb.max[1]-.05,'Molecular Function',fontsize=40, ha='center')
+    ax1,ax2,ax3,ax4 = plot_switch_view("Cellular Component",cellu_comp_1,cellu_comp_2,fname,caiSeuil, [3,4,8])
+    bb = ax1.get_position()
+    plt.figtext(.1,bb.max[1]-0.05,'Cellular Component',fontsize=40, ha='center')
+    fig.subplots_adjust(left=0.3,bottom=0.1,top=0.90)
+    if fname == None:
+        plt.show()
+    else:
+        plt.savefig(fname)
     plt.close(fig)
 
 def plot_switch_view_compare(func_type,func_dict_1,func_dict_2,fname=None,figsize=None,caiSeuil=0.0):

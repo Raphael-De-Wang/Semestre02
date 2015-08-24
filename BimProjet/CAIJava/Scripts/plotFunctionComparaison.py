@@ -19,7 +19,8 @@ with open("GO_DICT.txt",'r') as handle :
 def sub_1(vseuil=0.9):
     # loading
     CLS_dict = readClstr("AT_arc_metatrans.filtered.fasta.clstr")
-    CAI_dict = readgCAIs("../output/cais.lst.2step")
+    # CAI_dict = readgCAIs("../output/cais.lst.2step")
+    CAI_dict = readgCAIs("../output/cais_len30.lst")
     step2MList = read2step("AT_arc_metatrans.filtered.fasta.6RF.faa.e_minus10_pos_neg_covSeq_EM10.archs.2step")
     gIDList = getGIDList(step2MList)
     # Accumulate Niveau Expression :
@@ -72,6 +73,6 @@ bio_process_1, molec_func_1, cellu_comp_1 = sub_1(0.6)
 bio_process_2, molec_func_2, cellu_comp_2 = sub_2()
 
 # plot_switch_view_compare(func_type,func_dict_1,func_dict_2,fname=None,figsize=None,caiSeuil=0.0)
-plot_switch_view_compare('Biological Process',bio_process_1,bio_process_2,'BiologicalProcess.png',(70,80))
-plot_switch_view_compare('Cellular Component',cellu_comp_1,cellu_comp_2, 'CellularComponent.png',(70,30))
-plot_switch_view_compare('Molecular Function',molec_func_1, molec_func_2, 'MolecularFunction.png',(70,90))
+plot_switch_view_compare('Biological Process',bio_process_1,bio_process_2,'BiologicalProcessCmp.png',(70,80))
+plot_switch_view_compare('Cellular Component',cellu_comp_1,cellu_comp_2, 'CellularComponentCmp.png',(70,30))
+plot_switch_view_compare('Molecular Function',molec_func_1, molec_func_2, 'MolecularFunctionCmp.png',(70,90))
