@@ -550,10 +550,10 @@ def load_godict():
         goDict = loadToDict(handle)
     return goDict
 
-def load_domain_gcai_abundance():
+def load_domain_gcai_abundance(fname="/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/CAIJava_pipeline/domain_gcai_abundance.csv"):
     dom_gcai = {}
     dom_abundance = {}
-    with open("/home/raphael/Documents/UPMC_BIM/Semestre02/TME/BimProjet/CAIJava/CAIJava_pipeline/domain_gcai_abundance.csv") as handle :
+    with open(fname) as handle :
         reader = csv.reader(handle, delimiter='\t')
         for dname, gcai, abundance in reader :
             if not dom_abundance.has_key(dname) :
