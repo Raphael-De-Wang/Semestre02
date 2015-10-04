@@ -81,7 +81,7 @@ deSortList,dg,de = familyReference(nivExprAccuDomDict,gCAIsDomDict,domains,pfam2
 print 'Domain Expression Level List Done.'
 #### 
 klist = []
-vseuil = 0.9
+vseuil = 0.6
 ndg = {}
 nde = {}
 for k,vl in dg.iteritems():
@@ -127,7 +127,7 @@ def constr_arbre():
     dot.write_png('/tmp/graph.png', prog='dot')
 
 print 'Building Function tree. '
-constr_arbre()
+# constr_arbre()
 print "length of DF_LIST : ", len(DF_LIST)
 print "length of FF_LIST : ", len(FF_LIST)
 print "DF_LIST : ", DF_LIST
@@ -152,13 +152,13 @@ def plot_nbr_domain_par_func(dfDict,width=0.35,fname=None):
 # plot_nbr_domain_par_func(dfDict,fname='nbr_domain_par_func.png')
 
 # bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,dg,de)
-# bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
+bio_process,molec_func,cellu_comp = switch_view(dfList,goDict,goslimmeta_dict,ndg,nde)
 
 # plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(15,50))
 # plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(45,30))
 # plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(15,15))
-'''
-plot_switch_view('Biological Process',bio_process,'BiologicalProcess.png',(30,15))
-plot_switch_view('Molecular Function',molec_func, 'MolecularFunction.png',(40,25))
-plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent.png',(30,15))
-'''
+
+plot_switch_view('Biological Process',bio_process,'BiologicalProcess_meta.png',(30,15))
+plot_switch_view('Molecular Function',molec_func, 'MolecularFunction_meta.png',(40,25))
+plot_switch_view('Cellular Component',cellu_comp, 'CellularComponent_meta.png',(30,15))
+

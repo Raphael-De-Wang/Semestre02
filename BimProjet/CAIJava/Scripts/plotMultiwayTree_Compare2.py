@@ -363,7 +363,7 @@ def add_in_edge_dict(G,edge_list,color,edge_dict,vertex_dict,go_dict,func_type=N
             edge_dict[f] = [e,(f1,f2),color]
     return edge_dict
     
-def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=None,tvfname = "/tmp/.tmpsave",figSize=[1000,1000]):
+def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=None,tvfname = "/tmp/.tmpsave",figSize=[1000,1000],bg_color=[0,0,0,1],text_color=[0,0,0,1]):
     print "loading variances..."
     ( func_meta_list, func_op_list,
     DF_EDGE_LIST_meta, FF_EDGE_LIST_meta, FA_EDGE_LIST_meta,
@@ -375,7 +375,7 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
 
     go_dict = load_godict() # for label
 
-    print "Plot..."
+    print "building graph..."
     
     G = gt.Graph()
     vertex_dict = {}
@@ -391,10 +391,10 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
     vertex_dict = add_in_vertex_dict(G,FUNC_SET_meta, (0,0,1,.3),  vertex_dict,go_dict,func_type) # light blue *
     vertex_dict = add_in_vertex_dict(G,FUNC_SET_op,   (1,0,0,.3),  vertex_dict,go_dict,func_type) # light green * 
 
-    edge_dict   = add_in_edge_dict(G,FA_EDGE_LIST_meta,(1,0,0,.4),edge_dict,vertex_dict,go_dict,func_type) # red
-    edge_dict   = add_in_edge_dict(G,FA_EDGE_LIST_op,  (1,0,0,.4),edge_dict,vertex_dict,go_dict,func_type) # red
-    edge_dict   = add_in_edge_dict(G,FF_EDGE_LIST_meta,(0,1,0,.4),edge_dict,vertex_dict,go_dict,func_type) # green
-    edge_dict   = add_in_edge_dict(G,FF_EDGE_LIST_op,  (0,1,0,.4),edge_dict,vertex_dict,go_dict,func_type) # green
+    edge_dict   = add_in_edge_dict(G,FA_EDGE_LIST_meta,(1,0,0,1),edge_dict,vertex_dict,go_dict,func_type) # red
+    edge_dict   = add_in_edge_dict(G,FA_EDGE_LIST_op,  (1,0,0,1),edge_dict,vertex_dict,go_dict,func_type) # red
+    edge_dict   = add_in_edge_dict(G,FF_EDGE_LIST_meta,(0,1,0,1),edge_dict,vertex_dict,go_dict,func_type) # green
+    edge_dict   = add_in_edge_dict(G,FF_EDGE_LIST_op,  (0,1,0,1),edge_dict,vertex_dict,go_dict,func_type) # green
 
     vprop = G.new_vertex_property("string")
     for k,v in vertex_dict.iteritems():
@@ -409,27 +409,30 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
     vprop = G.new_vertex_property("vector<double>")
     for k,v in vertex_dict.iteritems():
         vprop[v[0]] = v[2]
-    G.vertex_properties["vertex_fill_color"] = vprop
+    # G.vertex_properties["vertex_fill_color"] = vprop
+    G.vertex_properties["vertex_color"] = vprop
     
     eprop = G.new_edge_property("vector<double>")
     for k,v in edge_dict.iteritems():
         eprop[v[0]] = v[2]
     G.edge_properties["edge_color"] = eprop
 
+    print "minimize block model..."
     state = community.minimize_blockmodel_dl(G)
-
     gt.graph_draw(G, vertex_size=100,
-                  # vertex_color=G.vertex_properties['vertex_color'],
-                  vertex_fill_color=G.vertex_properties['vertex_fill_color'],
+                  # vertex_fill_color=G.vertex_properties['vertex_fill_color'],
+                  vertex_color=G.vertex_properties['vertex_color'],
                   vertex_text=G.vertex_properties['label'],
                   vertex_text_position=-2,
                   vertex_font_size=9,
                   edge_color=G.edge_properties['edge_color'],
                   vertex_anchor=0,
-                  bg_color=[0,0,0,1],
+                  bg_color=bg_color,
                   output_size=figSize,
+                  edge_pen_width=4.,
                   output="MultiwayFunctionTreeAllMMoyOppo[%d-%d][%s>%f][%s].png"%(rangeCeiling,rangeFloor,"gcai",gcai_threshold,func_type))
 
+    '''
     print "clustering analyzing..."
     gt.graph_draw(G, vertex_size=100,
                   vertex_fill_color=G.vertex_properties['vertex_fill_color'],
@@ -439,7 +442,7 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
                   vertex_font_size=9,
                   edge_color=G.edge_properties['edge_color'],
                   vertex_anchor=0,
-                  bg_color=[0,0,0,1],
+                  bg_color=bg_color,
                   output_size=figSize,
                   output="MultiwayFunctionTreeAllMMoyOppo[%d-%d][%s>%f][%s]Community.png"%(rangeCeiling,rangeFloor,"gcai",gcai_threshold,func_type))
 
@@ -454,7 +457,7 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
                   vertex_font_size=9,
                   edge_color=G.edge_properties['edge_color'],
                   vertex_anchor=0,
-                  bg_color=[0,0,0,1],
+                  bg_color=bg_color,
                   output_size=figSize,
                   output="MultiwayFunctionTreeAllMMoyOppo[%d-%d][%s>%f][%s]MinSpan.png"%(rangeCeiling,rangeFloor,"gcai",gcai_threshold,func_type))
 
@@ -470,21 +473,28 @@ def plot_fast_sub_2(rangeCeiling=0,rangeFloor=50,gcai_threshold=0.6,func_type=No
                   vertex_font_size=9,
                   edge_color=G.edge_properties['edge_color'],
                   vertex_anchor=0,
-                  bg_color=[0,0,0,1],
+                  bg_color=bg_color,
                   output_size=figSize,
                   output="MultiwayFunctionTreeAllMMoyOppo[%d-%d][%s>%f][%s]Kcore.png"%(rangeCeiling,rangeFloor,"gcai",gcai_threshold,func_type))
+    '''
 
 rangeCeiling=0
-rangeFloor=100
+rangeFloor=300
 tvfname=".tmpsave%d"%(rangeFloor)
 figSize = [3000,3000]
+bg_color = [1,1,1,1]
 # plot_sub_1(rangeCeiling=0,rangeFloor=100,tvfname=tvfname)
 
 func_type = "cellular_component"
-G = plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=figSize)
-func_type = "biological_process"
-G = plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=figSize)
-func_type = "molecular_function"
-G = plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=figSize)
+print func_type," :"
+plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=figSize,bg_color=bg_color)
 
+'''
+func_type = "biological_process"
+print func_type," :"
+plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=[5000,5000])
+func_type = "molecular_function"
+print func_type," :"
+plot_fast_sub_2(rangeCeiling=rangeCeiling,rangeFloor=rangeFloor,func_type=func_type,tvfname=tvfname,figSize=figSize)
+'''
 
